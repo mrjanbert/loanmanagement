@@ -27,14 +27,23 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
+
+			<?php
+				$ref_no = $_GET['ref_no'];
+				$status = $conn->query("SELECT * from tbl_status WHERE ref_no = $ref_no");
+				while ($row = $status->fetch_assoc()) :
+					$status_comaker = $row['status_comaker'];
+				endwhile;
+			?>
+			<?php if ($status_comaker != 2) : ?>
 				<div class="card">
 					<?php
-
-					$borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
+					$borrower_id = $_SESSION['user_id'];
+					$borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id = $borrower_id");
 					while ($row = $borrower->fetch_assoc()) {
 						$borrower_array[$row['user_id']] = $row;
-						$borrower_name = $borrower_array[$row['user_id']]['lastName'] . ', ' . $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName']; 
-						$borrower_membership = $borrower_array[$row['user_id']]['membership'];
+						$borrower_name = $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName']; 
+						// $borrower_membership = $borrower_array[$row['user_id']]['membership'];
 					}
 					
 					// $comaker = $conn->query("SELECT *, concat(firstName,' ',lastName) AS name FROM tbl_comakers WHERE user_id in (SELECT comaker_id FROM tbl_transaction)");
@@ -42,8 +51,7 @@
 					// 	$comaker_array[$row['user_id']] = $row;
 					// }
 					
-					$ref_no = $_GET['ref_no'];
-					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN comakers c ON  c.comaker_id = t.comaker_id WHERE t.ref_no = $ref_no");
+					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE t.ref_no = $ref_no");
 					// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
 					while ($row = $query->fetch_assoc()) :
 						$comaker_name = $row['name'];
@@ -83,49 +91,49 @@
 									<h3 class="card-title">Name: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $borrower_name?></b>
+									<b><?= $borrower_name?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Loan Amount: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo number_format($amount, 2); ?></b>
+									<b><?= number_format($amount, 2); ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Monthly Amortization: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo number_format($monthly, 2); ?></b>
+									<b><?= number_format($monthly, 2); ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">15th / 30th: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo number_format($monthly / 2, 2); ?></b>
+									<b><?= number_format($monthly / 2, 2); ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Interest Rate: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $interest_rate . '%'; ?></b>
+									<b><?= $interest_rate . '%'; ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Term: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $months; ?> &nbsp;Months</b>
+									<b><?= $months; ?> &nbsp;Months</b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Loan Date: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo date('F j, Y', $loan_date); ?></b>
+									<b><?= date('F j, Y', $loan_date); ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Co-maker: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $comaker_name; ?> </b>
+									<b><?= $comaker_name; ?> </b>
 								</div>
 							</div>
 						</div><!-- /.card-header -->
@@ -143,19 +151,19 @@
 							<tbody>
 								<tr>
 									<td>
-										<b><?php echo date('F j, Y', $loan_date); ?></b>
+										<b><?= date('F j, Y', $loan_date); ?></b>
 									</td>
 									<td align="right">
-										<b><?php echo number_format($amount, 2); ?></b>
+										<b><?= number_format($amount, 2); ?></b>
 									</td>
 									<td align="right">
-										<b><?php echo number_format($total_interest, 2); ?></b>
+										<b><?= number_format($total_interest, 2); ?></b>
 									</td>
 									<td align="right">
-										<b><?php echo number_format($balance, 2); ?></b>
+										<b><?= number_format($balance, 2); ?></b>
 									</td>
 									<td align="right">
-										<b><?php echo number_format($balance, 2); ?>
+										<b><?= number_format($balance, 2); ?>
 									</td>
 								</tr>
 
@@ -163,16 +171,16 @@
 								for ($m = 1 + date('n', $loan_date); $m < 1 + (date('n', $loan_date) + $months); ++$m) { ?>
 									<tr>
 										<td>
-											<?php echo date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), 22)) ?>
+											<?= date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), 22)) ?>
 										</td>
 										<td align="right">
-											<?php echo number_format($principal, 2); ?>
+											<?= number_format($principal, 2); ?>
 										</td>
 										<td align="right">
-											<?php echo number_format($interest, 2); ?>
+											<?= number_format($interest, 2); ?>
 										</td>
 										<td align="right">
-											<?php echo number_format($monthly, 2); ?>
+											<?= number_format($monthly, 2); ?>
 										</td>
 										<?php
 										do {
@@ -185,7 +193,7 @@
 											}
 										?>
 											<td align="right">
-												<?php echo number_format($balance, 2); ?>
+												<?= number_format($balance, 2); ?>
 											</td>
 										<?php
 										} while ($balance < 0)
@@ -203,7 +211,7 @@
 								<strong>Principal:</strong>
 							</div>
 							<div class="col-md-2 text-right">
-								&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
+								&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($amount, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -211,7 +219,7 @@
 								<strong>Share Capital </strong><i> (for members only)</i> 1% <strong>: </strong>
 							</div>
 							<div class="col-md-2">
-								&nbsp;&nbsp;&nbsp;<?php echo number_format($share_capital, 2) ?>
+								&nbsp;&nbsp;&nbsp;<?= number_format($share_capital, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -219,7 +227,7 @@
 								<strong>Service Charge </strong>1%<strong>: </strong>
 							</div>
 							<div class="col-md-2">
-								&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
+								&nbsp;&nbsp;&nbsp;<?= number_format($service_charge, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -227,14 +235,14 @@
 								<strong>Notarial fee: </strong>
 							</div>
 							<div class="col-md-2">
-								<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2)?></p> 
+								<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?= number_format($notarial_fee, 2)?></p> 
 							</div>
 							<div class="col-md-6">
 							</div>
 							<div class="col-md-4">
 							</div>
 							<div class="col-md-2 text-right pt-0">
-								<strong> = </strong> <?php echo number_format($total_less, 2) ?>
+								<strong> = </strong> <?= number_format($total_less, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -242,7 +250,7 @@
 								<strong>Net Proceeds: </strong>
 							</div>
 							<div class="col-md-2 text-right">
-								<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
+								<p style="border-bottom: 3px double;"><b><?= number_format($net, 2) ?></b></p>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -255,7 +263,7 @@
 								<strong>Principal:</strong>
 							</div>
 							<div class="col-md-2 text-right">
-								&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
+								&nbsp;&nbsp;&nbsp;&nbsp;<?= number_format($amount, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -263,7 +271,7 @@
 								<strong>Service Charge </strong>1%<strong>: </strong>
 							</div>
 							<div class="col-md-2">
-								&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
+								&nbsp;&nbsp;&nbsp;<?= number_format($service_charge, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -271,14 +279,14 @@
 								<strong>Notarial fee: </strong>
 							</div>
 							<div class="col-md-2">
-								<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2)?></p> 
+								<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?= number_format($notarial_fee, 2)?></p> 
 							</div>
 							<div class="col-md-6">
 							</div>
 							<div class="col-md-4">
 							</div>
 							<div class="col-md-2 text-right pt-0">
-								<strong> = </strong> <?php echo number_format($total_less, 2) ?>
+								<strong> = </strong> <?= number_format($total_less, 2) ?>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -286,7 +294,7 @@
 								<strong>Net Proceeds: </strong>
 							</div>
 							<div class="col-md-2 text-right">
-								<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
+								<p style="border-bottom: 3px double;"><b><?= number_format($net, 2) ?></b></p>
 							</div>
 							<div class="col-md-6">
 							</div>
@@ -295,6 +303,7 @@
 						<?php endif; ?>
 					</div><!-- /.card-body -->
 				</div><!-- /.card -->
+			<?php endif; ?>
 			</div><!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->

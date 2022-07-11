@@ -65,7 +65,7 @@
                                 //     $type_arr[$row['loantype_id']] = $row;
                                 // }
                                 $user_id = $_SESSION['user_id'];
-                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE user_id = $user_id ORDER BY id DESC");
+                                $query = $conn->query("SELECT t.*, s.status_comaker, s.status_processor, s.status_manager, s.status_cashier FROM tbl_transaction t INNER JOIN tbl_status s ON t.ref_no = s.ref_no WHERE t.user_id = $user_id ORDER BY id DESC");
                                 while ($row = $query->fetch_assoc()) :
                                 ?>
                                     <tr>
@@ -82,7 +82,7 @@
                                                 <button type="button" class="btn btn-danger btn-sm">Denied</button>
                                             <?php endif; ?>
                                         </td>
-                                        <?php if ($row['status_comaker'] != 0) : ?>
+                                        <?php if ($row['status_comaker'] == 1) : ?>
                                             <td class="text-center">
                                                 <?php if ($row['status_manager'] == 0) : ?>
                                                     <button type="button" class="btn btn-warning btn-sm">Pending</button>
@@ -183,7 +183,7 @@
                                 $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName DESC");
                                 while ($row = $query->fetch_assoc()) :
                             ?>
-                            <option value="<?php echo $row['comaker_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
+                            <option value="<?php echo $row['user_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>
@@ -196,10 +196,10 @@
                         <select class="select2" style="width: 100%;" name="comaker_id" data-placeholder="Select Co-maker">
                             <option value=""></option>
                             <?php   
-                                $query = $conn->query("SELECT * FROM comakers ORDER BY lastName ASC");
+                                $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName ASC");
                                 while ($row = $query->fetch_assoc()) :
                             ?>
-                            <option value="<?php echo $row['comaker_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
+                            <option value="<?php echo $row['user_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>

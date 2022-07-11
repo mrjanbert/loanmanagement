@@ -74,7 +74,7 @@
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Reference No.</th>
-                                        <th class="text-center">Requested by</th>
+                                        <th class="text-center">Requested By</th>
                                         <th class="text-center">Principal Amount</th>
                                         <th class="text-center">Loan Date</th>
                                         <th class="text-center">Status</th>
@@ -83,43 +83,31 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // $user_id = $_SESSION['user_id'];
-                                    // $query = $conn->query("SELECT *, concat(firstName,' ',lastName) AS name FROM tbl_comakers WHERE user_id = $user_id");
-                                    // while ($row = $query->fetch_assoc()) :
-                                    //     $name = $row['name'];
-                                    
-                                    $comaker = $conn->query("SELECT *, concat(firstName,' ',lastName) AS name FROM tbl_comakers WHERE user_id IN (SELECT user_id FROM tbl_transaction)");
-                                    while ($row = $comaker->fetch_assoc()) {
-                                        $comaker_arr[$row['user_id']] = $row;
-                                        $borrower = $comaker_arr[$row['user_id']]['user_id'];
-                                        $reqby = $comaker_arr[$row['user_id']]['name'];
-                                    }
-
+                                    $i = 1;
                                     $user_id = $_SESSION['user_id'];
-                                    $query = $conn->query("SELECT * FROM tbl_transaction WHERE comaker_id  = $user_id");
-                                    while ($row = $query->fetch_assoc()) :  
-                                        $ref_no = $row['ref_no'];
+
+                                    $query = $conn->query("SELECT t.*, 
+                                        b.firstName, b.middleName, b.lastName, 
+                                        s.status_comaker, s.status_processor, s.status_manager, s.status_cashier 
+                                        FROM ((tbl_transaction t 
+                                            INNER JOIN tbl_borrowers b ON t.user_id = b.user_id) 
+                                            INNER JOIN tbl_status s ON t.status_ref = s.ref_no)  
+                                        WHERE comaker_id = $user_id");
+
+                                    while ($row = $query->fetch_assoc()) :
+                                        $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
                                         $amount = $row['amount'];
+                                        $ref_no = $row['ref_no'];
                                         $loan_date = $row['loan_date'];
                                         $status_comaker = $row['status_comaker'];
                                     ?>
                                         <tr>
-                                            <td></td>
-                                            <td>
-                                                <?php
-                                                echo $ref_no;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <?= $reqby; ?>
-                                            </td>
-                                            <td>
-                                                <?= $amount; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo date('F j, Y', strtotime($loan_date)); ?>
-                                            </td>
-                                            <td>
+                                            <td class="text-center"><?= $i++ ?></td>
+                                            <td><?= $ref_no; ?></td>
+                                            <td><?= $name; ?></td>
+                                            <td><?= number_format($amount, 2); ?></td>
+                                            <td><?= date('F j, Y', strtotime($loan_date)); ?></td>
+                                            <td class="text-center">
                                                 <?php if ($status_comaker == 0) : ?>
                                                     <button type="button" class="btn btn-warning btn-sm">Pending</button>
                                                 <?php elseif ($status_comaker == 1) : ?>
@@ -128,11 +116,64 @@
                                                     <button type="button" class="btn btn-danger btn-sm">Denied</button>
                                                 <?php endif; ?>
                                             </td>
-                                            <td></td>
+                                            <td align="center">
+                                                <div class="btn-group dropleft">
+                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                                        Action <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <?php if ($status_comaker == 0) : ?>
+                                                            <a class="dropdown-item" role="button" onclick="approve()">Approve</a>
+                                                            <a class="dropdown-item" role="button" onclick="deny()">Deny</a>
+                                                        <?php elseif ($status_comaker == 1) : ?>
+                                                            <a class="dropdown-item disabled" href="#">Approved</a>
+                                                        <?php elseif ($status_comaker == 2) : ?>
+                                                            <a class="dropdown-item disabled" href="#">Denied</a>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
-                                    <?php
-                                    endwhile;
-                                    ?>
+                                        
+                                        <script>
+                                            function deny() {
+                                                Swal.fire({
+                                                    title: 'Confirm Deny?',
+                                                    text: "You won't be able to revert this!",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Deny'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        Swal.fire(
+                                                            'Please wait ...',
+                                                            window.location.href="../../config/update-status.php?denyref_no=<?php echo $ref_no; ?>" 
+                                                        )
+                                                    }
+                                                })
+                                            }
+                                            function approve() {
+                                                Swal.fire({
+                                                    title: 'Confirm Approve?',
+                                                    text: "You won't be able to revert this!",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Approve'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        Swal.fire(
+                                                            'Please wait ...',
+                                                            window.location.href="../../config/update-status.php?approveref_no=<?php echo $ref_no; ?>" 
+                                                        )
+                                                    }
+                                                })
+                                            }
+                                        </script>
+                                    <?php endwhile; ?>
                                 </tbody>
                             </table>
                         </div><!-- /.card-body -->

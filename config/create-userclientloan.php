@@ -13,11 +13,12 @@
         $principal = $monthly - ($total_interest / $loan_term);
 
         if($comaker_id == '') {
-            $comaker_id = ' ';
+            $comaker_id = $user_id;
         }
 
         $data = " ref_no = '$ref_no' ";
         $data .= ", user_id = '$user_id' ";
+        $data .= ", status_ref = '$ref_no' ";
         $data .= ", amount = '$amount' ";
         $data .= ", loan_term = '$loan_term' ";
         $data .= ", interest = '$interest' ";
@@ -28,25 +29,15 @@
         $data .= ", loan_type = '$loan_type' ";
         $data .= ", purpose = '$purpose' ";
         $data .= ", comaker_id = '$comaker_id' ";
-        $data .= ", membership = '$membership' ";
-
-
-        // $comakersql = $conn->query("SELECT firstName, lastName FROM tbl_borrowers WHERE user_id = $comaker_id");
-        // $name = $comakersql->fetch_array();
-        // $firstName = $name['firstName'];
-        // $lastName = $name['lastName'];
-
-        // $data1 = " comaker_id = '$comaker_id' ";
-        // $data1 .= ", firstName = '$firstName' ";
-        // $data1 .= ", lastName = '$lastName' ";
+        // $data .= ", membership = '$membership' ";
 
         $query1 = "INSERT INTO tbl_transaction SET " . $data;
         $result1 = $conn->query($query1);
 
-        // $query2 = "INSERT INTO tbl_comakers SET " . $data1;
-        // $result2 = $conn->query($query2);
-
         if ($conn->affected_rows > 0) :
+
+            $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no'");
+
             session_start();
             $_SESSION['status']= "<script>
                 Swal.fire({

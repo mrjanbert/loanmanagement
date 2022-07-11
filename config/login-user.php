@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
 	extract($_POST);
     $encrypt = base64_encode($password);
 
-	$query = "SELECT * FROM tbl_users WHERE email = '" . $email . "' AND password = '" . $encrypt . "'";
+	$query = "SELECT * FROM tbl_users WHERE accountNumber = '" . $accountNumber . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
 	$count = mysqli_num_rows($result);
 

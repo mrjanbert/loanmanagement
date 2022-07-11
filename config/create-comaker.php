@@ -9,17 +9,17 @@ if (isset($_POST['submit'])) {
     $firstName = $get['firstName'];
     $lastName = $get['lastName'];
 
-    $query1 = $conn->query("UPDATE tbl_borrowers SET membership = '1' WHERE user_id = $user_id");
+    $data = " user_id = '$user_id' ";
+    $data .= ", firstName = '$firstName' ";
+    $data .= ", lastName = '$lastName' ";
+
+    // echo 'firstname: ' . $firstName . ', lastname: ' . $lastName . ', user_id: ' . $user_id;
+    $query = $conn->query("INSERT INTO tbl_comakers SET " .$data);
 
     if($conn->affected_rows > 0):
-        
-        $data = " user_id = '$user_id' ";
-        $data .= ", firstName = '$firstName' ";
-        $data .= ", lastName = '$lastName' ";
 
-        // echo 'firstname: ' . $firstName . ', lastname: ' . $lastName . ', user_id: ' . $user_id;
-
-        $query = $conn->query("INSERT INTO tbl_comakers SET " .$data);
+        //Set borrower to member
+        $query1 = $conn->query("UPDATE tbl_borrowers SET membership = '1' WHERE user_id = $user_id");
 
         session_start();
         $_SESSION['status']= "<script>

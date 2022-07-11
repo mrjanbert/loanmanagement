@@ -48,14 +48,15 @@
                                 $i = 1;
                                 $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName ASC");
                                 while($row = $query->fetch_assoc()):
+                                    $name = $row['lastName'] . ' ' . $row['firstName'];
 
                             ?>
                             <tr>
                                 <td class="text-center">
-                                    <?php echo $i++; ?>
+                                    <?= $i++; ?>
                                 </td>
                                 <td>
-                                    <?php echo $row['lastName'] . ', ' . $row['firstName']; ?>
+                                    <?= $name; ?>
                                 </td>
                                 <td></td>
                             </tr>

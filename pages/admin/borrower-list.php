@@ -46,14 +46,14 @@
                                         $birthDate = strtotime($row['birthDate']);
                                 ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $i++; ?></td>
-                                        <td><?php echo $row['accountNumber']; ?></td>
-                                        <td><?php echo $row['firstName'] . '  ' . $row['middleName'] . ' ' . $row['lastName']; ?> </td>
-                                            <td><?php echo date('F j, Y', $userCreated); ?></td>
+                                        <td class="text-center"><?= $i++; ?></td>
+                                        <td><?= $row['accountNumber']; ?></td>
+                                        <td><?= $row['firstName'] . '  ' . $row['middleName'] . ' ' . $row['lastName']; ?> </td>
+                                            <td><?= date('F j, Y', $userCreated); ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-info btn-xs" data-toggle="modal" id="view" name="<?php echo $row['user_id'];?>" value="<?php echo $row['user_id']; ?>" data-target="#view_borrower"><i class="fa fa-eye"></i></button>
+                                            <button class="btn btn-info btn-xs" data-toggle="modal" id="view" name="<?= $row['user_id'];?>" value="<?= $row['user_id']; ?>" data-target="#view_borrower"><i class="fa fa-eye"></i></button>
                                             <?php if(isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                            <a href="borrower_update.php?page=borrower_list&account_number=<?php echo $row['accountNumber']; ?>" class="btn btn-primary btn-xs my-1"><i class="fa fa-edit"></i></a>
+                                            <a href="borrower_update.php?page=borrower_list&account_number=<?= $row['accountNumber']; ?>" class="btn btn-primary btn-xs my-1"><i class="fa fa-edit"></i></a>
                                             <a onclick="deleteborrower()" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i></a>
                                             <?php } else {'';}?>
                                         </td>
@@ -72,7 +72,7 @@
                                                 if (result.isConfirmed) {
                                                     Swal.fire(
                                                         'Deleting ...',
-                                                        window.location.href = "../../code.php?deleteborrower_id=<?php echo $row['user_id']; ?>"
+                                                        window.location.href = "../../code.php?deleteborrower_id=<?= $row['user_id']; ?>"
                                                     )
                                                 }
                                             })
@@ -84,7 +84,7 @@
                                             <form action="">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="name" value="<?php echo $row['firstName'] . ' ' . $row['lastName']; ?>">Information of <?php echo $row['firstName'] . ' ' . $row['lastName']; ?> </h4>
+                                                        <h4 class="modal-title" id="name" value="<?= $row['firstName'] . ' ' . $row['lastName']; ?>">Information of <?= $row['firstName'] . ' ' . $row['lastName']; ?> </h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -93,55 +93,55 @@
                                                         <div class="row">
                                                             <div class="col-md-12 d-flex justify-content-center mb-4">
                                                                 <div class="image">
-                                                                    <img src="../../components/img/uploads/<?php echo $row['profilePhoto']; ?>" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
+                                                                    <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 text-center">
                                                                 <div class="form-group">
                                                                     <label>Account Number:</label>
-                                                                    <p id="account" name="account" value="<?php echo $row['accountNumber']; ?>"><?php echo $row['accountNumber']; ?></p>
+                                                                    <p id="account" name="account" value="<?= $row['accountNumber']; ?>"><?= $row['accountNumber']; ?></p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12 text-center">
                                                                 <div class="form-group">
                                                                     <label>Full Name:</label>
-                                                                    <p><?php echo $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName']; ?> </p>
+                                                                    <p><?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Age:</label>
-                                                                    <p><?php echo $row['age']; ?> </p>
+                                                                    <p><?= $row['age']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Birth Date:</label>
-                                                                    <p><?php echo $row['birthDate']; ?> </p>
+                                                                    <p><?= $row['birthDate']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Contact Number:</label>
-                                                                    <p><?php echo $row['contactNumber']; ?> </p>
+                                                                    <p><?= $row['contactNumber']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Email:</label>
-                                                                    <p class="text-primary"><?php echo $row['email']; ?> </p>
+                                                                    <p class="text-primary"><?= $row['email']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Address:</label>
-                                                                    <p><?php echo $row['address']; ?> </p>
+                                                                    <p><?= $row['address']; ?> </p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 text-center">
                                                                 <div class="form-group">
                                                                     <label>Date Registered:</label>
-                                                                    <p><?php echo $row['userCreated']; ?> </p>
+                                                                    <p><?= $row['userCreated']; ?> </p>
                                                                 </div>
                                                             </div>
                                                         </div>

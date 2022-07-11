@@ -22,7 +22,6 @@ if (isset($_POST['submit'])) {
     $contactNumber = '+63' . $_POST['contactNumber'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $membership = $_POST['membership'];
     $encrypt = base64_encode($password);
 
     if (move_uploaded_file($temp, $folder)) {
@@ -38,8 +37,7 @@ if (isset($_POST['submit'])) {
             profilePhoto = '$profilePhoto',
             contactNumber = '$contactNumber',
             email = '$email',
-            password = '$encrypt',
-            membership = '$membership'
+            password = '$encrypt'
         ";
         $results = $conn->query($query);
         if ($conn->affected_rows > 0) :
