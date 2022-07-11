@@ -30,30 +30,29 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Account No.</th>
+                                    <th>Employee ID</th>
                                     <th>Borrower Name</th>
                                     <th>Address</th>
                                     <th>Contact No.</th>
                                     <th>Email Address</th>
-                                    <th>User Role</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                $i = 1;
                                 $query = "SELECT * FROM tbl_users";
                                 $results = $conn->query($query);
                                 ?>
                                 <?php while ($row = $results->fetch_row()) : $user_id = $row[0];?>
                                     
                                     <tr>
-                                        <td class="text-center"><?php echo $row[0]; ?></td>
+                                        <td class="text-center"><?php echo $i++; ?></td>
                                         <td><?php echo $row[1]; ?></td>
                                         <td><?php echo $row[4] . ', ' . $row[2] . ' ' . $row[3][0] . '.'; ?> </td>
                                         <td><?php echo $row[5]; ?></td>
                                         <td><?php echo $row[9]; ?></td>
                                         <td><?php echo $row[11]; ?></td>
-                                        <td><?php echo $row[13]; ?></td>
                                         <td>
                                             <button class="btn btn-info btn-xs" data-toggle="modal" value=<?php echo $row[0]; ?> data-target="#view_user"><i class="fas fa-eye"></i></button>
                                             <a href="user_update.php?page=user_list&accountNumber=<?php echo $row[1]; ?>" class="btn btn-primary btn-xs my-1"><i class="fas fa-edit"></i></a>

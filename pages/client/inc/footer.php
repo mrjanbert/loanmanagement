@@ -8,6 +8,7 @@
 <!-- <script src="../../assets/plugins/select2/js/select2.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
+
 <!-- DataTables  & Plugins -->
 <script src="../../assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -20,8 +21,9 @@
 <script src="../../assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="../../assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
-<!-- overlayScrollbars -->
-<script src="../../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- BS Stepper -->
+<!-- <script src="../../assets/plugins/bs-stepper/js/bs-stepper.min.js"></script> -->
+
 <!-- AdminLTE App -->
 <script src="../../assets/dist/js/adminlte.js"></script>
 
@@ -46,11 +48,18 @@
   });
   $(function() {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+  });
 </script>
+
 <script>
   $(function () {
     $('.select2').select2()
   })
   
 </script>
+<!-- <script>
+  // BS-Stepper Init
+  $(document).ready(function () {
+    var stepper = new Stepper($('.bs-stepper')[0])
+  });
+</script> -->

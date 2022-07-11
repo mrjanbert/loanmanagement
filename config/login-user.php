@@ -2,8 +2,7 @@
 require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
-	$email = $_POST['email']; 
-	$password = $_POST['password'];
+	extract($_POST);
     $encrypt = base64_encode($password);
 
 	$query = "SELECT * FROM tbl_users WHERE email = '" . $email . "' AND password = '" . $encrypt . "'";
@@ -24,11 +23,13 @@ if (isset($_POST['submit'])) {
 		$_SESSION['profilePhoto'] = $data['profilePhoto'];
 		$_SESSION['contactNumber'] = $data['contactNumber'];
 		$_SESSION['userCreated'] = $data['userCreated'];
-		$_SESSION['user_role'] = $data['user_role'];
+		$_SESSION['role_name'] = $data['role_name'];
 		$_SESSION['email'] = $email;
-
-		header('location: ../pages/admin/index.php');
+		$_SESSION['status'] = "<div class=\"preloader flex-column justify-content-center align-items-center\">
+        <img class=\"animation__wobble\" src=\"../../components/img/logo.png\" height=\"200\" width=\"200\"></div>";
+		header('location: ../pages/admin/index.php?page=dashboard&usr='.base64_encode($_SESSION['role_name']));
 	} else {
+		session_start();
 		$_SESSION['status']="<script>const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

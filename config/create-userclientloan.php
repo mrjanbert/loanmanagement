@@ -2,30 +2,70 @@
     require_once 'data/Database.php';
 
     if (isset($_POST['submit'])) {
-        $ref_no = '15' . rand(100000, 1000000);
+        extract($_POST);
+        $ref_no = '014'. rand(1000000,10000000);
 
-        $user_id = $_POST['user_id'];
-        $plan_id = $_POST['plan_id'];
-        $loantype_id = $_POST['loantype_id'];
-        $purpose = $_POST['purpose'];
-        $amount = $_POST['amount'];
-        $status = $_POST['status'];
+        $interest_rate = 1;
+        $total_interest = ($amount * ($interest_rate / 100)) * $loan_term;
+        $interest = $total_interest / $loan_term;
+        $monthly = ($amount + $total_interest) / $loan_term;
+        $balance = $monthly * $loan_term;
+        $principal = $monthly - ($total_interest / $loan_term);
 
-        $query = "INSERT INTO tbl_transactions 
-        SET  
-            ref_no = '$ref_no', 
-            user_id = '$user_id',
-            plan_id = '$plan_id',
-            loantype_id = '$loantype_id',
-            purpose = '$purpose',
-            amount = '$amount',
-            status = '$status' ";
-        $result = $conn->query($query);
+        if($comaker_id == '') {
+            $comaker_id = ' ';
+        }
+
+        $data = " ref_no = '$ref_no' ";
+        $data .= ", user_id = '$user_id' ";
+        $data .= ", amount = '$amount' ";
+        $data .= ", loan_term = '$loan_term' ";
+        $data .= ", interest = '$interest' ";
+        $data .= ", total_interest = '$total_interest' ";
+        $data .= ", monthly = '$monthly' ";
+        $data .= ", principal = '$principal' ";
+        $data .= ", balance = '$balance' ";
+        $data .= ", loan_type = '$loan_type' ";
+        $data .= ", purpose = '$purpose' ";
+        $data .= ", comaker_id = '$comaker_id' ";
+        $data .= ", membership = '$membership' ";
+
+
+        // $comakersql = $conn->query("SELECT firstName, lastName FROM tbl_borrowers WHERE user_id = $comaker_id");
+        // $name = $comakersql->fetch_array();
+        // $firstName = $name['firstName'];
+        // $lastName = $name['lastName'];
+
+        // $data1 = " comaker_id = '$comaker_id' ";
+        // $data1 .= ", firstName = '$firstName' ";
+        // $data1 .= ", lastName = '$lastName' ";
+
+        $query1 = "INSERT INTO tbl_transaction SET " . $data;
+        $result1 = $conn->query($query1);
+
+        // $query2 = "INSERT INTO tbl_comakers SET " . $data1;
+        // $result2 = $conn->query($query2);
 
         if ($conn->affected_rows > 0) :
-            header('location: ../pages/client/index.php?page=loan-list');
+            session_start();
+            $_SESSION['status']= "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Your loan is now pending ... Please wait until your application approved by ...?'
+                })
+            </script>";
+            header('location: ../pages/client/index.php?page=loans');
         else :
-            header('location: ../pages/client/index.php?page=loan-list');
+            session_start();
+            $_SESSION['status']= "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed! Please try again.'
+                })
+            </script>";
+            header('location: ../pages/client/index.php?page=loans');
         endif;
 
     }

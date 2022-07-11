@@ -1,6 +1,11 @@
     
     <!-- jQuery -->
-    <script src="../../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="../../assets/plugins/jquery/jquery.slim.min.js"></script>
+    
+    <!-- Select 2 -->
+    <!-- <script src="../../assets/plugins/select2/css/select2.min.css"></script>
+    <script src="../../assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
     
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,7 +31,10 @@
     <link rel="stylesheet" href="../../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../../assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <!-- Select 2 -->
-    <!-- <script src="../../assets/plugins/select2/css/select2.min.css"></script> -->
-    <!-- <script src="../../assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+    <!-- Sweetalert 2 -->
+    <link rel="stylesheet" href="../../assets/plugins/sweetalert2/sweetalert2.min.css">
+    <script src="../../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+    
+    <script src="../../assets/plugins/jquery/jquery.min.js"></script>

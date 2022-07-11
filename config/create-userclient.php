@@ -2,40 +2,59 @@
 require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
-    $accountNumber = '12'.rand(1000000,10000000);
+    $accountNumber = $_POST['accountNumber'];
     $firstName = $_POST['firstName'];
     $middleName = $_POST['middleName'];
+
+    if($middleName == '') {
+        $middleName = '';
+    }
+
     $lastName = $_POST['lastName'];
     $address = $_POST['address'];
     $age = $_POST['age'];
+    $birthDate = $_POST['birthDate'];
 
-    $profilePhoto = $_FILES['profilePhoto']['name'];
+    $profilePhoto = rand(1000,10000).$_FILES['profilePhoto']['name'];
     $temp = $_FILES['profilePhoto']['tmp_name'];
     $folder = '../components/img/uploads/' . $profilePhoto;
 
-    $birthDate = $_POST['birthDate'];
-    $contactNumber = '+63' .$_POST['contactNumber'];
+    $contactNumber = '+63' . $_POST['contactNumber'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $membership = $_POST['membership'];
     $encrypt = base64_encode($password);
 
-	if(move_uploaded_file($temp,$folder)) {
-        $query = "INSERT INTO tbl_borrowers
-            SET
-                accountNumber = '$accountNumber',
-                firstName = '$firstName',
-                middleName = '$middleName',
-                lastName = '$lastName',
-                address = '$address',
-                age = '$age',
-                profilePhoto = '$profilePhoto',
-                birthDate = '$birthDate',
-                contactNumber = '$contactNumber',
-                email = '$email',
-                password = '$encrypt'
-            ";
+    if (move_uploaded_file($temp, $folder)) {
+        $query = "INSERT INTO tbl_borrowers 
+        SET 
+            accountNumber = '$accountNumber',
+            firstName = '$firstName',
+            middleName = '$middleName',
+            lastName = '$lastName',
+            address = '$address',
+            age = '$age',
+            birthDate = '$birthDate',
+            profilePhoto = '$profilePhoto',
+            contactNumber = '$contactNumber',
+            email = '$email',
+            password = '$encrypt',
+            membership = '$membership'
+        ";
         $results = $conn->query($query);
         if ($conn->affected_rows > 0) :
+            session_start();
+            $_SESSION['status']="<script>const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        
+            Toast.fire({
+                icon: 'success',
+                title: 'Registered Successfully.'
+            })</script>";
             header('location: ../pages/client/login.php');
         else :
             header('location: ../pages/client/register.php');
@@ -44,6 +63,4 @@ if (isset($_POST['submit'])) {
         header('location: ../pages/client/register.php');
     }
 }
-
-
 ?>

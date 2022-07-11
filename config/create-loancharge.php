@@ -1,7 +1,7 @@
 <?php
 require_once 'data/Database.php';
 
-// Add Loan Plan
+// Add Loan Charges
 if (isset($_POST['submit'])) {
     extract($_POST);
     $data = " charges_type = '$charges_type' ";

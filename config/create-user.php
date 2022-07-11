@@ -2,7 +2,7 @@
 require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
-    $accountNumber = '13' . rand(1000000, 10000000);
+    $accountNumber = $_POST['accountNumber'];
     $firstName = $_POST['firstName'];
     $middleName = $_POST['middleName'];
     $lastName = $_POST['lastName'];
@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $age = $_POST['age'];
     $birthDate = $_POST['birthDate'];
 
-    $profilePhoto = $_FILES['profilePhoto']['name'];
+    $profilePhoto = rand(1000,10000).$_FILES['profilePhoto']['name'];
     $temp = $_FILES['profilePhoto']['tmp_name'];
     $folder = '../components/img/uploads/' . $profilePhoto;
 
@@ -21,8 +21,8 @@ if (isset($_POST['submit'])) {
     $encrypt = base64_encode($password);
 
     if (move_uploaded_file($temp, $folder)) {
-        $query = "INSERT INTO tbl_users
-        SET
+        $query = "INSERT INTO tbl_users 
+        SET 
             accountNumber = '$accountNumber',
             firstName = '$firstName',
             middleName = '$middleName',
@@ -38,6 +38,18 @@ if (isset($_POST['submit'])) {
         ";
         $results = $conn->query($query);
         if ($conn->affected_rows > 0) :
+            session_start();
+            $_SESSION['status']="<script>const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        
+            Toast.fire({
+                icon: 'success',
+                title: 'Registered Successfully.'
+            })</script>";
             header('location: ../login.php');
         else :
             header('location: ../register.php');
@@ -46,6 +58,4 @@ if (isset($_POST['submit'])) {
         header('location: ../register.php');
     }
 }
-
-
 ?>

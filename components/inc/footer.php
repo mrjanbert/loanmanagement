@@ -5,7 +5,7 @@
 <script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Select 2 -->
-<!-- <script src="../../assets/plugins/select2/js/select2.min.js"></script> -->
+<script src="../../assets/plugins/select2/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <!-- DataTables  & Plugins -->
@@ -46,7 +46,8 @@
   });
   $(function() {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+  });
+
 </script>
 
 <script>
@@ -54,4 +55,6 @@
     $('.select2').select2()
   })
   
+
+
 </script>

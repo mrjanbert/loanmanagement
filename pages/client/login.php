@@ -1,73 +1,106 @@
+<?php 
+session_start(); 
+
+if (isset($_SESSION['user_id'])) {
+  header('location: ./index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Login :: NMSCST Loan Management System</title>
     <link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../assets/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    
     <!-- Theme style -->
     <link rel="stylesheet" href="../../assets/dist/css/adminlte.min.css">
+
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../../assets/plugins/sweetalert2/sweetalert2.min.css">
+    <script src="../../assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+    
+    <!-- MDB -->
+    <link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../../components/hometemplate/css/style2.css" />
+  
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="d-flex justify-content-center">
-            <div class="card card-outline card-primary">
-                <div class="card-header d-flex justify-content-center">
-                    <h3><b>Login</b></h3>
-                </div>
-                <div class="card-body">
-                    <form action="../../config/login-userclient.php" method="POST">
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input type="text" class="form-control" name="email" placeholder="email" required>
-                        </div>
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-                            <input type="password" class="form-control remember" id="password" name="password" placeholder="password" required>
-                        </div>
-                        <div class="input-group align-items-center">
-                            <input type="checkbox" onclick="myFunction()">&nbsp;&nbsp;Show password
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="submit" value="submit" class="btn btn-primary float-right">Login</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center">
-                        <p>Don't have an account? <a href="register.php">Register</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("password");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
+<body>
+  <!--Main Navigation-->
+  <!--Main Navigation-->
 
-    <!-- jQuery -->
-    <script src="../assets/plugins/jquery/jquery.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../assets/dist/js/adminlte.js"></script>
+  <!--Main layout-->
+  <main>
+    <!-- Toast Notification -->
+    <?php
+        if (isset($_SESSION['status'])) {
+            $status = $_SESSION['status'];
+            echo "<span>$status</span>";
+        }
+    ?>
+    <!-- end of toast -->
+    <div class="container">
+      <!--Section: Content-->
+      <section class="vh-100">
+        <div class="container py-5 h-100">
+          <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+              <img src="../../components/hometemplate/img/login.webp" class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+
+              <div class="text-center">
+                <h2 class="fw-bold mb-4 pb-2">Borrower Login</h2>
+              </div>
+              <form action="../../config/login-userclient.php" method="POST"></formaction>
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="text"  name="accountNumber" class="form-control form-control-lg" />
+                  <label class="form-label">ID Number</label>
+                </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" name="password" class="form-control form-control-lg" />
+                  <label class="form-label">Password</label>
+                </div>
+
+                <div class="d-flex justify-content-around align-items-center my-4">
+                <button type="submit" value="submit" name="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                </div>
+
+                <!-- Submit button -->
+
+                <div class="text-center text-lg-start">
+                  <p class="fw-bold mt-1 pt-1 mb-0">Don't have an account? <a href="register.php" class="link-danger">Register</a></p>
+                </div>
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Content-->
+    </div>
+  </main>
+
+  <!-- unset toast notification to avoid popup every load -->
+  <?php unset($_SESSION["status"]); ?>
+
+  <!-- jQuery -->
+  <script src="../../assets/plugins/jquery/jquery.min.js"></script>
+  <!-- MDB -->
+  <script type="text/javascript" src="../../components/hometemplate/js/mdb.min.js"></script>
+  <!-- Custom scripts -->
+  <!-- <script type="text/javascript" src="js/script.js"></script> -->
 </body>
 
 </html>

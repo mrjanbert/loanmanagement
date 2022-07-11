@@ -43,11 +43,12 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM tbl_users";
+                                $user_id = $_SESSION['user_id'];
+                                $query = "SELECT * FROM tbl_users WHERE user_id != $user_id ";
                                 $results = $conn->query($query);
-                                while ($row = $results->fetch_row()) :
-                                    $name = $row[4] . ', ' . $row[2] . ' ' . $row[3][0] . '.';
-                                    $role = $row[13];
+                                while ($row = $results->fetch_assoc()) :
+                                    $name = $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName'][0] . '.';
+                                    $role = $row['role_name'];
                                 ?>
                                     <tr>
                                         <td><?php echo $name; ?> </td>
@@ -58,7 +59,7 @@
                                             <a onclick="deleteuserpermission()" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
-                                    <script>
+                                    <!-- <script>
                                         function deleteuserpermission() {
                                             Swal.fire({
                                                 title: 'Delete <?php echo $name; ?> from database?',
@@ -77,7 +78,7 @@
                                                 }
                                             })
                                         }
-                                    </script>
+                                    </script> -->
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
@@ -90,7 +91,7 @@
 
 <div class="modal fade" id="create-permission">
     <div class="modal-dialog modal-md">
-        <form action="../../config/create-permission.php">
+        <form action="../../config/create-permission.php" method="POST">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add New Permision</h4>
@@ -104,7 +105,7 @@
                             <div class="form-group">
                                 <label>Select User</label>
                                 <?php
-                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) as name FROM tbl_users order by concat(lastName,', ',firstName) asc ");
+                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id ORDER BY concat(lastName,', ',firstName) ASC ");
                                 ?>
                                 <select class="select2" name="selected_user" data-placeholder="Select user" style="width: 100%;" required>
                                     <option value=""></option>
@@ -121,14 +122,14 @@
                                     <option value=""></option>
                                     <option value="Manager">Manager</option>
                                     <option value="Processor">Processor</option>
-                                    <option value="Teller">Teller</option>
+                                    <option value="Cashier">Cashier</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-end">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" name="submit" class="btn btn-primary">
                         Save
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">

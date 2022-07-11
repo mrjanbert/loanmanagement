@@ -16,7 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="assets/plugins/sweetalert2/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
 </head>
 
@@ -85,6 +85,8 @@
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/dist/js/adminlte.js"></script>
+
+    <script src="assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 </body>
 
 </html>

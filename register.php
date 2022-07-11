@@ -18,7 +18,6 @@
 
 <body class="hold-transition register-page">
 
-
     <div class="register-box">
         <div class="card card-outline card-primary my-5">
             <div class="card-header d-flex justify-content-center">
@@ -34,6 +33,12 @@
                                 <input type="file" class="custom-file-input" id="inputFile" name="profilePhoto" required>
                                 <label class="custom-file-label" for="inputFile">Choose photo</label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label>ID Number</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="accountNumber" placeholder="Enter ID" required>
                         </div>
                     </div>
                     <div class="col-12">
@@ -60,16 +65,16 @@
                             <input type="text" class="form-control" name="address" placeholder="Enter Address" required>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <label>Age</label>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" name="age" placeholder="Enter Age" required>
-                        </div>
-                    </div>
                     <div class="col-12">
                         <label>Birth Date</label>
                         <div class="input-group mb-3">
                             <input type="date" class="form-control" name="birthDate" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label>Age</label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" name="age" placeholder="Enter Age" required>
                         </div>
                     </div>
                     <div class="col-12">
