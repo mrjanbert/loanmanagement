@@ -41,18 +41,11 @@
 					$borrower_id = $_SESSION['user_id'];
 					$borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id = $borrower_id");
 					while ($row = $borrower->fetch_assoc()) {
-						$borrower_array[$row['user_id']] = $row;
-						$borrower_name = $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName']; 
-						// $borrower_membership = $borrower_array[$row['user_id']]['membership'];
+						$borrower_membership = $row['membership'];
+						$borrower_name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['firstName'];
 					}
 					
-					// $comaker = $conn->query("SELECT *, concat(firstName,' ',lastName) AS name FROM tbl_comakers WHERE user_id in (SELECT comaker_id FROM tbl_transaction)");
-					// while ($row = $comaker->fetch_assoc()) {
-					// 	$comaker_array[$row['user_id']] = $row;
-					// }
-					
 					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE t.ref_no = $ref_no");
-					// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
 					while ($row = $query->fetch_assoc()) :
 						$comaker_name = $row['name'];
 						$amount = $row['amount'];
@@ -66,14 +59,14 @@
 
 						$interest_rate = 1; //fixed interest_rate
 
-						if($borrower_array[$row['user_id']]['membership'] == 1) :
+						if($borrower_membership == 1) :
 							$share_capital = 0.01 * $amount; 	//fixed capital for members only
 							$service_charge = 0.01 * $amount; //fixed service charge
 							$notarial_fee = 100; 	//fixed notarial fee
 
 							$total_less = $share_capital + $service_charge + $notarial_fee;
 							$net = $amount - ($share_capital + $service_charge + $notarial_fee); 
-						elseif($borrower_array[$row['user_id']]['membership'] == 0) : 
+						elseif($borrower_membership == 0) : 
 							$service_charge = 0.01 * $amount; //fixed service charge
 							$notarial_fee = 100; 	//fixed notarial fee
 
@@ -308,9 +301,6 @@
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section><!-- /.content -->
-
-
-
 
 <div class="modal fade" id="addpayment">
 	<div class="modal-dialog modal-md">

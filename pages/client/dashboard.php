@@ -92,7 +92,7 @@
                                         FROM ((tbl_transaction t 
                                             INNER JOIN tbl_borrowers b ON t.user_id = b.user_id) 
                                             INNER JOIN tbl_status s ON t.status_ref = s.ref_no)  
-                                        WHERE comaker_id = $user_id");
+                                        WHERE t.comaker_id = $user_id AND b.user_id != $user_id");
 
                                     while ($row = $query->fetch_assoc()) :
                                         $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];

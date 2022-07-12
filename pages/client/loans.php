@@ -55,15 +55,7 @@
 
                                 <?php
                                 $i = 1;
-                                // $plan = $conn->query("SELECT * FROM loan_plans WHERE plan_id in (SELECT plan_id FROM tbl_transactions)");
-                                // while ($row = $plan->fetch_assoc()) {
-                                //     $plan_arr[$row['plan_id']] = $row;
-                                // }
-
-                                // $type = $conn->query("SELECT * FROM loan_types WHERE loantype_id in (SELECT loantype_id FROM tbl_transactions)");
-                                // while ($row = $type->fetch_assoc()) {
-                                //     $type_arr[$row['loantype_id']] = $row;
-                                // }
+                                
                                 $user_id = $_SESSION['user_id'];
                                 $query = $conn->query("SELECT t.*, s.status_comaker, s.status_processor, s.status_manager, s.status_cashier FROM tbl_transaction t INNER JOIN tbl_status s ON t.ref_no = s.ref_no WHERE t.user_id = $user_id ORDER BY id DESC");
                                 while ($row = $query->fetch_assoc()) :
@@ -195,8 +187,8 @@
                         
                         <select class="select2" style="width: 100%;" name="comaker_id" data-placeholder="Select Co-maker">
                             <option value=""></option>
-                            <?php   
-                                $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName ASC");
+                            <?php
+                                $query = $conn->query("SELECT * FROM tbl_comakers WHERE user_id != $user_id ORDER BY lastName ASC");
                                 while ($row = $query->fetch_assoc()) :
                             ?>
                             <option value="<?php echo $row['user_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
@@ -220,7 +212,7 @@
                 <div class="modal-footer justify-content-end">
                     <div class="form-group">
                         <button type="submit" name="submit" class="btn btn-primary">Apply</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </form><!-- /.modal-content -->
@@ -259,5 +251,14 @@
                 $('#calculation_table').html(resp)
             }
         })
+    }
+
+    $('#close').click(function() {
+        close();
+    })
+    function close() {
+        $(".modal").on("hidden.bs.modal", function(){
+            $('#addloan').find("input[type=text], select").val("");
+        });
     }
 </script>

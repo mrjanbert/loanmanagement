@@ -29,15 +29,17 @@
         $data .= ", loan_type = '$loan_type' ";
         $data .= ", purpose = '$purpose' ";
         $data .= ", comaker_id = '$comaker_id' ";
-        // $data .= ", membership = '$membership' ";
 
         $query1 = "INSERT INTO tbl_transaction SET " . $data;
         $result1 = $conn->query($query1);
 
         if ($conn->affected_rows > 0) :
 
-            $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no'");
-
+            if($user_id == $comaker_id) {
+                $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no' , status_comaker = '1'");
+            } else {
+                $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no'");
+            }
             session_start();
             $_SESSION['status']= "<script>
                 Swal.fire({
@@ -47,6 +49,7 @@
                 })
             </script>";
             header('location: ../pages/client/index.php?page=loans');
+
         else :
             session_start();
             $_SESSION['status']= "<script>

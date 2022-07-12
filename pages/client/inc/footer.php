@@ -20,6 +20,7 @@
 <script src="../../assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="../../assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="../../assets/plugins/overlayScrollbars/js/OverlayScrollbars.min.js"></script>
 
 <!-- BS Stepper -->
 <!-- <script src="../../assets/plugins/bs-stepper/js/bs-stepper.min.js"></script> -->
