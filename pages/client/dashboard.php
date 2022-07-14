@@ -124,8 +124,9 @@
                                                     </button>
                                                     <div class="dropdown-menu">
                                                         <?php if ($status_comaker == 0) : ?>
-                                                            <a class="dropdown-item" role="button" onclick="approve()">Approve</a>
+                                                            <a class="dropdown-item" role="button" href="../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>" >Approve</a>
                                                             <a class="dropdown-item" role="button" href="../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>">Disapprove</a>
+                                                            
                                                             <script>
                                                                 function approve() {
                                                                     Swal.fire({

@@ -23,14 +23,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Loan Transactions</h2>
-                        <div class="d-flex justify-content-end">
-                            <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addloan">
-                                    <i class="fa fa-plus"></i> &nbsp;
-                                    Apply New Loan
-                                </button>
-                            <?php } ?>
-                        </div>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -60,7 +52,7 @@
                                         INNER JOIN tbl_borrowers b ON t.user_id = b.user_id) 
                                         INNER JOIN tbl_status s ON t.status_ref = s.ref_no) 
                                         INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id) 
-                                    WHERE s.status_comaker != '2' AND s.status_comaker != '0'");
+                                    WHERE s.status_comaker = '1'");
                                 while ($row = $query->fetch_assoc()) :
                                     $ref_no = $row['ref_no'];
                                     $borrower_name = $row['borrower_name'];
@@ -155,14 +147,18 @@
                                                     Action <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu">
+                                                <?php if ($status_processor == 1) : ?>
                                                     <?php if ($status_manager == 0) : ?>
-                                                        <a class="dropdown-item" role="button" href = "../../config/update-status.php?approve_manager=<?php echo $row['status_ref'] ?>">Approve</a>
-                                                        <a class="dropdown-item" role="button" href = "../../config/update-status.php?deny_manager=<?php echo $row['status_ref'] ?>">Disapprove</a>
+                                                        <a class="dropdown-item approve_manager" role="button" data-status_ref="<?= $row['status_ref'] ?>">Approve</a>
+                                                        <a class="dropdown-item disapprove_manager" role="button" data-status_ref="<?= $row['status_ref'] ?>">Disapprove</a>
                                                     <?php elseif ($status_manager == 1) : ?>
                                                         <a class="dropdown-item disabled" href="#">Approved</a>
                                                     <?php elseif ($status_manager == 2) : ?>
                                                         <a class="dropdown-item disabled" href="#">Disapproved</a>
                                                     <?php endif; ?>
+                                                <?php else : ?>
+                                                    <a class="dropdown-item disabled" href="#">Disapproved</a>
+                                                <?php endif; ?>
                                                 </div>
                                             </div>
                                             <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
@@ -172,8 +168,9 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <?php if ($status_processor == 0) : ?>
-                                                        <a class="dropdown-item" role="button" href = "../../config/update-status.php?approve_processor=<?php echo $row['status_ref'] ?>">Approve</a>
-                                                        <a class="dropdown-item" role="button" href = "../../config/update-status.php?deny_processor=<?php echo $row['status_ref'] ?>">Disapprove</a>
+                                                        <a class="dropdown-item approve_processor" role="button" href="javascript:void(0);" data-status_ref="<?= $row['status_ref'] ?>">Approve</a>
+                                                        <a class="dropdown-item disapprove_processor" role="button" href="javascript:void(0);" data-status_ref="<?= $row['status_ref'] ?>"
+                                                        >Disapprove</a>
                                                         
                                                     <?php elseif ($status_processor == 1) : ?>
                                                         <a class="dropdown-item disabled" href="#">Approved</a>
@@ -182,26 +179,30 @@
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
+                                            
                                             <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
                                             <div class="btn-group dropleft">
                                                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-icon my-1" data-toggle="dropdown">
                                                     Action <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <div class="dropdown-menu">
+                                                <?php if ($status_manager == 1) : ?>
                                                     <?php if ($status_cashier == 0) : ?>
-                                                        <a class="dropdown-item" role="button"  href = "../../config/update-status.php?approve_cashier=<?php echo $row['status_ref'] ?>">Approve</a>
-                                                        <a class="dropdown-item" role="button"  href = "../../config/update-status.php?deny_cashier=<?php echo $row['status_ref'] ?>">Disapprove</a>
+                                                        <a class="dropdown-item approve_cashier" role="button" data-status_ref="<?= $row['status_ref'] ?>">Approve</a>
+                                                        <a class="dropdown-item disapprove_cashier" role="button" data-status_ref="<?= $row['status_ref'] ?>">Disapprove</a>
                                                     <?php elseif ($status_cashier == 1) : ?>
-                                                        <a class="dropdown-item" href = "../../config/update-status.php?release_cash=<?php echo $row['status_ref'] ?>">Release</a>
+                                                        <a class="dropdown-item release_cashier" role="button" data-status_ref="<?= $row['status_ref'] ?>">Release</a>
                                                     <?php elseif ($status_cashier == 2) : ?>
                                                         <a class="dropdown-item disabled" href="#">Released</a>
                                                     <?php elseif ($status_cashier == 3) : ?>
                                                         <a class="dropdown-item disabled" href="#">Disapproved</a>
                                                     <?php endif; ?>
+                                                <?php else : ?>
+                                                    <a class="dropdown-item disabled" href="#">Disapproved</a>
+                                                <?php endif; ?>
                                                 </div>
                                             </div>
                                             <?php } else { ''; } ?>
-
                                             <button class="btn btn-success btn-sm viewloan" 
                                                 data-ref_no="<?= $ref_no ?>"
                                                 data-borrower_name = "<?= $borrower_name ?>"
@@ -212,8 +213,8 @@
                                                 data-purpose = "<?= $purpose ?>"
                                                 data-comaker_name = "<?= $comaker_name ?>"
                                                 data-status_processor = "<?php if($status_processor == '0'){ echo 'Pending';} elseif($status_processor == '1'){echo 'Approved';} elseif($status_processor == '3'){echo 'Disapproved';}?>"
-                                                data-status_manager = "<?php if($status_manager == '0'){ echo 'Pending';} elseif($status_manager == '1'){echo 'Approved';} elseif($status_manager == '3'){echo 'Disapproved';}?>"
-                                                data-status_cashier = "<?php if($status_cashier == '0'){ echo 'Pending';} elseif($status_cashier == '1'){echo 'Approved';} elseif($status_cashier == '2'){echo 'Released';} elseif($status_cashier == '3'){echo 'Disapproved';}?>"
+                                                data-status_manager = "<?php if($status_processor == '1'){if($status_manager == '0'){ echo 'Pending';} elseif($status_manager == '1'){echo 'Approved';} elseif($status_manager == '3'){echo 'Disapproved';}}else {echo 'Disapproved';}?>"
+                                                data-status_cashier = "<?php if($status_processor == '1'){if($status_cashier == '0'){ echo 'Pending';} elseif($status_cashier == '1'){echo 'Approved';} elseif($status_cashier == '2'){echo 'Released';} elseif($status_cashier == '3'){echo 'Disapproved';}}else {echo 'Disapproved';}?>"
                                                 data-toggle="modal" 
                                                 data-target="#viewloan">
                                                     <i class="fa fa-eye"></i>
@@ -221,95 +222,6 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="viewloan">
-                                        <div class="modal-dialog modal-md">
-                                            <div class="modal-content card-outline card-primary">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Loan Information</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="row text-center">
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label>Borrower Name</label>
-                                                                <input type="text" id="borrower_name" name="borrower_name" class="form-control form-control-border text-center" disabled>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Reference Number</label>
-                                                                <input type="text" id="ref_no" name="ref_no" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Loan Amount</label>
-                                                                <input type="text" id="amount" name="amount" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Loan Term</label>
-                                                                <input type="text" id="loan_term" name="loan_term" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Loan Date</label>
-                                                                <input type="text" id="loan_date" name="loan_date" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Loan Type</label>
-                                                                <input type="text" id="loan_type" name="loan_type" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Purpose</label>
-                                                                <input type="text" id="purpose" name="purpose" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label>Co-Maker Name</label>
-                                                                <input type="text" id="comaker_name" name="comaker_name" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <div class="form-group">
-                                                                <label>Processor's Status</label>
-                                                                <input type="text" id="status_processor" name="status_processor" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <div class="form-group">
-                                                                <label>Manager's Status</label>
-                                                                <input type="text" id="status_manager" name="status_manager" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-4">
-                                                            <div class="form-group">
-                                                                <label>Cashier's Status</label>
-                                                                <input type="text" id="status_cashier" name="status_cashier" class="form-control form-control-border text-center" disabled>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /.card-body -->
-                                                <div class="modal-footer justify-content-end">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><!-- /.modal-dialog -->
-                                    </div>
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
@@ -321,79 +233,92 @@
 </section><!-- /.content -->
 
 
-<div class="modal fade" id="addloan">
+<div class="modal fade" id="viewloan">
     <div class="modal-dialog modal-md">
         <div class="modal-content card-outline card-primary">
-            <form action="../../config/create-userclientloan.php">
-                <div class="modal-header">
-                    <h4 class="modal-title">Apply New Loan</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Borrower Name <small class="text-red">*</small></label>
-
-                                <select class="select2" style="width: 100%;" name="selected-user" data-placeholder="Select borrower" required>
-                                    <option></option>
-                                    <?php
-                                    $query = $conn->query("SELECT * FROM tbl_borrowers");
-                                    while ($row = $query->fetch_assoc()) :
-                                        $user_id = $row['user_id'];
-                                        $firstName = $row['firstName'];
-                                        $middleName = $row['middleName'];
-                                        $lastName = $row['lastName'];
-                                    ?>
-                                        <option value="<?= $user_id ?>"><?= $firstName . ' ' . $middleName[0] . '. ' . $lastName; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Loan Amount: <small class="text-red">*</small></label>
-                                <input type="number" id="amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Term (month/s): <small class="text-red">*</small></label>
-                                <input type="number" id="loan_term" name="loan_term" class="form-control form-control-border" placeholder="Loan Term" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Type of Loan <small class="text-red">*</small></label>
-                        <input type="text" class="form-control form-control-border" name="loan_type" placeholder="Type of Loan" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Purpose <small class="text-red">*</small></label>
-                        <input type="text" class="form-control form-control-border" name="purpose" placeholder="Purpose" required>
-                    </div>
-
-                    <input type="hidden" name="status_manager">
-                    <input type="hidden" name="status_processor">
-                    <input type="hidden" name="status_cashier">
-
-                    <div class="col-12 d-flex justify-content-end">
+            <div class="modal-header">
+                <h4 class="modal-title">Loan Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-12">
                         <div class="form-group">
-                            <label class="control-label">&nbsp;</label>
-                            <button class="btn btn-primary btn-sm" type="button" id="calculate">Calculate</button>
+                            <label>Borrower Name</label>
+                            <input type="text" id="borrower_name" name="borrower_name" class="form-control form-control-border text-center" disabled>
+
                         </div>
                     </div>
-                    <div id="calculation_table"></div>
-                </div>
-                <!-- /.card-body -->
-                <div class="modal-footer justify-content-end">
-                    <div class="form-group">
-                        <button type="submit" name="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Reference Number</label>
+                            <input type="text" id="ref_no" name="ref_no" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Amount</label>
+                            <input type="text" id="amount" name="amount" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Term</label>
+                            <input type="text" id="loan_term" name="loan_term" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Date</label>
+                            <input type="text" id="loan_date" name="loan_date" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Type</label>
+                            <input type="text" id="loan_type" name="loan_type" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="text" id="purpose" name="purpose" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Co-Maker Name</label>
+                            <input type="text" id="comaker_name" name="comaker_name" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Processor's Status</label>
+                            <input type="text" id="status_processor" name="status_processor" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Manager's Status</label>
+                            <input type="text" id="status_manager" name="status_manager" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Cashier's Status</label>
+                            <input type="text" id="status_cashier" name="status_cashier" class="form-control form-control-border text-center" disabled>
+                        </div>
                     </div>
                 </div>
-            </form><!-- /.modal-content -->
+            </div>
+            <!-- /.card-body -->
+            <div class="modal-footer justify-content-end">
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div><!-- /.modal-dialog -->
 </div>
@@ -482,3 +407,147 @@
         })
     }
 </script> -->
+
+
+<script>
+    $(".approve_processor").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Approve?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Approve'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?approve_processor="+ status_ref; 
+            }
+        })
+    });
+
+    $(".disapprove_processor").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Disapprove?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Disapprove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?disapprove_processor="+ status_ref;
+            }
+        })
+    });
+
+    $(".approve_manager").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Approve?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Approve'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?approve_manager="+ status_ref; 
+            }
+        })
+    });
+
+    $(".disapprove_manager").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Disapprove?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Disapprove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?disapprove_manager="+ status_ref;
+            }
+        })
+    });
+
+    $(".approve_cashier").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Approve?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Approve'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?approve_cashier="+ status_ref; 
+            }
+        })
+    });
+
+    $(".disapprove_cashier").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Disapprove?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Disapprove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?disapprove_cashier="+ status_ref;
+            }
+        })
+    });
+
+    $(".release_cashier").click(function() {
+        var status_ref = $(this).data('status_ref');
+        console.log({
+            status_ref 
+        });
+        Swal.fire({
+            title: 'Confirm Release?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Release'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?release_cashier="+ status_ref;
+            }
+        })
+    });
+
+</script>
