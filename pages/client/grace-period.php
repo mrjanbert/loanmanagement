@@ -42,11 +42,12 @@
 					$borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id = $borrower_id");
 					while ($row = $borrower->fetch_assoc()) {
 						$borrower_membership = $row['membership'];
-						$borrower_name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['firstName'];
+						$borrower_name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
 					}
 					
 					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE t.ref_no = $ref_no");
 					while ($row = $query->fetch_assoc()) :
+						$comaker_id = $row['comaker_id'];
 						$comaker_name = $row['name'];
 						$amount = $row['amount'];
 						$months = $row['loan_term'];
@@ -122,12 +123,21 @@
 								<div class="col-md-9">
 									<b><?= date('F j, Y', $loan_date); ?></b>
 								</div>
-								<div class="col-md-3">
-									<h3 class="card-title">Co-maker: </h3>
-								</div>
-								<div class="col-md-9">
-									<b><?= $comaker_name; ?> </b>
-								</div>
+								<?php if ($borrower_id == $comaker_id) : ?>
+									<div class="col-md-3">
+										<h3 class="card-title">COOP Membership Status:</h3>
+									</div>
+									<div class="col-md-9">
+										<b class="text-primary">Member</b>
+									</div>
+								<?php else : ?>
+									<div class="col-md-3">
+										<h3 class="card-title">Co-maker: </h3>
+									</div>
+									<div class="col-md-9">
+										<p><b><?= $comaker_name; ?> </b></p>
+									</div>
+								<?php endif ?>
 							</div>
 						</div><!-- /.card-header -->
 					<div class="card-body">

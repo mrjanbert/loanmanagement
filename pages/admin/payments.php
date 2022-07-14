@@ -45,37 +45,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                $i = 1;
-
-                                $borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
-                                while ($row = $borrower->fetch_assoc()) {
-                                    $borrower_array[$row['user_id']] = $row;
-                                }                                 
-                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE status_cashier = '2' ORDER BY id DESC");
-                                while ($row = $query->fetch_assoc()) :
-                                ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $i++ ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['ref_no'] ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName'][0] . '. ' . $borrower_array[$row['user_id']]['lastName']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo number_format($row['amount'], 2) ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="index.php?page=view-payments&ref_no=<?php echo $row['ref_no']?>&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="btn btn-success btn-sm" title="View Payments" data-toggle="tooltip" data-placement="top" role="button">
-                                                <i class="fas fa-eye"></i>&nbsp;
-                                                View Payments
-                                            </a>
-                                        </td>
-                                    </tr>   
-                                <?php endwhile; ?>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-end mt-3">

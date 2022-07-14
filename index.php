@@ -59,6 +59,11 @@
           <ul class="navbar-nav d-flex flex-row">
             <!-- Icons -->
             <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="login.php" rel="nofollow" target="_blank">
+                <i class="fas fa-user-tie"></i>
+              </a>
+            </li>
+            <li class="nav-item me-3 me-lg-0">
               <a class="nav-link" href="https://github.com/mrjanbert/loanmanagement" rel="nofollow" target="_blank">
                 <i class="fab fa-github"></i>
               </a>

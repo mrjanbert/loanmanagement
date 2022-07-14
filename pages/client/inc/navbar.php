@@ -38,10 +38,7 @@
       confirmButtonText: 'Logout'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Logging out',
-          window.location.href = '../../config/logout-userclient.php'
-        )
+        window.location.href = '../../config/logout-userclient.php'
       }
     })
   }

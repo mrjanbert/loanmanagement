@@ -28,9 +28,128 @@ if (isset($_GET['denyref_no'])) {
     Swal.fire({
         icon: 'success',
         title: 'Success',
-        text: 'Loan Denied'
+        text: 'Loan Disapproved'
     })
     </script>";
     header('location: ../pages/client/index.php?page=dashboard');
+
+}
+
+if (isset($_GET['deny_processor'])) {
+
+    $ref_no = $_GET['deny_processor'];
+    $sql = $conn->query("UPDATE tbl_status SET status_processor = '3' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Disapproved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}    
+
+if (isset($_GET['approve_processor'])) {
+
+    $ref_no = $_GET['approve_processor'];
+    $sql = $conn->query("UPDATE tbl_status SET status_processor = '1' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Approved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}
+
+if (isset($_GET['deny_manager'])) {
+
+    $ref_no = $_GET['deny_manager'];
+    $sql = $conn->query("UPDATE tbl_status SET status_manager = '3' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Disapproved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}    
+
+if (isset($_GET['approve_manager'])) {
+
+    $ref_no = $_GET['approve_manager'];
+    $sql = $conn->query("UPDATE tbl_status SET status_manager = '1' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Approved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}
+
+if (isset($_GET['deny_cashier'])) {
+
+    $ref_no = $_GET['deny_cashier'];
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '3' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Disapproved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}    
+
+if (isset($_GET['release_cash'])) {
+
+    $ref_no = $_GET['release_cash'];
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '2' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Cash Released'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+
+}
+
+if (isset($_GET['approve_cashier'])) {
+
+    $ref_no = $_GET['approve_cashier'];
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '1' WHERE ref_no = '$ref_no'");
+
+    session_start();
+    $_SESSION['status']= "<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Loan Approved'
+    })
+    </script>";
+    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
 
 }

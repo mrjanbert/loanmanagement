@@ -12,9 +12,9 @@
         $balance = $monthly * $loan_term;
         $principal = $monthly - ($total_interest / $loan_term);
 
-        if($comaker_id == '') {
-            $comaker_id = $user_id;
-        }
+        // if($comaker_id == '') {
+        //     $comaker_id = $user_id;
+        // }
 
         $data = " ref_no = '$ref_no' ";
         $data .= ", user_id = '$user_id' ";

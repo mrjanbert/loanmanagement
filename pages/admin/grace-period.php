@@ -34,8 +34,9 @@
 						$borrower_array[$row['user_id']] = $row;
 					}
 					$ref_no = $_GET['ref_no'];
-					$query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
+					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE ref_no = $ref_no");
 					while ($row = $query->fetch_assoc()) :
+						$comaker_name = $row['name'];
 						$amount = $row['amount'];
 						$months = $row['loan_term'];
 						$interest = $row['interest'];
@@ -71,7 +72,7 @@
 									<h3 class="card-title">Name: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName'][0] . '. ' . $borrower_array[$row['user_id']]['lastName']; ?></b>
+									<b><?php echo $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName'] . ' ' . $borrower_array[$row['user_id']]['lastName']; ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Loan Amount: </h3>
@@ -113,7 +114,7 @@
 									<h3 class="card-title">Co-maker: </h3>
 								</div>
 								<div class="col-md-9">
-								<b><?php echo $coMaker; ?> &nbsp;Months</b>
+								<b><?php echo $comaker_name; ?></b>
 								</div>
 							</div>
 						</div><!-- /.card-header -->
