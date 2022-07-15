@@ -44,6 +44,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Payment History</h3>
+                        <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
+                                <i class="fa fa-plus"></i> &nbsp;
+                                Add Payment
+                            </button>
+                        </div>
+                        <?php } ?>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <div class="d-flex justify-content-end">
@@ -65,54 +73,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $ref_no = $_GET['ref_no'];
-                                
-                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
-                                $row = $query->fetch_row();
-                                    $loan_date = strtotime($row[13]);
-                                    $loan_amount = $row[3];
-                                    $total_interest = $row[6];
-                                    $balance = $row[9];
-                                
-                                ?>
-                                    <tr>
-                                        <td style="font-weight: bold;"><?php echo date('F j, Y', $loan_date); ?></td>
-                                        <td class="text-right" style="font-weight: bold;"><?php echo number_format($loan_amount, 2); ?></td>
-                                        <td class="text-right" style="font-weight: bold;"><?php echo number_format($total_interest, 2); ?></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-right" style="font-weight: bold;"><?php echo number_format($balance, 2); ?></td>
-                                    </tr>
-                                <tr>
-
-                                <?php
-                                $loan = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no in (SELECT ref_no FROM tbl_payments)");
-                                while ($row = $loan->fetch_assoc()) {
-                                    $loan_array[$row['ref_no']] = $row;
-                                    $loan_amount = $loan_array[$row['ref_no']]['amount'];
-                                    $loan_principal = $loan_array[$row['ref_no']]['principal'];
-                                    $interest = $loan_array[$row['ref_no']]['interest'];
-                                }
-                                $query = $conn->query("SELECT * FROM tbl_payments WHERE ref_no = $ref_no ORDER BY id ASC");
-                                while ($row = $query->fetch_assoc()) :
-                                    $payment_date = strtotime($row['payment_date']);
-                                    $payment_penalty = $row['penalty'];
-                                    $payment_receipt = $row['receipt_no'];
-                                    $payment_amount = $row['payment_amount'];
-                                    $payment_balance = $row['balance'];
-                                
-                                ?>
-                                    <td><?php echo date('F j, Y', $payment_date); ?></td>
-                                    <td class="text-right"></td>
-                                    <td class="text-right"></td>
-                                    <td class="text-right"><?php echo number_format($payment_penalty, 2); ?></td>
-                                    <td class="text-right"><?php echo $payment_receipt; ?></td>
-                                    <td class="text-right"><?php echo number_format($payment_amount, 2); ?></td>
-                                    <td class="text-right"><?php echo number_format($payment_balance, 2); ?></td>
-                                </tr>
-                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div><!-- /.card-body -->
@@ -121,3 +81,52 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
+
+<div class="modal fade" id="addpayment">
+    <div class="modal-dialog modal-md">
+        <form action="../../config/create-payment.php" method="POST">
+            <div class="modal-content card-outline card-primary">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Payment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Loan Reference No. <small class="text-red">*</small></label>
+                                
+                                <select class="select2" style="width: 100%;" name="ref_no" data-placeholder="Select Loan Reference No." required>
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Payment Amount <small class="text-red">*</small></label>
+                                <input type="number" class="form-control form-control-border" name="payment_amount" placeholder="Enter Amount" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Penalty</label>
+                                <input type="number" class="form-control form-control-border" name="penalty" placeholder="Enter Penalty Amount">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="submit" name="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>

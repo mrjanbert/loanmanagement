@@ -30,11 +30,11 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Employee ID</th>
-                                    <th>Borrower Name</th>
-                                    <th>Date Registered</th>
-                                    <th>Action</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Employee ID</th>
+                                    <th class="text-center">Borrower Name</th>
+                                    <th class="text-center">Date Registered</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,11 +51,17 @@
                                         <td><?= $row['firstName'] . '  ' . $row['middleName'] . ' ' . $row['lastName']; ?> </td>
                                             <td><?= date('F j, Y', $userCreated); ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-info btn-xs" data-toggle="modal" id="view" name="<?= $row['user_id'];?>" value="<?= $row['user_id']; ?>" data-target="#view_borrower"><i class="fa fa-eye"></i></button>
+                                            <a class="btn btn-info btn-sm my-1" data-toggle="modal" id="view" name="<?= $row['user_id'];?>" value="<?= $row['user_id']; ?>" data-target="#view_borrower">View Info</i></a>
+                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id']?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loan</i></a>
+                                            <a href="index.php?page=view-payments&uid=<?= $row['user_id']?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-success btn-sm my1">View Payments</i></a>
+
+
+                                            <!-- Action for Admin only -->
                                             <?php if(isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                            <a href="borrower_update.php?page=borrower_list&account_number=<?= $row['accountNumber']; ?>" class="btn btn-primary btn-xs my-1"><i class="fa fa-edit"></i></a>
-                                            <a onclick="deleteborrower()" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i></a>
+                                            <a href="borrower_update.php?page=borrower_list&account_number=<?= $row['accountNumber']; ?>" class="btn btn-primary btn-sm my-1"><i class="fa fa-edit"></i></a>
+                                            <a onclick="deleteborrower()" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                             <?php } else {'';}?>
+
                                         </td>
                                     </tr>
                                     <script>

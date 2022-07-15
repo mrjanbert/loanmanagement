@@ -46,13 +46,14 @@
 
                                 <?php
                                 $i = 1;
+                                $user_id = $_GET['uid'];
                                 $role_name = $_SESSION['role_name'];
                                 $query = $conn->query("SELECT t.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name, s.*, concat(c.firstname, ' ', c.lastName) as comaker_name
                                     FROM (((tbl_transaction t 
                                         INNER JOIN tbl_borrowers b ON t.user_id = b.user_id) 
                                         INNER JOIN tbl_status s ON t.status_ref = s.ref_no) 
                                         INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id) 
-                                    WHERE s.status_comaker = '1'");
+                                    WHERE t.user_id = $user_id AND s.status_comaker = '1'");
                                 while ($row = $query->fetch_assoc()) :
                                     $ref_no = $row['ref_no'];
                                     $borrower_name = $row['borrower_name'];

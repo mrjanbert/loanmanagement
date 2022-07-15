@@ -45,7 +45,7 @@
                                     <th class="text-center">Principal Amount</th>
                                     <th class="text-center">Loan Date</th>
                                     <th class="text-center">Comaker's Status</th>
-                                    <th class="text-center">Processor's Status</th>
+                                    <th class="text-center">CC Member's Status</th>
                                     <th class="text-center">Manager's Status</th>
                                     <th class="text-center">Cashier's Status</th>
                                     <th class="text-center">View</th>
@@ -80,48 +80,157 @@
                                                 <button type="button" class="btn btn-danger btn-block btn-sm">Disapproved by: <?= $row['comaker_name'] ?></button>
                                             <?php endif; ?>
                                         </td>
-                                        <?php if ($row['status_comaker'] == 1) : ?>
+
+                                        <?php if (($row['status_comaker'] == 1) && ($row['status_processor'] == 0) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <?php if ($row['status_processor'] == 0) : ?>
-                                                    <button type="button" class="btn btn-warning btn-sm">Pending</button>
-                                                <?php elseif ($row['status_processor'] == 1) : ?>
-                                                    <button type="button" class="btn btn-info btn-sm">Approved</button>
-                                                <?php elseif ($row['status_processor'] == 3) : ?>
-                                                    <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
-                                                <?php endif; ?>
+                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($row['status_manager'] == 0) : ?>
-                                                    <button type="button" class="btn btn-warning btn-sm">Pending</button>
-                                                <?php elseif ($row['status_manager'] == 1) : ?>
-                                                    <button type="button" class="btn btn-info btn-sm">Approved</button>
-                                                <?php elseif ($row['status_manager'] == 3) : ?>
-                                                    <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
-                                                <?php endif; ?>
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($row['status_cashier'] == 0) : ?>
-                                                    <button type="button" class="btn btn-warning btn-sm">Pending</button>
-                                                <?php elseif ($row['status_cashier'] == 1) : ?>
-                                                    <button type="button" class="btn btn-info btn-sm">Approved</button>
-                                                <?php elseif ($row['status_cashier'] == 2) : ?>
-                                                    <button type="button" class="btn btn-primary btn-sm">Released</button>
-                                                <?php elseif ($row['status_cashier'] == 3) : ?>
-                                                    <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
-                                                <?php endif; ?>
                                             </td>
-                                        <?php else : ?>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+
+                                        <?php elseif (($row['status_comaker'] == 2) && ($row['status_processor'] == 0) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
+                                            <td class="text-center">
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+
+                                        <?php elseif (($row['status_comaker'] == 0) && ($row['status_processor'] == 0) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
+                                            <td class="text-center">
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 3) && ($row['status_cashier'] == 0)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
+                                            </td>
+                                            <td class="text-center">
+                                            </td>
+                                            
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 0)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                            </td>
+                                            
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 1)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                            </td>
+                                            
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 2)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-success btn-sm">Completed</button>
+                                            </td>
+                                            
+                                        <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 3)) : ?>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-info btn-sm">Disapproved</button>
+                                            </td>
                                         <?php endif; ?>
+
                                         <td class="text-center">
-                                            <a href="index.php?page=grace-period&ref_no=<?php echo $row['ref_no']?>" class="btn btn-primary btn-block btn-sm" title="View Grace Period" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=grace-period&ref_no=<?= $row['ref_no']?>" class="my-1 btn btn-primary btn-block btn-sm" title="View Grace Period" data-toggle="tooltip" data-placement="top">
                                                 <i class="fas fa-calendar-alt"></i>&nbsp; Grace Period
                                             </a>
-                                            <a href="index.php?page=application-form&ref_no=<?php echo $row['ref_no']?>" class="btn btn-success btn-block btn-sm my-1" title="Print Application Form" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=application-form&ref_no=<?= $row['ref_no']?>" class="my-1 btn btn-success btn-block btn-sm" title="Print Application Form" data-toggle="tooltip" data-placement="top">
                                                 <i class="fa fa-print"></i>&nbsp; Application Form
                                             </a>
+                                            <button class="my-1 btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan"
+                                                data-borrower_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] ?>"
+                                                data-ref_no="<?= $row['ref_no'] ?>"
+                                                data-amount="<?= $row['amount'] ?>"
+                                                data-loan_term = "<?= $row['loan_term'] ?> Months"
+                                                data-loan_type = "<?= $row['loan_type'] ?>"
+                                                data-loan_date = "<?= date('M j, Y - g:i A', strtotime($row['loan_date'])) ?>"
+                                                data-purpose = "<?= $row['purpose'] ?>"
+                                                data-comaker_name = "<?= $row['comaker_name'] ?>"
+                                                data-status_comaker = "<?php 
+                                                    if($row['status_comaker'] == '0'){ 
+                                                        echo 'Pending';
+                                                    } elseif($row['status_comaker'] == '1'){
+                                                        echo 'Approved';
+                                                    } elseif($row['status_comaker'] == '2'){
+                                                        echo 'Disapproved';
+                                                    }?>"
+                                                data-status_processor = "<?php 
+                                                    if(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')){ 
+                                                        echo 'Pending';
+                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')){
+                                                        echo 'Checked and Verified';
+                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')){
+                                                        echo 'Disapproved';
+                                                    }else {
+                                                        echo '';
+                                                    }?>"
+                                                data-status_manager = "<?php 
+                                                    if(($row['status_processor'] == '1') && ($row['status_manager'] == '0')){
+                                                        echo 'Pending';
+                                                    }elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '1')){
+                                                        echo 'Approved';
+                                                    } elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '3')){
+                                                            echo 'Disapproved';
+                                                    }else {
+                                                        echo '';
+                                                    }?>"
+                                                data-status_cashier = "<?php 
+                                                    if(($row['status_manager'] == '1') && ($row['status_cashier'] == '0')){
+                                                        echo 'Pending';
+                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '1')){
+                                                        echo 'Approved';
+                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '2')){
+                                                        echo 'Completed';
+                                                    } elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '3')){
+                                                            echo 'Disapproved';
+                                                    }else {
+                                                        echo '';
+                                                    }?>"
+                                            >
+                                                <i class="fa fa-eye"></i>
+                                                View Loan
+                                            </button>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
@@ -195,7 +304,7 @@
                                 
                     <?php elseif (isset($_SESSION['membership']) && ($_SESSION['membership']) == '1') : ?>
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label>Co-maker <small>(optional)</small></label>
                         
                         <select class="select2" style="width: 100%;" name="comaker_id" data-placeholder="Choose Co-maker">
@@ -207,7 +316,7 @@
                             <option value="<?php echo $row['user_id']?>"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></option>
                             <?php endwhile; ?>
                         </select>
-                    </div> -->
+                    </div>
                     <input type="hidden" name="comaker_id"  value="<?php echo $_SESSION['user_id']; ?>">
                     <?php endif; ?>
 
@@ -233,6 +342,104 @@
         </div>
     </div><!-- /.modal-dialog -->
 </div>
+
+
+<div class="modal fade" id="viewloan">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content card-outline card-primary">
+            <div class="modal-header">
+                <h4 class="modal-title">Loan Information</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Borrower Name</label>
+                            <input type="text" id="borrower_name" name="borrower_name" class="form-control form-control-border text-center" disabled>
+
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Reference Number</label>
+                            <input type="text" id="ref_no" name="ref_no" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Amount</label>
+                            <input type="text" id="amount" name="amount" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Term</label>
+                            <input type="text" id="loan_term" name="loan_term" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Date</label>
+                            <input type="text" id="loan_date" name="loan_date" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Loan Type</label>
+                            <input type="text" id="loan_type" name="loan_type" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Purpose</label>
+                            <input type="text" id="purpose" name="purpose" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label>Co-Maker Name</label>
+                            <input type="text" id="comaker_name" name="comaker_name" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>Comaker's Status</label>
+                            <input type="text" id="status_comaker" name="status_comaker" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>Processor's Status</label>
+                            <input type="text" id="status_processor" name="status_processor" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>Manager's Status</label>
+                            <input type="text" id="status_manager" name="status_manager" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label>Cashier's Status</label>
+                            <input type="text" id="status_cashier" name="status_cashier" class="form-control form-control-border text-center" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="modal-footer justify-content-end">
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal-dialog -->
+</div>
+
 
 <script>
     $('#calculate').click(function() {
@@ -275,4 +482,23 @@
             $('#addloan').find("input[type=text], select").val("");
         });
     }
+    
+    $(document).ready(function () {
+        $(".viewloan").click(function () {
+            $('#borrower_name').val($(this).data('borrower_name'));
+            $('#ref_no').val($(this).data('ref_no'));
+            $('#amount').val($(this).data('amount'));
+            $('#loan_term').val($(this).data('loan_term'));
+            $('#loan_type').val($(this).data('loan_type'));
+            $('#loan_date').val($(this).data('loan_date'));
+            $('#purpose').val($(this).data('purpose'));
+            $('#comaker_name').val($(this).data('comaker_name'));
+            $('#status_comaker').val($(this).data('status_comaker'));
+            $('#status_processor').val($(this).data('status_processor'));
+            $('#status_manager').val($(this).data('status_manager'));
+            $('#status_cashier').val($(this).data('status_cashier'));
+
+            $('#viewloan').modal('show');
+        }); 
+    }); 
 </script>

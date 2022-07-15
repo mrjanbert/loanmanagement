@@ -40,13 +40,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=payments&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-payments nav-view-payments">
+                    <a href="index.php?page=payments&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-payments">
                         <i class="fas fa-wallet nav-icon"></i>
                         <p>Payments</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=borrower-list&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-borrower-list">
+                    <a href="index.php?page=borrower-list&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Borrowers
