@@ -18,6 +18,7 @@
 
 
 <?php
+
 // $ref_no = $_GET['ref_no'];
 // $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
 // $data = $query->fetch_array();
@@ -34,6 +35,7 @@
 
 // $total_less = $share_capital + $service_charge + $notarial_fee;
 // $net = $amount - ($share_capital + $service_charge + $notarial_fee);
+
 ?>
 
 <!-- Main content -->
@@ -44,6 +46,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Payment History</h3>
+                        <div class="d-flex justify-content-end">
+                            <button onclick="history.back()" class="btn btn-warning btn-sm">
+                                <i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
+                                Back
+                            </button>
+                        </div>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
                         <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
                         <div class="d-flex justify-content-end">
                             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
@@ -52,15 +62,8 @@
                             </button>
                         </div>
                         <?php } ?>
-                    </div><!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="d-flex justify-content-end">
-                            <button onclick="history.back()" class="btn btn-warning btn-sm">
-                                <i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
-                                Back
-                            </button>
                         </div>
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th width="15%" class="text-center">Date</th>

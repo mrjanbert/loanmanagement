@@ -32,10 +32,10 @@
       "responsive": true,
       "lengthChange": false,
       "autoWidth": false,
+      "ordering": false,
       "buttons": [""]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
-      "paging": false,
       "lengthChange": false,
       "searching": false,
       "ordering": false,

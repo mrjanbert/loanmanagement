@@ -12,12 +12,12 @@
         $balance = $monthly * $loan_term;
         $principal = $monthly - ($total_interest / $loan_term);
 
-        // if($comaker_id == '') {
-        //     $comaker_id = $user_id;
-        // }
+        if($comaker_id == '') {
+            $comaker_id = $borrower_id;
+        }
 
         $data = " ref_no = '$ref_no' ";
-        $data .= ", user_id = '$user_id' ";
+        $data .= ", borrower_id = '$borrower_id' ";
         $data .= ", status_ref = '$ref_no' ";
         $data .= ", amount = '$amount' ";
         $data .= ", loan_term = '$loan_term' ";
@@ -35,7 +35,7 @@
 
         if ($conn->affected_rows > 0) :
 
-            if($user_id == $comaker_id) {
+            if($borrower_id == $comaker_id) {
                 $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no' , status_comaker = '1'");
             } else {
                 $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no'");
@@ -45,7 +45,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Your loan is now pending ... Please wait until your application approved by ...?'
+                    text: 'Loan Success!'
                 })
             </script>";
             header('location: ../pages/client/index.php?page=loans');

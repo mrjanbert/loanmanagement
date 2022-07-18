@@ -36,7 +36,7 @@
                             <?php
                                 $i = 1;
                                 $user_id = $_SESSION['user_id'];
-                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE user_id = $user_id ORDER BY id DESC");
+                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE borrower_id = $user_id ORDER BY id DESC");
                                 $row = $query->fetch_assoc();
                             ?>
                                 <tr>
@@ -52,18 +52,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <?php
-                                $i = 1;
-                                
-                                $user_id = $_SESSION['user_id'];
                                 $query = $conn->query("SELECT t.*, 
-                                                    s.status_comaker, s.status_processor, s.status_manager, s.status_cashier, 
-                                                    concat(c.firstName,' ', c.lastName) as comaker_name
+                                                    s.status_comaker, s.status_processor, s.status_manager, s.status_cashier, concat(c.firstName,' ', c.lastName) as comaker_name
                                                 FROM tbl_transaction t 
                                                     INNER JOIN tbl_status s ON t.ref_no = s.ref_no 
                                                     INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id 
-                                                WHERE t.user_id = $user_id ORDER BY id DESC");
+                                                WHERE t.borrower_id = $user_id ORDER BY id DESC");
                                 while ($row = $query->fetch_assoc()) :
                                 ?>
                                     <tr>
@@ -73,17 +68,17 @@
                                         <td><?php echo date('F j, Y', strtotime($row['loan_date'])); ?></td>
                                         <td class="text-center">
                                             <?php if ($row['status_comaker'] == 0) : ?>
-                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
                                             <?php elseif ($row['status_comaker'] == 1) : ?>
-                                                <button type="button" class="btn btn-success btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-success btn-sm btn-block">Approved</button>
                                             <?php elseif ($row['status_comaker'] == 2) : ?>
-                                                <button type="button" class="btn btn-danger btn-block btn-sm">Disapproved by: <?= $row['comaker_name'] ?></button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-danger btn-block btn-sm btn-block">Disapproved by: <?= $row['comaker_name'] ?></button>
                                             <?php endif; ?>
                                         </td>
 
                                         <?php if (($row['status_comaker'] == 1) && ($row['status_processor'] == 0) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
                                             </td>
                                             <td class="text-center">
                                             </td>
@@ -92,10 +87,10 @@
 
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none"  class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
                                             </td>
                                             <td class="text-center">
                                             </td>
@@ -118,56 +113,56 @@
 
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 3) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-danger btn-sm btn-block">Disapproved</button>
                                             </td>
                                             <td class="text-center">
                                             </td>
                                             
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
                                             </td>
                                             
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 1)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 2)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-success btn-sm">Completed</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-success btn-sm btn-block">Completed</button>
                                             </td>
                                             
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 3)) : ?>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Checked and Verified</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-primary btn-sm">Approved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-sm">Disapproved</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-info btn-sm btn-block">Disapproved</button>
                                             </td>
                                         <?php endif; ?>
 
@@ -181,8 +176,8 @@
                                             <button class="my-1 btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan"
                                                 data-borrower_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] ?>"
                                                 data-ref_no="<?= $row['ref_no'] ?>"
-                                                data-amount="<?= $row['amount'] ?>"
-                                                data-loan_term = "<?= $row['loan_term'] ?> Months"
+                                                data-loan_amount="<?= number_format($row['amount'], 2) ?>"
+                                                data-loan_terms = "<?= $row['loan_term'] ?> Months"
                                                 data-loan_type = "<?= $row['loan_type'] ?>"
                                                 data-loan_date = "<?= date('M j, Y - g:i A', strtotime($row['loan_date'])) ?>"
                                                 data-purpose = "<?= $row['purpose'] ?>"
@@ -226,8 +221,7 @@
                                                             echo 'Disapproved';
                                                     }else {
                                                         echo '';
-                                                    }?>"
-                                            >
+                                                    }?>">
                                                 <i class="fa fa-eye"></i>
                                                 View Loan
                                             </button>
@@ -266,23 +260,23 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Loan Amount: <small class="text-red">*</small></label>
-                                <input type="number" id="amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
+                                <input type="number" id="view_loan_amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Term (month/s): <small class="text-red">*</small></label>
-                                <input type="number" id="loan_term" name="loan_term" class="form-control form-control-border" placeholder="Loan Term" required>
+                                <input type="number" id="view_loan_months" name="loan_term" class="form-control form-control-border" placeholder="Loan Term" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Type of Loan <small class="text-red">*</small></label>
-                        <input type="text" class="form-control form-control-border" name="loan_type" placeholder="Type of Loan" required>
+                        <input type="text" class="form-control form-control-border" id="view_loan_type" name="loan_type" placeholder="Type of Loan" required>
                     </div>
                     <div class="form-group">
                         <label>Purpose <small class="text-red">*</small></label>
-                        <input type="text" class="form-control form-control-border" name="purpose" placeholder="Purpose" required>
+                        <input type="text" class="form-control form-control-border" id="view_loan_purpose" name="purpose" placeholder="Purpose" required>
                     </div>
                     
                     <?php if(isset($_SESSION['membership']) && ($_SESSION['membership']) == '0') :?>
@@ -290,10 +284,9 @@
                     <div class="form-group">
                         <label>Co-maker <small class="text-red">*</small></label>
                         
-                        <select class="select2" style="width: 100%;" name="comaker_id" data-placeholder="Choose Co-maker" required>
+                        <select class="select2" style="width: 100%;" name="comaker_id" id="view_loan_comaker" data-placeholder="Choose Co-maker" required>
                             <option value=""></option>
                             <?php   
-                                $user_id = $_SESSION['user_id'];
                                 $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName DESC");
                                 while ($row = $query->fetch_assoc()) :
                             ?>
@@ -307,7 +300,7 @@
                     <div class="form-group">
                         <label>Co-maker <small>(optional)</small></label>
                         
-                        <select class="select2" style="width: 100%;" name="comaker_id" data-placeholder="Choose Co-maker">
+                        <select class="select2" style="width: 100%;" name="comaker_id" id="view_loan_comaker" data-placeholder="Choose Co-maker">
                             <option value=""></option>
                             <?php
                                 $query = $conn->query("SELECT * FROM tbl_comakers WHERE user_id != $user_id ORDER BY lastName ASC");
@@ -317,11 +310,10 @@
                             <?php endwhile; ?>
                         </select>
                     </div>
-                    <input type="hidden" name="comaker_id"  value="<?php echo $_SESSION['user_id']; ?>">
                     <?php endif; ?>
 
-                    <input type="hidden" name="user_id"  value="<?php echo $_SESSION['user_id']; ?>">
-                    <input type="hidden" name="membership"  id="membership" value="<?php echo $_SESSION['membership']; ?>">
+                    <input type="hidden" name="borrower_id"  value="<?= $_SESSION['user_id']; ?>">
+                    <input type="hidden" name="membership"  id="membership" value="<?= $_SESSION['membership']; ?>">
 
                     <div class="col-12 d-flex justify-content-end">
                         <div class="form-group">
@@ -335,7 +327,7 @@
                 <div class="modal-footer justify-content-end">
                     <div class="form-group">
                         <button type="submit" name="submit" class="btn btn-primary">Apply</button>
-                        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" id="close_modal" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </form><!-- /.modal-content -->
@@ -358,74 +350,74 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label>Borrower Name</label>
-                            <input type="text" id="borrower_name" name="borrower_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="borrower_name" class="form-control form-control-border text-center" disabled>
 
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Reference Number</label>
-                            <input type="text" id="ref_no" name="ref_no" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="ref_no" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Amount</label>
-                            <input type="text" id="amount" name="amount" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_amount" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Term</label>
-                            <input type="text" id="loan_term" name="loan_term" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_terms" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Date</label>
-                            <input type="text" id="loan_date" name="loan_date" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Type</label>
-                            <input type="text" id="loan_type" name="loan_type" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_type" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Purpose</label>
-                            <input type="text" id="purpose" name="purpose" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="purpose" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
                             <label>Co-Maker Name</label>
-                            <input type="text" id="comaker_name" name="comaker_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="comaker_name" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Comaker's Status</label>
-                            <input type="text" id="status_comaker" name="status_comaker" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_comaker" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Processor's Status</label>
-                            <input type="text" id="status_processor" name="status_processor" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_processor" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Manager's Status</label>
-                            <input type="text" id="status_manager" name="status_manager" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_manager" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Cashier's Status</label>
-                            <input type="text" id="status_cashier" name="status_cashier" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_cashier" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                 </div>
@@ -447,11 +439,11 @@
     })
 
     function calculate() {
-        if ($('#plan_id').val() == '' || $('[name="amount"]').val() == '') {
+        if ($('[name="loan_term"]').val() == '' || $('[name="amount"]').val() == '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops ...',
-                text: 'Please enter amount and plan term first.'
+                text: 'Enter amount and loan term to calculate the value.'
             })
             return false;
         }
@@ -474,21 +466,12 @@
         })
     }
 
-    $('#close').click(function() {
-        close();
-    })
-    function close() {
-        $(".modal").on("hidden.bs.modal", function(){
-            $('#addloan').find("input[type=text], select").val("");
-        });
-    }
-    
     $(document).ready(function () {
         $(".viewloan").click(function () {
             $('#borrower_name').val($(this).data('borrower_name'));
             $('#ref_no').val($(this).data('ref_no'));
-            $('#amount').val($(this).data('amount'));
-            $('#loan_term').val($(this).data('loan_term'));
+            $('#loan_amount').val($(this).data('loan_amount'));
+            $('#loan_terms').val($(this).data('loan_terms'));
             $('#loan_type').val($(this).data('loan_type'));
             $('#loan_date').val($(this).data('loan_date'));
             $('#purpose').val($(this).data('purpose'));
@@ -501,4 +484,18 @@
             $('#viewloan').modal('show');
         }); 
     }); 
+    
+    $(document).ready(function () {
+        $("#close_modal").click(function () {
+            $('#view_loan_amount').val('');
+            $('#view_loan_months').val('');
+            $('#view_loan_type').val('');
+            $('#view_loan_purpose').val('');
+            $('view_#loan_comaker').val('');
+
+
+            $('#addloan').modal('hide');
+        }); 
+    }); 
+    
 </script>

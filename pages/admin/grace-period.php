@@ -29,14 +29,16 @@
 			<div class="col-md-12">
 				<div class="card">
 					<?php
-					$borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
-					while ($row = $borrower->fetch_assoc()) {
-						$borrower_array[$row['user_id']] = $row;
-					}
+					// $borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
+					// while ($row = $borrower->fetch_assoc()) {
+					// 	$borrower_array[$row['user_id']] = $row;
+					// }
 					$ref_no = $_GET['ref_no'];
-					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name FROM tbl_transaction t INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE ref_no = $ref_no");
+					$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name, b.membership, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name FROM tbl_transaction t INNER JOIN tbl_borrowers b ON b.user_id = t.borrower_id INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE ref_no = $ref_no");
 					while ($row = $query->fetch_assoc()) :
 						$comaker_name = $row['name'];
+						$borrower_name = $row['borrower_name'];
+						$membership = $row['membership'];
 						$amount = $row['amount'];
 						$months = $row['loan_term'];
 						$interest = $row['interest'];
@@ -48,14 +50,14 @@
 
 						$interest_rate = 1; //fixed interest_rate
 
-						if($borrower_array[$row['user_id']]['membership'] == 1) :
+						if($membership == 1) :
 							$share_capital = 0.01 * $amount; 	//fixed capital for members only
 							$service_charge = 0.01 * $amount; //fixed service charge
 							$notarial_fee = 100; 	//fixed notarial fee
 
 							$total_less = $share_capital + $service_charge + $notarial_fee;
 							$net = $amount - ($share_capital + $service_charge + $notarial_fee); 
-						elseif($borrower_array[$row['user_id']]['membership'] == 0) : 
+						elseif($membership == 0) : 
 							$service_charge = 0.01 * $amount; //fixed service charge
 							$notarial_fee = 100; 	//fixed notarial fee
 
@@ -72,7 +74,7 @@
 									<h3 class="card-title">Name: </h3>
 								</div>
 								<div class="col-md-9">
-									<b><?php echo $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName'] . ' ' . $borrower_array[$row['user_id']]['lastName']; ?></b>
+									<b><?php echo $borrower_name; ?></b>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Loan Amount: </h3>
@@ -185,7 +187,7 @@
 						</table>
 
 						<?php 
-							if($borrower_array[$row['user_id']]['membership'] == 1) : 
+							if($membership == 1) : 
 						?>
 						<div class="row mt-3">
 							<div class="col-md-4">
@@ -237,7 +239,7 @@
 							</div>
 						</div>
 						<?php 
-							elseif($borrower_array[$row['user_id']]['membership'] == 0) : 
+							elseif($membership == 0) : 
 						?>
 						<div class="row mt-3">
 							<div class="col-md-4">

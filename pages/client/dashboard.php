@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-6 col-6">
                 <?php
-                $query = "SELECT * FROM tbl_transaction WHERE user_id = " . $_SESSION['user_id'];
+                $query = "SELECT * FROM tbl_transaction WHERE borrower_id = " . $_SESSION['user_id'];
                 $results = mysqli_query($conn, $query);
                 $totalloans = mysqli_num_rows($results);
                 ?>
@@ -87,17 +87,17 @@
                                     $user_id = $_SESSION['user_id'];
 
                                     $query = $conn->query("SELECT t.*, 
-                                        b.firstName, b.middleName, b.lastName, 
+                                        concat(b.lastName,' ',b.middleName,' ',b.lastName) as name, 
                                         s.status_comaker, s.status_processor, s.status_manager, s.status_cashier 
                                         FROM ((tbl_transaction t 
-                                            INNER JOIN tbl_borrowers b ON t.user_id = b.user_id) 
+                                            INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
                                             INNER JOIN tbl_status s ON t.status_ref = s.ref_no)  
                                         WHERE t.comaker_id = $user_id AND b.user_id != $user_id");
 
                                     while ($row = $query->fetch_assoc()) :
                                         $id = $row['id'];
                                         $ref_no = $row['ref_no'];
-                                        $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
+                                        $name = $row['name'];
                                         $amount = $row['amount'];
                                         $loan_date = $row['loan_date'];
                                         $status_comaker = $row['status_comaker'];
@@ -110,62 +110,22 @@
                                             <td><?= date('F j, Y', strtotime($loan_date)); ?></td>
                                             <td class="text-center">
                                                 <?php if ($status_comaker == 0) : ?>
-                                                    <button type="button" class="btn btn-warning btn-sm">Pending</button>
+                                                    <button type="button" style="pointer-events:none" class="btn btn-warning btn-block btn-sm">Pending</button>
                                                 <?php elseif ($status_comaker == 1) : ?>
-                                                    <button type="button" class="btn btn-success btn-sm">Approved</button>
+                                                    <button type="button" style="pointer-events:none" class="btn btn-success btn-block btn-sm">Approved</button>
                                                 <?php elseif ($status_comaker == 2) : ?>
-                                                    <button type="button" class="btn btn-danger btn-sm">Disapproved</button>
+                                                    <button type="button" style="pointer-events:none" class="btn btn-danger btn-block btn-sm">Disapproved</button>
                                                 <?php endif; ?>
                                             </td>
                                             <td align="center">
-                                                <div class="btn-group dropleft">
-                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                                        Action <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <?php if ($status_comaker == 0) : ?>
-                                                            <a class="dropdown-item" role="button" href="../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>" >Approve</a>
-                                                            <a class="dropdown-item" role="button" href="../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>">Disapprove</a>
-                                                            
-                                                            <script>
-                                                                function approve() {
-                                                                    Swal.fire({
-                                                                        title: 'Confirm Approve?',
-                                                                        text: "You won't be able to revert this!",
-                                                                        icon: 'warning',
-                                                                        showCancelButton: true,
-                                                                        confirmButtonColor: '#3085d6',
-                                                                        cancelButtonColor: '#d33',
-                                                                        confirmButtonText: 'Approve'
-                                                                    }).then((result) => {
-                                                                        if (result.isConfirmed) {
-                                                                            window.location.href="../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>" 
-                                                                        }
-                                                                    })
-                                                                }
-                                                                function disapprove() {
-                                                                    Swal.fire({
-                                                                        title: 'Confirm Disapprove?',
-                                                                        text: "You won't be able to revert this!",
-                                                                        icon: 'warning',
-                                                                        showCancelButton: true,
-                                                                        confirmButtonColor: '#3085d6',
-                                                                        cancelButtonColor: '#d33',
-                                                                        confirmButtonText: 'Disapprove'
-                                                                    }).then((result) => {
-                                                                        if (result.isConfirmed) {
-                                                                            window.location.href="../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>" 
-                                                                        }
-                                                                    })
-                                                                }
-                                                            </script>
-                                                        <?php elseif ($status_comaker == 1) : ?>
-                                                            <a class="dropdown-item disabled" href="#">Approved</a>
-                                                        <?php elseif ($status_comaker == 2) : ?>
-                                                            <a class="dropdown-item disabled" href="#">Disapproved</a>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
+                                                <?php if ($status_comaker == 0) : ?>
+                                                <a href="../../config/update-status.php?approveref_no=<?= $row['status_ref']; ?>" class="btn btn-success btn-sm">Approve</a>
+                                                <a type="button" href="../../config/update-status.php?denyref_no=<?= $row['status_ref']; ?>" class="btn btn-danger btn-sm">Disapprove</a>
+                                                <?php elseif ($status_comaker == 1) : ?>
+                                                    <button type="button" class="btn btn-secondary btn-sm">Approved</button>
+                                                <?php elseif ($status_comaker == 2) : ?>
+                                                    <button type="button" class="btn btn-secondary btn-sm">Disapproved</button>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         
@@ -184,3 +144,39 @@
 
 </section>
 <!-- /.content -->
+
+
+
+
+<script>
+    function approve() {
+        Swal.fire({
+            title: 'Confirm Approve?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Approve'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>" 
+            }
+        })
+    }
+    function disapprove() {
+        Swal.fire({
+            title: 'Confirm Disapprove?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Disapprove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>" 
+            }
+        })
+    }
+</script>

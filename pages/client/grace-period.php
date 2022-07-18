@@ -125,7 +125,7 @@
 								</div>
 								<?php if ($borrower_id == $comaker_id) : ?>
 									<div class="col-md-3">
-										<h3 class="card-title">COOP Membership Status:</h3>
+										<h3 class="card-title">Membership Status:</h3>
 									</div>
 									<div class="col-md-9">
 										<b class="text-primary">Member</b>

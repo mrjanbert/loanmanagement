@@ -60,7 +60,7 @@
             <!-- Icons -->
             <li class="nav-item me-3 me-lg-0">
               <a class="nav-link" href="login.php" rel="nofollow" target="_blank">
-                <i class="fas fa-user-tie"></i>
+                <i class="fas fa-user-shield"></i>
               </a>
             </li>
             <li class="nav-item me-3 me-lg-0">

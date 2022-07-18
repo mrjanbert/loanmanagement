@@ -12,11 +12,11 @@
         
         <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image" data-target="#view_user" data-toggle="modal">
-                <img src="../../components/img/uploads/<?php echo $_SESSION['profilePhoto']; ?>"  class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>"  class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
             </div>
             <div class="info">
                 <a class="d-block" data-target="#view_user" data-toggle="modal">
-                    <?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
+                    <?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
                 </a>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="index.php?page=dashboard&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-dashboard">
+                    <a href="index.php?page=dashboard&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-dashboard">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -34,19 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=loans&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-loans nav-grace-period nav-application-form">
-                        <i class="fas fa-money-bill nav-icon"></i>
-                        <p>Loans</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?page=payments&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-payments">
-                        <i class="fas fa-wallet nav-icon"></i>
-                        <p>Payments</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?page=borrower-list&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
+                    <a href="index.php?page=borrower-list&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Borrowers
@@ -55,7 +43,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="index.php?page=comakers&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-comakers">
+                    <a href="index.php?page=comakers&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-comakers">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Co-makers
@@ -76,13 +64,13 @@
                     </a>
                     <ul class="nav nav-treeview nav-user-list nav-user-roles">
                         <li class="nav-item">
-                            <a href="index.php?page=user-list&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-list">
+                            <a href="index.php?page=user-list&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-list">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?page=user-roles&usr=<?php echo base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-roles">
+                            <a href="index.php?page=user-roles&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-roles">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User Roles</p>
                             </a>
@@ -94,87 +82,114 @@
         </nav> <!-- /.sidebar-menu -->
     </div> <!-- /.sidebar -->
     <div class="sidebar-custom">
-        <a class="brand-text text-white font-weight-light align-middle" role="button">User Role Status: &nbsp; <span class="text-primary"><?php echo $_SESSION['role_name'] ?></span></a>
+        <a class="brand-text text-white font-weight-light align-middle" role="button">User Role Status: &nbsp; <span class="text-primary"><?= $_SESSION['role_name'] ?></span></a>
     </div>
     <!-- /.sidebar-custom -->
 </aside>
 
 <script>
-    $('.nav-<?php echo isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active').addClass('menu-open')
+    $('.nav-<?= isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active').addClass('menu-open')
 </script>
 
 
 <div class="modal fade" id="view_user">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Information of <?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 d-flex justify-content-center mb-4">
-                        <div class="image">
-                            <img src="../../components/img/uploads/<?php echo $_SESSION['profilePhoto']; ?>" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
+    <div class="modal-dialog modal-lg">\
+        <form action="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Personal Information of <?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <div class="image">
+                                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="form-group">
-                            <label>Account Number:</label>
-                            <p><?php echo $_SESSION['accountNumber']; ?> </p>
+                        <div class="col-md-6 text-center">
+                            <div class="form-group">
+                                <label>Account Number:</label>
+                                <input type="text" id="side_idnumber" value="<?= $_SESSION['accountNumber']; ?>" class="form-control form-control-border text-center">
+                            </div>
+                            <div class="form-group">
+                                <label>Full Name:</label>
+                                <input type="text" id="side_name" value="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>" class="form-control form-control-border text-center">
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="text" id="side_email" value="<?= $_SESSION['email']; ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-12 text-center">
-                        <div class="form-group">
-                            <label>Full Name:</label>
-                            <p><?php echo $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName']; ?> </p>
+                        <div class="col-md-4 text-center">
+                            <div class="form-group">
+                                <label>Birth Date:</label>
+                                <input type="text" id="side_birthdate" value="<?= date('F j, Y', strtotime($_SESSION['birthDate'])); ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Age:</label>
-                            <p><?php echo $_SESSION['age']; ?> </p>
+                        <div class="col-md-4 text-center">
+                            <div class="form-group">
+                                <label>Contact Number:</label>
+                                <input type="text" id="side_contactnumber" value="<?= $_SESSION['contactNumber']; ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Birth Date:</label>
-                            <p><?php echo $_SESSION['birthDate']; ?> </p>
+                        <div class="col-md-4 text-center">
+                            <div class="form-group">
+                                <label>User Role:</label>
+                                <input type="text" id="side_rolename" value="<?= $_SESSION['role_name']; ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Contact Number:</label>
-                            <p><?php echo $_SESSION['contactNumber']; ?> </p>
+                        <div class="col-md-6 text-center">
+                            <div class="form-group">
+                                <label>Address:</label>
+                                <input type="text" id="side_address" value="<?= $_SESSION['address']; ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <p class="text-primary"><?php echo $_SESSION['email']; ?> </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Address:</label>
-                            <p><?php echo $_SESSION['address']; ?> </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                        <div class="form-group">
-                            <label>Date Registered:</label>
-                            <p><?php echo $_SESSION['userCreated']; ?> </p>
+                        <div class="col-md-6 text-center">
+                            <div class="form-group">
+                                <label>Date Registered:</label>
+                                <input type="text" id="side_usercreated" value="<?= date('F j, Y', strtotime($_SESSION['userCreated'])); ?>" class="form-control form-control-border text-center">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                <div class="modal-footer justify-content-end">
+                    <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal"
+                        data-side_idnumber="<?= $_SESSION['accountNumber'] ?>"
+                        data-side_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>"
+                        data-side_email="<?= $_SESSION['email'] ?>"
+                        data-side_birthdate="<?= date('F j, Y', strtotime($_SESSION['birthDate'])) ?>"
+                        data-side_contactnumber="<?= $_SESSION['contactNumber'] ?>"
+                        data-side_rolename="<?= $_SESSION['role_name'] ?>"
+                        data-side_address="<?= $_SESSION['address'] ?>"
+                        data-side_usercreated="<?= date('F j, Y', strtotime($_SESSION['userCreated'])) ?>"
+                    
+                    >Cancel</button>
+                    <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
+                </div>
+                <?php endif ?>
             </div>
-            <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
-            <div class="modal-footer justify-content-end">
-                <a href='index.php?page=update-info&user_id=<?php echo base64_encode($_SESSION['user_id']); ?>' class="btn btn-primary">Edit</a>
-            </div>
-            <?php endif ?>
-        </div><!-- /.modal-content -->
+        </form><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("#cancel_btn").click(function () {
+            $('#side_idnumber').val($(this).data('side_idnumber'));
+            $('#side_name').val($(this).data('side_name'));
+            $('#side_email').val($(this).data('side_email'));
+            $('#side_birthdate').val($(this).data('side_birthdate'));
+            $('#side_contactnumber').val($(this).data('side_contactnumber'));
+            $('#side_rolename').val($(this).data('side_rolename'));
+            $('#side_address').val($(this).data('side_address'));
+            $('#side_usercreated').val($(this).data('side_usercreated'));
+
+
+            $('#addloan').modal('hide');
+        }); 
+    }); 
+</script>

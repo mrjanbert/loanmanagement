@@ -109,3 +109,40 @@ while ($row = $query->fetch_assoc()) :
         <td><?php echo $balance ?></td>
     </tr>
 <?php endwhile; ?>
+
+
+
+
+<a href="#" class="btn btn-info btn-sm view" image="img_name" data-toggle="modal" data-target="#myModal" title="View image">
+    <i class="far fa-images"></i>
+</a>
+
+<script>
+  $(document).on('click', '.view', function() {
+    // var image = $(this).attr('image');
+    // $('#image').attr('src', image);
+    
+    $('#image').attr('src', $(this).attr('image'));
+  });
+</script>
+
+<img id="image" style="height: 50%; width: 100%;" />
+
+
+<a class="btn btn-info btn-sm my-1 view_borrower " data-toggle="modal" data-target="#view_borrower" 
+    data-name="<?= $row['name'];?>"
+    data-image="<?= $row['profilePhoto'];?>"
+>View Info</i></a>
+
+<script>
+    $(document).ready(function () {
+        $(".view_borrower").click(function () {
+            $('#name').val($(this).data('name'));
+            $('#image').attr('src', $(this).data('image'));
+            
+            $('#viewloan').modal('show');
+        }); 
+    }); 
+</script>
+
+<img id="image" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">

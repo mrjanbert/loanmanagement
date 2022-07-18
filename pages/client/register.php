@@ -135,38 +135,38 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
-                                                                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                
-                                                                <div class="form-check d-flex justify-content-center mb-5">
-                                                                    <input class="form-check-input me-2" type="checkbox" value=""
-                                                                        id="form2Example3c" />
-                                                                    <label class="form-check-label" for="form2Example3">
-                                                                        I agree all statements in <a href="#!">Terms of service</a>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                                                <button type="submit" value="submit" name="submit" class="btn btn-primary">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Register</button>
+                                                    <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#register">Register</button>
                                                 </div>
                                             </form>
+                                        </div>  
 
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+                                                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        
+                                                        <div class="form-check d-flex justify-content-center mb-5">
+                                                            <input class="form-check-input me-2" type="checkbox" value=""
+                                                                id="form2Example3c" />
+                                                            <label class="form-check-label" for="form2Example3">
+                                                                I agree all statements in <a href="#!">Terms of service</a>
+                                                            </label>    
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                                        <a type="submit" value="submit" name="submit" class="btn btn-primary">Save changes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                         <div
                                             class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                                             <img src="../../components/hometemplate/img/signup.webp" class="img-fluid" alt="Sample image">

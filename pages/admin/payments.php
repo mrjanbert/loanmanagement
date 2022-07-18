@@ -23,14 +23,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">List of Payments</h3>
-                        <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
-                                <i class="fa fa-plus"></i> &nbsp;
-                                Add Payment
-                            </button>
-                        </div>
-                        <?php } ?>
                     </div>
                     <div class="card-body">
                         
@@ -70,71 +62,3 @@
 
 
 
-<div class="modal fade" id="addpayment">
-    <div class="modal-dialog modal-md">
-        <form action="../../config/create-payment.php" method="POST">
-            <div class="modal-content card-outline card-primary">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Payment</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Loan Reference No. <small class="text-red">*</small></label>
-                                
-                                <select class="select2" style="width: 100%;" name="ref_no" data-placeholder="Select Loan Reference No." required>
-                                    <option></option>
-                                    <?php 
-                                    $borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
-                                    while ($row = $borrower->fetch_assoc()) {
-                                        $borrower_array[$row['user_id']] = $row;
-                                    }    
-                                    $query = $conn->query("SELECT * FROM tbl_transaction WHERE status_cashier = '2' ORDER BY id DESC");
-                                    while ($row = $query->fetch_assoc()) :
-                                    ?>
-                                    <option value="<?php echo $row['ref_no']?>"><?php echo $row['ref_no'] . ' - ' . $borrower_array[$row['user_id']]['firstName'] . ' ' . $borrower_array[$row['user_id']]['middleName'][0] . '. ' . $borrower_array[$row['user_id']]['lastName']; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Payee <small class="text-red">*</small> </label>
-                                <select class="select2" style="width: 100%;" name="payee" data-placeholder="Choose Payee" required>
-                                    <option></option>
-                                    <option value="Borrower">Borrower</option>
-                                    <option value="Co-maker">Co-maker</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Payment Amount <small class="text-red">*</small></label>
-                                <input type="number" class="form-control form-control-border" name="payment_amount" placeholder="Enter Amount" required>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Penalty</label>
-                                <input type="number" class="form-control form-control-border" name="penalty" placeholder="Enter Penalty Amount">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-end">
-                    <button type="submit" name="submit" class="btn btn-primary">
-                        Save
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </form><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>

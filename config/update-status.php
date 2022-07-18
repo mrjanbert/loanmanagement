@@ -35,23 +35,6 @@ if (isset($_GET['denyref_no'])) {
 
 }
 
-if (isset($_GET['disapprove_processor'])) {
-
-    $ref_no = $_GET['disapprove_processor'];
-    $sql = $conn->query("UPDATE tbl_status SET status_processor = '3' WHERE ref_no = '$ref_no'");
-
-    session_start();
-    $_SESSION['status']= "<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Success',
-        text: 'Loan Disapproved'
-    })
-    </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
-
-}    
-
 if (isset($_GET['approve_processor'])) {
 
     $ref_no = $_GET['approve_processor'];
@@ -65,7 +48,7 @@ if (isset($_GET['approve_processor'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }
 
@@ -82,7 +65,7 @@ if (isset($_GET['disapprove_manager'])) {
         text: 'Loan Disapproved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }    
 
@@ -99,7 +82,7 @@ if (isset($_GET['approve_manager'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }
 
@@ -116,7 +99,7 @@ if (isset($_GET['disapprove_cashier'])) {
         text: 'Loan Disapproved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }    
 
@@ -132,7 +115,7 @@ if (isset($_GET['release_cashier'])) {
         text: 'Cash Released'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }
 
@@ -148,6 +131,6 @@ if (isset($_GET['approve_cashier'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=loans&usr='.base64_encode($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid='.$_GET['uid'].'&usr='.base64_encode($_SESSION['role_name']));
 
 }

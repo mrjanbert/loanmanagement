@@ -23,6 +23,12 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Loan Transactions</h2>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button onclick="history.back()" class="btn btn-warning btn-sm">
+                                <i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
+                                Back
+                            </button>
+                        </div>
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
@@ -171,7 +177,7 @@
                                                     }elseif(($status_manager == '1') && ($status_cashier == '1')){
                                                         echo 'Approved';
                                                     }elseif(($status_manager == '1') && ($status_cashier == '2')){
-                                                        echo 'Released';
+                                                        echo 'Completed';
                                                     } elseif(($status_manager == '1') && ($status_cashier == '3')){
                                                             echo 'Disapproved';
                                                     }else {
@@ -425,43 +431,7 @@
             $('#viewloan').modal('show');
         }); 
     }); 
-</script>
-<!-- <script>
-    function deny_processor() {
-        Swal.fire({
-            title: 'Confirm Disapprove?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Disapprove'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                location.
-            }
-        })
-    }
     
-    function approve_processor() {
-        Swal.fire({
-            title: 'Confirm Approve?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Approve'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.
-            }
-        })
-    }
-</script> -->
-
-
-<script>
     $(".approve_processor").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({

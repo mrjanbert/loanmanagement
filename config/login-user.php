@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['contactNumber'] = $data['contactNumber'];
 		$_SESSION['userCreated'] = $data['userCreated'];
 		$_SESSION['role_name'] = $data['role_name'];
-		$_SESSION['email'] = $email;
+		$_SESSION['email'] = $data['email'];
 		$_SESSION['status'] = "<div class=\"preloader flex-column justify-content-center align-items-center\">
         <img class=\"animation__wobble\" src=\"../../components/img/logo.png\" height=\"200\" width=\"200\"></div>";
 		header('location: ../pages/admin/index.php?page=dashboard&usr='.base64_encode($_SESSION['role_name']));
