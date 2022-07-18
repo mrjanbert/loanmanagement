@@ -87,7 +87,7 @@
                                     $user_id = $_SESSION['user_id'];
 
                                     $query = $conn->query("SELECT t.*, 
-                                        concat(b.lastName,' ',b.middleName,' ',b.lastName) as name, 
+                                        b.firstName, b.middleName, b.lastName, 
                                         s.status_comaker, s.status_processor, s.status_manager, s.status_cashier 
                                         FROM ((tbl_transaction t 
                                             INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
@@ -97,7 +97,7 @@
                                     while ($row = $query->fetch_assoc()) :
                                         $id = $row['id'];
                                         $ref_no = $row['ref_no'];
-                                        $name = $row['name'];
+                                        $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
                                         $amount = $row['amount'];
                                         $loan_date = $row['loan_date'];
                                         $status_comaker = $row['status_comaker'];

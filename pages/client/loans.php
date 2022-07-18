@@ -56,7 +56,7 @@
                                 $query = $conn->query("SELECT t.*, 
                                                     s.status_comaker, s.status_processor, s.status_manager, s.status_cashier, concat(c.firstName,' ', c.lastName) as comaker_name
                                                 FROM tbl_transaction t 
-                                                    INNER JOIN tbl_status s ON t.ref_no = s.ref_no 
+                                                    INNER JOIN tbl_status s ON t.ref_no = s.ref_no
                                                     INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id 
                                                 WHERE t.borrower_id = $user_id ORDER BY id DESC");
                                 while ($row = $query->fetch_assoc()) :
