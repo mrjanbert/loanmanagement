@@ -73,7 +73,7 @@
                                     $status_processor = $row['status_processor'];
                                     $status_cashier = $row['status_cashier'];
                                 ?>
-                                
+
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td><?= $ref_no; ?></td>
@@ -81,21 +81,21 @@
                                         <td><b style="color: blue"><?= number_format($amount, 2); ?></b></td>
 
                                         <?php if (isset($role_name) && ($role_name == 'Manager')) {  ?>
-                                            <?php if($status_processor == 1) : ?>
+                                            <?php if ($status_processor == 1) : ?>
                                                 <td class="text-center">
                                                     <?php if ($status_manager == 0) : ?>
-                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block" style="pointer-events: none">Pending</button>
+                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block text-white" style="pointer-events: none">Pending</button>
                                                     <?php elseif ($status_manager == 1) : ?>
                                                         <button type="button" class="btn btn-primary btn-sm my-1 btn-block" style="pointer-events: none">Approved</button>
                                                     <?php elseif ($status_manager == 3) : ?>
                                                         <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Disapproved</button>
                                                     <?php endif; ?>
                                                 </td>
-                                            <?php elseif(($status_processor == 0) && ($status_comaker == 1)) : ?>
+                                            <?php elseif (($status_processor == 0) && ($status_comaker == 1)) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for CC Member's Approval</button>
                                                 </td>
-                                            <?php elseif(($status_processor == 0) && ($status_comaker == 0)) : ?>
+                                            <?php elseif (($status_processor == 0) && ($status_comaker == 0)) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for Co-maker's Approval</button>
                                                 </td>
@@ -106,15 +106,15 @@
                                             <?php endif ?>
 
                                         <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
-                                            <?php if($status_comaker == 1) : ?>
+                                            <?php if ($status_comaker == 1) : ?>
                                                 <td class="text-center">
                                                     <?php if ($status_processor == 0) : ?>
-                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block" style="pointer-events: none">Pending</button>
+                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block text-white" style="pointer-events: none">Pending</button>
                                                     <?php elseif ($status_processor == 1) : ?>
                                                         <button type="button" class="btn btn-primary btn-sm my-1 btn-block" style="pointer-events: none">Checked and Verified</button>
                                                     <?php endif; ?>
                                                 </td>
-                                            <?php elseif($status_comaker == 0) : ?>
+                                            <?php elseif ($status_comaker == 0) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for Co-maker's Approval</button>
                                                 </td>
@@ -125,31 +125,31 @@
                                             <?php endif ?>
 
                                         <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
-                                            <?php if($status_manager == 1) : ?>
+                                            <?php if ($status_manager == 1) : ?>
                                                 <td class="text-center">
                                                     <?php if ($status_cashier == 0) : ?>
-                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block" style="pointer-events: none">Pending</button>
+                                                        <button type="button" class="btn btn-warning btn-sm my-1 btn-block text-white" style="pointer-events: none">Pending</button>
                                                     <?php elseif ($status_cashier == 1) : ?>
                                                         <button type="button" class="btn btn-primary btn-sm my-1 btn-block" style="pointer-events: none">Approved</button>
                                                     <?php elseif ($status_cashier == 2) : ?>
                                                         <button type="button" class="btn btn-success btn-sm my-1 btn-block" style="pointer-events: none">Completed</button>
                                                     <?php elseif ($status_cashier == 3) : ?>
                                                         <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Disapproved</button>
-                                                <?php endif; ?>
+                                                    <?php endif; ?>
                                                 </td>
-                                            <?php elseif($status_manager == 3) : ?>
+                                            <?php elseif ($status_manager == 3) : ?>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Approved by: CC Member <br/>Disapproved by: Manager</button>
+                                                    <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Approved by: CC Member <br />Disapproved by: Manager</button>
                                                 </td>
-                                            <?php elseif(($status_manager == 0) && ($status_processor == 1)) : ?>
+                                            <?php elseif (($status_manager == 0) && ($status_processor == 1)) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for Manager's Approval</button>
                                                 </td>
-                                            <?php elseif(($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
+                                            <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for CC Member's Approval</button>
                                                 </td>
-                                            <?php elseif(($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
+                                            <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
                                                 <td class="text-center">
                                                     <button type="button" class="btn btn-info btn-sm my-1 btn-block" style="pointer-events: none">Waiting for Co-maker's Approval</button>
                                                 </td>
@@ -158,7 +158,9 @@
                                                     <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Disapproved by Co-maker</button>
                                                 </td>
                                             <?php endif ?>
-                                        <?php } else { ''; } ?>
+                                        <?php } else {
+                                            '';
+                                        } ?>
 
                                         <td class="text-center">
                                             <a href="index.php?page=grace-period&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-primary btn-sm btn-block" title="View Grace Period" data-toggle="tooltip" data-placement="top">
@@ -167,73 +169,60 @@
                                             <a href="index.php?page=application-form&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-success btn-sm btn-block" title="Print Application Form" data-toggle="tooltip" data-placement="top">
                                                 <i class="fa fa-print"></i>&nbsp; Application Form
                                             </a>
-                                            <button class="btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan"
-                                                data-borrower_name="<?= $borrower_name ?>"
-                                                data-ref_no="<?= $ref_no?>"
-                                                data-viewloan_amount="<?= number_format($amount, 2) ?>"
-                                                data-viewloan_term = "<?= $loan_term ?> Months"
-                                                data-viewloan_type = "<?= $loan_type ?>"
-                                                data-loan_date = "<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>"
-                                                data-purpose = "<?= $purpose ?>"
-                                                data-comaker_name = "<?= $comaker_name ?>"
-                                                
-                                                data-status_comaker = "<?php 
-                                                    if($row['status_comaker'] == '0'){ 
-                                                        echo 'Pending';
-                                                    } elseif($row['status_comaker'] == '1'){
-                                                        echo 'Approved';
-                                                    } elseif($row['status_comaker'] == '2'){
-                                                        echo 'Disapproved';
-                                                    }?>"
-                                                data-status_processor = "<?php 
-                                                    if(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')){ 
-                                                        echo 'Pending';
-                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')){
-                                                        echo 'Checked and Verified';
-                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')){
-                                                        echo 'Disapproved';
-                                                    }else {
-                                                        echo '';
-                                                    }?>"
-                                                data-status_manager = "<?php 
-                                                    if(($row['status_processor'] == '1') && ($row['status_manager'] == '0')){
-                                                        echo 'Pending';
-                                                    }elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '1')){
-                                                        echo 'Approved';
-                                                    } elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '3')){
-                                                            echo 'Disapproved';
-                                                    }else {
-                                                        echo '';
-                                                    }?>"
-                                                data-status_cashier = "<?php 
-                                                    if(($row['status_manager'] == '1') && ($row['status_cashier'] == '0')){
-                                                        echo 'Pending';
-                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '1')){
-                                                        echo 'Approved';
-                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '2')){
-                                                        echo 'Completed';
-                                                    } elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '3')){
-                                                            echo 'Disapproved';
-                                                    }else {
-                                                        echo '';
-                                                    }?>">
+                                            <button class="btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $borrower_name ?>" data-ref_no="<?= $ref_no ?>" data-viewloan_amount="<?= number_format($amount, 2) ?>" data-viewloan_term="<?= $loan_term ?> Months" data-viewloan_type="<?= $loan_type ?>" data-loan_date="<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>" data-purpose="<?= $purpose ?>" data-comaker_name="<?= $comaker_name ?>" data-status_comaker="<?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if ($row['status_comaker'] == '0') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } elseif ($row['status_comaker'] == '1') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } elseif ($row['status_comaker'] == '2') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } ?>" data-status_processor="<?php
+                                                                                if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
+                                                                                    echo 'Pending';
+                                                                                } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
+                                                                                    echo 'Checked and Verified';
+                                                                                } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
+                                                                                    echo 'Disapproved';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>" data-status_manager="<?php
+                                                                                if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
+                                                                                    echo 'Pending';
+                                                                                } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
+                                                                                    echo 'Approved';
+                                                                                } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
+                                                                                    echo 'Disapproved';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>" data-status_cashier="<?php
+                                                                                if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
+                                                                                    echo 'Pending';
+                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
+                                                                                    echo 'Approved';
+                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
+                                                                                    echo 'Completed';
+                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
+                                                                                    echo 'Disapproved';
+                                                                                } else {
+                                                                                    echo '';
+                                                                                } ?>">
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 Loan Information
                                             </button>
                                             <?php if (isset($role_name) && ($role_name == 'Cashier') && (($status_cashier == 1) || ($status_cashier == 2))) {  ?>
-                                            <a href="index.php?page=view-payments&refid=<?= $ref_no?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
-                                                View Payments
-                                            </a>
+                                                <a href="index.php?page=view-payments&refid=<?= $ref_no ?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
+                                                    View Payments
+                                                </a>
                                             <?php } ?>
                                         </td>
                                         <td class="text-center">
                                             <?php if (isset($role_name) && ($role_name == 'Admin')) {  ?>
-                                            <a href="#" class="btn btn-primary btn-sm my-1" title="Edit" data-toggle="tooltip" data-placement="top">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm my-1" title="Delete" data-toggle="tooltip" data-placement="top">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
+                                                <a href="#" class="btn btn-primary btn-sm my-1" title="Edit" data-toggle="tooltip" data-placement="top">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm my-1" title="Delete" data-toggle="tooltip" data-placement="top">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
                                             <?php } ?>
                                             <?php if (isset($role_name) && ($role_name == 'Manager')) {  ?>
                                                 <?php if ($status_processor == 1) : ?>
@@ -253,92 +242,94 @@
                                                             Disapproved
                                                         </a>
                                                     <?php endif; ?>
-                                                <?php elseif(($status_processor == 0) && ($status_comaker == 0)) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Waiting for Co-maker's Approval
-                                                        </a>
-                                                <?php elseif(($status_processor == 0) && ($status_comaker == 1)) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Waiting for CC Member's Approval
-                                                        </a>
-                                                <?php else : ?>
-                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                        Disapproved by Co-maker
-                                                    </a>
-                                                <?php endif; ?>
-                                            </div>
-
-                                            <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
-                                                <?php if ($status_comaker == 1) : ?>
-                                                    <?php if ($status_processor == 0) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_processor" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                                            <i class="fa fa-check"></i>&nbsp;Check and Verify
-                                                        </a>
-                                                    <?php elseif ($status_processor == 1) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Checked and Verified
-                                                        </a>
-                                                    <?php endif; ?>
-                                                <?php elseif ($status_comaker == 0) : ?>
+                                                <?php elseif (($status_processor == 0) && ($status_comaker == 0)) : ?>
                                                     <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
                                                         Waiting for Co-maker's Approval
                                                     </a>
-                                                <?php else : ?>
+                                                <?php elseif (($status_processor == 0) && ($status_comaker == 1)) : ?>
                                                     <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                        Disapproved by Co-maker
+                                                        Waiting for CC Member's Approval
                                                     </a>
-
-                                                <?php endif; ?>
-
-                                            <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
-                                                <?php if ($status_manager == 1) : ?>
-                                                    <?php if ($status_cashier == 0) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_cashier" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                                            <i class="fas fa-thumbs-up"></i>&nbsp;Approve
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm my-1 disapprove_cashier" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                                            <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
-                                                        </a>
-                                                    <?php elseif ($status_cashier == 1) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm my-1 release_cashier" title="Complete Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                                            <i class="fas fa-check-circle"></i>&nbsp;Complete
-                                                        </a>
-                                                    <?php elseif ($status_cashier == 2) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Loan Completed
-                                                        </a>
-                                                    <?php elseif ($status_cashier == 3) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Disapproved
-                                                        </a>
-                                                    <?php endif; ?>
-                                                <?php elseif(($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Waiting for Co-maker's Approval
-                                                        </a>
-                                                <?php elseif(($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Waiting for CC Member's Approval
-                                                        </a>
-                                                <?php elseif(($status_manager == 0) && ($status_processor == 1) && ($status_comaker == 1)) : ?>
-                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Waiting for Manager's Approval
-                                                        </a>
                                                 <?php else : ?>
                                                     <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
                                                         Disapproved by Co-maker
                                                     </a>
                                                 <?php endif; ?>
-                                            <?php } else { ''; } ?>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+                    </div>
+
+                <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
+                    <?php if ($status_comaker == 1) : ?>
+                        <?php if ($status_processor == 0) : ?>
+                            <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_processor" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                <i class="fa fa-check"></i>&nbsp;Check and Verify
+                            </a>
+                        <?php elseif ($status_processor == 1) : ?>
+                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                Checked and Verified
+                            </a>
+                        <?php endif; ?>
+                    <?php elseif ($status_comaker == 0) : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Waiting for Co-maker's Approval
+                        </a>
+                    <?php else : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Disapproved by Co-maker
+                        </a>
+
+                    <?php endif; ?>
+
+                <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
+                    <?php if ($status_manager == 1) : ?>
+                        <?php if ($status_cashier == 0) : ?>
+                            <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_cashier" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                <i class="fas fa-thumbs-up"></i>&nbsp;Approve
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-danger btn-sm my-1 disapprove_cashier" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
+                            </a>
+                        <?php elseif ($status_cashier == 1) : ?>
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm my-1 release_cashier" title="Complete Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                <i class="fas fa-check-circle"></i>&nbsp;Complete
+                            </a>
+                        <?php elseif ($status_cashier == 2) : ?>
+                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                Loan Completed
+                            </a>
+                        <?php elseif ($status_cashier == 3) : ?>
+                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                Disapproved
+                            </a>
+                        <?php endif; ?>
+                    <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Waiting for Co-maker's Approval
+                        </a>
+                    <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Waiting for CC Member's Approval
+                        </a>
+                    <?php elseif (($status_manager == 0) && ($status_processor == 1) && ($status_comaker == 1)) : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Waiting for Manager's Approval
+                        </a>
+                    <?php else : ?>
+                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                            Disapproved by Co-maker
+                        </a>
+                    <?php endif; ?>
+                <?php } else {
+                                                '';
+                                            } ?>
+                </td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
+            </table>
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
 
@@ -472,8 +463,8 @@
         })
     }
 
-    $(document).ready(function () {
-        $(".viewloan").click(function () {
+    $(document).ready(function() {
+        $(".viewloan").click(function() {
             $('#borrower_name').val($(this).data('borrower_name'));
             $('#ref_no').val($(this).data('ref_no'));
             $('#viewloan_amount').val($(this).data('viewloan_amount'));
@@ -488,15 +479,15 @@
             $('#status_cashier').val($(this).data('status_cashier'));
 
             $('#viewloan').modal('show');
-        }); 
-    }); 
+        });
+    });
 </script>
 
 <script>
     $(".approve_processor").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Approve?',
@@ -508,7 +499,7 @@
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?approve_processor="+ status_ref+"&uid="+<?= $_GET['uid'] ?>; 
+                window.location.href = "../../config/update-status.php?approve_processor=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
@@ -516,7 +507,7 @@
     $(".approve_manager").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Approve?',
@@ -528,7 +519,7 @@
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?approve_manager="+ status_ref+"&uid="+<?= $_GET['uid'] ?>; 
+                window.location.href = "../../config/update-status.php?approve_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
@@ -536,7 +527,7 @@
     $(".disapprove_manager").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Disapprove?',
@@ -548,7 +539,7 @@
             confirmButtonText: 'Disapprove'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?disapprove_manager="+ status_ref+"&uid="+<?= $_GET['uid'] ?>;
+                window.location.href = "../../config/update-status.php?disapprove_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
@@ -556,7 +547,7 @@
     $(".approve_cashier").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Approve?',
@@ -568,7 +559,7 @@
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?approve_cashier="+ status_ref+"&uid="+<?= $_GET['uid'] ?>; 
+                window.location.href = "../../config/update-status.php?approve_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
@@ -576,7 +567,7 @@
     $(".disapprove_cashier").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Disapprove?',
@@ -588,7 +579,7 @@
             confirmButtonText: 'Disapprove'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?disapprove_cashier="+ status_ref+"&uid="+<?= $_GET['uid'] ?>;
+                window.location.href = "../../config/update-status.php?disapprove_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
@@ -596,7 +587,7 @@
     $(".release_cashier").click(function() {
         var status_ref = $(this).data('status_ref');
         console.log({
-            status_ref 
+            status_ref
         });
         Swal.fire({
             title: 'Confirm Release?',
@@ -608,9 +599,8 @@
             confirmButtonText: 'Release'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?release_cashier="+ status_ref+"&uid="+<?= $_GET['uid'] ?>;
+                window.location.href = "../../config/update-status.php?release_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
             }
         })
     });
-
 </script>
