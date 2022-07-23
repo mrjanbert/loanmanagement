@@ -25,25 +25,25 @@
                         <h3 class="card-title">List of Payments</h3>
                     </div>
                     <div class="card-body">
-                        
+
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th width="5%" class="text-center">#</th>
                                     <th width="20%" class="text-center">Loan Reference Number</th>
-                                    <th width="20%"class="text-center">Borrower Name</th>
+                                    <th width="20%" class="text-center">Borrower Name</th>
                                     <th width="20%" class="text-center">Principal Amount</th>
-                                    <th width="15%"class="text-center">Action</th>
+                                    <th width="15%" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-end mt-3">
@@ -58,7 +58,3 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
-
-
-
-

@@ -98,7 +98,7 @@
                             <input type="text" class="form-control" name="password" placeholder="Enter New Password" required>
                         </div>
                     </div>
-                        <input type="text" class="form-control" name="role_name" hidden>
+                    <input type="text" class="form-control" name="role_name" hidden>
                     <div class="col-12">
                         <div class="form-group">
                             <button type="submit" name="submit" value="submit" class="btn btn-primary float-right">Register</button>

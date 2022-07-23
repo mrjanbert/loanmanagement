@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require_once '../../config/data/Database.php';
+session_start();
+require_once '../../config/data/Database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +18,10 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php
-            if (isset($_SESSION["status"])) {
-				$status = $_SESSION["status"];
-				echo "<span>$status</span>";
-			}
+        if (isset($_SESSION["status"])) {
+            $status = $_SESSION["status"];
+            echo "<span>$status</span>";
+        }
         ?>
         <!-- Navbar -->
         <?php include_once('../../components/inc/navbar.php'); ?>
@@ -34,7 +34,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <?php $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard'; ?>
-			<?php include $page . '.php' ?>
+            <?php include $page . '.php' ?>
         </div>
         <!-- /.content-wrapper -->
 
@@ -51,7 +51,7 @@
 
     <!-- unset toast notification to avoid popup every load -->
     <?php unset($_SESSION['status']); ?>
-    
+
     <!-- Footer -->
     <?php include_once('../../components/inc/footer.php'); ?>
 

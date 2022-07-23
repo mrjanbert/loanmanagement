@@ -32,11 +32,14 @@
 					<div class="card-body p-0">
 						<h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-weight: bold;">NMSCST CREDIT COOPERATIVE</h2>
 						<div class="col-md-12" style="font-family: Courier New, monospace;">
-							<h2 class="text-center" style=" font-weight: bold;">APPLICATION FOR LOAN</h2>
-							&nbsp;&nbsp;&nbsp;<button role="button" style="font-weight: bold;">Customer's Copy</button>
+							<h2 class="text-center" style="font-weight: bold;">APPLICATION FOR LOAN</h2>
 						</div>
-						<div class="col-md-12">
+						&nbsp;&nbsp;&nbsp;<button role="button" class="btn bg-gradient-primary" style="font-weight: bold;">Customer's Copy</button>
+					</div>
 
+					<div class="row mt-5" style="font-family: Courier New, monospace; font-weight: bold;">
+						<div class=" col-md-5">
+							<h5 style="font-weight: bold;">Name</h5>
 						</div>
 					</div>
 				</div><!-- /.card -->

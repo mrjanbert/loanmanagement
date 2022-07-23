@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once '../../config/data/Database.php'; ?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,10 +23,10 @@ if (!isset($_SESSION['user_id'])) {
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
         <?php
-            if (isset($_SESSION["status"])) {
-				$status = $_SESSION["status"];
-				echo "<span>$status</span>";
-			}
+        if (isset($_SESSION["status"])) {
+            $status = $_SESSION["status"];
+            echo "<span>$status</span>";
+        }
         ?>
         <!-- Navbar -->
         <?php include_once('./inc/navbar.php'); ?>
@@ -59,4 +60,5 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Footer -->
     <?php include_once('./inc/footer.php'); ?>
 </body>
+
 </html>

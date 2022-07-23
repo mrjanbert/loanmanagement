@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>NMSCST Loan Management System</title>
-    <link rel="icon" type="image/x-icon" href="components/img/favicon.ico">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <!-- MDB -->
-    <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>NMSCST Loan Management System</title>
+  <link rel="icon" type="image/x-icon" href="components/img/favicon.ico">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <!-- MDB -->
+  <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
 </head>
+
 <body>
-      <!--Main Navigation-->
+  <!--Main Navigation-->
   <header>
     <style>
       /* Height for devices larger than 576px */
@@ -38,8 +40,7 @@
         <a class="navbar-brand nav-link" target="_blank" href="#">
           <strong>LMS</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
-          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarExample01">
@@ -77,11 +78,7 @@
     <!-- Background image -->
     <div id="intro" class="bg-image vh-100 shadow-1-strong">
       <video style="min-width: 100%; min-height: 100%;" playsinline autoplay muted loop>
-        <source 
-            class="h-100"
-            src="components/hometemplate/animation-intro-min.mp4"
-            type="video/mp4"
-        />
+        <source class="h-100" src="components/hometemplate/animation-intro-min.mp4" type="video/mp4" />
       </video>
       <div class="mask" style="
             background: linear-gradient(
@@ -134,7 +131,7 @@
               accusantium soluta, iusto molestiae adipisci et?
             </p>
           </div>
-          
+
           <div class="col-md-6 gx-5 my-5">
             <h4><strong>Facilis consequatur eligendi</strong></h4>
             <p class="text-muted">
@@ -151,7 +148,7 @@
               accusantium soluta, iusto molestiae adipisci et?
             </p>
           </div>
-          
+
           <div class="col-md-6 gx-5 my-5">
             <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
               <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
@@ -287,8 +284,8 @@
         <div class="row d-flex justify-content-center">
           <div class="col-md-6">
             <form> -->
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <!-- <div class="row mb-4">
+      <!-- 2 column grid layout with text inputs for the first and last names -->
+      <!-- <div class="row mb-4">
                 <div class="col">
                   <div class="form-outline">
                     <input type="text" id="form3Example1" class="form-control" />
@@ -303,33 +300,33 @@
                 </div>
               </div> -->
 
-              <!-- Email input -->
-              <!-- <div class="form-outline mb-4">
+      <!-- Email input -->
+      <!-- <div class="form-outline mb-4">
                 <input type="email" id="form3Example3" class="form-control" />
                 <label class="form-label" for="form3Example3">Email address</label>
               </div> -->
 
-              <!-- Password input -->
-              <!-- <div class="form-outline mb-4">
+      <!-- Password input -->
+      <!-- <div class="form-outline mb-4">
                 <input type="password" id="form3Example4" class="form-control" />
                 <label class="form-label" for="form3Example4">Password</label>
               </div> -->
 
-              <!-- Checkbox -->
-              <!-- <div class="form-check d-flex justify-content-center mb-4">
+      <!-- Checkbox -->
+      <!-- <div class="form-check d-flex justify-content-center mb-4">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" checked />
                 <label class="form-check-label" for="form2Example3">
                   Subscribe to our newsletter
                 </label>
               </div> -->
 
-              <!-- Submit button -->
-              <!-- <button type="submit" class="btn btn-primary btn-block mb-4">
+      <!-- Submit button -->
+      <!-- <button type="submit" class="btn btn-primary btn-block mb-4">
                 Sign up
               </button> -->
 
-              <!-- Register buttons -->
-              <!-- <div class="text-center">
+      <!-- Register buttons -->
+      <!-- <div class="text-center">
                 <p>or sign up with:</p>
                 <button type="button" class="btn btn-primary btn-floating mx-1">
                   <i class="fab fa-facebook-f"></i>
@@ -367,8 +364,8 @@
         Download MDB UI KIT
       </a>
     </div> -->
-<div class="container">
-    <section>
+    <div class="container">
+      <section>
         <div class="row">
           <div class="col-md-6 gx-5 my-5">
             <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
@@ -396,8 +393,8 @@
             </p>
           </div>
         </div>
-    </section>
-</div>
+      </section>
+    </div>
     <hr class="m-0" />
 
     <!-- <div class="text-center py-4 align-items-center">
@@ -428,7 +425,8 @@
     <!-- Copyright -->
   </footer>
   <!--Footer-->
-    <!-- MDB -->
-    <script type="text/javascript" src="components/hometemplate/js/mdb.min.js"></script>
+  <!-- MDB -->
+  <script type="text/javascript" src="components/hometemplate/js/mdb.min.js"></script>
 </body>
+
 </html>

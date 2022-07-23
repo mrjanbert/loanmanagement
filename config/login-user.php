@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
 	extract($_POST);
-    $encrypt = base64_encode($password);
+	$encrypt = base64_encode($password);
 
 	$query = "SELECT * FROM tbl_users WHERE accountNumber = '" . $accountNumber . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
@@ -27,10 +27,10 @@ if (isset($_POST['submit'])) {
 		$_SESSION['email'] = $data['email'];
 		$_SESSION['status'] = "<div class=\"preloader flex-column justify-content-center align-items-center\">
         <img class=\"animation__wobble\" src=\"../../components/img/logo.png\" height=\"200\" width=\"200\"></div>";
-		header('location: ../pages/admin/index.php?page=dashboard&usr='.base64_encode($_SESSION['role_name']));
+		header('location: ../pages/admin/index.php?page=dashboard&usr=' . base64_encode($_SESSION['role_name']));
 	} else {
 		session_start();
-		$_SESSION['status']="<script>const Toast = Swal.mixin({
+		$_SESSION['status'] = "<script>const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
@@ -41,6 +41,6 @@ if (isset($_POST['submit'])) {
             icon: 'error',
             title: 'Invalid username or password! Please try again.'
           })</script>";
-        header('location: ../login.php');
-    }
+		header('location: ../login.php');
+	}
 }

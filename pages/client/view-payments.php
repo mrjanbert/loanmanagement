@@ -18,22 +18,22 @@
 
 
 <?php
-	// $ref_no = $_GET['ref_no'];
-	// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
-	// $data = $query->fetch_array();
-	// $amount = $data['amount'];
+// $ref_no = $_GET['ref_no'];
+// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
+// $data = $query->fetch_array();
+// $amount = $data['amount'];
 
-	// // $penalty = $monthly * ($penalty/100);
-	// $interest = 0.01;
-	// $total_interest = ($amount * ($interest)) * $months;
-	// $monthly = ($amount + $total_interest) / $months;
+// // $penalty = $monthly * ($penalty/100);
+// $interest = 0.01;
+// $total_interest = ($amount * ($interest)) * $months;
+// $monthly = ($amount + $total_interest) / $months;
 
-	// $share_capital = 0.01 * $amount; 	//fixed capital for members only
-	// $service_charge = 0.01 * $amount; //fixed service charge
-	// $notarial_fee = 100; 	//fixed notarial fee
+// $share_capital = 0.01 * $amount; 	//fixed capital for members only
+// $service_charge = 0.01 * $amount; //fixed service charge
+// $notarial_fee = 100; 	//fixed notarial fee
 
-	// $total_less = $share_capital + $service_charge + $notarial_fee;
-	// $net = $amount - ($share_capital + $service_charge + $notarial_fee);
+// $total_less = $share_capital + $service_charge + $notarial_fee;
+// $net = $amount - ($share_capital + $service_charge + $notarial_fee);
 ?>
 
 <!-- Main content -->
@@ -43,13 +43,13 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Name:  <b><?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> </b></h3> <br/>
-						<h3 class="card-title">Loan Amount: </h3><br/>
-						<h3 class="card-title">Monthly Amortization: </h3><br/>
-						<h3 class="card-title">Interest: </h3><br/>
-						<h3 class="card-title">Term: </h3><br/>
-						<h3 class="card-title">Loan Date: </h3><br/>
-						<h3 class="card-title">Co-maker: </h3><br/>
+						<h3 class="card-title">Name: <b><?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> </b></h3> <br />
+						<h3 class="card-title">Loan Amount: </h3><br />
+						<h3 class="card-title">Monthly Amortization: </h3><br />
+						<h3 class="card-title">Interest: </h3><br />
+						<h3 class="card-title">Term: </h3><br />
+						<h3 class="card-title">Loan Date: </h3><br />
+						<h3 class="card-title">Co-maker: </h3><br />
 					</div><!-- /.card-header -->
 					<div class="card-body">
 						<div class="d-flex justify-content-end">
@@ -97,5 +97,3 @@
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section><!-- /.content -->
-
-

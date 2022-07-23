@@ -3,7 +3,7 @@
 
     if (isset($_POST['submit'])) {
         extract($_POST);
-        $ref_no = '014'. rand(1000000,10000000);
+        $ref_no = strtotime(date("h:i:sa"));
 
         $interest_rate = 1;
         $total_interest = ($amount * ($interest_rate / 100)) * $loan_term;

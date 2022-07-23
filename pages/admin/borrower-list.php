@@ -80,7 +80,6 @@
                                                 View Info
                                             </a>
                                             <a href="index.php?page=view-loans&uid=<?= $row['user_id']?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
-                                            <a href="index.php?page=view-payments&uid=<?= $row['user_id']?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-success btn-sm my1">View Payments</a>
 
                                             <!-- Action for Admin only -->
                                             <?php if(isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>

@@ -161,62 +161,70 @@
                                         <?php } else { ''; } ?>
 
                                         <td class="text-center">
-                                            <a href="index.php?page=grace-period&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-primary btn-sm" title="View Grace Period" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=grace-period&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-primary btn-sm btn-block" title="View Grace Period" data-toggle="tooltip" data-placement="top">
                                                 <i class="fas fa-calendar-alt"></i>&nbsp; Grace Period
                                             </a>
-                                            <a href="index.php?page=application-form&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-success btn-sm my-1" title="Print Application Form" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=application-form&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-success btn-sm btn-block" title="Print Application Form" data-toggle="tooltip" data-placement="top">
                                                 <i class="fa fa-print"></i>&nbsp; Application Form
                                             </a>
-                                            <button class="btn btn-success btn-sm my-1 viewloan" 
-                                                data-ref_no="<?= $ref_no ?>"
-                                                data-borrower_name = "<?= $borrower_name ?>"
-                                                data-amount = "<?= number_format($amount, 2) ?>"
-                                                data-loan_term = "<?= $loan_term ?> Months"
-                                                data-loan_type = "<?= $loan_type ?>"
-                                                data-loan_date = "<?= date('M j, Y - g:i A', $loan_date) ?>"
+                                            <button class="btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan"
+                                                data-borrower_name="<?= $borrower_name ?>"
+                                                data-ref_no="<?= $ref_no?>"
+                                                data-viewloan_amount="<?= number_format($amount, 2) ?>"
+                                                data-viewloan_term = "<?= $loan_term ?> Months"
+                                                data-viewloan_type = "<?= $loan_type ?>"
+                                                data-loan_date = "<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>"
                                                 data-purpose = "<?= $purpose ?>"
                                                 data-comaker_name = "<?= $comaker_name ?>"
+                                                
                                                 data-status_comaker = "<?php 
-                                                    if($status_comaker == '0'){ 
+                                                    if($row['status_comaker'] == '0'){ 
                                                         echo 'Pending';
-                                                    } elseif($status_comaker == '1'){
+                                                    } elseif($row['status_comaker'] == '1'){
                                                         echo 'Approved';
-                                                    } elseif($status_comaker == '2'){
+                                                    } elseif($row['status_comaker'] == '2'){
                                                         echo 'Disapproved';
                                                     }?>"
                                                 data-status_processor = "<?php 
-                                                    if(($status_comaker == '1') && ($status_processor == '0')){ 
+                                                    if(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')){ 
                                                         echo 'Pending';
-                                                    } elseif(($status_comaker == '1') && ($status_processor == '1')){
+                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')){
                                                         echo 'Checked and Verified';
+                                                    } elseif(($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')){
+                                                        echo 'Disapproved';
+                                                    }else {
+                                                        echo '';
                                                     }?>"
                                                 data-status_manager = "<?php 
-                                                    if(($status_processor == '1') && ($status_manager == '0')){
+                                                    if(($row['status_processor'] == '1') && ($row['status_manager'] == '0')){
                                                         echo 'Pending';
-                                                    }elseif(($status_processor == '1') && ($status_manager == '1')){
+                                                    }elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '1')){
                                                         echo 'Approved';
-                                                    } elseif(($status_processor == '1') && ($status_manager == '3')){
+                                                    } elseif(($row['status_processor'] == '1') && ($row['status_manager'] == '3')){
                                                             echo 'Disapproved';
                                                     }else {
                                                         echo '';
                                                     }?>"
                                                 data-status_cashier = "<?php 
-                                                    if(($status_manager == '1') && ($status_cashier == '0')){
+                                                    if(($row['status_manager'] == '1') && ($row['status_cashier'] == '0')){
                                                         echo 'Pending';
-                                                    }elseif(($status_manager == '1') && ($status_cashier == '1')){
+                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '1')){
                                                         echo 'Approved';
-                                                    }elseif(($status_manager == '1') && ($status_cashier == '2')){
+                                                    }elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '2')){
                                                         echo 'Completed';
-                                                    } elseif(($status_manager == '1') && ($status_cashier == '3')){
+                                                    } elseif(($row['status_manager'] == '1') && ($row['status_cashier'] == '3')){
                                                             echo 'Disapproved';
                                                     }else {
                                                         echo '';
-                                                    }?>"
-                                                data-toggle="modal" 
-                                                data-target="#viewloan">
-                                                    <i class="fa fa-eye"></i>
-                                                    Profile
+                                                    }?>">
+                                                <i class="fa fa-eye"></i>&nbsp;
+                                                Loan Information
                                             </button>
+                                            <?php if (isset($role_name) && ($role_name == 'Cashier') && (($status_cashier == 1) || ($status_cashier == 2))) {  ?>
+                                            <a href="index.php?page=view-payments&refid=<?= $ref_no?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
+                                                View Payments
+                                            </a>
+                                            <?php } ?>
                                         </td>
                                         <td class="text-center">
                                             <?php if (isset($role_name) && ($role_name == 'Admin')) {  ?>
@@ -336,7 +344,7 @@
 
 
 <div class="modal fade" id="viewloan">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content card-outline card-primary">
             <div class="modal-header">
                 <h4 class="modal-title">Loan Information</h4>
@@ -349,74 +357,74 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label>Borrower Name</label>
-                            <input type="text" id="borrower_name" name="borrower_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="borrower_name" class="form-control form-control-border text-center" disabled>
 
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Reference Number</label>
-                            <input type="text" id="ref_no" name="ref_no" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="ref_no" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Amount</label>
-                            <input type="text" id="amount" name="amount" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_amount" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Term</label>
-                            <input type="text" id="loan_term" name="loan_term" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_term" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Date</label>
-                            <input type="text" id="loan_date" name="loan_date" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Loan Type</label>
-                            <input type="text" id="loan_type" name="loan_type" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_type" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Purpose</label>
-                            <input type="text" id="purpose" name="purpose" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="purpose" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
                             <label>Co-Maker Name</label>
-                            <input type="text" id="comaker_name" name="comaker_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="comaker_name" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <label>Co-maker's Status</label>
-                            <input type="text" id="status_comaker" name="status_comaker" class="form-control form-control-border text-center" disabled>
+                            <label>Comaker's Status</label>
+                            <input type="text" id="status_comaker" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
-                            <label>CC Member's Status</label>
-                            <input type="text" id="status_processor" name="status_processor" class="form-control form-control-border text-center" disabled>
+                            <label>Processor's Status</label>
+                            <input type="text" id="status_processor" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Manager's Status</label>
-                            <input type="text" id="status_manager" name="status_manager" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_manager" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label>Cashier's Status</label>
-                            <input type="text" id="status_cashier" name="status_cashier" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_cashier" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                 </div>
@@ -468,10 +476,10 @@
         $(".viewloan").click(function () {
             $('#borrower_name').val($(this).data('borrower_name'));
             $('#ref_no').val($(this).data('ref_no'));
-            $('#amount').val($(this).data('amount'));
-            $('#loan_term').val($(this).data('loan_term'));
-            $('#loan_type').val($(this).data('loan_type'));
+            $('#viewloan_amount').val($(this).data('viewloan_amount'));
+            $('#viewloan_term').val($(this).data('viewloan_term'));
             $('#loan_date').val($(this).data('loan_date'));
+            $('#viewloan_type').val($(this).data('viewloan_type'));
             $('#purpose').val($(this).data('purpose'));
             $('#comaker_name').val($(this).data('comaker_name'));
             $('#status_comaker').val($(this).data('status_comaker'));

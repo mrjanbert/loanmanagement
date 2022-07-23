@@ -24,16 +24,16 @@
                     <div class="card-header">
                         <h3 class="card-title">List of Payments</h3>
                         <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
-                                <i class="fa fa-plus"></i> &nbsp;
-                                Add Payment
-                            </button>
-                        </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
+                                    <i class="fa fa-plus"></i> &nbsp;
+                                    Add Payment
+                                </button>
+                            </div>
                         <?php } ?>
                     </div>
                     <div class="card-body">
-                        
+
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>

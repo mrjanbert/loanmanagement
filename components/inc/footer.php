@@ -1,4 +1,3 @@
-
 <!-- jQuery -->
 <script src="../../assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -40,6 +39,7 @@
       "searching": false,
       "ordering": false,
       "info": false,
+      "paging": false,
       "autoWidth": false,
       "responsive": true
     });
@@ -47,14 +47,10 @@
   $(function() {
     $('[data-toggle="tooltip"]').tooltip()
   });
-
 </script>
 
 <script>
-  $(function () {
+  $(function() {
     $('.select2').select2()
   })
-  
-
-
 </script>

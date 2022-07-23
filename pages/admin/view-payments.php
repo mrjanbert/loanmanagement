@@ -16,28 +16,6 @@
     </div><!-- /.container-fluid -->
 </section>
 
-
-<?php
-
-// $ref_no = $_GET['ref_no'];
-// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
-// $data = $query->fetch_array();
-// $amount = $data['amount'];
-
-// // $penalty = $monthly * ($penalty/100);
-// $interest = 0.01;
-// $total_interest = ($amount * ($interest)) * $months;
-// $monthly = ($amount + $total_interest) / $months;
-
-// $share_capital = 0.01 * $amount; 	//fixed capital for members only
-// $service_charge = 0.01 * $amount; //fixed service charge
-// $notarial_fee = 100; 	//fixed notarial fee
-
-// $total_less = $share_capital + $service_charge + $notarial_fee;
-// $net = $amount - ($share_capital + $service_charge + $notarial_fee);
-
-?>
-
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
@@ -55,33 +33,68 @@
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
-                                <i class="fa fa-plus"></i> &nbsp;
-                                Add Payment
-                            </button>
-                        </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
+                                    <i class="fa fa-plus"></i> &nbsp;
+                                    Add Payment
+                                </button>
+                            </div>
                         <?php } ?>
-                        </div>
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th width="15%" class="text-center">Date</th>
-                                    <th width="15%" class="text-center">Principal</th>
-                                    <th class="text-center">Interest</th>
-                                    <th class="text-center">Penalty</th>
-                                    <th class="text-center">OR #</th>
-                                    <th class="text-center">Payment</th>
-                                    <th class="text-center">Balance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div><!-- /.card-body -->
-                </div><!-- /.card -->
-            </div><!-- /.col -->
-        </div><!-- /.row -->
+                    </div>
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th width="15%" class="text-center">Date</th>
+                                <th width="15%" class="text-center">Principal</th>
+                                <th class="text-center">Interest</th>
+                                <th class="text-center">Penalty</th>
+                                <th class="text-center">OR #</th>
+                                <th class="text-center">Payment</th>
+                                <th class="text-center">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $ref_no = $_GET['refid'];
+                            $sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no  '");
+                            $row = $sql->fetch_assoc()
+                        ?>
+                            <tr class="bg-">
+                                <td>
+                                    <strong><?= date('M j, Y', strtotime($row['loan_date'])) ?></strong>
+                                </td>
+                                <td>
+                                    <strong><?= number_format($row['amount'], 2) ?></strong>
+                                </td>
+                                <td>
+                                    <strong><?= number_format($row['total_interest'], 2) ?></strong>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <strong><?= number_format($row['balance'], 2) ?></strong>
+                                </td>
+                            </tr>   
+                        <?php
+                            $query = $conn->query("SELECT p.payment_date, t.interest, p.penalty, p.receipt_no, p.payment_amount, p.payment_balance FROM tbl_payments p INNER JOIN tbl_transaction t ON t.ref_no = p.ref_no WHERE p.ref_no = '$ref_no'");
+                            while($row = $query->fetch_assoc()) {
+                        ?>
+                            <tr>
+                                <td><?= date('M j, Y', strtotime($row['payment_date'])) ?></td>
+                                <td></td>
+                                <td><?= number_format($row['interest'], 2) ?></td>
+                                <td><?= ($row['penalty'] != 0) ? number_format($row['penalty'], 2) : ''; ?></td>
+                                <td><?= $row['receipt_no']; ?></td>
+                                <td><?= $row['payment_amount']; ?></td>
+                                <td><?= number_format($row['payment_balance'], 2) ?></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div><!-- /.col -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
 
@@ -96,14 +109,20 @@
                     </button>
                 </div>
                 <div class="card-body">
+                    <?php
+                        $ref_no = $_GET['refid'];
+                        $sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no'");
+                        while($row = $sql->fetch_assoc()) {
+                    ?>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
                                 <label>Loan Reference No. <small class="text-red">*</small></label>
-                                
-                                <select class="select2" style="width: 100%;" name="ref_no" data-placeholder="Select Loan Reference No." required>
+                                <input type="text" class="form-control form-control-border" name="ref_no" value="<?= $ref_no ?>" readonly>
+
+                                <!-- <select class="select2" style="width: 100%;" name="ref_no" data-placeholder="Select Loan Reference No." required>
                                     <option></option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                         <div class="col-12">
@@ -114,12 +133,12 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label>Penalty</label>
-                                <input type="number" class="form-control form-control-border" name="penalty" placeholder="Enter Penalty Amount">
+                                <label>OR Number <small class="text-red">*</small></label>
+                                <input type="number" class="form-control form-control-border" name="receipt_no" placeholder="Enter OR #" required>
                             </div>
                         </div>
-
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="modal-footer justify-content-end">
                     <button type="submit" name="submit" class="btn btn-primary">

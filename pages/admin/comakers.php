@@ -1,4 +1,3 @@
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -25,11 +24,11 @@
                     <div class="card-header">
                         <h3 class="card-title">List of Co-makers</h3>
                         <div class="d-flex justify-content-end">
-                            <?php if(isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addcomaker">
-                                <i class="fa fa-plus"></i> &nbsp;
-                                Add New Co-maker
-                            </button>
+                            <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addcomaker">
+                                    <i class="fa fa-plus"></i> &nbsp;
+                                    Add New Co-maker
+                                </button>
                             <?php } ?>
                         </div>
                     </div>
@@ -44,22 +43,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
+                                <?php
                                 $i = 1;
                                 $query = $conn->query("SELECT * FROM tbl_comakers ORDER BY lastName ASC");
-                                while($row = $query->fetch_assoc()):
+                                while ($row = $query->fetch_assoc()) :
                                     $name = $row['lastName'] . ' ' . $row['firstName'];
 
-                            ?>
-                            <tr>
-                                <td class="text-center">
-                                    <?= $i++; ?>
-                                </td>
-                                <td>
-                                    <?= $name; ?>
-                                </td>
-                                <td></td>
-                            </tr>
+                                ?>
+                                    <tr>
+                                        <td class="text-center">
+                                            <?= $i++; ?>
+                                        </td>
+                                        <td>
+                                            <?= $name; ?>
+                                        </td>
+                                        <td></td>
+                                    </tr>
                                 <?php endwhile ?>
                             </tbody>
                         </table>
@@ -88,11 +87,11 @@
                                 <label>Borrower Name <small class="text-red">*</small></label>
                                 <select class="select2" style="width: 100%;" name="user_id" data-placeholder="Select borrower" required>
                                     <option></option>
-                                    <?php    
-                                        $query = $conn->query("SELECT * FROM tbl_borrowers WHERE membership != '1' ");
-                                        while ($row = $query->fetch_assoc()) :
+                                    <?php
+                                    $query = $conn->query("SELECT * FROM tbl_borrowers WHERE membership != '1' ");
+                                    while ($row = $query->fetch_assoc()) :
                                     ?>
-                                    <option value="<?php echo $row['user_id']?>"><?php echo $row['firstName'] . ' ' . $row['middleName'] . '. ' . $row['lastName']; ?></option>
+                                        <option value="<?php echo $row['user_id'] ?>"><?php echo $row['firstName'] . ' ' . $row['middleName'] . '. ' . $row['lastName']; ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>

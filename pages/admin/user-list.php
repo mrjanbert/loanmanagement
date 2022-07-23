@@ -44,8 +44,8 @@
                                 $query = "SELECT * FROM tbl_users";
                                 $results = $conn->query($query);
                                 ?>
-                                <?php while ($row = $results->fetch_row()) : $user_id = $row[0];?>
-                                    
+                                <?php while ($row = $results->fetch_row()) : $user_id = $row[0]; ?>
+
                                     <tr>
                                         <td class="text-center"><?php echo $i++; ?></td>
                                         <td><?php echo $row[1]; ?></td>
@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center mb-4">
                                 <div class="image">
-                                    <img src="../../components/img/uploads/<?php echo $row[8];?>" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
+                                    <img src="../../components/img/uploads/<?php echo $row[8]; ?>" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">

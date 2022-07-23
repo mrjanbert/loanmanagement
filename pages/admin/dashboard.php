@@ -32,12 +32,12 @@
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3><?php echo $totalloans; ?></h3>
-                        <p>Total Loans</p>
+                        <p>Total Loans Approved</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <a href="index.php?page=loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -46,12 +46,12 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>?????</h3>
-                        <p>??????</p>
+                        <p>Total Registered Borrowers</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-coins"></i>
                     </div>
-                    <a href="index.php?page=payments" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -60,13 +60,12 @@
                 <div class="small-box bg-primary">
                     <div class="inner">
                         <h3>??</h3>
-
-                        <p>?????</p>
+                        <p>Total Payments List</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-inbox"></i>
                     </div>
-                    <a href="index.php?page=sms-logs" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

@@ -222,7 +222,7 @@
                                                     }else {
                                                         echo '';
                                                     }?>">
-                                                <i class="fa fa-eye"></i>
+                                                <i class="fa fa-eye"></i>&nbsp;
                                                 View Loan
                                             </button>
                                         </td>

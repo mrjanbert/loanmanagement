@@ -25,11 +25,11 @@
                     <div class="card-header">
                         <h3 class="card-title">List of Users</h3>
                         <div class="d-flex justify-content-end">
-							<button class="btn btn-success btn-xs"data-toggle="modal" data-target="#create-permission">
-								<i class="fa fa-plus"></i> &nbsp;
-								Add New Permission
-							</button>
-						</div>
+                            <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#create-permission">
+                                <i class="fa fa-plus"></i> &nbsp;
+                                Add New Permission
+                            </button>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -105,7 +105,7 @@
                             <div class="form-group">
                                 <label>Select User</label>
                                 <?php
-                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id ORDER BY concat(lastName,', ',firstName) ASC ");
+                                $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id ORDER BY concat(lastName,', ',firstName) ASC ");
                                 ?>
                                 <select class="select2" name="selected_user" data-placeholder="Select user" style="width: 100%;" required>
                                     <option value=""></option>

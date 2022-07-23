@@ -146,3 +146,5 @@ while ($row = $query->fetch_assoc()) :
 </script>
 
 <img id="image" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
+<?php
+echo "The time is " .strtotime(date("h:i:sa"));

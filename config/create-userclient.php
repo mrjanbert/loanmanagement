@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $age = $_POST['age'];
     $birthDate = $_POST['birthDate'];
 
-    $profilePhoto = rand(1000,10000).$_FILES['profilePhoto']['name'];
+    $profilePhoto = strtotime(date("i:s")).$_FILES['profilePhoto']['name'];
     $temp = $_FILES['profilePhoto']['tmp_name'];
     $folder = '../components/img/uploads/' . $profilePhoto;
 

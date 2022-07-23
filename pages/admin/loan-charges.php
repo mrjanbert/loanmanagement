@@ -105,7 +105,7 @@
                   </tr>
                   <script>
                     function deletecharge() {
-                        window.location.href = '../../config/delete-loancharge.php?deleteloancharge_id=<?php echo $row[0]; ?>' 
+                      window.location.href = '../../config/delete-loancharge.php?deleteloancharge_id=<?php echo $row[0]; ?>'
                     }
                   </script>
                 <?php } ?>

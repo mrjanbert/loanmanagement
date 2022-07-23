@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    
+
     <!-- Theme style -->
     <link rel="stylesheet" href="../../assets/dist/css/adminlte.min.css">
 
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="../../assets/plugins/sweetalert2/sweetalert2.min.css">
     <script src="../../assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-    
+
     <!-- MDB -->
     <link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
     <!-- Custom styles -->
@@ -139,24 +139,23 @@
                                                     <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#register">Register</button>
                                                 </div>
                                             </form>
-                                        </div>  
+                                        </div>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="register" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Terms and Conditions</h5>
                                                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        
+
                                                         <div class="form-check d-flex justify-content-center mb-5">
-                                                            <input class="form-check-input me-2" type="checkbox" value=""
-                                                                id="form2Example3c" />
+                                                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                                                             <label class="form-check-label" for="form2Example3">
                                                                 I agree all statements in <a href="#!">Terms of service</a>
-                                                            </label>    
+                                                            </label>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -167,8 +166,7 @@
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                                             <img src="../../components/hometemplate/img/signup.webp" class="img-fluid" alt="Sample image">
                                         </div>
                                     </div>
@@ -182,15 +180,15 @@
         </div>
     </main>
 
-  <!-- unset toast notification to avoid popup every load -->
-  <?php unset($_SESSION["status"]); ?>
+    <!-- unset toast notification to avoid popup every load -->
+    <?php unset($_SESSION["status"]); ?>
 
-  <!-- jQuery -->
-  <script src="../../assets/plugins/jquery/jquery.min.js"></script>
-  <!-- MDB -->
-  <script type="text/javascript" src="../../components/hometemplate/js/mdb.min.js"></script>
-  <!-- Custom scripts -->
-  <!-- <script type="text/javascript" src="js/script.js"></script> -->
+    <!-- jQuery -->
+    <script src="../../assets/plugins/jquery/jquery.min.js"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="../../components/hometemplate/js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <!-- <script type="text/javascript" src="js/script.js"></script> -->
 </body>
 
 </html>

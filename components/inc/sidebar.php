@@ -42,6 +42,10 @@
                         </p>
                     </a>
                 </li>
+                <?php endif; ?>
+                <!-- Permission for USER MANAGEMENT -->
+                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin"))) : ?>
+
                 <li class="nav-item">
                     <a href="index.php?page=comakers&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-comakers">
                         <i class="nav-icon fas fa-user-friends"></i>
@@ -50,10 +54,6 @@
                         </p>
                     </a>
                 </li>
-                <?php endif; ?>
-                <!-- Permission for USER MANAGEMENT -->
-                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin"))) : ?>
-
                 <li class="nav-item nav-user-list nav-user-roles">
                     <a href="#" class="nav-link nav-user-list nav-user-roles">
                         <i class="nav-icon fas fa-user-cog"></i>

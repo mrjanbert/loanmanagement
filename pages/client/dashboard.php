@@ -119,8 +119,8 @@
                                             </td>
                                             <td align="center">
                                                 <?php if ($status_comaker == 0) : ?>
-                                                <a href="../../config/update-status.php?approveref_no=<?= $row['status_ref']; ?>" class="btn btn-success btn-sm">Approve</a>
-                                                <a type="button" href="../../config/update-status.php?denyref_no=<?= $row['status_ref']; ?>" class="btn btn-danger btn-sm">Disapprove</a>
+                                                    <a href="../../config/update-status.php?approveref_no=<?= $row['status_ref']; ?>" class="btn btn-success btn-sm">Approve</a>
+                                                    <a type="button" href="../../config/update-status.php?denyref_no=<?= $row['status_ref']; ?>" class="btn btn-danger btn-sm">Disapprove</a>
                                                 <?php elseif ($status_comaker == 1) : ?>
                                                     <button type="button" class="btn btn-secondary btn-sm">Approved</button>
                                                 <?php elseif ($status_comaker == 2) : ?>
@@ -128,7 +128,7 @@
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
-                                        
+
                                     <?php endwhile; ?>
                                 </tbody>
                             </table>
@@ -160,10 +160,11 @@
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>" 
+                window.location.href = "../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>"
             }
         })
     }
+
     function disapprove() {
         Swal.fire({
             title: 'Confirm Disapprove?',
@@ -175,7 +176,7 @@
             confirmButtonText: 'Disapprove'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href="../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>" 
+                window.location.href = "../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>"
             }
         })
     }

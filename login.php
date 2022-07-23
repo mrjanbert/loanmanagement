@@ -24,10 +24,10 @@
     <div class="login-box">
         <!-- Toast Notification -->
         <?php
-            if (isset($_SESSION['status'])) {
-                $status = $_SESSION['status'];
-                echo "<span>$status</span>";
-            }
+        if (isset($_SESSION['status'])) {
+            $status = $_SESSION['status'];
+            echo "<span>$status</span>";
+        }
         ?>
         <!-- end of toast -->
 

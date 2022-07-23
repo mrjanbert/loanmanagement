@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
 	extract($_POST);
-    $encrypt = base64_encode($password);
+	$encrypt = base64_encode($password);
 
 	$query = "SELECT * FROM tbl_borrowers WHERE accountNumber = '" . $accountNumber . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 		header('location: ../pages/client/index.php?page=dashboard');
 	} else {
 		session_start();
-		$_SESSION['status']= "<script>const Toast = Swal.mixin({
+		$_SESSION['status'] = "<script>const Toast = Swal.mixin({
 			toast: true,
 			position: 'top-end',
 			showConfirmButton: false,
@@ -41,6 +41,6 @@ if (isset($_POST['submit'])) {
 			icon: 'error',
 			title: 'Invalid username or password!'
 		})</script>";
-        header('location: ../pages/client/login.php');
-    }
+		header('location: ../pages/client/login.php');
+	}
 }
