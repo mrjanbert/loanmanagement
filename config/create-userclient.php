@@ -6,21 +6,24 @@ if (isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];
     $middleName = $_POST['middleName'];
 
-    if($middleName == '') {
+    if ($middleName == '') {
         $middleName = '';
     }
 
     $lastName = $_POST['lastName'];
     $address = $_POST['address'];
-    $age = $_POST['age'];
     $birthDate = $_POST['birthDate'];
 
-    $profilePhoto = strtotime(date("i:s")).$_FILES['profilePhoto']['name'];
+    $diff = date_diff(date_create($birthDate), date_create(date('Y-m-d')));
+    $age = $diff->format("%y");
+
+    $profilePhoto = strtotime(date("i:s")) . $_FILES['profilePhoto']['name'];
     $temp = $_FILES['profilePhoto']['tmp_name'];
     $folder = '../components/img/uploads/' . $profilePhoto;
 
     $contactNumber = '+63' . $_POST['contactNumber'];
     $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
     $encrypt = base64_encode($password);
 
@@ -37,12 +40,13 @@ if (isset($_POST['submit'])) {
             profilePhoto = '$profilePhoto',
             contactNumber = '$contactNumber',
             email = '$email',
+            username = '$username',
             password = '$encrypt'
         ";
         $results = $conn->query($query);
         if ($conn->affected_rows > 0) :
             session_start();
-            $_SESSION['status']="<script>const Toast = Swal.mixin({
+            $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
@@ -55,10 +59,33 @@ if (isset($_POST['submit'])) {
             })</script>";
             header('location: ../pages/client/login.php');
         else :
+            session_start();
+            $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            })
+        
+            Toast.fire({
+                icon: 'error',
+                title: 'Signing up failed. Please try again.'
+            })</script>";
             header('location: ../pages/client/register.php');
         endif;
     } else {
+        session_start();
+        $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        })
+    
+        Toast.fire({
+            icon: 'error',
+            title: 'Uploading image failed. Please try again.'
+        })</script>";
         header('location: ../pages/client/register.php');
     }
 }
-?>

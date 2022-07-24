@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+    exit();
+};
+?>
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -21,54 +27,54 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-        <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
-            <div class="col-lg-4 col-6">
-                <?php
-                $query = "SELECT * FROM tbl_transaction";
-                $results = mysqli_query($conn, $query);
-                $totalloans = mysqli_num_rows($results);
-                ?>
-                <!-- small box -->
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h3><?php echo $totalloans; ?></h3>
-                        <p>Total Loans Approved</p>
+            <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                <div class="col-lg-4 col-6">
+                    <?php
+                    $query = "SELECT * FROM tbl_transaction";
+                    $results = mysqli_query($conn, $query);
+                    $totalloans = mysqli_num_rows($results);
+                    ?>
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?php echo $totalloans; ?></h3>
+                            <p>Total Loans Approved</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h3>?????</h3>
-                        <p>Total Registered Borrowers</p>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>?????</h3>
+                            <p>Total Registered Borrowers</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-4 col-6">
-                <!-- small box -->
-                <div class="small-box bg-primary">
-                    <div class="inner">
-                        <h3>??</h3>
-                        <p>Total Payments List</p>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3>??</h3>
+                            <p>Total Payments List</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-inbox"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
-            </div>
-            <!-- ./col -->
+                <!-- ./col -->
             <?php endif ?>
         </div>
         <!-- /.row -->

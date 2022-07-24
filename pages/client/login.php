@@ -1,8 +1,7 @@
 <?php
 session_start();
-
 if (isset($_SESSION['user_id'])) {
-  header('location: ./index.php');
+  header('location: ./index.php?page=dashboard');
 }
 ?>
 <!DOCTYPE html>
@@ -30,12 +29,38 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
   <!-- Custom styles -->
   <link rel="stylesheet" href="../../components/hometemplate/css/style2.css" />
-
 </head>
 
 <body>
-  <!--Main Navigation-->
-  <!--Main Navigation-->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block">
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand nav-link" target="_blank" href="#">
+        <strong>LMS</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="collapseNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="../../">Home</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link text-white" href="https://github.com/mrjanbert/loanmanagement" rel="nofollow" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
 
   <!--Main layout-->
   <main>
@@ -58,14 +83,15 @@ if (isset($_SESSION['user_id'])) {
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
 
               <div class="text-center">
-                <h2 class="fw-bold mb-4 pb-2">Borrower Login</h2>
+                <h2 class="fw-bold">Borrower Sign-in</h2>
+                <p class="fw-bold mb-4 pb-2">Sign-in to start your session</p>
               </div>
               <form action="../../config/login-userclient.php" method="POST">
                 </formaction>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="text" name="accountNumber" class="form-control form-control-lg" />
-                  <label class="form-label">ID Number</label>
+                  <input type="text" name="username" class="form-control form-control-lg" />
+                  <label class="form-label">Username</label>
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">

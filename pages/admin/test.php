@@ -22,55 +22,55 @@ $balance = 22400;
 $rate = 1;
 $payment = 1666.67;
 do {
-   $count++;
+    $count++;
 
-   // calculate interest on outstanding balance
-   $interest = $balance * $rate/100;
+    // calculate interest on outstanding balance
+    $interest = $balance * $rate / 100;
 
-   // what portion of payment applies to principal?
-   $principal = $payment - $interest;
+    // what portion of payment applies to principal?
+    $principal = $payment - $interest;
 
-   // watch out for balance < payment
-   if ($balance < $payment) {
-      $principal = $balance;
-      $payment   = $interest + $principal;
-   } // if
+    // watch out for balance < payment
+    if ($balance < $payment) {
+        $principal = $balance;
+        $payment   = $interest + $principal;
+    } // if
 
-   // reduce balance by principal paid
-   $balance = $balance - $principal;
+    // reduce balance by principal paid
+    $balance = $balance - $principal;
 
-   // watch for rounding error that leaves a tiny balance
-   if ($balance < 0) {
-      $principal = $principal + $balance;
-      $interest  = $interest - $balance;
-      $balance   = 0;
-   } // if
+    // watch for rounding error that leaves a tiny balance
+    if ($balance < 0) {
+        $principal = $principal + $balance;
+        $interest  = $interest - $balance;
+        $balance   = 0;
+    } // if
 
-   echo "<tr>";
-   echo "<td>$count</td>";
-   echo "<td>" .number_format($payment,   2, ".", ",") ."</td>";
-   echo "<td>" .number_format($interest,  2, ".", ",") ."</td>";
-   echo "<td>" .number_format($principal, 2, ".", ",") ."</td>";
-   echo "<td>" .number_format($balance,   2, ".", ",") ."</td>";
-   echo "</tr>";
+    echo "<tr>";
+    echo "<td>$count</td>";
+    echo "<td>" . number_format($payment,   2, ".", ",") . "</td>";
+    echo "<td>" . number_format($interest,  2, ".", ",") . "</td>";
+    echo "<td>" . number_format($principal, 2, ".", ",") . "</td>";
+    echo "<td>" . number_format($balance,   2, ".", ",") . "</td>";
+    echo "</tr>";
 
-   @$totPayment   = $totPayment + $payment;
-   @$totInterest  = $totInterest + $interest;
-   @$totPrincipal = $totPrincipal + $principal;
+    @$totPayment   = $totPayment + $payment;
+    @$totInterest  = $totInterest + $interest;
+    @$totPrincipal = $totPrincipal + $principal;
 
-   if ($payment < $interest) {
-      echo "</table>";
-      echo "<p>Payment < Interest amount - rate is too high, or payment is too low</p>";
-      exit;
-   } // if
+    if ($payment < $interest) {
+        echo "</table>";
+        echo "<p>Payment < Interest amount - rate is too high, or payment is too low</p>";
+        exit;
+    } // if
 
 } while ($balance > 0);
 
 echo "<tr>";
 echo "<td>&nbsp;</td>";
-echo "<td><b>" .number_format($totPayment,   2, ".", ",") ."</b></td>";
-echo "<td><b>" .number_format($totInterest,  2, ".", ",") ."</b></td>";
-echo "<td><b>" .number_format($totPrincipal, 2, ".", ",") ."</b></td>";
+echo "<td><b>" . number_format($totPayment,   2, ".", ",") . "</b></td>";
+echo "<td><b>" . number_format($totInterest,  2, ".", ",") . "</b></td>";
+echo "<td><b>" . number_format($totPrincipal, 2, ".", ",") . "</b></td>";
 echo "<td>&nbsp;</td>";
 echo "</tr>";
 echo "</table>";
@@ -118,33 +118,30 @@ while ($row = $query->fetch_assoc()) :
 </a>
 
 <script>
-  $(document).on('click', '.view', function() {
-    // var image = $(this).attr('image');
-    // $('#image').attr('src', image);
-    
-    $('#image').attr('src', $(this).attr('image'));
-  });
+    $(document).on('click', '.view', function() {
+        // var image = $(this).attr('image');
+        // $('#image').attr('src', image);
+
+        $('#image').attr('src', $(this).attr('image'));
+    });
 </script>
 
 <img id="image" style="height: 50%; width: 100%;" />
 
 
-<a class="btn btn-info btn-sm my-1 view_borrower " data-toggle="modal" data-target="#view_borrower" 
-    data-name="<?= $row['name'];?>"
-    data-image="<?= $row['profilePhoto'];?>"
->View Info</i></a>
+<a class="btn btn-info btn-sm my-1 view_borrower " data-toggle="modal" data-target="#view_borrower" data-name="<?= $row['name']; ?>" data-image="<?= $row['profilePhoto']; ?>">View Info</i></a>
 
 <script>
-    $(document).ready(function () {
-        $(".view_borrower").click(function () {
+    $(document).ready(function() {
+        $(".view_borrower").click(function() {
             $('#name').val($(this).data('name'));
             $('#image').attr('src', $(this).data('image'));
-            
+
             $('#viewloan').modal('show');
-        }); 
-    }); 
+        });
+    });
 </script>
 
 <img id="image" class="img-square elevation-3" alt="User Image" style="max-width: 200px; height: 200px;">
 <?php
-echo "The time is " .strtotime(date("h:i:sa"));
+echo "The time is " . strtotime(date("h:i:sa"));

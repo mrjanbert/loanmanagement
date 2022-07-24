@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+	header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+	exit();
+};
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<div class="container-fluid">
@@ -16,26 +22,6 @@
 	</div><!-- /.container-fluid -->
 </section>
 
-
-<?php
-// $ref_no = $_GET['ref_no'];
-// $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
-// $data = $query->fetch_array();
-// $amount = $data['amount'];
-
-// // $penalty = $monthly * ($penalty/100);
-// $interest = 0.01;
-// $total_interest = ($amount * ($interest)) * $months;
-// $monthly = ($amount + $total_interest) / $months;
-
-// $share_capital = 0.01 * $amount; 	//fixed capital for members only
-// $service_charge = 0.01 * $amount; //fixed service charge
-// $notarial_fee = 100; 	//fixed notarial fee
-
-// $total_less = $share_capital + $service_charge + $notarial_fee;
-// $net = $amount - ($share_capital + $service_charge + $notarial_fee);
-?>
-
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
@@ -43,13 +29,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Name: <b><?php echo $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> </b></h3> <br />
-						<h3 class="card-title">Loan Amount: </h3><br />
-						<h3 class="card-title">Monthly Amortization: </h3><br />
-						<h3 class="card-title">Interest: </h3><br />
-						<h3 class="card-title">Term: </h3><br />
-						<h3 class="card-title">Loan Date: </h3><br />
-						<h3 class="card-title">Co-maker: </h3><br />
+						<h3 class="card-title">Loan Reference Number: <b><?= $_GET['ref_no'] ?> </b></h3> <br />
 					</div><!-- /.card-header -->
 					<div class="card-body">
 						<div class="d-flex justify-content-end">
@@ -71,24 +51,42 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php
+								$ref_no = $_GET['ref_no'];
+								$sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no '");
+								$row = $sql->fetch_assoc()
+								?>
 								<tr>
-									<td>November 1, 2022</td>
-									<td>10000</td>
-									<td>123456</td>
+									<td>
+										<strong><?= date('M j, Y', strtotime($row['loan_date'])) ?></strong>
+									</td>
+									<td>
+										<strong><?= number_format($row['amount'], 2) ?></strong>
+									</td>
+									<td>
+										<strong><?= number_format($row['total_interest'], 2) ?></strong>
+									</td>
 									<td></td>
 									<td></td>
 									<td></td>
-									<td></td>
+									<td>
+										<strong><?= number_format($row['balance'], 2) ?></strong>
+									</td>
 								</tr>
-								<tr>
-									<td>December 1, 2022</td>
-									<td>20000</td>
-									<td>12345</td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
+								<?php
+								$query = $conn->query("SELECT p.payment_date, t.interest, p.penalty, p.receipt_no, p.payment_amount, p.payment_balance FROM tbl_payments p INNER JOIN tbl_transaction t ON t.ref_no = p.ref_no WHERE p.ref_no = '$ref_no'");
+								while ($row = $query->fetch_assoc()) {
+								?>
+									<tr>
+										<td><?= date('M j, Y', strtotime($row['payment_date'])) ?></td>
+										<td></td>
+										<td></td>
+										<td><?= ($row['penalty'] != 0) ? number_format($row['penalty'], 2) : ''; ?></td>
+										<td><?= $row['receipt_no']; ?></td>
+										<td><?= number_format($row['payment_amount'], 2); ?></td>
+										<td><?= number_format($row['payment_balance'], 2) ?></td>
+									</tr>
+								<?php } ?>
 							</tbody>
 						</table>
 					</div><!-- /.card-body -->

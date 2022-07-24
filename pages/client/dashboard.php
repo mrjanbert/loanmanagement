@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+  exit();
+};
+?>
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -41,6 +47,10 @@
             </div>
             <!-- ./col -->
             <div class="col-lg-6 col-6">
+                <?php 
+                $sql = "SELECT * FROM tbl_payments WHERE borrower_id = ". $_SESSION['user_id'];
+                $results = mysqli_query($conn, $sql);
+                ?>
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">

@@ -1,7 +1,12 @@
-    
+    <?php
+    if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+        header('location: http://localhost/loanmanagement/pages/err/403-error.php');
+        exit();
+    };
+    ?>
     <!-- jQuery -->
     <script src="../../assets/plugins/jquery/jquery.slim.min.js"></script>
-    
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -25,7 +30,7 @@
     <!-- <script src="../../assets/plugins/select2/css/select2.min.css"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
-    
+
     <!-- Sweetalert 2 -->
     <link rel="stylesheet" href="../../assets/plugins/sweetalert2/sweetalert2.min.css">
     <script src="../../assets/plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -33,4 +38,3 @@
     <link rel="stylesheet" href="../../assets/dist/css/adminlte.min.css">
 
     <!-- FPDF v1.81 -->
-    

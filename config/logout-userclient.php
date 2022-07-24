@@ -15,3 +15,5 @@ $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                                     })</script>";
 header('location: ../pages/client/login.php');
 mysqli_close($conn);
+
+?>

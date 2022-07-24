@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+    exit();
+};
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -100,7 +106,7 @@
 
 <div class="modal fade" id="addpayment">
     <div class="modal-dialog modal-md">
-        <form action="../../config/test.php" method="POST">
+        <form action="../../config/create-payment.php" method="POST">
             <div class="modal-content card-outline card-primary">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Payment</h4>

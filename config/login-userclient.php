@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
 	extract($_POST);
 	$encrypt = base64_encode($password);
 
-	$query = "SELECT * FROM tbl_borrowers WHERE accountNumber = '" . $accountNumber . "' AND password = '" . $encrypt . "'";
+	$query = "SELECT * FROM tbl_borrowers WHERE username = '" . $username . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
 	$count = mysqli_num_rows($result);
 
@@ -25,8 +25,9 @@ if (isset($_POST['submit'])) {
 		$_SESSION['userCreated'] = $data['userCreated'];
 		$_SESSION['membership'] = $data['membership'];
 		$_SESSION['email'] = $data['email'];
+		$_SESSION['username'] = $data['username'];
 		$_SESSION['status'] = "<div class=\"preloader flex-column justify-content-center align-items-center\">
-        <img class=\"animation__wobble\" src=\"../../components/img/logo.png\" height=\"200\" width=\"200\"></div>";
+        <img class=\"animation__wobble\" src=\"../../components/img/lms_logo.png\" height=\"200\" width=\"200\"></div>";
 		header('location: ../pages/client/index.php?page=dashboard');
 	} else {
 		session_start();

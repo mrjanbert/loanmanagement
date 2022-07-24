@@ -1,18 +1,24 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    header('location: http://localhost/loanmanagement/pages/err/403-error.php');
+    exit();
+};
+?>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="../../assets/dist/img/NMSCLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="../../components/img/lms_logo.png" alt="NMSC LMS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Loan Management</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        
+
         <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image" data-target="#view_user" data-toggle="modal">
-                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>"  class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
             </div>
             <div class="info">
                 <a class="d-block" data-target="#view_user" data-toggle="modal">
@@ -23,60 +29,60 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
-                <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="index.php?page=dashboard&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-dashboard">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.php?page=borrower-list&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>
-                            Borrowers
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
+                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="index.php?page=dashboard&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-dashboard">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=borrower-list&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Borrowers
+                                <span class="right badge badge-danger">New</span>
+                            </p>
+                        </a>
+                    </li>
                 <?php endif; ?>
                 <!-- Permission for USER MANAGEMENT -->
-                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin"))) : ?>
+                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin"))) : ?>
 
-                <li class="nav-item">
-                    <a href="index.php?page=comakers&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-comakers">
-                        <i class="nav-icon fas fa-user-friends"></i>
-                        <p>
-                            Co-makers
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item nav-user-list nav-user-roles">
-                    <a href="#" class="nav-link nav-user-list nav-user-roles">
-                        <i class="nav-icon fas fa-user-cog"></i>
-                        <p>
-                            User Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview nav-user-list nav-user-roles">
-                        <li class="nav-item">
-                            <a href="index.php?page=user-list&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-list">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.php?page=user-roles&usr=<?= base64_encode($_SESSION['role_name'])?>" class="nav-link nav-user-roles">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User Roles</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=comakers&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-comakers">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>
+                                Co-makers
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-user-list nav-user-roles">
+                        <a href="#" class="nav-link nav-user-list nav-user-roles">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>
+                                User Management
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview nav-user-list nav-user-roles">
+                            <li class="nav-item">
+                                <a href="index.php?page=user-list&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-user-list">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php?page=user-roles&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-user-roles">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>User Roles</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
             </ul>
         </nav> <!-- /.sidebar-menu -->
@@ -155,21 +161,11 @@
                         </div>
                     </div>
                 </div>
-                <?php if(isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
-                <div class="modal-footer justify-content-end">
-                    <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal"
-                        data-side_idnumber="<?= $_SESSION['accountNumber'] ?>"
-                        data-side_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>"
-                        data-side_email="<?= $_SESSION['email'] ?>"
-                        data-side_birthdate="<?= date('F j, Y', strtotime($_SESSION['birthDate'])) ?>"
-                        data-side_contactnumber="<?= $_SESSION['contactNumber'] ?>"
-                        data-side_rolename="<?= $_SESSION['role_name'] ?>"
-                        data-side_address="<?= $_SESSION['address'] ?>"
-                        data-side_usercreated="<?= date('F j, Y', strtotime($_SESSION['userCreated'])) ?>"
-                    
-                    >Cancel</button>
-                    <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
-                </div>
+                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                    <div class="modal-footer justify-content-end">
+                        <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_idnumber="<?= $_SESSION['accountNumber'] ?>" data-side_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>" data-side_email="<?= $_SESSION['email'] ?>" data-side_birthdate="<?= date('F j, Y', strtotime($_SESSION['birthDate'])) ?>" data-side_contactnumber="<?= $_SESSION['contactNumber'] ?>" data-side_rolename="<?= $_SESSION['role_name'] ?>" data-side_address="<?= $_SESSION['address'] ?>" data-side_usercreated="<?= date('F j, Y', strtotime($_SESSION['userCreated'])) ?>">Cancel</button>
+                        <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
+                    </div>
                 <?php endif ?>
             </div>
         </form><!-- /.modal-content -->
@@ -177,8 +173,8 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("#cancel_btn").click(function () {
+    $(document).ready(function() {
+        $("#cancel_btn").click(function() {
             $('#side_idnumber').val($(this).data('side_idnumber'));
             $('#side_name').val($(this).data('side_name'));
             $('#side_email').val($(this).data('side_email'));
@@ -190,6 +186,6 @@
 
 
             $('#addloan').modal('hide');
-        }); 
-    }); 
+        });
+    });
 </script>

@@ -1,4 +1,9 @@
-
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+  header('location: http://localhost/loanmanagement/pages/err/403-error.php');
+  exit();
+};
+?>
 <!-- jQuery -->
 <script src="../../assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -53,10 +58,9 @@
 </script>
 
 <script>
-  $(function () {
+  $(function() {
     $('.select2').select2()
   })
-  
 </script>
 <!-- <script>
   // BS-Stepper Init

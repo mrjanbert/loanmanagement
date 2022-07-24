@@ -5,7 +5,7 @@ session_start();
 if (isset($_POST['update_info'])) {
     extract($_POST);
 
-    $query = "UPDATE tbl_borrowers SET contactNumber = '$contactNumber', address = '$address' WHERE user_id = '$borrower_id' ";
+    $query = "UPDATE tbl_borrowers SET contactNumber = '$contactNumber', username = '$username', address = '$address' WHERE user_id = '$borrower_id' ";
     $results = $conn->query($query);
     if ($conn->affected_rows > 0) :
         $_SESSION['status'] = "<script>

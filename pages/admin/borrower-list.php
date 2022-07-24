@@ -1,4 +1,9 @@
-
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+    header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+    exit();
+};
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -40,52 +45,43 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $i = 1;
-                                    $query = $conn->query("SELECT * FROM tbl_borrowers order by userCreated asc");
-                                    while ($row = $query->fetch_assoc()) : 
-                                        $userCreated = strtotime($row['userCreated']);
-                                        $birthDate = strtotime($row['birthDate']);
-                                        $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
-                                        $accountNumber = $row['accountNumber'];
+                                $i = 1;
+                                $query = $conn->query("SELECT * FROM tbl_borrowers order by userCreated asc");
+                                while ($row = $query->fetch_assoc()) :
+                                    $userCreated = strtotime($row['userCreated']);
+                                    $birthDate = strtotime($row['birthDate']);
+                                    $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
+                                    $accountNumber = $row['accountNumber'];
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td><?= $row['accountNumber']; ?></td>
                                         <td><?= $name ?> </td>
                                         <td><?= date('F j, Y', $userCreated); ?></td>
-                                        <td><?php if($row['membership'] == 1) {
-                                            echo 'Member';
-                                        } else {
-                                            echo 'Non-member';  
-                                        }
-                                        ?></td>
+                                        <td><?php if ($row['membership'] == 1) {
+                                                echo 'Member';
+                                            } else {
+                                                echo 'Non-member';
+                                            }
+                                            ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-info btn-sm my-1 view_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#view_borrower" 
-                                                data-info_idnumber="<?= $accountNumber ?>"
-                                                data-info_name="<?= $name ?>"
-                                                data-info_image="../../components/img/uploads/<?= $row['profilePhoto'];?>"
-                                                data-info_age="<?= $row['age'];?>"
-                                                data-info_mobilenumber="<?= $row['contactNumber'];?>"
-                                                data-info_email="<?= $row['email'];?>"
-                                                data-info_address="<?= $row['address'];?>"
-                                                data-info_membership="<?php if($row['membership'] == 1) {
-                                                                            echo 'Member';
-                                                                        } else {
-                                                                            echo 'Non-member';  
-                                                                        }
-                                                                        ?>"
-                                                data-info_birthdate="<?= date('F j, Y', $birthDate); ?>"
-                                                data-info_usercreated="<?= date('F j, Y', $userCreated); ?>"
-                                            >
+                                            <a class="btn btn-info btn-sm my-1 view_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#view_borrower" data-info_idnumber="<?= $accountNumber ?>" data-info_name="<?= $name ?>" data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" data-info_age="<?= $row['age']; ?>" data-info_mobilenumber="<?= $row['contactNumber']; ?>" data-info_email="<?= $row['email']; ?>" data-info_address="<?= $row['address']; ?>" data-info_membership="<?php if ($row['membership'] == 1) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Member';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Non-member';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>" data-info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                 View Info
                                             </a>
-                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id']?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
+                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
 
                                             <!-- Action for Admin only -->
-                                            <?php if(isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                            <a href="borrower_update.php?page=borrower_list&account_number=<?= $row['accountNumber']; ?>" class="btn btn-primary btn-sm my-1"><i class="fa fa-edit"></i></a>
-                                            <a onclick="deleteborrower()" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-                                            <?php } else {'';}?>
+                                            <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
+                                                <a href="borrower_update.php?page=borrower_list&account_number=<?= $row['accountNumber']; ?>" class="btn btn-primary btn-sm my-1"><i class="fa fa-edit"></i></a>
+                                                <a onclick="deleteborrower()" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                            <?php } else {
+                                                '';
+                                            } ?>
 
                                         </td>
                                     </tr>
@@ -197,11 +193,11 @@
             }
         })
     }
-    
 
 
-    $(document).ready(function () {
-        $(".view_borrower").click(function () {
+
+    $(document).ready(function() {
+        $(".view_borrower").click(function() {
             $('#info_name').val($(this).data('info_name'));
             $('#info_idnumber').val($(this).data('info_idnumber'));
             $('#info_age').val($(this).data('info_age'));
@@ -212,8 +208,8 @@
             $('#info_email').val($(this).data('info_email'));
             $('#info_usercreated').val($(this).data('info_usercreated'));
             $('#info_image').attr('src', $(this).data('info_image'));
-            
+
             $('#view_borrower').modal('show');
-        }); 
-    }); 
+        });
+    });
 </script>
