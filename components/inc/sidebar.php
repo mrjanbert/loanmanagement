@@ -14,19 +14,27 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
 
-        <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image" data-target="#view_user" data-toggle="modal">
-                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+        <?php
+        $user_id = $_SESSION['adminuser_id'];
+        $sql = "SELECT * FROM tbl_users WHERE user_id = $user_id";
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+        ?>
+            <!-- Sidebar user panel (optional) -->
+            <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image" data-target="#view_user" data-toggle="modal">
+                    <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                </div>
+                <div class="info">
+                    <a class="d-block" data-target="#view_user" data-toggle="modal">
+                        <?= $row['firstName'] . ' ' . $row['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
+                    </a>
+                </div>
             </div>
-            <div class="info">
-                <a class="d-block" data-target="#view_user" data-toggle="modal">
-                    <?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
-                </a>
-            </div>
-        </div>
-        <!-- Sidebar Menu -->
+            <!-- Sidebar Menu -->
+        <?php } ?>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
@@ -98,79 +106,89 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </script>
 
 
-<div class="modal fade" id="view_user">
-    <div class="modal-dialog modal-lg">\
-        <form action="">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Personal Information of <?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 d-flex justify-content-center">
-                            <div class="image">
-                                <img src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+<?php
+$user_id = $_SESSION['adminuser_id'];
+$sql = "SELECT * FROM tbl_users WHERE user_id = $user_id";
+$result = $conn->query($sql);
+
+while ($row = $result->fetch_assoc()) {
+?>
+    <div class="modal fade" id="view_user">
+        <div class="modal-dialog modal-lg">\
+            <form action="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Personal Information of <?= $row['firstName'] . ' ' . $row['lastName']; ?></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <div class="image">
+                                    <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Account Number:</label>
-                                <input type="text" id="side_idnumber" value="<?= $_SESSION['accountNumber']; ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-6 text-center">
+                                <div class="form-group">
+                                    <label>Account Number:</label>
+                                    <input type="text" id="side_idnumber" value="<?= $row['accountNumber']; ?>" class="form-control form-control-border text-center">
+                                </div>
+                                <div class="form-group">
+                                    <label>Full Name:</label>
+                                    <input type="text" id="side_name" value="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" class="form-control form-control-border text-center">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="text" id="side_email" value="<?= $row['email']; ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Full Name:</label>
-                                <input type="text" id="side_name" value="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-4 text-center">
+                                <div class="form-group">
+                                    <label>Birth Date:</label>
+                                    <input type="text" id="side_birthdate" value="<?= date('F j, Y', strtotime($row['birthDate'])); ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Email:</label>
-                                <input type="text" id="side_email" value="<?= $_SESSION['email']; ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-4 text-center">
+                                <div class="form-group">
+                                    <label>Contact Number:</label>
+                                    <input type="text" id="side_contactnumber" value="<?= $row['contactNumber']; ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>Birth Date:</label>
-                                <input type="text" id="side_birthdate" value="<?= date('F j, Y', strtotime($_SESSION['birthDate'])); ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-4 text-center">
+                                <div class="form-group">
+                                    <label>User Role:</label>
+                                    <input type="text" id="side_rolename" value="<?= $row['role_name']; ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>Contact Number:</label>
-                                <input type="text" id="side_contactnumber" value="<?= $_SESSION['contactNumber']; ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-6 text-center">
+                                <div class="form-group">
+                                    <label>Address:</label>
+                                    <input type="text" id="side_address" value="<?= $row['address']; ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>User Role:</label>
-                                <input type="text" id="side_rolename" value="<?= $_SESSION['role_name']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Address:</label>
-                                <input type="text" id="side_address" value="<?= $_SESSION['address']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Date Registered:</label>
-                                <input type="text" id="side_usercreated" value="<?= date('F j, Y', strtotime($_SESSION['userCreated'])); ?>" class="form-control form-control-border text-center">
+                            <div class="col-md-6 text-center">
+                                <div class="form-group">
+                                    <label>Date Registered:</label>
+                                    <input type="text" id="side_usercreated" value="<?= date('F j, Y', strtotime($row['userCreated'])); ?>" class="form-control form-control-border text-center">
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                        <div class="modal-footer justify-content-end">
+                            <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_idnumber="<?= $row['accountNumber'] ?>" data-side_name="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" data-side_email="<?= $row['email'] ?>" data-side_birthdate="<?= date('F j, Y', strtotime($row['birthDate'])) ?>" data-side_contactnumber="<?= $row['contactNumber'] ?>" data-side_rolename="<?= $row['role_name'] ?>" data-side_address="<?= $row['address'] ?>" data-side_usercreated="<?= date('F j, Y', strtotime($row['userCreated'])) ?>">Cancel</button>
+                            <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
+                        </div>
+                    <?php endif ?>
                 </div>
-                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
-                    <div class="modal-footer justify-content-end">
-                        <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_idnumber="<?= $_SESSION['accountNumber'] ?>" data-side_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['middleName'] . ' ' . $_SESSION['lastName'] ?>" data-side_email="<?= $_SESSION['email'] ?>" data-side_birthdate="<?= date('F j, Y', strtotime($_SESSION['birthDate'])) ?>" data-side_contactnumber="<?= $_SESSION['contactNumber'] ?>" data-side_rolename="<?= $_SESSION['role_name'] ?>" data-side_address="<?= $_SESSION['address'] ?>" data-side_usercreated="<?= date('F j, Y', strtotime($_SESSION['userCreated'])) ?>">Cancel</button>
-                        <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
-                    </div>
-                <?php endif ?>
-            </div>
-        </form><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+            </form><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+<?php } ?>
 
 <script>
     $(document).ready(function() {

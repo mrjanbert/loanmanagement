@@ -216,7 +216,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 View Loan
                                             </button>
-                                            <?php if ($row['status_cashier'] == '1') { ?>
+                                            <?php if (($row['status_cashier'] == '1') || ($row['status_cashier'] == '2'))  { ?>
                                                 <a href="index.php?page=view-payments&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-warning text-white btn-block btn-sm" title="View Payments" data-toggle="tooltip" data-placement="top">
                                                     <i class="fa fa-print"></i>&nbsp; View Payments
                                                 </a>

@@ -1,5 +1,19 @@
 <?php
 session_start();
+if (!isset($_SESSION['adminuser_id'])) {
+    $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 5000
+    })
+
+    Toast.fire({
+    icon: 'warning',
+    title: 'You must login to continue'
+    })</script>";
+    header('location: ./login.php');
+}
 require_once '../../config/data/Database.php';
 ?>
 <!DOCTYPE html>

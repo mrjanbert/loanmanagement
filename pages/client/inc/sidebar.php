@@ -1,4 +1,7 @@
 <?php
+
+use LDAP\Result;
+
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     header('location: http://localhost/loanmanagement/pages/err/403-error.php');
     exit();
@@ -17,17 +20,25 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img role="button" src="../../components/img/uploads/<?= $_SESSION['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+        <?php
+        $user_id = $_SESSION['user_id'];
+        $sql = "SELECT * FROM tbl_borrowers WHERE user_id = $user_id";
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch_assoc()) {
+        ?>
+            <!-- Sidebar user panel (optional) -->
+            <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img role="button" src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                </div>
+                <div class="info">
+                    <a role="button" class="d-block">
+                        <?= $row['firstName'] . ' ' . $row['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
+                    </a>
+                </div>
             </div>
-            <div class="info">
-                <a role="button" class="d-block">
-                    <?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
-                </a>
-            </div>
-        </div>
+        <?php } ?>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

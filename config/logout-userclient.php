@@ -1,6 +1,7 @@
 <?php
 session_start();
-session_destroy();
+// session_destroy();
+unset($_SESSION['user_id']);
 session_start();
 $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                                         toast: true,

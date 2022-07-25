@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
 	if ($count > 0) {
 		$data = $result->fetch_array();
 		session_start();
-		$_SESSION['user_id'] = $data['user_id'];
+		$_SESSION['adminuser_id'] = $data['user_id'];
 		$_SESSION['accountNumber'] = $data['accountNumber'];
 		$_SESSION['firstName'] = $data['firstName'];
 		$_SESSION['middleName'] = $data['middleName'];
