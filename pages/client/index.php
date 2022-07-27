@@ -28,7 +28,8 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
 
     <!-- Header -->
-    <?php include_once('./inc/header.php'); ?>
+    <link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
+    <?php include_once('../../components/inc/header.php'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,7 +70,7 @@ if (!isset($_SESSION['user_id'])) {
     <?php unset($_SESSION['status']); ?>
 
     <!-- Footer -->
-    <?php include_once('./inc/footer.php'); ?>
+    <?php include_once('../../components/inc/footer.php'); ?>
 </body>
 
 </html>

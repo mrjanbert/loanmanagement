@@ -29,7 +29,8 @@ if (isset($_SESSION['user_id'])) {
 	<!-- MDB -->
 	<link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
 	<!-- Custom styles -->
-	<link rel="stylesheet" href="../../components/hometemplate/css/style2.css" />
+	<link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
+
 </head>
 
 <body>

@@ -52,7 +52,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers
-                                <span class="right badge badge-danger">New</span>
                             </p>
                         </a>
                     </li>

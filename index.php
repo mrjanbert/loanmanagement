@@ -13,6 +13,7 @@
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
   <!-- MDB -->
+  <link rel="stylesheet" href="components/hometemplate/css/scrollbarhidden.css" />
   <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
 </head>
 
@@ -46,8 +47,8 @@
         <div class="collapse navbar-collapse" id="collapseNavbar">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item active">
-              <a class="nav-link"  href="./">Home</a>
-            </li> 
+              <a class="nav-link" href="./">Home</a>
+            </li>
           </ul>
 
           <ul class="navbar-nav d-flex flex-row">

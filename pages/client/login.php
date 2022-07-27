@@ -28,7 +28,7 @@ if (isset($_SESSION['user_id'])) {
   <!-- MDB -->
   <link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
   <!-- Custom styles -->
-  <link rel="stylesheet" href="../../components/hometemplate/css/style2.css" />
+  <link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
 </head>
 
 <body>
@@ -40,9 +40,6 @@ if (isset($_SESSION['user_id'])) {
       <a class="navbar-brand nav-link" target="_blank" href="#">
         <strong>LMS</strong>
       </a>
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
       <div class="collapse navbar-collapse" id="collapseNavbar">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">

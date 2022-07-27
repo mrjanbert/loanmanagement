@@ -13,6 +13,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
+    <link rel="stylesheet" href="components/hometemplate/css/scrollbarhidden.css" />
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
 </head>
 

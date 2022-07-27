@@ -203,20 +203,20 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo '';
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } ?>" data-status_cashier="<?php if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
-                                                                                                                                        echo 'Pending';
-                                                                                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
-                                                                                                                                        echo 'Approved';
-                                                                                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
-                                                                                                                                        echo 'Completed';
-                                                                                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
-                                                                                                                                        echo 'Disapproved';
-                                                                                                                                    } else {
-                                                                                                                                        echo '';
-                                                                                                                                    } ?>">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Completed';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo '';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } ?>">
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 View Loan
                                             </button>
-                                            <?php if (($row['status_cashier'] == '1') || ($row['status_cashier'] == '2'))  { ?>
+                                            <?php if (($row['status_cashier'] == '1') || ($row['status_cashier'] == '2')) { ?>
                                                 <a href="index.php?page=view-payments&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-warning text-white btn-block btn-sm" title="View Payments" data-toggle="tooltip" data-placement="top">
                                                     <i class="fa fa-print"></i>&nbsp; View Payments
                                                 </a>
@@ -344,74 +344,74 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </div>
             <div class="card-body">
                 <div class="row text-center">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Borrower Name</label>
                             <input type="text" id="borrower_name" class="form-control form-control-border text-center" disabled>
 
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Reference Number</label>
                             <input type="text" id="ref_no" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Amount</label>
                             <input type="text" id="loan_amount" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Term</label>
                             <input type="text" id="loan_terms" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Date</label>
                             <input type="text" id="loan_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Type</label>
                             <input type="text" id="loan_type" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Purpose</label>
                             <input type="text" id="purpose" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Co-Maker Name</label>
                             <input type="text" id="comaker_name" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Comaker's Status</label>
                             <input type="text" id="status_comaker" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Processor's Status</label>
                             <input type="text" id="status_processor" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Manager's Status</label>
                             <input type="text" id="status_manager" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Cashier's Status</label>
                             <input type="text" id="status_cashier" class="form-control form-control-border text-center" disabled>

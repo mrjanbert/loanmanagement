@@ -97,7 +97,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                     $query = $conn->query("SELECT * FROM tbl_borrowers WHERE membership != '1' ");
                                     while ($row = $query->fetch_assoc()) :
                                     ?>
-                                        <option value="<?php echo $row['user_id'] ?>"><?php echo $row['firstName'] . ' ' . $row['middleName'] . '. ' . $row['lastName']; ?></option>
+                                        <option value="<?php echo $row['user_id'] ?>"><?php echo $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName']; ?></option>
                                     <?php endwhile; ?>
                                 </select>
                             </div>

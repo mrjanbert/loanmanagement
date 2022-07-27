@@ -212,7 +212,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 Loan Information
                                             </button>
-                                            <?php if (isset($role_name) && ($role_name == 'Cashier') || ($role_name == 'Processor') && (($status_cashier == 1) || ($status_cashier == 2))) {  ?>
+                                            <?php if (isset($role_name) && (($role_name == 'Cashier') && (($status_cashier == 1) || ($status_cashier == 2))) || (($role_name == 'Processor') && (($status_cashier == 1) || ($status_cashier == 2))) || (($role_name == 'Manager') && (($status_cashier == 1) || ($status_cashier == 2)))) {  ?>
                                                 <a href="index.php?page=view-payments&refid=<?= $ref_no ?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
                                                     View Payments
                                                 </a>
@@ -259,79 +259,77 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                     </a>
                                                 <?php endif; ?>
 
-                <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
-                    <?php if ($status_comaker == 1) : ?>
-                        <?php if ($status_processor == 0) : ?>
-                            <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_processor" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                <i class="fa fa-check"></i>&nbsp;Check and Verify
-                            </a>
-                        <?php elseif ($status_processor == 1) : ?>
-                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                Checked and Verified
-                            </a>
-                        <?php endif; ?>
-                    <?php elseif ($status_comaker == 0) : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Waiting for Co-maker's Approval
-                        </a>
-                    <?php else : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Disapproved by Co-maker
-                        </a>
+                                            <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
+                                                <?php if ($status_comaker == 1) : ?>
+                                                    <?php if ($status_processor == 0) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_processor" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                                            <i class="fa fa-check"></i>&nbsp;Check and Verify
+                                                        </a>
+                                                    <?php elseif ($status_processor == 1) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                            Checked and Verified
+                                                        </a>
+                                                    <?php endif; ?>
+                                                <?php elseif ($status_comaker == 0) : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Waiting for Co-maker's Approval
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Disapproved by Co-maker
+                                                    </a>
 
-                    <?php endif; ?>
+                                                <?php endif; ?>
 
-                <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
-                    <?php if ($status_manager == 1) : ?>
-                        <?php if ($status_cashier == 0) : ?>
-                            <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_cashier" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                <i class="fas fa-thumbs-up"></i>&nbsp;Approve
-                            </a>
-                            <a href="javascript:void(0);" class="btn btn-danger btn-sm my-1 disapprove_cashier" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                                <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
-                            </a>
-                        <?php elseif ($status_cashier == 1) : ?>
-                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                </i>&nbsp;Approved
-                            </a>
-                        <?php elseif ($status_cashier == 2) : ?>
-                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                Loan Completed
-                            </a>
-                        <?php elseif ($status_cashier == 3) : ?>
-                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                Disapproved
-                            </a>
-                        <?php endif; ?>
-                    <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Waiting for Co-maker's Approval
-                        </a>
-                    <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Waiting for CC Member's Approval
-                        </a>
-                    <?php elseif (($status_manager == 0) && ($status_processor == 1) && ($status_comaker == 1)) : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Waiting for Manager's Approval
-                        </a>
-                    <?php else : ?>
-                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                            Disapproved by Co-maker
-                        </a>
-                    <?php endif; ?>
-                <?php } else {
-                                                '';
-                                            } ?>
-                </td>
-                </tr>
-            <?php endwhile; ?>
-            </tbody>
-            </table>
-                </div><!-- /.card-body -->
-            </div><!-- /.card -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
+                                            <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
+                                                <?php if ($status_manager == 1) : ?>
+                                                    <?php if ($status_cashier == 0) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-success btn-sm my-1 approve_cashier" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                                            <i class="fas fa-thumbs-up"></i>&nbsp;Approve
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="btn btn-danger btn-sm my-1 disapprove_cashier" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                                                            <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
+                                                        </a>
+                                                    <?php elseif ($status_cashier == 1) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                            </i>&nbsp;Approved
+                                                        </a>
+                                                    <?php elseif ($status_cashier == 2) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                            Loan Completed
+                                                        </a>
+                                                    <?php elseif ($status_cashier == 3) : ?>
+                                                        <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                            Disapproved
+                                                        </a>
+                                                    <?php endif; ?>
+                                                <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 0)) : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Waiting for Co-maker's Approval
+                                                    </a>
+                                                <?php elseif (($status_manager == 0) && ($status_processor == 0) && ($status_comaker == 1)) : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Waiting for CC Member's Approval
+                                                    </a>
+                                                <?php elseif (($status_manager == 0) && ($status_processor == 1) && ($status_comaker == 1)) : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Waiting for Manager's Approval
+                                                    </a>
+                                                <?php else : ?>
+                                                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
+                                                        Disapproved by Co-maker
+                                                    </a>
+                                                <?php endif; ?>
+                                            <?php } else { '';} ?>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div><!-- /.card-body -->
+                </div><!-- /.card -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
 
@@ -347,77 +345,77 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </div>
             <div class="card-body">
                 <div class="row text-center">
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Borrower Name</label>
-                            <input type="text" id="borrower_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="borrower_name" class="form-control form-control-border text-center" readonly>
 
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Reference Number</label>
-                            <input type="text" id="ref_no" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="ref_no" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Amount</label>
-                            <input type="text" id="viewloan_amount" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_amount" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Term</label>
-                            <input type="text" id="viewloan_term" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_term" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Date</label>
-                            <input type="text" id="loan_date" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="loan_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Type</label>
-                            <input type="text" id="viewloan_type" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="viewloan_type" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Purpose</label>
-                            <input type="text" id="purpose" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="purpose" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label>Co-Maker Name</label>
-                            <input type="text" id="comaker_name" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="comaker_name" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Comaker's Status</label>
-                            <input type="text" id="status_comaker" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_comaker" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Processor's Status</label>
-                            <input type="text" id="status_processor" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_processor" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Manager's Status</label>
-                            <input type="text" id="status_manager" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_manager" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Cashier's Status</label>
-                            <input type="text" id="status_cashier" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="status_cashier" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                 </div>
@@ -480,7 +478,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             $('#status_manager').val($(this).data('status_manager'));
             $('#status_cashier').val($(this).data('status_cashier'));
 
-            $('#viewloan').modal('show');
+            // $('#viewloan').modal('show');
         });
     });
 </script>

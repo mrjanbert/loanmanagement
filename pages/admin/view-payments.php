@@ -106,7 +106,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
 <div class="modal fade" id="addpayment">
     <div class="modal-dialog modal-md">
-        <form action="../../config/create-payment.php" method="POST">
+        <form action="../../config/test.php" method="POST">
             <div class="modal-content card-outline card-primary">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Payment</h4>

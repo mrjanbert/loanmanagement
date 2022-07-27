@@ -26,6 +26,7 @@ require_once '../../config/data/Database.php';
     <link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
 
     <!-- Header -->
+    <link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
     <?php include_once('../../components/inc/header.php'); ?>
 </head>
 
