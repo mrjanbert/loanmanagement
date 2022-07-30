@@ -37,10 +37,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <?php } ?>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == ("Admin")) || (trim($_GET['usr']) == ("Manager")) || (trim($_GET['usr']) == ("Processor")) || (trim($_GET['usr']) == ("Cashier"))) : ?>
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="index.php?page=dashboard&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-dashboard">
+                        <a href="index.php?page=dashboard&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-dashboard">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -48,7 +48,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?page=borrower-list&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
+                        <a href="index.php?page=borrower-list&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers
@@ -57,10 +57,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     </li>
                 <?php endif; ?>
                 <!-- Permission for USER MANAGEMENT -->
-                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin"))) : ?>
+                <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == ("Admin"))) : ?>
 
                     <li class="nav-item">
-                        <a href="index.php?page=comakers&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-comakers">
+                        <a href="index.php?page=comakers&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-comakers">
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>
                                 Co-makers
@@ -77,13 +77,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                         <ul class="nav nav-treeview nav-user-list nav-user-roles">
                             <li class="nav-item">
-                                <a href="index.php?page=user-list&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-user-list">
+                                <a href="index.php?page=user-list&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-user-list">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User List</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.php?page=user-roles&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="nav-link nav-user-roles">
+                                <a href="index.php?page=user-roles&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-user-roles">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User Roles</p>
                                 </a>
@@ -175,7 +175,7 @@ while ($row = $result->fetch_assoc()) {
                             </div>
                         </div>
                     </div>
-                    <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+                    <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == ("Admin")) || (trim($_GET['usr']) == ("Manager")) || (trim($_GET['usr']) == ("Processor")) || (trim($_GET['usr']) == ("Cashier"))) : ?>
                         <div class="modal-footer justify-content-end">
                             <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_idnumber="<?= $row['accountNumber'] ?>" data-side_name="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" data-side_email="<?= $row['email'] ?>" data-side_birthdate="<?= date('F j, Y', strtotime($row['birthDate'])) ?>" data-side_contactnumber="<?= $row['contactNumber'] ?>" data-side_rolename="<?= $row['role_name'] ?>" data-side_address="<?= $row['address'] ?>" data-side_usercreated="<?= date('F j, Y', strtotime($row['userCreated'])) ?>">Cancel</button>
                             <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>

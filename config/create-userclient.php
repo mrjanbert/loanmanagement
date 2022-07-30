@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $encrypt = base64_encode($password);
+    $encrypt = md5($password);
 
     if (move_uploaded_file($temp, $folder)) {
         $query = "INSERT INTO tbl_borrowers 

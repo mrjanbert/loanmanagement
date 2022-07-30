@@ -68,7 +68,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                             <a class="btn btn-info btn-sm my-1 view_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#view_borrower" data-info_idnumber="<?= $accountNumber ?>" data-info_name="<?= $name ?>" data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" data-info_age="<?= $row['age']; ?>" data-info_mobilenumber="<?= $row['contactNumber']; ?>" data-info_email="<?= $row['email']; ?>" data-info_address="<?= $row['address']; ?>" data-info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" data-info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                 View Info
                                             </a>
-                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
+                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>&usr=<?= ($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
 
                                             <!-- Action for Admin only -->
                                             <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>

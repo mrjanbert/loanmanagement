@@ -79,10 +79,10 @@
 //view payments code
 
 // $i = 1;
-// // $plan = $conn->query("SELECT * FROM loan_plans WHERE plan_id in (SELECT plan_id FROM tbl_transactions)");
-// // while ($row = $plan->fetch_assoc()) {
-// //     $plan_arr[$row['plan_id']] = $row;
-// // }
+// $plan = $conn->query("SELECT * FROM loan_plans WHERE plan_id in (SELECT plan_id FROM tbl_transactions)");
+// while ($row = $plan->fetch_assoc()) {
+//     $plan_arr[$row['plan_id']] = $row;
+// }
 
 // $loan = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no in (SELECT ref_no FROM tbl_payments)");
 // while ($row = $loan->fetch_assoc()) {

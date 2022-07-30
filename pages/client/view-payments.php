@@ -30,15 +30,15 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Loan Reference Number: <b><?= $_GET['ref_no'] ?> </b></h3> <br />
-					</div><!-- /.card-header -->
-					<div class="card-body">
 						<div class="d-flex justify-content-end">
 							<button onclick="history.back()" class="btn btn-warning btn-sm">
 								<i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
 								Back
 							</button>
 						</div>
-						<table id="example2" class="table table-bordered table-striped">
+					</div><!-- /.card-header -->
+					<div class="card-body">
+						<table id="example3" class="table table-bordered table-striped">
 							<thead>
 								<tr>
 									<th width="15%" class="text-center">Date</th>
@@ -83,7 +83,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 										<td></td>
 										<td><?= ($row['penalty'] != 0) ? number_format($row['penalty'], 2) : ''; ?></td>
 										<td><?= $row['receipt_no']; ?></td>
-										<td><?= number_format($row['payment_amount'], 2); ?></td>
+										<td><?= ($row['payment_amount'] != 0) ? number_format($row['payment_amount'], 2) : ''; ?></td>
 										<td><?= number_format($row['payment_balance'], 2) ?></td>
 									</tr>
 								<?php } ?>

@@ -27,51 +27,69 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == base64_encode("Admin")) || (trim($_GET['usr']) == base64_encode("Manager")) || (trim($_GET['usr']) == base64_encode("Processor")) || (trim($_GET['usr']) == base64_encode("Cashier"))) : ?>
+            <?php if (isset($_GET['usr']) && (trim($_GET['usr']) == ("Admin")) || (trim($_GET['usr']) == ("Manager")) || (trim($_GET['usr']) == ("Processor")) || (trim($_GET['usr']) == ("Cashier"))) : ?>
                 <div class="col-lg-4 col-6">
                     <?php
-                    $query = "SELECT * FROM tbl_transaction";
+                    $query = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s ON t.status_ref = s.ref_no WHERE status_processor = '1' OR status_manager = '1' OR status_cashier = '1' OR status_comaker = '1'";
                     $results = mysqli_query($conn, $query);
-                    $totalloans = mysqli_num_rows($results);
+                    $approved_loans = mysqli_num_rows($results);
                     ?>
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3><?php echo $totalloans; ?></h3>
-                            <p>Total Loans Approved</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-money-bill-wave"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-4 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>?????</h3>
-                            <p>Total Registered Borrowers</p>
+                            <h3><?php echo $approved_loans; ?></h3>
+                            <p>Approved Loans</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-coins"></i>
+                            <i class="fas fa-thumbs-up"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="index.php?page=view-approved-loans&usr=<?= ($_SESSION['role_name']) ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
                 <div class="col-lg-4 col-6">
+                    <?php
+                    $query = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s ON t.status_ref = s.ref_no WHERE status_processor = '3' OR status_manager = '3' OR status_cashier = '3' OR status_comaker = '2'";
+                    $results = mysqli_query($conn, $query);
+                    $disapproved_loans = mysqli_num_rows($results);
+                    ?>
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3><?php echo $disapproved_loans; ?></h3>
+                            <p>Disapproved Loans</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-thumbs-down"></i>
+                        </div>
+                        <a href="index.php?page=view-disapproved-loans&usr=<?= ($_SESSION['role_name'])?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <?php
+                    $role_name = $_SESSION['role_name'];
+                    if (isset($role_name) && ($role_name == 'Processor')) {
+                    $query = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s ON t.status_ref = s.ref_no WHERE status_processor = '0'";
+                    }
+                    elseif (isset($role_name) && ($role_name == 'Manager')) {
+                        $query = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s ON t.status_ref = s.ref_no WHERE status_manager = '0' AND status_processor != '0' AND status_processor != '1'";
+                    } elseif (isset($role_name) && ($role_name == 'Cashier')) {
+                        $query = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s ON t.status_ref = s.ref_no WHERE status_cashier = '0' AND status_manager != '0' AND status_manager != '1' AND status_manager != '2'";
+                    }
+                    $results = mysqli_query($conn, $query);
+                    $pending_loans = mysqli_num_rows($results);
+                    ?>
                     <!-- small box -->
                     <div class="small-box bg-primary">
                         <div class="inner">
-                            <h3>??</h3>
-                            <p>Total Payments List</p>
+                            <h3><?php echo $pending_loans; ?></h3>
+                            <p>Pending Loans</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-inbox"></i>
+                            <i class="fas fa-tasks"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="index.php?page=view-pending-loans&usr=<?= ($_SESSION['role_name'])?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

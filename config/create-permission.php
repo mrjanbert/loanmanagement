@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
                     text: 'User role updated.'
                 })
             </script>";
-        header('location: ../pages/admin/index.php?page=user-roles&usr=' . base64_encode($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=user-roles&usr=' . ($_SESSION['role_name']));
     endif;
 
     // elseif ($checkrole->num_rows > 0 ) :
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     //             text: 'Role is already owned.'
     //         })
     //     </script>";
-    //     header('location: ../pages/admin/index.php?page=user-roles&usr='. base64_encode($_SESSION['role_name']));
+    //     header('location: ../pages/admin/index.php?page=user-roles&usr='. ($_SESSION['role_name']));
 
     // $checkname = $conn->query("SELECT '$selected_user' FROM tbl_users WHERE user_id = '$selected_user' AND  role_name = '$role_name'");
     // elseif ($checkname->num_rows > 0) :
@@ -40,6 +40,6 @@ if (isset($_POST['submit'])) {
     //             text: 'User already owned a role.'
     //         })
     //     </script>";
-    //     header('location: ../pages/admin/index.php?page=user-roles&usr='. base64_encode($_SESSION['role_name']));
+    //     header('location: ../pages/admin/index.php?page=user-roles&usr='. ($_SESSION['role_name']));
     // endif;
 }

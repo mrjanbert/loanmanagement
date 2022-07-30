@@ -138,7 +138,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                     <?php elseif ($status_cashier == 1) : ?>
                                                         <button type="button" class="btn btn-primary btn-sm my-1 btn-block" style="pointer-events: none">Approved</button>
                                                     <?php elseif ($status_cashier == 2) : ?>
-                                                        <button type="button" class="btn btn-success btn-sm my-1 btn-block" style="pointer-events: none">Completed</button>
+                                                        <button type="button" class="btn btn-success btn-sm my-1 btn-block" style="pointer-events: none">Released</button>
                                                     <?php elseif ($status_cashier == 3) : ?>
                                                         <button type="button" class="btn btn-danger btn-sm my-1 btn-block" style="pointer-events: none">Disapproved</button>
                                                     <?php endif; ?>
@@ -203,7 +203,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                             } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
                                                 echo 'Approved';
                                             } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
-                                                echo 'Completed';
+                                                echo 'Released';
                                             } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
                                                 echo 'Disapproved';
                                             } else {
@@ -213,7 +213,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 Loan Information
                                             </button>
                                             <?php if (isset($role_name) && (($role_name == 'Cashier') && (($status_cashier == 1) || ($status_cashier == 2))) || (($role_name == 'Processor') && (($status_cashier == 1) || ($status_cashier == 2))) || (($role_name == 'Manager') && (($status_cashier == 1) || ($status_cashier == 2)))) {  ?>
-                                                <a href="index.php?page=view-payments&refid=<?= $ref_no ?>&usr=<?= base64_encode($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
+                                                <a href="index.php?page=view-payments&refid=<?= $ref_no ?>&usr=<?= ($_SESSION['role_name']) ?>" class="btn btn-warning text-white btn-sm btn-block">
                                                     View Payments
                                                 </a>
                                             <?php } ?>
@@ -296,7 +296,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                         </a>
                                                     <?php elseif ($status_cashier == 2) : ?>
                                                         <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">
-                                                            Loan Completed
+                                                            Released
                                                         </a>
                                                     <?php elseif ($status_cashier == 3) : ?>
                                                         <a href="javascript:void(0);" class="btn btn-secondary btn-sm my-1">

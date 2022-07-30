@@ -12,7 +12,7 @@ if (!isset($_SESSION['adminuser_id'])) {
     icon: 'warning',
     title: 'You must login to continue'
     })</script>";
-    header('location: ./login.php');
+    header('location: ../../login.php');
 }
 require_once '../../config/data/Database.php';
 ?>

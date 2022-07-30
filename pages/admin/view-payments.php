@@ -39,74 +39,78 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     </div><!-- /.card-header -->
                     <div class="card-body">
                         <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end mb-2">
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
                                     <i class="fa fa-plus"></i> &nbsp;
                                     Add Payment
+                                </button> &nbsp; &nbsp;
+                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addpenalty">
+                                    <i class="fa fa-plus"></i> &nbsp;
+                                    Add Penalty
                                 </button>
                             </div>
                         <?php } ?>
-                    </div>
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th width="15%" class="text-center">Date</th>
-                                <th width="15%" class="text-center">Principal</th>
-                                <th class="text-center">Interest</th>
-                                <th class="text-center">Penalty</th>
-                                <th class="text-center">OR #</th>
-                                <th class="text-center">Payment</th>
-                                <th class="text-center">Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $ref_no = $_GET['refid'];
-                            $sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no  '");
-                            $row = $sql->fetch_assoc()
-                            ?>
-                            <tr>
-                                <td>
-                                    <strong><?= date('M j, Y', strtotime($row['loan_date'])) ?></strong>
-                                </td>
-                                <td>
-                                    <strong><?= number_format($row['amount'], 2) ?></strong>
-                                </td>
-                                <td>
-                                    <strong><?= number_format($row['total_interest'], 2) ?></strong>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <strong><?= number_format($row['balance'], 2) ?></strong>
-                                </td>
-                            </tr>
-                            <?php
-                            $query = $conn->query("SELECT p.payment_date, t.interest, p.penalty, p.receipt_no, p.payment_amount, p.payment_balance FROM tbl_payments p INNER JOIN tbl_transaction t ON t.ref_no = p.ref_no WHERE p.ref_no = '$ref_no'");
-                            while ($row = $query->fetch_assoc()) {
-                            ?>
+                        <table id="example3" class="table table-bordered table-striped">
+                            <thead>
                                 <tr>
-                                    <td><?= date('M j, Y', strtotime($row['payment_date'])) ?></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><?= ($row['penalty'] != 0) ? number_format($row['penalty'], 2) : ''; ?></td>
-                                    <td><?= $row['receipt_no']; ?></td>
-                                    <td><?= number_format($row['payment_amount'], 2); ?></td>
-                                    <td><?= number_format($row['payment_balance'], 2) ?></td>
+                                    <th width="15%" class="text-center">Date</th>
+                                    <th width="15%" class="text-center">Principal</th>
+                                    <th class="text-center">Interest</th>
+                                    <th class="text-center">Penalty</th>
+                                    <th class="text-center">OR #</th>
+                                    <th class="text-center">Payment</th>
+                                    <th class="text-center">Balance</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div><!-- /.card-body -->
-            </div><!-- /.card -->
-        </div><!-- /.col -->
+                            </thead>
+                            <tbody>
+                                <?php
+                                $ref_no = $_GET['refid'];
+                                $sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no  '");
+                                $row = $sql->fetch_assoc()
+                                ?>
+                                <tr>
+                                    <td>
+                                        <strong><?= date('M j, Y', strtotime($row['loan_date'])) ?></strong>
+                                    </td>
+                                    <td>
+                                        <strong><?= number_format($row['amount'], 2) ?></strong>
+                                    </td>
+                                    <td>
+                                        <strong><?= number_format($row['total_interest'], 2) ?></strong>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <strong><?= number_format($row['balance'], 2) ?></strong>
+                                    </td>
+                                </tr>
+                                <?php
+                                $query = $conn->query("SELECT p.payment_date, t.interest, p.penalty, p.receipt_no, p.payment_amount, p.payment_balance FROM tbl_payments p INNER JOIN tbl_transaction t ON t.ref_no = p.ref_no WHERE p.ref_no = '$ref_no' ORDER BY p.id ASC");
+                                while ($row = $query->fetch_assoc()) {
+                                ?>
+                                    <tr>
+                                        <td><?= date('M j, Y', strtotime($row['payment_date'])) ?></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><?= ($row['penalty'] != 0) ? number_format($row['penalty'], 2) : ''; ?></td>
+                                        <td><?= $row['receipt_no']; ?></td>
+                                        <td><?= ($row['payment_amount'] != 0) ? number_format($row['payment_amount'], 2) : ''; ?></td>
+                                        <td><?= number_format($row['payment_balance'], 2) ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- /.card -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </section><!-- /.content -->
 
 <div class="modal fade" id="addpayment">
     <div class="modal-dialog modal-md">
-        <form action="../../config/test.php" method="POST">
+        <form action="../../config/create-payment.php" method="POST">
             <div class="modal-content card-outline card-primary">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Payment</h4>
@@ -148,6 +152,60 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 </div>
                 <div class="modal-footer justify-content-end">
                     <button type="submit" name="submit" class="btn btn-primary">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="addpenalty">
+    <div class="modal-dialog modal-md">
+        <form action="../../config/create-payment.php" method="POST">
+            <div class="modal-content card-outline card-primary">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Penalty</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <?php
+                        $ref_no = $_GET['refid'];
+                        $sql = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = '$ref_no'");
+                        while ($row = $sql->fetch_assoc()) {
+                        ?>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Loan Reference No. <small class="text-red">*</small></label>
+                                    <input type="text" class="form-control form-control-border" name="ref_no" value="<?= $ref_no ?>" readonly>
+
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Penalty Amount <small class="text-red">*</small></label>
+                                <input type="number" class="form-control form-control-border" name="penalty" placeholder="Enter Amount" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Date<small class="text-red">*</small></label>
+                                <input type="date" class="form-control form-control-border" name="payment_date" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="submit" name="addpenalty" class="btn btn-primary">
                         Save
                     </button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">

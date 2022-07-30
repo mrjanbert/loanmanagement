@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $role_name = $_POST['role_name'];
-    $encrypt = base64_encode($password);
+    $encrypt = md5($password);
 
     if (move_uploaded_file($temp, $folder)) {
         $query = "INSERT INTO tbl_users 

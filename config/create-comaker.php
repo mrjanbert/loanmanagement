@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             text: 'Co-maker added successfully.'
         })
         </script>";
-        header('location: ../pages/admin/index.php?page=comakers&usr=' . base64_encode($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=comakers&usr=' . ($_SESSION['role_name']));
     else :
         session_start();
         $_SESSION['status'] = "<script>
@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
                 text: 'Co-maker not added on the list.'
             })
         </script>";
-        header('location: ../pages/admin/index.php?page=comakers&usr=' . base64_encode($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=comakers&usr=' . ($_SESSION['role_name']));
 
     endif;
 }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['adminuser_id'])) {
-    header('location: pages/admin/index.php?page=dashboard&usr=' . base64_encode($_SESSION['role_name']));
+    header('location: pages/admin/index.php?page=dashboard&usr=' . ($_SESSION['role_name']));
 }
 ?>
 <!DOCTYPE html>

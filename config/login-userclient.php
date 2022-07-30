@@ -3,7 +3,7 @@ require_once 'data/Database.php';
 
 if (isset($_POST['submit'])) {
 	extract($_POST);
-	$encrypt = base64_encode($password);
+	$encrypt = md5($password);
 
 	$query = "SELECT * FROM tbl_borrowers WHERE username = '" . $username . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
