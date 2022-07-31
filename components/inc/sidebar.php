@@ -48,7 +48,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?page=borrower-list&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-borrower-list nav-view-payments nav-view-loans">
+                        <a href="index.php?page=borrower-list&usr=<?= ($_SESSION['role_name']) ?>" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers

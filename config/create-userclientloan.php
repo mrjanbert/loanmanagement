@@ -36,7 +36,7 @@
         if ($conn->affected_rows > 0) :
 
             if($borrower_id == $comaker_id) {
-                $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no' , status_comaker = '1'");
+                $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no' , status_comaker = '1', comaker_dateprocess = now() ");
             } else {
                 $query = $conn->query("INSERT INTO tbl_status SET ref_no = '$ref_no'");
             }

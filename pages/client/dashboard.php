@@ -54,7 +54,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>10000.00</h3>
+                        <h3>??.??</h3></h3>
                         <p>Remaining Balance</p>
                     </div>
                     <div class="icon">

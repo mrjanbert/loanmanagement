@@ -4,7 +4,7 @@ require_once 'data/Database.php';
 if (isset($_GET['approveref_no'])) {
 
     $ref_no = $_GET['approveref_no'];
-    $sql = $conn->query("UPDATE tbl_status SET status_comaker = '1' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_comaker = '1', comaker_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -20,7 +20,7 @@ if (isset($_GET['approveref_no'])) {
 if (isset($_GET['denyref_no'])) {
 
     $ref_no = $_GET['denyref_no'];
-    $sql = $conn->query("UPDATE tbl_status SET status_comaker = '2' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_comaker = '2', comaker_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -36,7 +36,8 @@ if (isset($_GET['denyref_no'])) {
 if (isset($_GET['approve_processor'])) {
 
     $ref_no = $_GET['approve_processor'];
-    $sql = $conn->query("UPDATE tbl_status SET status_processor = '1' WHERE ref_no = '$ref_no'");
+    $aid = $_GET['aid'];
+    $sql = $conn->query("UPDATE tbl_status SET status_processor = '1', processor_id = '$aid', processor_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -52,7 +53,7 @@ if (isset($_GET['approve_processor'])) {
 if (isset($_GET['disapprove_manager'])) {
 
     $ref_no = $_GET['disapprove_manager'];
-    $sql = $conn->query("UPDATE tbl_status SET status_manager = '3' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_manager = '3', manager_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -68,7 +69,7 @@ if (isset($_GET['disapprove_manager'])) {
 if (isset($_GET['approve_manager'])) {
 
     $ref_no = $_GET['approve_manager'];
-    $sql = $conn->query("UPDATE tbl_status SET status_manager = '1' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_manager = '1', manager_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -84,7 +85,7 @@ if (isset($_GET['approve_manager'])) {
 if (isset($_GET['disapprove_cashier'])) {
 
     $ref_no = $_GET['disapprove_cashier'];
-    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '3' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '3', cashier_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -99,7 +100,7 @@ if (isset($_GET['disapprove_cashier'])) {
 
 if (isset($_GET['release_cashier'])) {
     $ref_no = $_GET['release_cashier'];
-    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '2' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '2', cashier_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>
@@ -114,7 +115,7 @@ if (isset($_GET['release_cashier'])) {
 
 if (isset($_GET['approve_cashier'])) {
     $ref_no = $_GET['approve_cashier'];
-    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '1' WHERE ref_no = '$ref_no'");
+    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '1', cashier_dateprocess = now() WHERE ref_no = '$ref_no'");
 
     session_start();
     $_SESSION['status'] = "<script>

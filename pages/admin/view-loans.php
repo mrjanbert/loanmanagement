@@ -59,10 +59,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 $i = 1;
                                 $user_id = $_GET['uid'];
                                 $role_name = $_SESSION['role_name'];
-                                $query = $conn->query("SELECT t.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name, s.*, concat(c.firstname, ' ', c.lastName) as comaker_name
-                                    FROM (((tbl_transaction t 
+                                $query = $conn->query("SELECT t.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name, s.*, concat(c.firstname, ' ', c.lastName) as comaker_name,  concat(u.firstname, ' ', u.lastName) as user_name
+                                    FROM ((((tbl_transaction t 
                                         INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
                                         INNER JOIN tbl_status s ON t.status_ref = s.ref_no) 
+                                        LEFT JOIN tbl_users u ON s.processor_id = u.user_id) 
                                         INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id) 
                                     WHERE t.borrower_id = $user_id");
                                 while ($row = $query->fetch_assoc()) :
@@ -74,10 +75,15 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                     $loan_date = strtotime($row['loan_date']);
                                     $amount = $row['amount'];
                                     $comaker_name = $row['comaker_name'];
+                                    $user_name = $row['user_name'];
                                     $status_comaker = $row['status_comaker'];
                                     $status_manager = $row['status_manager'];
                                     $status_processor = $row['status_processor'];
                                     $status_cashier = $row['status_cashier'];
+                                    $comaker_date = $row['comaker_dateprocess'];
+                                    $processor_date = $row['processor_dateprocess'];
+                                    $manager_date = $row['manager_dateprocess'];
+                                    $cashier_date = $row['cashier_dateprocess'];
                                 ?>
 
                                     <tr>
@@ -169,46 +175,45 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                         } ?>
 
                                         <td class="text-center">
-                                            <a href="index.php?page=grace-period&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-primary btn-sm btn-block" title="View Grace Period" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=grace-period&ref_no=<?= $ref_no ?>&usr=<?= ($role_name) ?>" class="btn btn-primary btn-sm btn-block" title="View Grace Period" data-toggle="tooltip" data-placement="top">
                                                 <i class="fas fa-calendar-alt"></i>&nbsp; Grace Period
                                             </a>
-                                            <a href="index.php?page=application-form&ref_no=<?= $ref_no ?>&usr=<?= base64_encode($role_name) ?>" class="btn btn-success btn-sm btn-block" title="Print Application Form" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=application-form&ref_no=<?= $ref_no ?>&usr=<?= ($role_name) ?>" class="btn btn-success btn-sm btn-block" title="Print Application Form" data-toggle="tooltip" data-placement="top">
                                                 <i class="fa fa-print"></i>&nbsp; Application Form
                                             </a>
-                                            <button class="btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $borrower_name ?>" data-ref_no="<?= $ref_no ?>" data-viewloan_amount="<?= number_format($amount, 2) ?>" data-viewloan_term="<?= $loan_term ?> Months" data-viewloan_type="<?= $loan_type ?>" data-loan_date="<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>" data-purpose="<?= $purpose ?>" data-comaker_name="<?= $comaker_name ?>" data-status_comaker=" <?php if ($row['status_comaker'] == '0') {
-                                                echo 'Pending';
-                                            } elseif ($row['status_comaker'] == '1') {
-                                                echo 'Approved';
-                                            } elseif ($row['status_comaker'] == '2') {
-                                                echo 'Disapproved';
-                                            } ?>" data-status_processor=" <?php if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
-                                                echo 'Pending';
-                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
-                                                echo 'Checked and Verified';
-                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
-                                                echo 'Disapproved';
-                                            } else {
-                                                echo '';
-                                            } ?>" data-status_manager=" <?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
-                                                echo 'Pending';
-                                            } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
-                                                echo 'Approved';
-                                            } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
-                                                echo 'Disapproved';
-                                            } else {
-                                                echo '';
-                                            } ?>" data-status_cashier=" <?php
-                                            if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
-                                                echo 'Pending';
-                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
-                                                echo 'Approved';
-                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
-                                                echo 'Released';
-                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
-                                                echo 'Disapproved';
-                                            } else {
-                                                echo '';
-                                            } ?>">
+                                            <button class="btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $borrower_name ?>" data-ref_no="<?= $ref_no ?>" data-viewloan_amount="<?= number_format($amount, 2) ?>" data-viewloan_term="<?= $loan_term ?> Months" data-viewloan_type="<?= $loan_type ?>" data-loan_date="<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>" data-purpose="<?= $purpose ?>" data-comaker_name="<?= $comaker_name ?>" data-status_user_name="<?= $user_name ?>" data-comaker_date="<?= ($comaker_date != null) ? 'Date processed: ' .date('M j, Y', strtotime($comaker_date)) : '' ?>" data-processor_date="<?= ($processor_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($processor_date)) : '' ?>" data-manager_date="<?= ($manager_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($manager_date)) : '' ?>" data-cashier_date="<?= ($cashier_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($cashier_date)) : '' ?>" data-status_comaker="<?php if ($row['status_comaker'] == '0') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } elseif ($row['status_comaker'] == '1') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } elseif ($row['status_comaker'] == '2') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?>" data-status_processor=" <?php if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
+                                                                                echo 'Pending';
+                                                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
+                                                                                echo 'Checked and Verified by ' .$user_name;
+                                                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
+                                                                                echo 'Disapproved';
+                                                                            } else {
+                                                                                echo '';
+                                                                            } ?>" data-status_manager=" <?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
+                                                                            echo 'Pending';
+                                                                        } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
+                                                                            echo 'Approved';
+                                                                        } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
+                                                                            echo 'Disapproved';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>" data-status_cashier=" <?php if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
+                                                                            echo 'Pending';
+                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
+                                                                            echo 'Approved';
+                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
+                                                                            echo 'Released';
+                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
+                                                                            echo 'Disapproved';
+                                                                        } else {
+                                                                            echo '';
+                                                                        } ?>">
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 Loan Information
                                             </button>
@@ -320,7 +325,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                         Disapproved by Co-maker
                                                     </a>
                                                 <?php endif; ?>
-                                            <?php } else { '';} ?>
+                                            <?php } else {
+                                                '';
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
@@ -394,28 +401,32 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             <input type="text" id="comaker_name" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Comaker's Status</label>
                             <input type="text" id="status_comaker" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="comaker_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Processor's Status</label>
+                            <label>CC Member's Status</label>
                             <input type="text" id="status_processor" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="processor_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Manager's Status</label>
                             <input type="text" id="status_manager" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="manager_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Cashier's Status</label>
                             <input type="text" id="status_cashier" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="cashier_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                 </div>
@@ -477,6 +488,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             $('#status_processor').val($(this).data('status_processor'));
             $('#status_manager').val($(this).data('status_manager'));
             $('#status_cashier').val($(this).data('status_cashier'));
+            $('#comaker_date').val($(this).data('comaker_date'));
+            $('#processor_date').val($(this).data('processor_date'));
+            $('#manager_date').val($(this).data('manager_date'));
+            $('#cashier_date').val($(this).data('cashier_date'));
 
             // $('#viewloan').modal('show');
         });
@@ -499,7 +514,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?approve_processor=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
+                window.location.href = "../../config/update-status.php?approve_processor=" + status_ref + "&uid=" + <?= $_GET['uid'] ?> + "&aid=" + <?= $_SESSION['adminuser_id'] ?>;
             }
         })
     });
@@ -519,7 +534,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             confirmButtonText: 'Approve'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?approve_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
+                window.location.href = "../../config/update-status.php?approve_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?> + "&aid=" + <?= $_SESSION['adminuser_id'] ?>;
             }
         })
     });

@@ -39,12 +39,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                                <?php
-                                $i = 1;
-                                $user_id = $_SESSION['user_id'];
-                                $query = $conn->query("SELECT * FROM tbl_transaction WHERE borrower_id = $user_id ORDER BY id DESC");
-                                $row = $query->fetch_assoc();
-                                ?>
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Reference No.</th>
@@ -59,13 +53,21 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             </thead>
                             <tbody>
                                 <?php
+                                $i = 1;
+                                $user_id = $_SESSION['user_id'];
                                 $query = $conn->query("SELECT t.*, 
-                                                    s.status_comaker, s.status_processor, s.status_manager, s.status_cashier, concat(c.firstName,' ', c.lastName) as comaker_name
-                                                FROM tbl_transaction t 
-                                                    INNER JOIN tbl_status s ON t.ref_no = s.ref_no
-                                                    INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id 
+                                                    s.*, concat(c.firstName,' ', c.lastName) as comaker_name, concat(u.firstName,' ', u.lastName) as user_name,                                         concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name
+                                                FROM ((((tbl_transaction t 
+                                                    INNER JOIN tbl_status s ON t.ref_no = s.ref_no)
+                                                    LEFT JOIN tbl_users u ON s.processor_id = u.user_id) 
+                                                    INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id)
+                                                    INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
                                                 WHERE t.borrower_id = $user_id ORDER BY id DESC");
                                 while ($row = $query->fetch_assoc()) :
+                                    $comaker_date = $row['comaker_dateprocess'];
+                                    $processor_date = $row['processor_dateprocess'];
+                                    $manager_date = $row['manager_dateprocess'];
+                                    $cashier_date = $row['cashier_dateprocess'];
                                 ?>
                                     <tr>
                                         <td class="text-center"><?php echo $i++; ?></td>
@@ -74,17 +76,17 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                         <td><?php echo date('F j, Y', strtotime($row['loan_date'])); ?></td>
                                         <td class="text-center">
                                             <?php if ($row['status_comaker'] == 0) : ?>
-                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block text-white">Pending</button>
                                             <?php elseif ($row['status_comaker'] == 1) : ?>
                                                 <button type="button" style="pointer-events:none" class="btn btn-success btn-sm btn-block">Approved</button>
                                             <?php elseif ($row['status_comaker'] == 2) : ?>
-                                                <button type="button" style="pointer-events:none" class="btn btn-danger btn-block btn-sm btn-block">Disapproved by: <?= $row['comaker_name'] ?></button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-danger btn-block btn-sm btn-block">Disapproved</button>
                                             <?php endif; ?>
                                         </td>
 
                                         <?php if (($row['status_comaker'] == 1) && ($row['status_processor'] == 0) && ($row['status_manager'] == 0) && ($row['status_cashier'] == 0)) : ?>
                                             <td class="text-center">
-                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block text-white">Pending</button>
                                             </td>
                                             <td class="text-center">
                                             </td>
@@ -96,7 +98,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Checked and Verified</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block text-white">Pending</button>
                                             </td>
                                             <td class="text-center">
                                             </td>
@@ -135,7 +137,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 <button type="button" style="pointer-events:none" class="btn btn-primary btn-sm btn-block">Approved</button>
                                             </td>
                                             <td class="text-center">
-                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block">Pending</button>
+                                                <button type="button" style="pointer-events:none" class="btn btn-warning btn-sm btn-block text-white">Pending</button>
                                             </td>
 
                                         <?php elseif (($row['status_comaker'] == 1) && ($row['status_processor'] == 1) && ($row['status_manager'] == 1) && ($row['status_cashier'] == 1)) : ?>
@@ -176,58 +178,43 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                             <a href="index.php?page=grace-period&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-primary btn-block btn-sm" title="View Grace Period" data-toggle="tooltip" data-placement="top">
                                                 <i class="fas fa-calendar-alt"></i>&nbsp; Grace Period
                                             </a>
-                                            <a href="index.php?page=application-form&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-success btn-block btn-sm" title="Print Application Form" data-toggle="tooltip" data-placement="top">
+                                            <a href="index.php?page=application-form&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-success btn-block btn-sm" title="View Application Form" data-toggle="tooltip" data-placement="top">
                                                 <i class="fa fa-print"></i>&nbsp; Application Form
                                             </a>
-                                            <button class="my-1 btn btn-info btn-sm btn-block viewloan" 
-                                            data-toggle="modal" 
-                                            data-target="#viewloan" 
-                                            data-borrower_name="<?= $_SESSION['firstName'] . ' ' . $_SESSION['lastName'] ?>" 
-                                            data-ref_no="<?= $row['ref_no'] ?>" 
-                                            data-loan_amount="<?= number_format($row['amount'], 2) ?>" 
-                                            data-loan_terms="<?= $row['loan_term'] ?> Months" 
-                                            data-loan_type="<?= $row['loan_type'] ?>" 
-                                            data-loan_date="<?= date('M j, Y - g:i A', strtotime($row['loan_date'])) ?>" 
-                                            data-purpose="<?= $row['purpose'] ?>" 
-                                            data-comaker_name="<?= $row['comaker_name'] ?>" 
-                                            data-status_comaker="<?php if ($row['status_comaker'] == '0') {
-                                                                        echo 'Pending';
-                                                                    } elseif ($row['status_comaker'] == '1') {
-                                                                        echo 'Approved';
-                                                                    } elseif ($row['status_comaker'] == '2') {
-                                                                        echo 'Disapproved';
-                                                                    } ?>" 
-                                            data-status_processor="<?php
-                                                                    if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
-                                                                        echo 'Pending';
-                                                                    } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
-                                                                        echo 'Checked and Verified';
-                                                                    } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
-                                                                        echo 'Disapproved';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>"
-                                            data-status_manager="<?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
-                                                                        echo 'Pending';
-                                                                    } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
-                                                                        echo 'Approved';
-                                                                    } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
-                                                                        echo 'Disapproved';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>" 
-                                            data-status_cashier="<?php if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
-                                                                        echo 'Pending';
-                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
-                                                                        echo 'Approved';
-                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
-                                                                        echo 'Completed';
-                                                                    } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
-                                                                        echo 'Disapproved';
-                                                                    } else {
-                                                                        echo '';
-                                                                    } ?>"
-                                                >
+                                            <button class="my-1 btn btn-info btn-sm btn-block viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $row['borrower_name'] ?>" data-ref_no="<?= $row['ref_no'] ?>" data-loan_amount="<?= number_format($row['amount'], 2) ?>" data-loan_terms="<?= $row['loan_term'] ?> Months" data-comaker_date="<?= ($comaker_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($comaker_date)) : '' ?>" data-processor_date="<?= ($processor_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($processor_date)) : '' ?>" data-manager_date="<?= ($manager_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($manager_date)) : '' ?>" data-cashier_date="<?= ($cashier_date != null) ? 'Date processed: ' . date('M j, Y', strtotime($cashier_date)) : '' ?>" data-loan_type="<?= $row['loan_type'] ?>" data-loan_date="<?= date('M j, Y - g:i A', strtotime($row['loan_date'])) ?>" data-purpose="<?= $row['purpose'] ?>" data-comaker_name="<?= $row['comaker_name'] ?>" data-status_comaker="<?php if ($row['status_comaker'] == '0') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif ($row['status_comaker'] == '1') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif ($row['status_comaker'] == '2') {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } ?>" data-status_processor="<?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Checked and Verified by ' . $row['user_name'];
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo '';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } ?>" data-status_manager="<?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo '';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?>" data-status_cashier="<?php if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Pending';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Approved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Completed';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Disapproved';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo '';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } ?>">
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 View Loan
                                             </button>
@@ -314,6 +301,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
                             <select class="select2" style="width: 100%;" name="comaker_id" id="view_loan_comaker" data-placeholder="Choose Co-maker">
                                 <option value=""></option>
+                                <option value="<?= $_SESSION['user_id'] ?>">-- No Comaker Selected --</option>
                                 <?php
                                 $query = $conn->query("SELECT * FROM tbl_comakers WHERE user_id != $user_id ORDER BY lastName ASC");
                                 while ($row = $query->fetch_assoc()) :
@@ -366,37 +354,37 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Reference Number</label>
                             <input type="text" id="ref_no" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Loan Amount</label>
                             <input type="text" id="loan_amount" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Loan Term</label>
                             <input type="text" id="loan_terms" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Loan Date</label>
                             <input type="text" id="loan_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Loan Type</label>
                             <input type="text" id="loan_type" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Purpose</label>
                             <input type="text" id="purpose" class="form-control form-control-border text-center" disabled>
@@ -408,28 +396,32 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             <input type="text" id="comaker_name" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Comaker's Status</label>
                             <input type="text" id="status_comaker" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="comaker_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Processor's Status</label>
+                            <label>CC Member's Status</label>
                             <input type="text" id="status_processor" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="processor_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Manager's Status</label>
                             <input type="text" id="status_manager" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="manager_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Cashier's Status</label>
                             <input type="text" id="status_cashier" class="form-control form-control-border text-center" disabled>
+                            <input type="text" id="cashier_date" class="form-control form-control-border text-center" disabled>
                         </div>
                     </div>
                 </div>
@@ -487,6 +479,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             $('#status_processor').val($(this).data('status_processor'));
             $('#status_manager').val($(this).data('status_manager'));
             $('#status_cashier').val($(this).data('status_cashier'));
+            $('#comaker_date').val($(this).data('comaker_date'));
+            $('#processor_date').val($(this).data('processor_date'));
+            $('#manager_date').val($(this).data('manager_date'));
+            $('#cashier_date').val($(this).data('cashier_date'));
 
             $('#viewloan').modal('show');
         });
@@ -499,7 +495,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             $('#view_loan_type').val('');
             $('#view_loan_purpose').val('');
             $('#view_loan_comaker').val('');
-            $('#calculation_table').clone();
             $('#addloan').modal('hide');
         });
     });
