@@ -11,11 +11,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link logo-switch">
-        <!-- <img src="https://adminlte.io/docs/3.1//assets/img/logo-xs.png" alt="AdminLTE Docs Logo Small" class="brand-image-xl logo-xs">
-        <img src="https://adminlte.io/docs/3.1//assets/img/logo-xl.png" alt="AdminLTE Docs Logo Large" class="brand-image-xs logo-xl" style="left: 12px"> -->
         <img src="../../assets/dist/img/logo.png" alt="NMSC Logo" class="brand-image logo-xs img-circle elevation-3">
         <span class="brand-text logo-xl"><b>L</b>oan <b>M</b>anagement <b>S</b>ystem</span>
-        <!-- <img src="../../components/img/lms_brand.png" alt="LMS Brand" class="brand-image logo-xl elevation-3" style="width: 215px;"> -->
     </a>
 
     <!-- Sidebar -->
