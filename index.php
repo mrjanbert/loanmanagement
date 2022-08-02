@@ -14,12 +14,12 @@
   <!-- MDB -->
   <link rel="stylesheet" href="components/hometemplate/css/scrollbarhidden.css" />
   <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
-  
+
 </head>
 
 <body>
   <!--Main Navigation-->
-  <header>
+  <section>
     <style>
       /* Height for devices larger than 576px */
       @media (min-width: 992px) {
@@ -91,7 +91,7 @@
       </div>
     </div>
     <!-- Background image -->
-  </header>
+  </section>
   <!--Main Navigation-->
 
   <!--Main layout-->
