@@ -74,7 +74,7 @@ if (isset($_SESSION['user_id'])) {
 		}
 		?>
 		<!-- end of toast -->
-		<div class="container">
+		<div class="container-fluid">
 			<!--Section: Content-->
 			<section class="vh-100">
 				<div class="container h-100">
@@ -83,57 +83,71 @@ if (isset($_SESSION['user_id'])) {
 							<div class="card text-black">
 								<div class="card-body p-md-5">
 									<div class="row justify-content-center">
-										<div class="col-md-10 col-lg-6 col-xl-7 order-2 order-lg-1">
+										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
 											<p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Sign up</p>
 											<p class="text-center h5 mb-5">Create your account</p>
 
 											<form class="mx-1 mx-md-4" action="../../config/create-userclient.php" method="POST" enctype="multipart/form-data">
 
-												<div class="d-flex flex-row align-items-center mb-4">
+												<div class="d-flex flex-row align-items-center mb-2">
 													<i class="fas fa-id-badge fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mr-1">
+													<div class="form-outline flex-fill">
 														<input type="text" name="accountNumber" class="form-control" required />
 														<label class="form-label">ID Number</label>
 													</div>
+												</div>
+												<div class="d-flex flex-row align-items-center mb-3">
+													<i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
 													<div class="form-outline flex-fill mb-0">
 														<input type="text" name="username" class="form-control" required />
 														<label class="form-label">Username</labe l>
 													</div>
 												</div>
-												<div class="d-flex flex-row align-items-center mb-4">
+												<div class="d-flex flex-row align-items-center mb-1 pb-1">
 													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mr-1">
+													<div class="form-outline flex-fill">
 														<input type="text" name="firstName" class="form-control" required />
 														<label class="form-label">First Name</label>
 													</div>
-													<div class="form-outline flex-fill mr-1">
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-1 pb-1">
+													<i class="fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill">
 														<input type="text" name="middleName" class="form-control" />
 														<label class="form-label">Middle Name</label>
 													</div>
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-4 pb-1">
+													<i class="fa-lg me-3 fa-fw"></i>
 													<div class="form-outline flex-fill">
 														<input type="text" name="lastName" class="form-control" required />
 														<label class="form-label">Last Name</label>
 													</div>
 												</div>
 
-												<div class="d-flex flex-row align-items-center mb-4">
-													<i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
+												<div class="d-flex flex-row align-items-center mb-3">
+													<i class="fas fa-map-marker-alt fa-lg me-3 fa-fw"></i>
 													<div class="form-outline flex-fill mb-0">
 														<input type="text" name="address" class="form-control" required />
 														<label class="form-label">Address</label>
 													</div>
 												</div>
 
-												<div class="d-flex flex-row align-items-center mb-4">
+												<div class="d-flex flex-row align-items-center mb-3">
 													<i class="fas fa-birthday-cake fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mr-4">
+													<div class="form-outline flex-fill">
 														<input type="date" name="birthDate" class="form-control" required />
 													</div>
-													<i class="fas fa-mobile-alt fa-lg me-2 fa-fw"></i>
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-3">
+													<i class="fas fa-mobile-alt fa-lg me-3 fa-fw"></i>
 													<div class="form-outline flex-fill">
 														<input type="number" name="contactNumber" maxlength="10" placeholder="Ex. 9123456789" class="form-control" required />
-														<label class="form-label">Mobile Number</label>
+														<label class="form-label">Mobile No.</label>
 													</div>
 												</div>
 
@@ -143,19 +157,22 @@ if (isset($_SESSION['user_id'])) {
 														<input type="file" name="profilePhoto" class="form-control" required />
 													</div>
 												</div>
-												<div class="d-flex flex-row align-items-center mb-4">
+												<div class="d-flex flex-row align-items-center mb-3">
 													<i class="fas fa-lg me-3 fa-fw"></i>
 													<div class="small text-muted mt-2">Upload your Profile Picture</div>
 												</div>
 
-												<div class="d-flex flex-row align-items-center mb-4">
+												<div class="d-flex flex-row align-items-center mb-2">
 													<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mb-0 mr-4">
+													<div class="form-outline flex-fill mb-0">
 														<input type="email" name="email" class="form-control" required />
 														<label class="form-label">Email</labe l>
 													</div>
-													<i class="fas fa-lock fa-lg me-2 fa-fw"></i>
-													<div class="form-outline flex-fill mb-0">
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-3">
+													<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill">
 														<input type="password" name="password" class="form-control" required />
 														<label class="form-label">Password</label>
 													</div>
@@ -170,7 +187,7 @@ if (isset($_SESSION['user_id'])) {
 											</div>
 										</div>
 
-										<div class="col-md-10 col-lg-6 col-xl-5 d-flex align-items-center order-1 order-lg-2">
+										<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 											<img src="../../components/hometemplate/img/signup.webp" class="img-fluid" alt="Sample image">
 										</div>
 									</div>

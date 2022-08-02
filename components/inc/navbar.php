@@ -44,10 +44,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       confirmButtonText: 'Logout'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Logging out',
-          window.location.href = '../../config/logout-user.php'
-        )
+        window.location.href = '../../config/logout-user.php'
       }
     })
   }

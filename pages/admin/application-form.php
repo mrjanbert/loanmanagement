@@ -4,6 +4,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 	exit();
 };
 ?>
+<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != (null))) : ?>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<div class="container-fluid">
@@ -50,3 +52,5 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section><!-- /.content -->
+
+<?php endif ?>

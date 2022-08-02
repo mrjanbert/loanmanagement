@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
 	extract($_POST);
 	$encrypt = md5($password);
 
-	$query = "SELECT * FROM tbl_users WHERE accountNumber = '" . $accountNumber . "' AND password = '" . $encrypt . "'";
+	$query = "SELECT * FROM tbl_users WHERE username = '" . $username . "' AND password = '" . $encrypt . "'";
 	$result = mysqli_query($conn, $query);
 	$count = mysqli_num_rows($result);
 
@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
 		session_start();
 		$_SESSION['adminuser_id'] = $data['user_id'];
 		$_SESSION['accountNumber'] = $data['accountNumber'];
+		$_SESSION['username'] = $data['username'];
 		$_SESSION['firstName'] = $data['firstName'];
 		$_SESSION['middleName'] = $data['middleName'];
 		$_SESSION['lastName'] = $data['lastName'];
@@ -27,7 +28,7 @@ if (isset($_POST['submit'])) {
 		$_SESSION['email'] = $data['email'];
 		$_SESSION['status'] = "<div class=\"preloader flex-column justify-content-center align-items-center\">
         <img class=\"animation__wobble\" src=\"../../components/img/lms_logo.png\" height=\"200\" width=\"200\"></div>";
-		header('location: ../pages/admin/index.php?page=dashboard&usr=' . ($_SESSION['role_name']));
+		header('location: ../pages/admin/index.php?page=dashboard');
 	} else {
 		session_start();
 		$_SESSION['status'] = "<script>const Toast = Swal.mixin({

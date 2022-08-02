@@ -88,8 +88,8 @@ if (isset($_SESSION['adminuser_id'])) {
                                 </formaction>
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
-                                    <input type="text" name="accountNumber" class="form-control form-control-lg" />
-                                    <label class="form-label">ID Number</label>
+                                    <input type="text" name="username" class="form-control form-control-lg" />
+                                    <label class="form-label">Username</label>
                                 </div>
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">

@@ -4,6 +4,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     exit();
 };
 ?>
+<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != (null))) : ?>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -68,7 +70,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                             <a class="btn btn-info btn-sm my-1 view_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#view_borrower" data-info_idnumber="<?= $accountNumber ?>" data-info_name="<?= $name ?>" data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" data-info_age="<?= $row['age']; ?>" data-info_mobilenumber="<?= $row['contactNumber']; ?>" data-info_email="<?= $row['email']; ?>" data-info_address="<?= $row['address']; ?>" data-info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" data-info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                 View Info
                                             </a>
-                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>&usr=<?= ($_SESSION['role_name']) ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
+                                            <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
 
                                             <!-- Action for Admin only -->
                                             <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
@@ -104,57 +106,57 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <div class="row">
                         <div class="col-md-6 d-flex justify-content-center">
                             <div class="image">
-                                <img id="info_image" class="img-circle elevation-3" alt="User Image" style="max-width: 250px; height: 250px;">
+                                <img id="info_image" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
                             </div>
                         </div>
                         <div class="col-md-6 text-center">
                             <div class="form-group">
                                 <label>ID Number:</label>
-                                <input type="text" id="info_idnumber" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_idnumber" class="form-control form-control-border text-center" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Full Name:</label>
-                                <input type="text" id="info_name" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_name" class="form-control form-control-border text-center" readonly>
                             </div>
                             <div class="form-group">
                                 <label>Email:</label>
-                                <input type="text" id="info_email" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_email" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
                             <div class="form-group">
                                 <label>Age:</label>
-                                <input type="text" id="info_age" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_age" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
                             <div class="form-group">
                                 <label>Contact Number:</label>
-                                <input type="text" id="info_mobilenumber" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_mobilenumber" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-4 text-center">
                             <div class="form-group">
                                 <label>Membership Status:</label>
-                                <input type="text" id="info_membership" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_membership" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-12 text-center">
                             <div class="form-group">
                                 <label>Address:</label>
-                                <input type="text" id="info_address" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_address" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-6 text-center">
                             <div class="form-group">
                                 <label>Birth Date:</label>
-                                <input type="text" id="info_birthdate" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_birthdate" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                         <div class="col-md-6 text-center">
                             <div class="form-group">
                                 <label>Date Registered:</label>
-                                <input type="text" id="info_usercreated" class="form-control form-control-border text-center" disabled>
+                                <input type="text" id="info_usercreated" class="form-control form-control-border text-center" readonly>
                             </div>
                         </div>
                     </div>
@@ -208,3 +210,4 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         });
     });
 </script>
+<?php endif; ?>

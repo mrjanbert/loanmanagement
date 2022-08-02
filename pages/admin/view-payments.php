@@ -4,6 +4,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     exit();
 };
 ?>
+<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != (null))) : ?>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -144,7 +146,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>OR Number <small class="text-red">*</small></label>
-                                    <input type="number" class="form-control form-control-border" name="receipt_no" placeholder="Enter OR #" required>
+                                    <input type="number" class="form-control form-control-border" maxlength="10" name="receipt_no" placeholder="Enter OR #" required>
                                 </div>
                             </div>
                         </div>
@@ -216,3 +218,5 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         </form><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
+
+<?php endif ?>

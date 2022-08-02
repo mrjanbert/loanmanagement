@@ -47,7 +47,7 @@ if (isset($_GET['approve_processor'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }
 
 if (isset($_GET['disapprove_manager'])) {
@@ -63,7 +63,7 @@ if (isset($_GET['disapprove_manager'])) {
         text: 'Loan Disapproved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }
 
 if (isset($_GET['approve_manager'])) {
@@ -79,7 +79,7 @@ if (isset($_GET['approve_manager'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }
 
 if (isset($_GET['disapprove_cashier'])) {
@@ -95,7 +95,7 @@ if (isset($_GET['disapprove_cashier'])) {
         text: 'Loan Disapproved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }
 
 if (isset($_GET['release_cashier'])) {
@@ -110,7 +110,7 @@ if (isset($_GET['release_cashier'])) {
         text: 'Cash Released'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }
 
 if (isset($_GET['approve_cashier'])) {
@@ -125,5 +125,5 @@ if (isset($_GET['approve_cashier'])) {
         text: 'Loan Approved'
     })
     </script>";
-    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid'] . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-loans&uid=' . $_GET['uid']);
 }

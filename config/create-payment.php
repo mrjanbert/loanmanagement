@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
         text: 'Payment added'
       })
       </script>";
-        header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no . '&usr=' . ($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
     else :
         session_start();
         $_SESSION['status'] = "<script>
@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
         text: 'Payment not added.'
       })
       </script>";
-        header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no . '&usr=' . ($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
     endif;
 }
 
@@ -101,7 +101,7 @@ if(isset($_POST['addpenalty'])) {
         text: 'Payment added'
       })
       </script>";
-    header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
   else :
     session_start();
     $_SESSION['status'] = "<script>
@@ -111,6 +111,6 @@ if(isset($_POST['addpenalty'])) {
         text: 'Payment not added.'
       })
       </script>";
-    header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no . '&usr=' . ($_SESSION['role_name']));
+    header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
   endif;
 }

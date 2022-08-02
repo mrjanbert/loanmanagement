@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
                     text: 'User role updated.'
                 })
             </script>";
-        header('location: ../pages/admin/index.php?page=user-roles&usr=' . ($_SESSION['role_name']));
+        header('location: ../pages/admin/index.php?page=user-roles');
     endif;
 
     // elseif ($checkrole->num_rows > 0 ) :

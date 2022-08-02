@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 24, 2022 at 11:48 AM
+-- Generation Time: Aug 01, 2022 at 10:04 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -25,113 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comakers`
---
-
-DROP TABLE IF EXISTS `comakers`;
-CREATE TABLE IF NOT EXISTS `comakers` (
-  `comaker_id` int(11) NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(255) NOT NULL,
-  `lastName` varchar(255) NOT NULL,
-  PRIMARY KEY (`comaker_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `comakers`
---
-
-INSERT INTO `comakers` (`comaker_id`, `firstName`, `lastName`) VALUES
-(1, 'Erlinda', 'Pantallao'),
-(2, 'Joel', 'Dagot'),
-(3, 'Fe', 'Maaba'),
-(4, 'Edison', 'Clamonte'),
-(5, 'Jennelyn', 'Abdulsamad'),
-(6, 'Dionalyn', 'Gumacial'),
-(7, 'Vinus', 'Mansueto'),
-(8, 'Genevive', 'Dagot'),
-(9, 'Vhenlea Jay', 'Jumamil'),
-(10, 'Milben', 'Jumamil'),
-(11, 'Richly', 'Tagbacaula'),
-(12, 'Fe Sharon', 'Tubal'),
-(13, 'Wilson', 'Nabua'),
-(14, 'Florante', 'Requina'),
-(15, 'Marilou', 'Abatayo'),
-(16, 'Jonny Mark', 'Bolante'),
-(17, 'Bien', 'Saludo'),
-(18, 'Charlie', 'Miparanum'),
-(19, 'Lito', 'Nueva'),
-(20, 'Jorge', 'Basilisco'),
-(21, 'Ruth', 'Juanillo');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `loan_plans`
---
-
-DROP TABLE IF EXISTS `loan_plans`;
-CREATE TABLE IF NOT EXISTS `loan_plans` (
-  `plan_id` int(10) NOT NULL AUTO_INCREMENT,
-  `plan_term` int(10) NOT NULL,
-  `interest_percentage` int(10) NOT NULL,
-  `mode_of_payment` varchar(100) NOT NULL COMMENT 'Monthly or 15th/30th',
-  PRIMARY KEY (`plan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `loan_plans`
---
-
-INSERT INTO `loan_plans` (`plan_id`, `plan_term`, `interest_percentage`, `mode_of_payment`) VALUES
-(1, 6, 0, 'Monthly'),
-(2, 3, 0, '15th/30th'),
-(3, 0, 0, 'Monthly'),
-(4, 0, 0, '15th/30th');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `loan_types`
---
-
-DROP TABLE IF EXISTS `loan_types`;
-CREATE TABLE IF NOT EXISTS `loan_types` (
-  `loantype_id` int(11) NOT NULL AUTO_INCREMENT,
-  `typeofLoan` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  PRIMARY KEY (`loantype_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `loan_types`
---
-
-INSERT INTO `loan_types` (`loantype_id`, `typeofLoan`, `description`) VALUES
-(1, 'Small business', 'starting business'),
-(2, 'Insurance', 'Insurance Loan'),
-(7, 'Loan Test', 'testing add loan type');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `module_permission`
---
-
-DROP TABLE IF EXISTS `module_permission`;
-CREATE TABLE IF NOT EXISTS `module_permission` (
-  `mod_id` int(2) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL,
-  `mod_name` varchar(255) NOT NULL,
-  `mod_create` tinyint(1) NOT NULL,
-  `mod_read` tinyint(1) NOT NULL,
-  `mod_update` tinyint(1) NOT NULL,
-  `mod_delete` tinyint(1) NOT NULL,
-  PRIMARY KEY (`mod_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_borrowers`
 --
 
@@ -149,44 +42,21 @@ CREATE TABLE IF NOT EXISTS `tbl_borrowers` (
   `contactNumber` varchar(50) NOT NULL,
   `userCreated` datetime NOT NULL DEFAULT current_timestamp(),
   `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `membership` varchar(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_borrowers`
 --
 
-INSERT INTO `tbl_borrowers` (`user_id`, `accountNumber`, `firstName`, `middleName`, `lastName`, `address`, `age`, `birthDate`, `profilePhoto`, `contactNumber`, `userCreated`, `email`, `password`, `membership`) VALUES
-(8, '2018-0001', 'Fe Sharon', ' ', 'Tubal', 'Tangub City', 30, '2022-07-01', '8870avatar2.png', '+639123456789', '2022-07-10 21:38:18', 'fesharon@email.com', 'dGVzdA==', '1'),
-(9, '2018-0002', 'Wilson', 'C', 'Nabua', 'Capalaran, Tangub City', 30, '2022-07-02', '6299avatar4.png', '+639123456987', '2022-07-10 21:39:56', 'wilson@email.com', 'dGVzdA==', '1'),
-(10, '2018-0003', 'Florante', '', 'Requina', 'Tangub City', 30, '2022-07-03', '3693avatar.png', '+639123456789', '2022-07-10 21:41:07', 'florante@email.com', 'dGVzdA==', '1'),
-(11, '2018-0004', 'Marilou', 'M', 'Abatayo', 'Tangub City', 30, '2022-07-04', '2206avatar3.png', '+639123456789', '2022-07-10 21:42:25', 'marilou@email.com', 'dGVzdA==', '1'),
-(12, '2018-0005', 'Johnny Mark', '', 'Bolante', 'Tangub Cityy', 30, '2022-07-05', '5888profile.png', '+639123456789', '2022-07-13 12:14:07', 'johnnymark@email.com', 'dGVzdA==', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_charges`
---
-
-DROP TABLE IF EXISTS `tbl_charges`;
-CREATE TABLE IF NOT EXISTS `tbl_charges` (
-  `charges_id` int(10) NOT NULL AUTO_INCREMENT,
-  `charges_type` varchar(255) NOT NULL,
-  `charge_percentage` float NOT NULL,
-  PRIMARY KEY (`charges_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_charges`
---
-
-INSERT INTO `tbl_charges` (`charges_id`, `charges_type`, `charge_percentage`) VALUES
-(1, 'Service Charge', 1),
-(2, 'Other Charges', 1),
-(11, 'Notarial Fees', 1);
+INSERT INTO `tbl_borrowers` (`user_id`, `accountNumber`, `firstName`, `middleName`, `lastName`, `address`, `age`, `birthDate`, `profilePhoto`, `contactNumber`, `userCreated`, `email`, `username`, `password`, `membership`) VALUES
+(13, '2018-0001', 'Fe Sharon', 'Test', 'Tubal', 'Capalaran, Tangub City', 33, '1989-07-12', '8870avatar2.png', '+639123456789', '2022-07-24 23:45:59', 'fesharon@email.com', 'fesharon', '098f6bcd4621d373cade4e832627b4f6', '1'),
+(16, '2018-0002', 'Wilson', 'C', 'Nabua', 'Addr, Mis. Occ', 38, '1983-10-20', '16586302803828sampe_profile.jpg', '+639123456789', '2022-07-25 01:02:38', 'wilson@email.com', 'wilson', '098f6bcd4621d373cade4e832627b4f6', '1'),
+(17, '2018-0003', 'Janbert', 'Recimulo', 'Gabica', 'Addr, Mis. Occc', 0, '2022-07-28', '4081profile-janbert.jpg', '+639300344555', '2022-07-29 15:26:37', 'janbert.gabica@nmsc.edu.ph', 'janbert', '098f6bcd4621d373cade4e832627b4f6', '1'),
+(18, '2018-0004', 'Florante', 'R', 'Requina', 'Addr, Mis. Occ', 41, '1980-12-15', '1659357360IMG_0349.JPG', '+639987654321', '2022-08-01 14:12:36', 'florante@email.com', 'florante', '098f6bcd4621d373cade4e832627b4f6', '0');
 
 -- --------------------------------------------------------
 
@@ -201,17 +71,31 @@ CREATE TABLE IF NOT EXISTS `tbl_comakers` (
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
   PRIMARY KEY (`comaker_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_comakers`
 --
 
 INSERT INTO `tbl_comakers` (`comaker_id`, `user_id`, `firstName`, `lastName`) VALUES
-(1, 9, 'Wilson', 'Nabua'),
-(2, 8, 'Fe Sharon', 'Tubal'),
-(3, 11, 'Marilou', 'Abatayo'),
-(4, 10, 'Florante', 'Requina');
+(9, 16, 'Wilson', 'Nabua'),
+(8, 13, 'Fe Sharon', 'Tubal'),
+(7, 17, 'Janbert', 'Gabica');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_monthlypayment`
+--
+
+DROP TABLE IF EXISTS `tbl_monthlypayment`;
+CREATE TABLE IF NOT EXISTS `tbl_monthlypayment` (
+  `monthly_id` int(11) NOT NULL AUTO_INCREMENT,
+  `payment_id` int(100) NOT NULL,
+  `monthly_date` date NOT NULL,
+  `monthly_amount` int(50) NOT NULL,
+  PRIMARY KEY (`monthly_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -223,26 +107,21 @@ DROP TABLE IF EXISTS `tbl_payments`;
 CREATE TABLE IF NOT EXISTS `tbl_payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ref_no` int(100) NOT NULL,
-  `receipt_no` int(100) NOT NULL,
-  `payee` varchar(255) NOT NULL,
+  `receipt_no` int(100) DEFAULT NULL,
+  `payee` varchar(255) DEFAULT NULL,
   `penalty` float NOT NULL DEFAULT 0,
-  `payment_amount` float NOT NULL,
+  `payment_amount` float DEFAULT NULL,
   `payment_balance` float NOT NULL,
-  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `payment_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_payments`
 --
 
 INSERT INTO `tbl_payments` (`id`, `ref_no`, `receipt_no`, `payee`, `penalty`, `payment_amount`, `payment_balance`, `payment_date`) VALUES
-(3, 143625211, 1658370141, 'Fe Sharon Tubal', 0, 300, 2230, '2022-07-21 22:22:21'),
-(4, 147229787, 13123141, 'Fe Sharon Tubal', 0, 360, 3000, '2022-07-23 11:45:35'),
-(5, 147229787, 2312323, 'Fe Sharon Tubal', 0, 300, 3060, '2022-07-23 11:45:47'),
-(6, 143625211, 21312323, 'Fe Sharon Tubal', 0, 200, 2330, '2022-07-23 11:58:02'),
-(22, 148239874, 123, 'Fe Sharon Tubal', 0, 570, 3000, '2022-07-24 00:37:28'),
-(23, 148239874, 12344, 'Fe Sharon Tubal', 0, 1000, 2000, '2022-07-24 00:37:36');
+(48, 1659276478, 123456, 'Fe Sharon Tubal', 0, 3000, 8200, '2022-07-31 14:17:51');
 
 -- --------------------------------------------------------
 
@@ -255,34 +134,23 @@ CREATE TABLE IF NOT EXISTS `tbl_status` (
   `status_id` int(10) NOT NULL AUTO_INCREMENT,
   `ref_no` int(50) NOT NULL,
   `processor_id` int(50) NOT NULL DEFAULT 0,
-  `manager_id` int(50) NOT NULL DEFAULT 0,
-  `cashier_id` int(50) NOT NULL DEFAULT 0,
   `status_comaker` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved, 2 = denied',
-  `status_processor` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved, 3 = denied',
+  `comaker_dateprocess` date DEFAULT NULL,
+  `status_processor` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved',
+  `processor_dateprocess` date DEFAULT NULL,
   `status_manager` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved, 3 = denied',
+  `manager_dateprocess` date DEFAULT NULL,
   `status_cashier` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved, 2 = released, 3 = denied',
+  `cashier_dateprocess` date DEFAULT NULL,
   PRIMARY KEY (`status_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_status`
 --
 
-INSERT INTO `tbl_status` (`status_id`, `ref_no`, `processor_id`, `manager_id`, `cashier_id`, `status_comaker`, `status_processor`, `status_manager`, `status_cashier`) VALUES
-(35, 145074231, 0, 0, 0, 2, 0, 0, 0),
-(34, 146993126, 0, 0, 0, 0, 0, 0, 0),
-(33, 146592935, 0, 0, 0, 1, 1, 1, 0),
-(32, 142251438, 0, 0, 0, 0, 0, 0, 0),
-(31, 144158979, 0, 0, 0, 0, 0, 0, 0),
-(30, 148200369, 0, 0, 0, 0, 0, 0, 0),
-(29, 143625211, 0, 0, 0, 1, 1, 1, 2),
-(28, 147229787, 0, 0, 0, 1, 1, 1, 2),
-(36, 147708791, 0, 0, 0, 0, 0, 0, 0),
-(37, 145400459, 0, 0, 0, 1, 1, 1, 1),
-(38, 146469664, 0, 0, 0, 2, 0, 0, 0),
-(39, 148239874, 0, 0, 0, 1, 1, 1, 1),
-(40, 1658333152, 0, 0, 0, 1, 1, 1, 0),
-(41, 1658333168, 0, 0, 0, 1, 0, 0, 0);
+INSERT INTO `tbl_status` (`status_id`, `ref_no`, `processor_id`, `status_comaker`, `comaker_dateprocess`, `status_processor`, `processor_dateprocess`, `status_manager`, `manager_dateprocess`, `status_cashier`, `cashier_dateprocess`) VALUES
+(53, 1659276478, 10, 1, '2022-07-31', 1, '2022-07-31', 1, '2022-07-31', 2, '2022-07-31');
 
 -- --------------------------------------------------------
 
@@ -308,23 +176,14 @@ CREATE TABLE IF NOT EXISTS `tbl_transaction` (
   `purpose` varchar(255) NOT NULL,
   `loan_date` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_transaction`
 --
 
 INSERT INTO `tbl_transaction` (`id`, `ref_no`, `borrower_id`, `comaker_id`, `status_ref`, `amount`, `loan_term`, `interest`, `total_interest`, `monthly`, `principal`, `balance`, `loan_type`, `purpose`, `loan_date`) VALUES
-(81, 147229787, 8, 8, 147229787, 3000, 12, 30, 360, 280, 250, 3360, 'Personal Loan', 'Testing', '2022-07-16 00:07:55'),
-(82, 143625211, 8, 8, 143625211, 2300, 10, 23, 230, 253, 230, 2530, 'Personal Loan', 'Allowance', '2022-07-16 18:58:12'),
-(86, 146592935, 9, 8, 146592935, 5000, 12, 50, 600, 466.667, 416.667, 5600, 'Personal Loan', 'Insurance', '2022-07-16 19:30:01'),
-(87, 146993126, 9, 9, 146993126, 12000, 10, 120, 1200, 1320, 1200, 13200, 'Loan', 'Testing', '2022-07-16 19:31:19'),
-(88, 145074231, 12, 8, 145074231, 10000, 9, 100, 900, 1211.11, 1111.11, 10900, 'Personal Loan', 'Testing', '2022-07-16 19:38:33'),
-(90, 145400459, 12, 11, 145400459, 23000, 12, 230, 2760, 2146.67, 1916.67, 25760, 'Personal Loan', 'Testing', '2022-07-18 22:19:47'),
-(91, 146469664, 12, 11, 146469664, 230000, 12, 2300, 27600, 21466.7, 19166.7, 257600, 'Testing loan', 'Testing', '2022-07-18 22:20:19'),
-(93, 148239874, 12, 9, 148239874, 3500, 2, 35, 70, 1785, 1750, 3570, 'Personal Loan', 'Insurance', '2022-07-19 01:00:57'),
-(94, 1658333152, 10, 10, 1658333152, 2000, 3, 20, 60, 686.667, 666.667, 2060, 'Loan', 'Testing', '2022-07-21 00:05:52'),
-(95, 1658333168, 10, 9, 1658333168, 12121, 424, 121.21, 51393, 149.797, 28.5873, 63514, 'Loan', 'Testing', '2022-07-21 00:06:08');
+(107, 1659276478, 13, 13, 1659276478, 10000, 12, 100, 1200, 933.333, 833.333, 11200, 'Loan', 'Insurance', '2022-07-31 22:07:58');
 
 -- --------------------------------------------------------
 
@@ -356,26 +215,12 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`user_id`, `accountNumber`, `firstName`, `middleName`, `lastName`, `address`, `age`, `birthDate`, `profilePhoto`, `contactNumber`, `userCreated`, `email`, `password`, `role_name`) VALUES
-(6, '2018-0123', 'Test', 'Test', 'Test', 'Test', 22, '1999-10-11', 'th.jpg', '+639300344555', '2022-06-24 15:37:51', 'test@email.com', 'dGVzdA==', 'Account Testing'),
-(7, '2018-0560', 'Janbert', 'Recimulo', 'Gabica', 'Capalaran, Tangub City', 22, '1999-10-11', 'sampe_profile.jpg', '+639300344555', '2022-06-25 11:58:49', 'janbert.gabica@nmsc.edu.ph', 'MjAxOC0wNTYw', 'Admin'),
-(8, '2018-0450', 'Nico', 'Fuentes', 'Sambiog', 'Banadero, Ozamis City', 22, '2000-06-15', 'Sambiog Fuentes Nico.jpg', '+639987654321', '2022-07-03 16:59:36', 'manager@email.com', 'bWFuYWdlcg==', 'Manager'),
-(9, '2018-0352', 'Gann Deryl', 'Canino', 'Balili', 'Molicay, Ozamis City', 23, '2000-05-15', '3088IMG_0699.JPG', '+631235464848', '2022-07-03 17:55:47', 'cashier@email.com', 'Y2FzaGllcg==', 'Cashier'),
-(10, '2018-0143', 'Geque', 'Lapar', 'Aguaviva', 'Maquilao, Tangub City', 22, '1999-12-25', '7135jeke lingi janbert.png', '+631254978985', '2022-07-03 18:07:36', 'processor@email.com', 'cHJvY2Vzc29y', 'Processor'),
-(13, '2018-0123', 'Popol', 'And', 'Kupa', 'Addr, Mis. Occc', 12, '1999-11-10', '2253user7-128x128.jpg', '+639456161988', '2022-07-18 20:28:47', 'processor2@email.com', 'cHJvY2Vzc29y', 'Processor');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_roles`
---
-
-DROP TABLE IF EXISTS `user_roles`;
-CREATE TABLE IF NOT EXISTS `user_roles` (
-  `role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `role_name` varchar(100) NOT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+(6, '2018-0123', 'Test', 'Test', 'Test', 'Test', 22, '1999-10-11', 'th.jpg', '+639300344555', '2022-06-24 15:37:51', 'test@email.com', '098f6bcd4621d373cade4e832627b4f6', 'Account Testing'),
+(7, '2018-0560', 'Janbert', 'Recimulo', 'Gabica', 'Capalaran, Tangub City', 22, '1999-10-11', 'sampe_profile.jpg', '+639300344555', '2022-06-25 11:58:49', 'janbert.gabica@nmsc.edu.ph', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
+(8, '2018-0450', 'Nico', 'Fuentes', 'Sambiog', 'Banadero, Ozamis City', 22, '2000-06-15', 'Sambiog Fuentes Nico.jpg', '+639987654321', '2022-07-03 16:59:36', 'manager@email.com', '1d0258c2440a8d19e716292b231e3190', 'Manager'),
+(9, '2018-0352', 'Gann Deryl', 'Canino', 'Balili', 'Molicay, Ozamis City', 23, '2000-05-15', '3088IMG_0699.JPG', '+631235464848', '2022-07-03 17:55:47', 'cashier@email.com', '6ac2470ed8ccf204fd5ff89b32a355cf', 'Cashier'),
+(10, '2018-0143', 'Geque', 'Lapar', 'Aguaviva', 'Maquilao, Tangub City', 22, '1999-12-25', '7135jeke lingi janbert.png', '+631254978985', '2022-07-03 18:07:36', 'processor@email.com', '649ce0650379a0aaff63c1ce257350de', 'Processor'),
+(13, '2018-0123', 'Popol', 'And', 'Kupa', 'Addr, Mis. Occc', 12, '1999-11-10', '2253user7-128x128.jpg', '+639456161988', '2022-07-18 20:28:47', 'processor2@email.com', '649ce0650379a0aaff63c1ce257350de', 'Processor');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
