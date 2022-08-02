@@ -13,18 +13,19 @@ if (isset($_SESSION['user_id'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<title>Register :: NMSCST Loan Management System</title>
-	<link rel="icon" type="image/x-icon" href="https://www.nmsc.edu.ph/application/themes/nmsc/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
 	<!-- Google Fonts Roboto -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 
 	<!-- Theme style -->
-	<link rel="stylesheet" href="../../assets/dist/css/adminlte.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" />
+
 
 	<!-- SweetAlert2 -->
-	<link rel="stylesheet" href="../../assets/plugins/sweetalert2/sweetalert2.min.css">
-	<script src="../../assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.js"></script>
 
 	<!-- MDB -->
 	<link rel="stylesheet" href="../../components/hometemplate/css/mdb.min.css" />
@@ -39,7 +40,7 @@ if (isset($_SESSION['user_id'])) {
 	<nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block">
 		<div class="container-fluid">
 			<!-- Navbar brand -->
-			<a class="navbar-brand nav-link" target="_blank" href="#">
+			<a class="navbar-brand nav-link" href="#">
 				<strong>LMS</strong>
 			</a>
 			<button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -205,7 +206,8 @@ if (isset($_SESSION['user_id'])) {
 	<?php unset($_SESSION["status"]); ?>
 
 	<!-- jQuery -->
-	<script src="../../assets/plugins/jquery/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 	<!-- MDB -->
 	<script type="text/javascript" src="../../components/hometemplate/js/mdb.min.js"></script>
 	<!-- Custom scripts -->
