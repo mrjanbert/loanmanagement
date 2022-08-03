@@ -54,7 +54,7 @@
           <ul class="navbar-nav d-flex flex-row">
             <!-- Icons -->
             <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="login.php" rel="nofollow" target="_blank">
+              <a class="nav-link" href="login.php" rel="nofollow">
                 <i class="fas fa-user-shield"></i>
               </a>
             </li>

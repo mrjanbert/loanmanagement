@@ -67,14 +67,41 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 }
                                                 ?></td>
                                             <td class="text-center">
-                                                <a class="btn btn-info btn-sm my-1 view_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#view_borrower" data-info_idnumber="<?= $accountNumber ?>" data-info_name="<?= $name ?>" data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" data-info_age="<?= $row['age']; ?>" data-info_mobilenumber="<?= $row['contactNumber']; ?>" data-info_email="<?= $row['email']; ?>" data-info_address="<?= $row['address']; ?>" data-info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" data-info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
+                                                <a class="btn btn-info btn-sm my-1 view_borrower" 
+                                                href="javascript:void(0);" 
+                                                data-toggle="modal" 
+                                                data-target="#view_borrower"
+                                                data-info_idnumber="<?= $accountNumber ?>" 
+                                                data-info_name="<?= $name ?>" 
+                                                <?php if($row['profilePhoto'] != null) { ?> data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-info_image="../../assets/dist/img/profile.png" <?php } ?>  
+                                                data-info_age="<?= $row['age']; ?>" 
+                                                data-info_mobilenumber="<?= $row['contactNumber']; ?>" 
+                                                data-info_email="<?= $row['email']; ?>" 
+                                                data-info_address="<?= $row['address']; ?>" 
+                                                data-info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" 
+                                                data-info_birthdate="<?= date('F j, Y', $birthDate); ?>" 
+                                                data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                     View Info
                                                 </a>
                                                 <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
 
                                                 <!-- Action for Admin only -->
                                                 <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                                    <a class="btn btn-success btn-sm my-1 update_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#update_borrower" data-update_userid="<?= $row['user_id'] ?>" data-update_info_idnumber="<?= $accountNumber ?>" data-update_info_name="<?= $name ?>" data-update_info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" data-update_info_age="<?= $row['age']; ?>" data-update_info_mobilenumber="<?= $row['contactNumber']; ?>" data-update_info_email="<?= $row['email']; ?>" data-update_info_address="<?= $row['address']; ?>" data-update_info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" data-update_info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-update_info_usercreated="<?= date('F j, Y', $userCreated); ?>">
+                                                    <a class="btn btn-success btn-sm my-1 update_borrower" 
+                                                    href="javascript:void(0);" 
+                                                    data-toggle="modal" 
+                                                    data-target="#update_borrower" 
+                                                    data-update_userid="<?= $row['user_id'] ?>" 
+                                                    data-update_info_idnumber="<?= $accountNumber ?>" 
+                                                    data-update_info_name="<?= $name ?>" 
+                                                    <?php if($row['profilePhoto'] != null) { ?> data-update_info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-update_info_image="../../assets/dist/img/profile.png" <?php } ?>  
+                                                    data-update_info_age="<?= $row['age']; ?>" 
+                                                    data-update_info_mobilenumber="<?= $row['contactNumber']; ?>" 
+                                                    data-update_info_email="<?= $row['email']; ?>" 
+                                                    data-update_info_address="<?= $row['address']; ?>" 
+                                                    data-update_info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" 
+                                                    data-update_info_birthdate="<?= date('F j, Y', $birthDate); ?>" 
+                                                    data-update_info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <a href="javascript:void(0);" class="btn btn-danger btn-sm delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>"><i class="fas fa-trash"></i></a>

@@ -27,7 +27,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             <!-- Sidebar user panel (optional) -->
             <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img role="button" src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                    <?php if ($_SESSION['profilePhoto'] == null) { ?>
+                        <img role="button" src="../../assets/dist/img/profile.png" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                    <?php } else { ?>
+                        <img role="button" src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                    <?php } ?>
                 </div>
                 <div class="info">
                     <a role="button" class="d-block">
@@ -83,7 +87,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="row">
                             <div class="col-md-6 d-flex justify-content-center">
                                 <div class="image">
-                                    <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                                    <?php if ($_SESSION['profilePhoto'] == null) { ?>
+                                        <img src="../../assets/dist/img/profile.png" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                                    <?php } else { ?>
+                                        <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="col-md-6 text-center">

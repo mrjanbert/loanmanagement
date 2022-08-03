@@ -72,7 +72,7 @@ if (isset($_SESSION['adminuser_id'])) {
         <!-- end of toast -->
         <div class="container">
             <!--Section: Content-->
-            <section class="vh-100">
+            <section>
                 <div class="container py-5 h-100">
                     <div class="row d-flex align-items-center justify-content-center h-100">
                         <div class="col-md-8 col-lg-7 col-xl-6">

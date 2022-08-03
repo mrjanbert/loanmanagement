@@ -81,77 +81,76 @@ if (isset($_SESSION['user_id'])) {
 				<div class="container h-100">
 					<div class="row d-flex justify-content-center align-items-center h-100">
 						<div class="col-lg-12 col-xl-11">
-							<div class="card text-black">
-								<div class="card-body p-md-5">
-									<div class="row justify-content-center">
-										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+							<div class="row justify-content-center">
+								<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-											<p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Sign up</p>
-											<p class="text-center h5 mb-5">Create your account</p>
+									<p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Sign up</p>
+									<p class="text-center h5 mb-5">Create your account</p>
 
-											<form class="mx-1 mx-md-4" action="../../config/create-userclient.php" method="POST" enctype="multipart/form-data">
+									<form class="mx-1 mx-md-4" action="../../config/create-userclient.php" method="POST">
 
-												<div class="d-flex flex-row align-items-center mb-2">
-													<i class="fas fa-id-badge fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="text" name="accountNumber" class="form-control" required />
-														<label class="form-label">ID Number</label>
-													</div>
-												</div>
-												<div class="d-flex flex-row align-items-center mb-3">
-													<i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mb-0">
-														<input type="text" name="username" class="form-control" required />
-														<label class="form-label">Username</labe l>
-													</div>
-												</div>
-												<div class="d-flex flex-row align-items-center mb-1 pb-1">
-													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="text" name="firstName" class="form-control" required />
-														<label class="form-label">First Name</label>
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-2">
+											<i class="fas fa-id-badge fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="text" name="accountNumber" class="form-control" required />
+												<label class="form-label">ID Number</label>
+											</div>
+										</div>
+										<div class="d-flex flex-row align-items-center mb-3">
+											<i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input type="text" name="username" class="form-control" required />
+												<label class="form-label">Username</labe l>
+											</div>
+										</div>
+										<div class="d-flex flex-row align-items-center mb-1 pb-1">
+											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="text" name="firstName" class="form-control" required />
+												<label class="form-label">First Name</label>
+											</div>
+										</div>
 
-												<div class="d-flex flex-row align-items-center mb-1 pb-1">
-													<i class="fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="text" name="middleName" class="form-control" />
-														<label class="form-label">Middle Name</label>
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-1 pb-1">
+											<i class="fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="text" name="middleName" class="form-control" />
+												<label class="form-label">Middle Name</label>
+											</div>
+										</div>
 
-												<div class="d-flex flex-row align-items-center mb-4 pb-1">
-													<i class="fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="text" name="lastName" class="form-control" required />
-														<label class="form-label">Last Name</label>
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-4 pb-1">
+											<i class="fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="text" name="lastName" class="form-control" required />
+												<label class="form-label">Last Name</label>
+											</div>
+										</div>
 
-												<div class="d-flex flex-row align-items-center mb-3">
-													<i class="fas fa-map-marker-alt fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mb-0">
-														<input type="text" name="address" class="form-control" required />
-														<label class="form-label">Address</label>
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-3">
+											<i class="fas fa-map-marker-alt fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input type="text" name="address" class="form-control" required />
+												<label class="form-label">Address</label>
+											</div>
+										</div>
 
-												<div class="d-flex flex-row align-items-center mb-3">
-													<i class="fas fa-birthday-cake fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="date" name="birthDate" class="form-control" required />
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-3">
+											<i class="fas fa-birthday-cake fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="date" name="birthDate" class="form-control" required />
+											</div>
+										</div>
 
-												<div class="d-flex flex-row align-items-center mb-3">
-													<i class="fas fa-mobile-alt fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="number" name="contactNumber" maxlength="10" placeholder="Ex. 9123456789" class="form-control" required />
-														<label class="form-label">Mobile No.</label>
-													</div>
-												</div>
+										<div class="d-flex flex-row align-items-center mb-3">
+											<i class="fas fa-mobile-alt fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="number" name="contactNumber" maxlength="10" placeholder="Ex. 9123456789" class="form-control" required />
+												<label class="form-label">Mobile No.</label>
+											</div>
+										</div>
 
+										<!-- 
 												<div class="d-flex flex-row align-items-center mb-0">
 													<i class="fas fa-image fa-lg me-3 fa-fw"></i>
 													<div class="form-outline flex-fill mb-0">
@@ -161,37 +160,36 @@ if (isset($_SESSION['user_id'])) {
 												<div class="d-flex flex-row align-items-center mb-3">
 													<i class="fas fa-lg me-3 fa-fw"></i>
 													<div class="small text-muted mt-2">Upload your Profile Picture</div>
-												</div>
+												</div> 
+												-->
 
-												<div class="d-flex flex-row align-items-center mb-2">
-													<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill mb-0">
-														<input type="email" name="email" class="form-control" required />
-														<label class="form-label">Email</labe l>
-													</div>
-												</div>
-
-												<div class="d-flex flex-row align-items-center mb-3">
-													<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-													<div class="form-outline flex-fill">
-														<input type="password" name="password" class="form-control" required />
-														<label class="form-label">Password</label>
-													</div>
-												</div>
-
-												<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-													<button class="btn btn-primary" type="submit" value="submit" name="submit">Register</button>
-												</div>
-											</form>
-											<div class="text-lg-start">
-												<p class="text-center fw-bold mt-1 pt-1 mb-0">Already have an account? <a href="login.php" class="link-danger">Login</a></p>
+										<div class="d-flex flex-row align-items-center mb-2">
+											<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill mb-0">
+												<input type="email" name="email" class="form-control" required />
+												<label class="form-label">Email</labe l>
 											</div>
 										</div>
 
-										<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-											<img src="../../components/hometemplate/img/signup.webp" class="img-fluid" alt="Sample image">
+										<div class="d-flex flex-row align-items-center mb-3">
+											<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+											<div class="form-outline flex-fill">
+												<input type="password" name="password" class="form-control" required />
+												<label class="form-label">Password</label>
+											</div>
 										</div>
+
+										<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+											<button class="btn btn-primary" type="submit" value="submit" name="submit">Register</button>
+										</div>
+									</form>
+									<div class="text-lg-start mb-5">
+										<p class="text-center fw-bold mt-1 pt-1 mb-0">Already have an account? <a href="login.php" class="link-danger">Login</a></p>
 									</div>
+								</div>
+
+								<div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+									<img src="../../components/hometemplate/img/signup.webp" class="img-fluid" alt="Sample image">
 								</div>
 							</div>
 						</div>
