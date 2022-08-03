@@ -79,7 +79,7 @@ if(isset($_POST['update_user_info'])) {
     $data .= ", role_name = '$role_name' ";
     $data .= ", address = '$address' ";
 
-    echo $data;
+    // echo $data;
 
     $sql = $conn->query("UPDATE tbl_users SET $data WHERE user_id = $user_id");
     if ($conn->affected_rows >= 0) :
@@ -92,5 +92,27 @@ if(isset($_POST['update_user_info'])) {
                 })
             </script>";
         header('location: ../pages/admin/index.php?page=user-list');
+    endif;
+}
+
+if(isset($_POST['update_borrower'])) {
+    extract($_POST);
+
+    $data = "accountNumber = '$accountNumber'";
+    $data .= ", email = '$email' ";
+    $data .= ", contactNumber = '$contactNumber' ";
+    $data .= ", address = '$address' ";
+
+    $sql = $conn->query("UPDATE tbl_borrowers SET $data WHERE user_id = $user_id");
+    if ($conn->affected_rows >= 0) :
+
+        $_SESSION['status'] = "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done',
+                    text: 'Borrower updated successfully.'
+                })
+            </script>";
+        header('location: ../pages/admin/index.php?page=borrower-list');
     endif;
 }
