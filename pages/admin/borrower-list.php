@@ -67,7 +67,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 }
                                                 ?></td>
                                             <td class="text-center">
-                                                <a class="btn btn-info btn-sm my-1 view_borrower" 
+                                                <a class="btn btn-info btn-xs my-1 view_borrower" 
                                                 href="javascript:void(0);" 
                                                 data-toggle="modal" 
                                                 data-target="#view_borrower"
@@ -83,11 +83,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 data-info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                     View Info
                                                 </a>
-                                                <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>" class="btn btn-primary btn-sm my-1">View Loans</a>
+                                                <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>" class="btn btn-primary btn-xs my-1">View Loans</a>
 
                                                 <!-- Action for Admin only -->
                                                 <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-                                                    <a class="btn btn-success btn-sm my-1 update_borrower" 
+                                                    <a class="btn btn-success btn-xs my-1 update_borrower" 
                                                     href="javascript:void(0);" 
                                                     data-toggle="modal" 
                                                     data-target="#update_borrower" 
@@ -104,7 +104,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                     data-update_info_usercreated="<?= date('F j, Y', $userCreated); ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="btn btn-danger btn-sm delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>"><i class="fas fa-trash"></i></a>
+                                                    <a href="javascript:void(0);" class="btn btn-danger btn-xs delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>"><i class="fas fa-trash"></i></a>
                                                 <?php } else {
                                                     '';
                                                 } ?>

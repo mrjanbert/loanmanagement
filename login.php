@@ -1,129 +1,107 @@
 <?php
 session_start();
 if (isset($_SESSION['adminuser_id'])) {
-    header('location: pages/admin/index.php?page=dashboard&usr=' . ($_SESSION['role_name']));
+  header('location: pages/admin/index.php?page=dashboard');
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Login :: NMSCST Loan Management System</title>
-    <link rel="icon" type="image/x-icon" href="components/img/favicon.ico">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Login :: NMSCST Loan Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/themify-icons.css">
+  <link rel="stylesheet" href="assets/css/metisMenu.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/slicknav.min.css">
+  <!-- amchart css -->
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+  <!-- others css -->
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/default-css.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <link rel="stylesheet" href="assets/css/scrollbarhidden.css">
 
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.js"></script>
 
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.js"></script>
-
-    <!-- MDB -->
-    <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="components/hometemplate/css/scrollbarhidden.css" />
-
+  <!-- modernizr css -->
+  <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
+  
+  <!-- preloader area start -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+  <!-- preloader area end -->
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block">
-        <div class="container-fluid">
-            <!-- Navbar brand -->
-            <a class="navbar-brand nav-link" target="_blank" href="#">
-                <strong>LMS</strong>
-            </a>
-            <div class="collapse navbar-collapse" id="collapseNavbar">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="./">Home</a>
-                    </li>
-                </ul>
+  <?php
+  if (isset($_SESSION['status'])) {
+    $status = $_SESSION['status'];
+    echo "<span>$status</span>";
+  }
+  ?>
 
-                <ul class="navbar-nav d-flex flex-row">
-                    <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link text-white" href="https://github.com/mrjanbert/loanmanagement" rel="nofollow" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </li>
-                </ul>
+  <!-- login area start -->
+  <div class="login-area login-s2">
+    <div class="container">
+      <div class="login-box ptb--100">
+        <form action="config/login-user.php" method="POST">
+          <div class="login-form-head">
+            <h4>Sign In</h4>
+            <p>Sign in to start you session</p>
+          </div>
+          <div class="login-form-body">
+            <div class="form-gp">
+              <label for="inputUsername">Username</label>
+              <input type="text" name="username" id="inputUsername">
+              <i class="ti-user"></i>
+              <div class="text-danger"></div>
             </div>
-        </div>
-    </nav>
-    <!-- Navbar -->
+            <div class="form-gp">
+              <label for="inputPassword">Password</label>
+              <input type="password" name="password" id="inputPassword">
+              <i class="ti-lock"></i>
+              <div class="text-danger"></div>
+            </div>
+            <div class="submit-btn-area">
+              <button name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+            </div>
+            <div class="form-footer text-center mt-5">
+              <p class="text-muted">Don't have an account? <a href="register.php">Sign up</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- login area end -->
 
-    <!--Main layout-->
-    <main>
-        <!-- Toast Notification -->
-        <?php
-        if (isset($_SESSION['status'])) {
-            $status = $_SESSION['status'];
-            echo "<span>$status</span>";
-        }
-        ?>
-        <!-- end of toast -->
-        <div class="container">
-            <!--Section: Content-->
-            <section>
-                <div class="container py-5 h-100">
-                    <div class="row d-flex align-items-center justify-content-center h-100">
-                        <div class="col-md-8 col-lg-7 col-xl-6">
-                            <img src="components/hometemplate/img/login.webp" class="img-fluid" alt="Phone image">
-                        </div>
-                        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+  <!-- unset toast notification to avoid popup every load -->
+  <?php unset($_SESSION["status"]); ?>
 
-                            <div class="text-center">
-                                <h2 class="fw-bold">Admin Sign-in</h2>
-                                <p class="fw-bold mb-4 pb-2">Sign-in to start your session</p>
-                            </div>
-                            <form action="config/login-user.php" method="POST">
-                                </formaction>
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <input type="text" name="username" class="form-control form-control-lg" />
-                                    <label class="form-label">Username</label>
-                                </div>
-                                <!-- Password input -->
-                                <div class="form-outline mb-4">
-                                    <input type="password" name="password" class="form-control form-control-lg" />
-                                    <label class="form-label">Password</label>
-                                </div>
+  <!-- jquery latest version -->
+  <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+  <!-- bootstrap 4 js -->
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/owl.carousel.min.js"></script>
+  <script src="assets/js/metisMenu.min.js"></script>
+  <script src="assets/js/jquery.slimscroll.min.js"></script>
+  <script src="assets/js/jquery.slicknav.min.js"></script>
 
-                                <div class="d-flex justify-content-around align-items-center my-4">
-                                    <button type="submit" value="submit" name="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-                                </div>
-
-                                <!-- Submit button -->
-
-                                <div class="text-center text-lg-start">
-                                    <p class="fw-bold mt-1 pt-1 mb-0">Don't have an account? <a href="register.php" class="link-danger">Register</a></p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!--Section: Content-->
-        </div>
-    </main>
-
-    <!-- unset toast notification to avoid popup every load -->
-    <?php unset($_SESSION["status"]); ?>
-
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- MDB -->
-    <script type="text/javascript" src="components/hometemplate/js/mdb.min.js"></script>
-    <!-- Custom scripts -->
-    <!-- <script type="text/javascript" src="js/script.js"></script> -->
+  <!-- others plugins -->
+  <script src="assets/js/plugins.js"></script>
+  <script src="assets/js/scripts.js"></script>
 </body>
 
 </html>

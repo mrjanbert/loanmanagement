@@ -14,4 +14,4 @@
         icon: 'success',
         title: 'Logged out successfully'
     })</script>";
-    header('location: ../pages/client/login.php');
+    header('location: ../login.php');

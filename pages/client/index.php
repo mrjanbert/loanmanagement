@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
         icon: 'warning',
         title: 'You must login to continue'
       })</script>";
-    header('location: ./login.php');
+    header('location: ../../login.php');
 }
 
 ?>
@@ -25,11 +25,11 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NMSCST Loan Management System</title>
-    <link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">
 
     <!-- Header -->
-    <link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
-    <?php include_once('../../components/inc/header.php'); ?>
+    <link rel="stylesheet" href="../../assets/css/scrollbarhidden.css" />
+    <?php include_once('../includes/header.php'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -41,11 +41,11 @@ if (!isset($_SESSION['user_id'])) {
         }
         ?>
         <!-- Navbar -->
-        <?php include_once('./inc/navbar.php'); ?>
+        <?php include_once('../includes/client-navbar.php'); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php include_once('./inc/sidebar.php'); ?>
+        <?php include_once('../includes/client-sidebar.php'); ?>
         <!-- /.main-sidebar -->
 
         <!-- Content Wrapper. Contains page content -->
@@ -70,7 +70,7 @@ if (!isset($_SESSION['user_id'])) {
     <?php unset($_SESSION['status']); ?>
 
     <!-- Footer -->
-    <?php include_once('../../components/inc/footer.php'); ?>
+    <?php include_once('../includes/footer.php'); ?>
 </body>
 
 </html>

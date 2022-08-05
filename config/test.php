@@ -33,7 +33,6 @@ if (isset($_POST['submit'])) {
 
   $remainbalance = $balance - $payment_amount;
 
-
   // echo date('M j, Y', strtotime($loan_date));
 
   if (date("Y-m-d H") <= date('M j, Y', strtotime($penaltyloan_date))) {

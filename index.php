@@ -85,7 +85,7 @@
           <div class="text-white">
             <h1 class="mb-3">Loan Management System</h1>
             <h5 class="mb-4">Utanganan sa mga palautang hahahahah joke</h5>
-            <a class="btn btn-outline-light btn-lg m-2" href="pages/client/login.php" role="button" rel="nofollow">Login Now</a>
+            <a class="btn btn-outline-light btn-lg m-2" href="./login.php" role="button" rel="nofollow">Login Now</a>
           </div>
         </div>
       </div>

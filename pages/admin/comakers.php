@@ -66,7 +66,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 <?= $name; ?>
                                             </td>
                                             <td>
-                                                <a data-del_comaker_id="<?= $row['user_id'] ?>" class="btn btn-danger btn-sm delete_comaker"><i class="fa fa-trash"></i> Delete</a>
+                                                <a data-del_comaker_id="<?= $row['user_id'] ?>" class="btn btn-danger btn-xs delete_comaker"><i class="fa fa-trash"></i> Delete</a>
                                             </td>
                                         </tr>
                                     <?php endwhile ?>

@@ -11,11 +11,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<button onclick="history.back()" class="btn btn-warning">
+					<button onclick="history.back()" class="btn btn-warning btn-sm">
 						<i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
 						Back
 					</button> &nbsp;&nbsp;
-					<button onclick="window.print()" class="btn btn-success">
+					<button onclick="window.print()" class="btn btn-success btn-sm">
 						<i class="fa fa-print"></i>&nbsp;Print
 					</button>
 				</div>

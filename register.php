@@ -149,7 +149,7 @@ if (isset($_SESSION['user_id'])) {
                                             </div>
                                         </div>
 
-                                        <div class="d-flex flex-row align-items-center mb-0">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-0">
                                             <i class="fas fa-image fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <input type="file" name="profilePhoto" class="form-control" required />
@@ -158,7 +158,7 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="d-flex flex-row align-items-center mb-3">
                                             <i class="fas fa-lg me-3 fa-fw"></i>
                                             <div class="small text-muted mt-2">Upload your Profile Picture</div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="d-flex flex-row align-items-center mb-2">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>

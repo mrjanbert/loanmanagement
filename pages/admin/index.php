@@ -23,11 +23,11 @@ require_once '../../config/data/Database.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NMSCST Loan Management System</title>
-    <link rel="icon" type="image/x-icon" href="../../components/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../../assets/images/icon/favicon.ico">
 
     <!-- Header -->
-    <link rel="stylesheet" href="../../components/hometemplate/css/scrollbarhidden.css" />
-    <?php include_once('../../components/inc/header.php'); ?>
+    <link rel="stylesheet" href="../../assets/css/scrollbarhidden.css" />
+    <?php include_once('../includes/header.php'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -39,11 +39,11 @@ require_once '../../config/data/Database.php';
         }
         ?>
         <!-- Navbar -->
-        <?php include_once('../../components/inc/navbar.php'); ?>
+        <?php include_once('../includes/navbar.php'); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php include_once('../../components/inc/sidebar.php'); ?>
+        <?php include_once('../includes/sidebar.php'); ?>
         <!-- /.main-sidebar -->
 
         <!-- Content Wrapper. Contains page content -->
@@ -61,7 +61,7 @@ require_once '../../config/data/Database.php';
     <?php unset($_SESSION['status']); ?>
 
     <!-- Footer -->
-    <?php include_once('../../components/inc/footer.php'); ?>
+    <?php include_once('../includes/footer.php'); ?>
 
 </body>
 
