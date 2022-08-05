@@ -34,7 +34,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th class="text-center">#</th>
@@ -73,7 +73,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                 data-target="#view_borrower"
                                                 data-info_idnumber="<?= $accountNumber ?>" 
                                                 data-info_name="<?= $name ?>" 
-                                                <?php if($row['profilePhoto'] != null) { ?> data-info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-info_image="../../assets/dist/img/profile.png" <?php } ?>  
+                                                <?php if($row['profilePhoto'] != null) { ?> data-info_image="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-info_image="../../assets/images/profile.png" <?php } ?>  
                                                 data-info_age="<?= $row['age']; ?>" 
                                                 data-info_mobilenumber="<?= $row['contactNumber']; ?>" 
                                                 data-info_email="<?= $row['email']; ?>" 
@@ -94,7 +94,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                                     data-update_userid="<?= $row['user_id'] ?>" 
                                                     data-update_info_idnumber="<?= $accountNumber ?>" 
                                                     data-update_info_name="<?= $name ?>" 
-                                                    <?php if($row['profilePhoto'] != null) { ?> data-update_info_image="../../components/img/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-update_info_image="../../assets/dist/img/profile.png" <?php } ?>  
+                                                    <?php if($row['profilePhoto'] != null) { ?> data-update_info_image="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-update_info_image="../../assets/dist/img/profile.png" <?php } ?>  
                                                     data-update_info_age="<?= $row['age']; ?>" 
                                                     data-update_info_mobilenumber="<?= $row['contactNumber']; ?>" 
                                                     data-update_info_email="<?= $row['email']; ?>" 

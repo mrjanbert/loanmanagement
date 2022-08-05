@@ -11,7 +11,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link logo-switch">
-        <img src="../../assets/dist/img/logo.png" alt="NMSC Logo" class="brand-image logo-xs img-circle elevation-3">
+        <img src="../../assets/images/lms_logo.png" alt="NMSC Logo" class="brand-image logo-xs img-circle elevation-3">
         <span class="brand-text logo-xl"><b>L</b>oan <b>M</b>anagement <b>S</b>ystem</span>
     </a>
 
@@ -66,7 +66,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <script>
     $('.nav-<?= isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active').addClass('menu-open')
 </script>
-
 
 <div class="modal fade" id="view_user">
     <div class="modal-dialog modal-lg">
@@ -165,7 +164,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             $('#side_contactnumber').val($(this).data('side_contactnumber'));
             $('#side_username').val($(this).data('side_username'));
             $('#side_address').val($(this).data('side_address'));
-
 
             $('#addloan').modal('hide');
         });

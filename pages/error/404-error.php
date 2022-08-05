@@ -8,7 +8,7 @@
     <title>Page Not Found - NMSC Loan Management</title>
     <link rel="icon" type="image/x-icon" href="https://www.nmsc.edu.ph/application/themes/nmsc/favicon.ico">
 
-    <?php include_once('../../components/inc/header.php'); ?>
+    <?php include_once('../includes/header.php'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" id="switch-mode">
@@ -33,7 +33,7 @@
     </div>
     </div><!-- /.wrapper -->
 
-    <?php include_once('../../components/inc/footer.php'); ?>
+    <?php include_once('../includes/footer.php'); ?>
 </body>
 
 </html>

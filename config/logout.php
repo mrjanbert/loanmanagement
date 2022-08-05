@@ -2,7 +2,6 @@
 session_start();
 // session_destroy();
 
-
 if(isset($_GET['logout_id']) && ($_GET['logout_id'] == 'client')) {
   unset($_SESSION['user_id']);
   session_start();

@@ -98,7 +98,7 @@ if(isset($_POST['addpenalty'])) {
       Swal.fire({
         icon: 'success',
         title: 'Done',
-        text: 'Payment added'
+        text: 'Penalty added'
       })
       </script>";
     header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
@@ -108,7 +108,7 @@ if(isset($_POST['addpenalty'])) {
       Swal.fire({
         icon: 'error',
         title: 'Failed',
-        text: 'Payment not added.'
+        text: 'Penalty not added.'
       })
       </script>";
     header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);

@@ -1,5 +1,5 @@
 ErrorDocument 400 /400.php
 ErrorDocument 401 /401.php
-ErrorDocument 403 http://localhost/loanmanagement/pages/err/403-error.php
-ErrorDocument 404 http://localhost/loanmanagement/pages/err/404-error.php
+ErrorDocument 403 http://localhost/loanmanagement/pages/error/403-error.php
+ErrorDocument 404 http://localhost/loanmanagement/pages/error/404-error.php
 ErrorDocument 500 /500.php
