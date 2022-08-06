@@ -26,6 +26,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
 <script src="../../assets/js/scripts.js"></script>
+<script src="../client/base/javascript.js"></script>
 
 
 <!-- Page specific script -->

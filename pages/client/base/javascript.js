@@ -58,3 +58,36 @@ $(document).ready(function () {
     $('#addloan').modal('hide');
   });
 });
+
+
+function approve() {
+  Swal.fire({
+    title: 'Confirm Approve?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Approve'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>"
+    }
+  })
+}
+
+function disapprove() {
+  Swal.fire({
+    title: 'Confirm Disapprove?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Disapprove'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>"
+    }
+  })
+}

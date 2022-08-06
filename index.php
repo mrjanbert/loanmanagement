@@ -2,425 +2,803 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NMSCST Loan Management System</title>
-  <link rel="icon" type="image/x-icon" href="components/img/favicon.ico">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-  <!-- MDB -->
-  <link rel="stylesheet" href="components/hometemplate/css/scrollbarhidden.css" />
-  <link rel="stylesheet" href="components/hometemplate/css/mdb.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="assets/landing-page/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="assets/landing-page/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/scrollbarhidden.css">
+  <link rel="stylesheet" href="assets/css/preloader.css">
+  <style>
+    html,
+    body,
+    header,
+    .jarallax {
+      height: 100%;
+    }
 
+    @media (min-width: 560px) and (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .jarallax {
+        height: 500px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .jarallax {
+        height: 500px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2A48 !important;
+      }
+
+      .navbar {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12) !important;
+      }
+    }
+  </style>
 </head>
 
-<body>
-  <!--Main Navigation-->
-  <section>
-    <style>
-      /* Height for devices larger than 576px */
-      @media (min-width: 992px) {
-        #home {
-          margin-top: -58.59px;
-          height: 50vh !important;
-        }
-      }
+<body class="university-lp">
 
-      .navbar .nav-link {
-        color: #fff !important;
-      }
-    </style>
+  <!--Navigation & Intro-->
+  <header>
+    <div id="preloader">
+      <div class="loader"></div>
+    </div>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
-      <div class="container-fluid">
-        <!-- Navbar brand -->
-        <a class="navbar-brand nav-link" target="_blank" href="#">
-          <strong>LMS</strong>
+    <!--Navbar-->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <strong>Navbar</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseNavbar" aria-controls="collapseNavbar" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapseNavbar">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="./">Home</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!--Links-->
+          <ul class="navbar-nav mr-auto smooth-scroll">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home
+                <span class="sr-only">(current)</span>
+              </a>
             </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#about" data-offset="100">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#info" data-offset="100">Objectives</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#courses" data-offset="100">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#events" data-offset="100">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials" data-offset="100">Opinions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#modal-contact">Contact</a>
+            </li> -->
           </ul>
 
-          <ul class="navbar-nav d-flex flex-row">
-            <!-- Icons -->
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="login.php" rel="nofollow">
-                <i class="fas fa-user-shield"></i>
-              </a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="https://github.com/mrjanbert/loanmanagement" rel="nofollow" target="_blank">
+          <!--Social Icons-->
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/mrjanbert/loanmanagement">
                 <i class="fab fa-github"></i>
               </a>
-            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- Navbar -->
+    <!--Navbar-->
 
-    <!-- Background image -->
-    <div id="home" class="bg-image vh-100 shadow-1-strong">
-      <video style="min-width: 100%; min-height: 100%;" playsinline autoplay muted loop>
-        <source class="h-100" src="components/hometemplate/animation-intro-min.mp4" type="video/mp4" />
-      </video>
-      <div class="mask" style="
-            background: linear-gradient(
-              45deg,
-              rgba(29, 236, 197, 0.7),
-              rgba(91, 14, 214, 0.7) 100%
-            );
-          ">
-        <div class="container d-flex align-items-center justify-content-center text-center h-100">
-          <div class="text-white">
-            <h1 class="mb-3">Loan Management System</h1>
-            <h5 class="mb-4">Utanganan sa mga palautang hahahahah joke</h5>
-            <a class="btn btn-outline-light btn-lg m-2" href="./login.php" role="button" rel="nofollow">Login Now</a>
+    <!-- Intro Section -->
+    <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://www.nmsc.edu.ph/application/files/3016/1292/5276/admin.JPG'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+      <div class="mask rgba-black-strong">
+        <div class="container h-100 d-flex justify-content-center align-items-center">
+          <div class="row smooth-scroll">
+            <div class="col-md-12 white-text text-center">
+              <div class="wow fadeInDown" data-wow-delay="0.2s">
+                <h2 class="display-3 font-weight-bold mb-2">NMSCST LOAN MANAGEMENT SYSTEM</h2>
+                <hr class="hr-light">
+                <h3 class="subtext-header mt-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
+                  consequuntur.</h3>
+              </div>
+              <a href="login.php" data-offset="100" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">SIGN-IN</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Background image -->
-  </section>
-  <!--Main Navigation-->
 
-  <!--Main layout-->
-  <main class="mt-5">
+
+  </header>
+  <!--Navigation & Intro-->
+
+  <!--Main content-->
+  <main>
+
     <div class="container">
-      <!--Section: Content-->
-      <section>
+
+      <!--Section: About-->
+      <section id="about" class="mt-4 mb-2">
+
+        <!--Secion heading-->
+        <h2 class="text-center my-5 font-weight-bold wow fadeIn" data-wow-delay="0.2s">About Our System</h2>
+
+        <!--First row-->
         <div class="row">
-          <div class="col-md-6 gx-5 my-5">
-            <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
-              <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
-              <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </a>
-            </div>
-          </div>
 
-          <div class="col-md-6 gx-5 my-5">
-            <h4><strong>Facilis consequatur eligendi</strong></h4>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-              consequatur eligendi quisquam doloremque vero ex debitis
-              veritatis placeat unde animi laborum sapiente illo possimus,
-              commodi dignissimos obcaecati illum maiores corporis.
-            </p>
-            <p><strong>Doloremque vero ex debitis veritatis?</strong></p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-              itaque voluptate nesciunt laborum incidunt. Officia, quam
-              consectetur. Earum eligendi aliquam illum alias, unde optio
-              accusantium soluta, iusto molestiae adipisci et?
-            </p>
-          </div>
+          <!--First column-->
+          <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
 
-          <div class="col-md-6 gx-5 my-5">
-            <h4><strong>Facilis consequatur eligendi</strong></h4>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-              consequatur eligendi quisquam doloremque vero ex debitis
-              veritatis placeat unde animi laborum sapiente illo possimus,
-              commodi dignissimos obcaecati illum maiores corporis.
-            </p>
-            <p><strong>Doloremque vero ex debitis veritatis?</strong></p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-              itaque voluptate nesciunt laborum incidunt. Officia, quam
-              consectetur. Earum eligendi aliquam illum alias, unde optio
-              accusantium soluta, iusto molestiae adipisci et?
-            </p>
-          </div>
+            <!--Image-->
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
 
-          <div class="col-md-6 gx-5 my-5">
-            <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
-              <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
-              <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </a>
-            </div>
           </div>
+          <!--First column-->
 
-          <div class="col-md-6 gx-5 my-5">
-            <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
-              <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
-              <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-              </a>
-            </div>
-          </div>
+          <!--Second column-->
+          <div class="col-lg-6 dark-grey-text ml-lg-auto col-md-12 wow fadeIn" data-wow-delay="0.4s">
 
-          <div class="col-md-6 gx-5 my-5">
-            <h4><strong>Facilis consequatur eligendi</strong></h4>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-              consequatur eligendi quisquam doloremque vero ex debitis
-              veritatis placeat unde animi laborum sapiente illo possimus,
-              commodi dignissimos obcaecati illum maiores corporis.
+            <!--Description-->
+            <p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi soluta ratione
+              quisquam, dicta
+              ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque animi maxime.
             </p>
-            <p><strong>Doloremque vero ex debitis veritatis?</strong></p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-              itaque voluptate nesciunt laborum incidunt. Officia, quam
-              consectetur. Earum eligendi aliquam illum alias, unde optio
-              accusantium soluta, iusto molestiae adipisci et?
-            </p>
+
+            <p align="justify">Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus
+              voluptatum, magni
+              impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis
+              iusto.</p>
+
+            <ul>
+              <li>Nemo animi soluta ratione</li>
+              <li>Beatae maxime temporibus</li>
+              <li>Consectetur adipisicing elit</li>
+              <li>Repellendus voluptatum, impedit</li>
+            </ul>
+
           </div>
+          <!--Second column-->
+
         </div>
+        <!--First row-->
+
       </section>
-      <!--Section: Content-->
+      <!--Section: About-->
 
-      <hr class="my-5" />
+      <hr>
 
-      <!--Section: Content-->
-      <section class="text-center">
-        <h4 class="mb-5"><strong>Facilis consequatur eligendi</strong></h4>
+      <!--Projects section v.3-->
+      <section id="info" class="mt-4 mb-5 pb-4">
 
-        <div class="row">
-          <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make
-                  up the bulk of the card's content.
-                </p>
-                <!-- <a href="#!" class="btn btn-primary">Button</a> -->
-              </div>
+        <!--Section heading-->
+        <h2 class="text-center mb-5 font-weight-bold pt-5 pb-4 my-5 wow fadeIn" data-wow-delay="0.2s">General Objectives</h2>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.2s">
+          The main goal of this project is to develop a Loan Management system for NMSCST Employee Credit Cooperative,
+          automating the processes of loan online from applying to closing of application and keeping of records for every borrower.
+        </p>
+
+        <!--First row-->
+        <div class="row wow fadeIn" data-wow-delay="0.4s">
+
+          <!--First column-->
+          <div class="col-md-12">
+
+            <div class="mb-2">
+
+              <!--Nav tabs-->
+              <ul class="nav md-pills pills-primary d-flex justify-content-center" role="tablist">
+
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#panel31" role="tab">
+                    <i class="fas fa-user-friends fa-2x"></i>
+                    <br>Interview</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#panel32" role="tab">
+                    <i class="fas fa-laptop-code fa-2x"></i>
+                    <br>Develop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#panel33" role="tab">
+                    <i class="far fa-clipboard fa-2x"></i>
+                    <br>Evaluate</a>
+                </li>
+              </ul>
+
             </div>
-          </div>
 
-          <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make
-                  up the bulk of the card's content.
-                </p>
-                <!-- <a href="#!" class="btn btn-primary">Button</a> -->
-              </div>
-            </div>
-          </div>
+            <!--Tab panels-->
+            <div class="tab-content">
 
-          <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/023.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make
-                  up the bulk of the card's content.
-                </p>
-                <!-- <a href="#!" class="btn btn-primary">Button</a> -->
-              </div>
-            </div>
-          </div>
+              <!--Panel 1-->
+              <div class="tab-pane fade in show active" id="panel31" role="tabpanel">
+                <br>
 
-          <div class="col-lg-3 col-md-6 mb-3">
-            <div class="card">
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/111.jpg" class="img-fluid" />
-                <a href="#!">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </a>
+                <!--First row-->
+                <div class="row">
+
+                  <!--First column-->
+                  <div class="col-lg-5 col-md-12">
+
+                    <!--Featured image-->
+                    <div class="view overlay z-depth-1 mb-2">
+                      <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="rounded img-fluid" alt="sample image">
+                    </div>
+                  </div>
+                  <!--First column-->
+
+                  <!--Second column-->
+                  <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
+
+                    <!--Title-->
+                    <h4 class="mb-5">Gather Data</h4>
+
+                    <!--Description-->
+                    <p align="justify" class="text-muted">Conduct data gathering through interview to cooperative
+                      personnel and collect data related to Borrowers, Loan Processor, Manager, and
+                      Teller which will be used in the development of the system</p>
+
+                  </div>
+                  <!--Second column-->
+                </div>
+                <!--First row-->
+
               </div>
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  Some quick example text to build on the card title and make
-                  up the bulk of the card's content.
-                </p>
-                <!-- <a href="#!" class="btn btn-primary">Button</a> -->
+              <!--Panel 1-->
+
+              <!--Panel 2-->
+              <div class="tab-pane fade" id="panel32" role="tabpanel">
+                <br>
+
+                <!--First row-->
+                <div class="row">
+
+                  <!--First column-->
+                  <div class="col-lg-5 col-md-12">
+
+                    <!--Featured image-->
+                    <div class="view overlay z-depth-1 mb-2">
+                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2840%29.jpg" class="rounded img-fluid" alt="sample image">
+                    </div>
+                  </div>
+                  <!--First column-->
+
+                  <!--Second column-->
+                  <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
+
+                    <!--Title-->
+                    <h4 class="mb-5">Develop System</h4>
+
+                    <!--Description-->
+                    <p align="justify" class="text-muted">Develop the Web-based Loan Management System of NMSCST Employee Credit Cooperative obtaining the following system features:
+                    <ul class="text-muted">
+                      <li>To automate the Loan Process</li>
+                      <li>To view the records of the registered borrowers</li>
+                      <li>To record loan payments</li>
+                      <li>To Generate print-out of application form and loan grace periods</li>
+                      <li>To automate the computation such as, total interest payable, monthly amortization and net release amount</li>
+                      <li>To send SMS reminders to the borrowers three days before their due date</li>
+                    </ul>
+                    </p>
+
+                  </div>
+                  <!--Second column-->
+                </div>
+                <!--First row-->
+
               </div>
+              <!--Panel 2-->
+
+              <!--Panel 3-->
+              <div class=" tab-pane fade" id="panel33" role="tabpanel">
+                <br>
+
+                <!--First row-->
+                <div class="row">
+
+                  <!--First column-->
+                  <div class="col-lg-5 col-md-12">
+
+                    <!--Featured image-->
+                    <div class="view overlay z-depth-1 mb-2">
+                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2841%29.jpg" class="rounded img-fluid" alt="sample image">
+                    </div>
+                  </div>
+                  <!--First column-->
+
+                  <!--Second column-->
+                  <div class="col-lg-6 ml-lg-auto col-md-12 text-center text-md-left">
+
+                    <!--Title-->
+                    <h4 class="mb-5">Evaluate System</h4>
+
+                    <!--Description-->
+                    <p class="text-muted">Evaluate the system based on the customer&rsquo;s requirements.</p>
+
+                  </div>
+                  <!--Second column-->
+                </div>
+                <!--First row-->
+
+              </div>
+              <!--Panel 3-->
+
             </div>
+            <!--Tab panels-->
+
           </div>
+          <!--First column-->
+
         </div>
+        <!--First row-->
+
       </section>
-      <!--Section: Content-->
+      <!--Projects section v.3-->
 
-      <hr class="my-5" />
-
-      <!--Section: Content-->
-      <!-- <section class="mb-5">
-        <h4 class="mb-5 text-center">
-          <strong>Facilis consequatur eligendi</strong>
-        </h4>
-
-        <div class="row d-flex justify-content-center">
-          <div class="col-md-6">
-            <form> -->
-      <!-- 2 column grid layout with text inputs for the first and last names -->
-      <!-- <div class="row mb-4">
-                <div class="col">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" />
-                    <label class="form-label" for="form3Example1">First name</label>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" />
-                    <label class="form-label" for="form3Example2">Last name</label>
-                  </div>
-                </div>
-              </div> -->
-
-      <!-- Email input -->
-      <!-- <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
-                <label class="form-label" for="form3Example3">Email address</label>
-              </div> -->
-
-      <!-- Password input -->
-      <!-- <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
-                <label class="form-label" for="form3Example4">Password</label>
-              </div> -->
-
-      <!-- Checkbox -->
-      <!-- <div class="form-check d-flex justify-content-center mb-4">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" checked />
-                <label class="form-check-label" for="form2Example3">
-                  Subscribe to our newsletter
-                </label>
-              </div> -->
-
-      <!-- Submit button -->
-      <!-- <button type="submit" class="btn btn-primary btn-block mb-4">
-                Sign up
-              </button> -->
-
-      <!-- Register buttons -->
-      <!-- <div class="text-center">
-                <p>or sign up with:</p>
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                  <i class="fab fa-google"></i>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                  <i class="fab fa-twitter"></i>
-                </button>
-
-                <button type="button" class="btn btn-primary btn-floating mx-1">
-                  <i class="fab fa-github"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section> -->
-      <!--Section: Content-->
     </div>
+
+    <!--Streak-->
+    <div id="courses" class="streak streak-photo streak-md" style="background-image: url('https://abanksb.bg/abb/wp-content/uploads/2018/03/loan-products.jpg');">
+      <div class="flex-center mask rgba-indigo-strong">
+        <div class="text-center white-text">
+          <h2 class="h2-responsive mb-5">
+            <i class="fas fa-quote-left" aria-hidden="true"></i> It's easy to get loan unless you need it <i class="fas fa-quote-right" aria-hidden="true"></i>
+          </h2>
+          <h5 class="text-center font-italic " data-wow-delay="0.2s">~ Norman Ralph Augustine</h5>
+        </div>
+      </div>
+    </div>
+    <!--Streak-->
+
+
+    <div class="container-fluid background-r">
+      <div class="container py-3">
+
+        <!--Section: Blog v.2-->
+        <section class="extra-margins text-center" id="events">
+
+          <h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Team Admins</h2>
+
+          <!--Grid row-->
+          <div class="row mb-5 pb-3">
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
+
+              <!--Card Light-->
+              <div class="card">
+                <!--Card image-->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--/.Card image-->
+                <!--Card content-->
+                <div class="card-body">
+
+                  <!--Title-->
+                  <h4 class="card-title darkgrey-text">
+                    <strong>Dionalyn Gumacial</strong>
+                  </h4>
+                  <hr>
+                  <!--Text-->
+                  <p class="font-large">CC Chairman
+                  </p>
+                </div>
+                <!--/.Card content-->
+              </div>
+              <!--/.Card Light-->
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
+
+              <!--Card Light-->
+              <div class="card">
+                <!--Card image-->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Others/images/40.jpg" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--/.Card image-->
+                <!--Card content-->
+                <div class="card-body">
+
+                  <!--Title-->
+                  <h4 class="card-title darkgrey-text">
+                    <strong>Lovely Pearl Estrosas</strong>
+                  </h4>
+                  <hr>
+                  <!--Text-->
+                  <p class="font-large">CC Member / Book Keeper
+                  </p>
+                </div>
+                <!--/.Card content-->
+              </div>
+              <!--/.Card Light-->
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
+
+              <!--Card Light-->
+              <div class="card">
+                <!--Card image-->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Others/images/56.jpg" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--/.Card image-->
+
+                <!--Card content-->
+                <div class="card-body">
+
+                  <!--Title-->
+                  <h4 class="card-title darkgrey-text">
+                    <strong>Ruth <br /> Juanillo</strong>
+                  </h4>
+                  <hr>
+                  <!--Text-->
+                  <p class="font-large">Manager
+                  </p>
+                  <!-- <a href="#" class="black-text d-flex flex-row-reverse">
+                    <p class="waves-effect p-2 font-large blue-text mb-0">Read more
+                      <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
+                    </p>
+                  </a> -->
+                </div>
+                <!--/.Card content-->
+              </div>
+              <!--/.Card Light-->
+
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
+
+              <!--Card Light-->
+              <div class="card">
+                <!--Card image-->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Photos/Others/images/57.jpg" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--/.Card image-->
+                <!--Card content-->
+                <div class="card-body">
+
+                  <!--Title-->
+                  <h4 class="card-title darkgrey-text">
+                    <strong>Marissa <br /> Legaspi</strong>
+                  </h4>
+                  <hr>
+                  <!--Text-->
+                  <p class="font-large">Cashier
+                  </p>
+                  <!-- <a href="#" class="black-text d-flex flex-row-reverse">
+                    <p class="waves-effect p-2 font-small blue-text mb-0">Read more
+                      <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
+                    </p>
+                  </a> -->
+                </div>
+                <!--/.Card content-->
+              </div>
+              <!--/.Card Light-->
+
+            </div>
+            <!--Grid column-->
+
+          </div>
+          <!--First row-->
+
+        </section>
+        <!--Section: Blog v.2-->
+
+      </div>
+    </div>
+
+    <div class="container">
+
+      <section id="testimonials" class="mb-5">
+
+        <!--Section heading-->
+        <h2 class="text-center mb-5 my-5 pt-5 pb-4 font-weight-bold wow fadeIn" data-wow-delay="0.2s">CAPSTONE PROJECT TEAM</h2>
+
+        <!--Carousel Wrapper-->
+        <div class="wow fadeIn">
+          <div class="row d-flex">
+
+            <!--Grid column-->
+            <div class="col-md-3">
+
+              <div class="testimonial">
+                <!--Avatar-->
+                <div class="avatar mx-1 mb-4">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                </div>
+                <!--Content-->
+                <h4 class="font-weight-bold text-center">Geque Aguaviva</h4>
+
+                <p class="text-center">
+                  Project Manager
+                </p>
+              </div>
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 clearfix d-none d-sm-block">
+              <div class="testimonial">
+                <!--Avatar-->
+                <div class="avatar mx-1 mb-4">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                </div>
+                <!--Content-->
+                <h4 class="font-weight-bold text-center">Janbert Gabica</h4>
+
+                <p class="text-center">
+                  Software Engineer / Programmer
+                </p>
+              </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3 clearfix d-none d-sm-block">
+              <div class="testimonial">
+                <!--Avatar-->
+                <div class="avatar mx-1 mb-4">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                </div>
+                <!--Content-->
+                <h4 class="font-weight-bold text-center">Nico Sambiog</h4>
+
+                <p class="text-center">
+                  System Analyst / Database Designer
+                </p>
+              </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-3">
+
+              <div class="testimonial">
+                <!--Avatar-->
+                <div class="avatar mx-1 mb-4">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                </div>
+                <!--Content-->
+                <h4 class="font-weight-bold text-center">Gann Deryl Balili</h4>
+
+                <p class="text-center">
+                  QA Tester / Technical Writer
+                </p>
+              </div>
+
+            </div>
+            <!--Grid column-->
+          </div>
+          <!--Carousel Wrapper-->
+
+        </div>
+
+      </section>
+
+    </div>
+
   </main>
-  <!--Main layout-->
+  <!--Main content-->
 
-  <!-- Footer-->
-  <footer class="bg-light text-lg-start">
-    <!-- <div class="py-4 text-center">
-      <a role="button" class="btn btn-primary btn-lg m-2"
-        href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow" target="_blank">
-        Learn Bootstrap 5
-      </a>
-      <a role="button" class="btn btn-primary btn-lg m-2" href="https://mdbootstrap.com/docs/standard/" target="_blank">
-        Download MDB UI KIT
-      </a>
-    </div> -->
-    <div class="container">
-      <section>
+  <!--Footer-->
+  <footer id="contact" class="page-footer text-center text-md-left mdb-color darken-3">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+
+      <!--First row-->
+      <div class="row " data-wow-delay="0.2s">
+
+        <!--First column-->
+        <div class="col-md-12 text-center mb-3 mt-3">
+
+          <!--Icon-->
+          <i class="fas fa-landmark fa-4x orange-text"></i>
+          <!--Title-->
+          <h2 class="mt-3 mb-3">Apply Now</h2>
+          <!--Description-->
+          <p class="white-text mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua.</p>
+          <!--Reservation button-->
+          <!-- <a href="#!" class="btn btn-warning">Appliction</a>
+          <a href="#!" class="btn btn-info">Contact</a> -->
+
+        </div>
+        <!--First column-->
+
+        <hr class="w-100 mt-4 mb-5">
+
+      </div>
+      <!--First row-->
+
+      <div class="container mb-1">
+
+        <!--Second row-->
         <div class="row">
-          <div class="col-md-6 gx-5 my-5">
-            <div class="bg-image hover-overlay ripple shadow-2-strong" data-mdb-ripple-color="light">
-              <img src="https://mdbootstrap.com/img/new/slides/031.jpg" class="img-fluid" />
-              <a href="#!">
-                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+
+          <!--First column-->
+          <div class="col-xl-4 col-lg-4 pt-1 pb-1">
+            <!--About-->
+            <h5 class="text-uppercase mb-3 font-weight-bold">ABOUT NMSCST LMS</h5>
+
+            <p align="justify">NMSCST Employee credit cooperative is stand-alone computer software that is designed in a web-based form that runs locally on a single computer.</p>
+
+            <!--About-->
+
+            <div class="footer-socials mt-4">
+
+              <!--Facebook-->
+              <a type="button" class="btn-floating btn-blue-2 ">
+                <i class="fab fa-facebook-f"></i>
               </a>
+              <!--Github-->
+              <a type="button" class="btn-floating btn-blue-2 ">
+                <i class="fab fa-github"></i>
+              </a>
+              <!--Google +-->
+              <a type="button" class="btn-floating btn-blue-2 ">
+                <i class="fab fa-google-plus-g"></i>
+              </a>
+
             </div>
           </div>
+          <!--First column-->
 
-          <div class="col-md-6 gx-5 my-5">
-            <h4><strong>Facilis consequatur eligendi</strong></h4>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
-              consequatur eligendi quisquam doloremque vero ex debitis
-              veritatis placeat unde animi laborum sapiente illo possimus,
-              commodi dignissimos obcaecati illum maiores corporis.
+          <hr class="w-100 clearfix d-lg-none">
+
+          <!--Second column-->
+          <div class="col-xl-3 ml-lg-auto col-lg-4 col-md-6 mt-1 mb-1">
+            <!--Search-->
+            <h5 class="text-uppercase mb-3 font-weight-bold">CONTACT US</h5>
+
+            <!--Info-->
+            <p>
+              <i class="fas fa-home pr-1"></i> Labuyo, Tangub City
             </p>
-            <p><strong>Doloremque vero ex debitis veritatis?</strong></p>
-            <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
-              itaque voluptate nesciunt laborum incidunt. Officia, quam
-              consectetur. Earum eligendi aliquam illum alias, unde optio
-              accusantium soluta, iusto molestiae adipisci et?
+            <p>
+              <i class="fas fa-envelope pr-1"></i> loanmanagement@email.com
             </p>
+            <p>
+              <i class="fas fa-phone pr-1"></i> +6393 0034 4555
+            </p>
+
           </div>
+          <!--Second column-->
+
+          <hr class="w-100 clearfix d-md-none">
+
+          <!--Third column-->
+          <div class="col-xl-3 ml-lg-auto col-lg-4 col-md-6 mt-1 mb-1">
+            <!--Contact-->
+            <h5 class="text-uppercase mb-3 font-weight-bold">Recent news</h5>
+
+            <ul class="footer-posts list-unstyled">
+              <li>
+                <a>Ut enim ad minim veniam nostrud.</a>
+                <span>
+                  <p class="grey-text">28 july 2016</p>
+                </span>
+              </li>
+              <li>
+                <a>Duis aute dolor in reprehenderit.</a>
+                <span>
+                  <p class="grey-text">27 july 2016</p>
+                </span>
+              </li>
+              <li>
+                <a>Excepteur sint occaecat cupidatat.</a>
+                <span>
+                  <p class="grey-text">26 july 2016</p>
+                </span>
+              </li>
+              <li>
+                <a>Sed perspiciatis unde omnis iste.</a>
+                <span>
+                  <p class="grey-text">25 july 2016</p>
+                </span>
+              </li>
+            </ul>
+
+          </div>
+          <!--Third column-->
+
         </div>
-      </section>
-    </div>
-    <hr class="m-0" />
+        <!--Second row-->
 
-    <!-- <div class="text-center py-4 align-items-center">
-      <p>Follow MDB on social media</p>
-      <a href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" class="btn btn-primary m-1" role="button"
-        rel="nofollow" target="_blank">
-        <i class="fab fa-youtube"></i>
-      </a>
-      <a href="https://www.facebook.com/mdbootstrap" class="btn btn-primary m-1" role="button" rel="nofollow"
-        target="_blank">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://twitter.com/MDBootstrap" class="btn btn-primary m-1" role="button" rel="nofollow"
-        target="_blank">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://github.com/mdbootstrap/mdb-ui-kit" class="btn btn-primary m-1" role="button" rel="nofollow"
-        target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-    </div> -->
+      </div>
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright:
-      <a class="text-dark" href="#">NMSCST Loan Management System</a>
     </div>
-    <!-- Copyright -->
+    <!--Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2022 Copyright: <a href="https://nmscstloanmanagement.000webhostapp.com/" target="_blank"> NMSCST Loan Management System </a>
+      </div>
+    </div>
+    <!--Copyright-->
+
   </footer>
   <!--Footer-->
-  <!-- MDB -->
-  <script type="text/javascript" src="components/hometemplate/js/mdb.min.js"></script>
+
+  <!--SCRIPTS-->
+
+  <!--JQuery-->
+  <script type="text/javascript" src="assets/landing-page/js/jquery-3.4.1.min.js"></script>
+
+  <!--Bootstrap tooltips-->
+  <script type="text/javascript" src="assets/landing-page/js/popper.min.js"></script>
+
+  <!--Bootstrap core JavaScript-->
+  <script type="text/javascript" src="assets/landing-page/js/bootstrap.min.js"></script>
+
+  <!--MDB core JavaScript-->
+  <script type="text/javascript" src="assets/landing-page/js/mdb.min.js"></script>
+
+  <script src="assets/js/preloader.js"></script>
+
+  <script>
+    //Animation init
+    new WOW().init();
+
+    //Modal
+    $('#myModal').on('shown.bs.modal', function() {
+      $('#myInput').focus()
+    })
+
+    // Material Select Initialization
+    $(document).ready(function() {
+      $('.mdb-select').material_select();
+    });
+  </script>
+
 </body>
 
 </html>

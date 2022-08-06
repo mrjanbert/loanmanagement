@@ -48,7 +48,7 @@
                     text: 'Loan Success!'
                 })
             </script>";
-            header('location: ../pages/client/index.php?page=loans');
+            header('location: ../pages/client/index.php?page=view-loans');
 
         else :
             session_start();
@@ -59,7 +59,7 @@
                     text: 'Failed! Please try again.'
                 })
             </script>";
-            header('location: ../pages/client/index.php?page=loans');
+            header('location: ../pages/client/index.php?page=view-loans');
         endif;
 
     }

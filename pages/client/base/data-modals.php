@@ -1,3 +1,6 @@
+
+<!-- Apply Loan Start -->
+
 <div class="modal fade" id="addloan">
   <div class="modal-dialog modal-md">
     <div class="modal-content card-outline card-primary">
@@ -95,6 +98,9 @@
   </div><!-- /.modal-dialog -->
 </div>
 
+<!-- Apply Loan End -->
+
+<!-- View Loan Start -->
 
 <div class="modal fade" id="viewloan">
   <div class="modal-dialog modal-lg">
@@ -195,3 +201,5 @@
     </div>
   </div><!-- /.modal-dialog -->
 </div>
+
+<!-- View Loan End -->

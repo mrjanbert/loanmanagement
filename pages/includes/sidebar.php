@@ -8,7 +8,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="../../components/img/lms_logo.png" alt="NMSC LMS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="../../assets/images/lms_logo.png" alt="NMSC LMS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Loan Management</span>
     </a>
 
@@ -20,11 +20,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         $sql = "SELECT * FROM tbl_users WHERE user_id = $user_id";
         $result = $conn->query($sql);
 
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_array()) {
         ?>
             <!-- Sidebar user panel (optional) -->
-            <div role="button" data-toggle="modal" data-target="#view_user" class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image" data-target="#view_user" data-toggle="modal">
+            <div role="button" class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
                     <?php if ($_SESSION['profilePhoto'] == null) { ?>
                         <img role="button" src="../../assets/dist/img/profile.png" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
                     <?php } else { ?>
@@ -32,7 +32,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <?php } ?>
                 </div>
                 <div class="info">
-                    <a class="d-block" data-target="#view_user" data-toggle="modal">
+                    <a class="d-block">
                         <?= $row['firstName'] . ' ' . $row['lastName']; ?> &nbsp;&nbsp;&nbsp;<i class="fas fa-circle text-success" style="font-size: 0.7rem;"></i>
                     </a>
                 </div>
@@ -106,106 +106,4 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
 <script>
     $('.nav-<?= isset($_GET['page']) ? $_GET['page'] : '' ?>').addClass('active').addClass('menu-open')
-</script>
-
-
-<?php
-$user_id = $_SESSION['adminuser_id'];
-$sql = "SELECT * FROM tbl_users WHERE user_id = $user_id";
-$result = $conn->query($sql);
-
-while ($row = $result->fetch_assoc()) {
-?>
-    <div class="modal fade" id="view_user">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Personal Information of <?= $row['firstName'] . ' ' . $row['lastName']; ?></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 d-flex justify-content-center">
-                            <div class="image">
-                                <?php if ($_SESSION['profilePhoto'] == null) { ?>
-                                    <img src="../../assets/dist/img/profile.png" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
-                                <?php } else { ?>
-                                    <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Account Number:</label>
-                                <input type="text" id="side_idnumber" value="<?= $row['accountNumber']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                            <div class="form-group">
-                                <label>Full Name:</label>
-                                <input type="text" id="side_name" value="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" class="form-control form-control-border text-center">
-                            </div>
-                            <div class="form-group">
-                                <label>Email:</label>
-                                <input type="text" id="side_email" value="<?= $row['email']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>Birth Date:</label>
-                                <input type="text" id="side_birthdate" value="<?= date('F j, Y', strtotime($row['birthDate'])); ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>Contact Number:</label>
-                                <input type="text" id="side_contactnumber" value="<?= $row['contactNumber']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <div class="form-group">
-                                <label>User Role:</label>
-                                <input type="text" id="side_rolename" value="<?= $row['role_name']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Address:</label>
-                                <input type="text" id="side_address" value="<?= $row['address']; ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <div class="form-group">
-                                <label>Date Registered:</label>
-                                <input type="text" id="side_usercreated" value="<?= date('F j, Y', strtotime($row['userCreated'])); ?>" class="form-control form-control-border text-center">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) == ("Admin")) || (trim($_SESSION['role_name']) == ("Manager")) || (trim($_SESSION['role_name']) == ("Processor")) || (trim($_SESSION['role_name']) == ("Cashier"))) : ?>
-                    <div class="modal-footer justify-content-end">
-                        <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_idnumber="<?= $row['accountNumber'] ?>" data-side_name="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" data-side_email="<?= $row['email'] ?>" data-side_birthdate="<?= date('F j, Y', strtotime($row['birthDate'])) ?>" data-side_contactnumber="<?= $row['contactNumber'] ?>" data-side_rolename="<?= $row['role_name'] ?>" data-side_address="<?= $row['address'] ?>" data-side_usercreated="<?= date('F j, Y', strtotime($row['userCreated'])) ?>">Cancel</button>
-                        <a href='javascript:void(0);' class="btn btn-primary save_info">Save</a>
-                    </div>
-                <?php endif ?>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-
-
-<?php } ?>
-
-<script>
-    $(document).ready(function() {
-        $("#cancel_btn").click(function() {
-            $('#side_idnumber').val($(this).data('side_idnumber'));
-            $('#side_name').val($(this).data('side_name'));
-            $('#side_email').val($(this).data('side_email'));
-            $('#side_birthdate').val($(this).data('side_birthdate'));
-            $('#side_contactnumber').val($(this).data('side_contactnumber'));
-            $('#side_rolename').val($(this).data('side_rolename'));
-            $('#side_address').val($(this).data('side_address'));
-            $('#side_usercreated').val($(this).data('side_usercreated'));
-        });
-    });
 </script>
