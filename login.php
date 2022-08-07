@@ -42,11 +42,9 @@ if (isset($_SESSION['user_id'])) {
 
 <body>
   
-  <!-- preloader area start -->
   <div id="preloader">
     <div class="loader"></div>
   </div>
-  <!-- preloader area end -->
 
   <?php
   if (isset($_SESSION['status'])) {
@@ -59,7 +57,7 @@ if (isset($_SESSION['user_id'])) {
   <div class="login-area login-s2">
     <div class="container">
       <div class="login-box ptb--100">
-        <form action="config/login-user.php" method="POST">
+        <form action="config/login-user.php" autocomplete="off" method="POST">
           <div class="login-form-head">
             <h4>Sign In</h4>
             <p>Sign in to start you session</p>

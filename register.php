@@ -27,6 +27,9 @@ session_start();
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
+    <!-- jquery latest version -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.24/dist/sweetalert2.min.js"></script>
@@ -49,7 +52,7 @@ session_start();
     <div class="login-area login-s2">
         <div class="container">
             <div class="login-box ptb--100">
-                <form action="config/admin-signup.php" method="POST">
+                <form autocomplete="off" id="signup">
                     <div class="login-form-head">
                         <h4>Sign up</h4>
                         <p>Create your account</p>
@@ -97,7 +100,7 @@ session_start();
                         </div>
                         <div class="form-gp">
                             <label for="contactnumber">Mobile Number</label>
-                            <input type="number" name="contactNumber" id="contactnumber" required>
+                            <input type="number" name="contactNumber" id="contactnumber" onfocus="(this.placeholder='Ex.: 09123456789')" onblur="(this.placeholder='')" required>
                             <i class="ti-mobile"></i>
                             <div class="text-danger"></div>
                         </div>
@@ -126,11 +129,48 @@ session_start();
     </div>
     <!-- login area end -->
 
+    <script>
+        var try1 = "success";
+        var try2 = "failed";
+        $(document).ready(function() {
+            $("#signup").on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "config/create-userclient.php",
+                    data: new FormData(this),
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == 1) {
+                            console.log(try1);
+                            window.location.href = "login.php"
+                        } else {
+                            console.log(try2);
+                            // $("#error-message").html(response.message);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 5000
+                            })
+
+                            Toast.fire({
+                                icon: 'error',
+                                title: response.message
+                            })
+                        }
+                    }
+
+                })
+            })
+        })
+    </script>
+
     <!-- unset toast notification to avoid popup every load -->
     <?php unset($_SESSION["status"]); ?>
-
-    <!-- jquery latest version -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

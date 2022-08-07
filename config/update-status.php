@@ -11,7 +11,7 @@ if (isset($_GET['approveref_no'])) {
     Swal.fire({
         icon: 'success',
         title: 'Success',
-        text: 'Loan Approoved'
+        text: 'Loan Approved'
     })
     </script>";
     header('location: ../pages/client/index.php?page=dashboard');

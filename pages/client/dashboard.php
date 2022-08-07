@@ -1,7 +1,7 @@
 <?php
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
-  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
-  exit();
+    header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+    exit();
 };
 ?>
 <!-- Content Header (Page header) -->
@@ -32,9 +32,36 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </section>
 <!-- /.content -->
 
-
-
-
 <script>
-    
+    function approve() {
+        Swal.fire({
+            title: 'Confirm Approve?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Approve'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../../config/update-status.php?approveref_no=<?php echo $row['status_ref']; ?>"
+            }
+        })
+    }
+
+    function disapprove() {
+        Swal.fire({
+            title: 'Confirm Disapprove?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Disapprove'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "../../config/update-status.php?denyref_no=<?php echo $row['status_ref']; ?>"
+            }
+        })
+    }
 </script>

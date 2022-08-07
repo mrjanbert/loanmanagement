@@ -110,40 +110,50 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                             '';
                                         } ?>
                                         <td class="text-center">
-                                            <button class="btn btn-info btn-sm btn-block my-1 viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $borrower_name ?>" data-ref_no="<?= $ref_no ?>" data-viewloan_amount="<?= number_format($amount, 2) ?>" data-viewloan_term="<?= $loan_term ?> Months" data-viewloan_type="<?= $loan_type ?>" data-loan_date="<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>" data-purpose="<?= $purpose ?>" data-comaker_name="<?= $comaker_name ?>" data-status_comaker=" <?php if ($row['status_comaker'] == '0') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Pending';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif ($row['status_comaker'] == '1') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Approved';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } elseif ($row['status_comaker'] == '2') {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    echo 'Disapproved';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } ?>" data-status_processor=" <?php if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
-                                                                                echo 'Pending';
-                                                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
-                                                                                echo 'Checked and Verified';
-                                                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
-                                                                                echo 'Disapproved';
-                                                                            } else {
-                                                                                echo '';
-                                                                            } ?>" data-status_manager=" <?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
-                                                                            echo 'Pending';
-                                                                        } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
-                                                                            echo 'Approved';
-                                                                        } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
-                                                                            echo 'Disapproved';
-                                                                        } else {
-                                                                            echo '';
-                                                                        } ?>" data-status_cashier=" <?php
-                                                                        if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
-                                                                            echo 'Pending';
-                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
-                                                                            echo 'Approved';
-                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
-                                                                            echo 'Released';
-                                                                        } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
-                                                                            echo 'Disapproved';
-                                                                        } else {
-                                                                            echo '';
-                                                                        } ?>">
+                                            <button class="btn btn-info btn-sm btn-block my-1 viewdashboardloan" 
+                                            data-toggle="modal" data-target="#viewdashboardloan" 
+                                            data-dash_borrower_name="<?= $borrower_name ?>" 
+                                            data-dash_ref_no="<?= $ref_no ?>" 
+                                            data-dash_viewloan_amount="<?= number_format($amount, 2) ?>" 
+                                            data-dash_viewloan_term="<?= $loan_term ?> Months" 
+                                            data-dash_viewloan_type="<?= $loan_type ?>" 
+                                            data-dash_loan_date="<?= date('M j, Y - g:i A', strtotime($loan_date)) ?>" 
+                                            data-dash_purpose="<?= $purpose ?>" 
+                                            data-dash_comaker_name="<?= $comaker_name ?>" 
+                                            data-dash_status_comaker=" <?php if ($row['status_comaker'] == '0') {
+                                                echo 'Pending';
+                                            } elseif ($row['status_comaker'] == '1') {
+                                                echo 'Approved';
+                                            } elseif ($row['status_comaker'] == '2') {
+                                                echo 'Disapproved';
+                                            } ?>" data-dash_status_processor=" <?php if (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) {
+                                                echo 'Pending';
+                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) {
+                                                echo 'Checked and Verified';
+                                            } elseif (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) {
+                                                echo 'Disapproved';
+                                            } else {
+                                                echo '';
+                                            } ?>" data-dash_status_manager=" <?php if (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) {
+                                            echo 'Pending';
+                                            } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '1')) {
+                                                echo 'Approved';
+                                            } elseif (($row['status_processor'] == '1') && ($row['status_manager'] == '3')) {
+                                                echo 'Disapproved';
+                                            } else {
+                                                echo '';
+                                            } ?>" data-dash_status_cashier=" <?php
+                                            if (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) {
+                                                echo 'Pending';
+                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) {
+                                                echo 'Approved';
+                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) {
+                                                echo 'Released';
+                                            } elseif (($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) {
+                                                echo 'Disapproved';
+                                            } else {
+                                                echo '';
+                                            } ?>">
                                                 <i class="fa fa-eye"></i>&nbsp;
                                                 Loan Information
                                             </button>
@@ -160,7 +170,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </section><!-- /.content -->
 
 
-<div class="modal fade" id="viewloan">
+<div class="modal fade" id="viewdashboardloan">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content card-outline card-primary">
             <div class="modal-header">
@@ -174,74 +184,74 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Borrower Name</label>
-                            <input type="text" id="borrower_name" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_borrower_name" class="form-control form-control-border text-center" readonly>
 
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Reference Number</label>
-                            <input type="text" id="ref_no" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_ref_no" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Amount</label>
-                            <input type="text" id="viewloan_amount" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_viewloan_amount" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Term</label>
-                            <input type="text" id="viewloan_term" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_viewloan_term" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Date</label>
-                            <input type="text" id="loan_date" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_loan_date" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Loan Type</label>
-                            <input type="text" id="viewloan_type" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_viewloan_type" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Purpose</label>
-                            <input type="text" id="purpose" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_purpose" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Co-Maker Name</label>
-                            <input type="text" id="comaker_name" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_comaker_name" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Comaker's Status</label>
-                            <input type="text" id="status_comaker" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_status_comaker" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Processor's Status</label>
-                            <input type="text" id="status_processor" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_status_processor" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Manager's Status</label>
-                            <input type="text" id="status_manager" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_status_manager" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Cashier's Status</label>
-                            <input type="text" id="status_cashier" class="form-control form-control-border text-center" readonly>
+                            <input type="text" id="dash_status_cashier" class="form-control form-control-border text-center" readonly>
                         </div>
                     </div>
                 </div>
@@ -257,178 +267,27 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </div>
 
 <script>
-    $('#calculate').click(function() {
-        calculate()
-    })
+    $(document).ready(function () {
+  $(".viewdashboardloan").click(function () {
+    $('#dash_borrower_name').val($(this).data('dash_borrower_name'));
+    $('#dash_ref_no').val($(this).data('dash_ref_no'));
+    $('#dash_viewloan_amount').val($(this).data('dash_viewloan_amount'));
+    $('#dash_viewloan_term').val($(this).data('dash_viewloan_term'));
+    $('#dash_loan_date').val($(this).data('dash_loan_date'));
+    $('#dash_viewloan_type').val($(this).data('dash_viewloan_type'));
+    $('#dash_purpose').val($(this).data('dash_purpose'));
+    $('#dash_comaker_name').val($(this).data('dash_comaker_name'));
+    $('#dash_status_comaker').val($(this).data('dash_status_comaker'));
+    $('#dash_status_processor').val($(this).data('dash_status_processor'));
+    $('#dash_status_manager').val($(this).data('dash_status_manager'));
+    $('#dash_status_cashier').val($(this).data('dash_status_cashier'));
+    $('#dash_comaker_date').val($(this).data('dash_comaker_date'));
+    $('#dash_processor_date').val($(this).data('dash_processor_date'));
+    $('#dash_manager_date').val($(this).data('dash_manager_date'));
+    $('#dash_cashier_date').val($(this).data('dash_cashier_date'));
 
-    function calculate() {
-        if ($('#plan_id').val() == '' || $('[name="amount"]').val() == '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops ...',
-                text: 'Please enter amount and plan term first.'
-            })
-            return false;
-        }
-        console.log({
-            amount: $('[name="amount"]').val(),
-            months: $('[name="loan_term"]').val(),
-            membership: $('[name="membership"]').val()
-        })
-        $.ajax({
-            url: "../../calculation_table.php",
-            method: "POST",
-            data: {
-                amount: $('[name="amount"]').val(),
-                months: $('[name="loan_term"]').val(),
-                membership: $('[name="membership"]').val()
-            },
-            success: function(resp) {
-                $('#calculation_table').html(resp)
-            }
-        })
-    }
-
-    $(document).ready(function() {
-        $(".viewloan").click(function() {
-            $('#borrower_name').val($(this).data('borrower_name'));
-            $('#ref_no').val($(this).data('ref_no'));
-            $('#viewloan_amount').val($(this).data('viewloan_amount'));
-            $('#viewloan_term').val($(this).data('viewloan_term'));
-            $('#loan_date').val($(this).data('loan_date'));
-            $('#viewloan_type').val($(this).data('viewloan_type'));
-            $('#purpose').val($(this).data('purpose'));
-            $('#comaker_name').val($(this).data('comaker_name'));
-            $('#status_comaker').val($(this).data('status_comaker'));
-            $('#status_processor').val($(this).data('status_processor'));
-            $('#status_manager').val($(this).data('status_manager'));
-            $('#status_cashier').val($(this).data('status_cashier'));
-
-            // $('#viewloan').modal('show');
-        });
-    });
+    // $('#viewloan').modal('show');
+  });
+});
 </script>
-
-<script>
-    $(".approve_processor").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Approve?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Approve'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?approve_processor=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-
-    $(".approve_manager").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Approve?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Approve'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?approve_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-
-    $(".disapprove_manager").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Disapprove?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Disapprove'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?disapprove_manager=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-
-    $(".approve_cashier").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Approve?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Approve'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?approve_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-
-    $(".disapprove_cashier").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Disapprove?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Disapprove'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?disapprove_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-
-    $(".release_cashier").click(function() {
-        var status_ref = $(this).data('status_ref');
-        console.log({
-            status_ref
-        });
-        Swal.fire({
-            title: 'Confirm Release?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Release'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = "../../config/update-status.php?release_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-            }
-        })
-    });
-</script>
-
 <?php endif ?>
