@@ -161,11 +161,9 @@
         </td>
         <td class="text-center">
           <?php if (isset($role_name) && ($role_name == 'Admin')) {  ?>
-            <a href="index.php?page=update-loan&updateREFID=<?= $ref_no ?>" class="btn btn-primary btn-xs my-1">
-              <i class="fa fa-edit"></i>
-            </a>
             <a href="javascript:void(0);" class="btn btn-danger delete_loan btn-xs my-1" data-delete_loan="<?= $ref_no ?>">
-              <i class="fa fa-trash"></i>
+              <i class="fa fa-trash"></i> 
+              Delete
             </a>
           <?php } ?>
           <?php if (isset($role_name) && ($role_name == 'Manager')) {  ?>

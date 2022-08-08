@@ -63,24 +63,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             });
         });
 
-        $(document).ready(function() {
-            $(".update_borrower").click(function() {
-                $('#update_userid').val($(this).data('update_userid'));
-                $('#update_info_name').val($(this).data('update_info_name'));
-                $('#update_info_idnumber').val($(this).data('update_info_idnumber'));
-                $('#update_info_age').val($(this).data('update_info_age'));
-                $('#update_info_birthdate').val($(this).data('update_info_birthdate'));
-                $('#update_info_mobilenumber').val($(this).data('update_info_mobilenumber'));
-                $('#update_info_address').val($(this).data('update_info_address'));
-                $('#update_info_membership').val($(this).data('update_info_membership'));
-                $('#update_info_email').val($(this).data('update_info_email'));
-                $('#update_info_usercreated').val($(this).data('update_info_usercreated'));
-                $('#update_info_image').attr('src', $(this).data('update_info_image'));
-
-                $('#update_borrower').modal('show');
-            });
-        });
-
         $(".delete_borrower").click(function() {
             var del_borrowerid = $(this).data('del_borrowerid');
             console.log({

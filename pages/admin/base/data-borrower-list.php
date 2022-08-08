@@ -38,9 +38,6 @@
 
           <!-- Action for Admin only -->
           <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-            <a class="btn btn-success btn-xs my-1 update_borrower" href="javascript:void(0);" data-toggle="modal" data-target="#update_borrower" data-update_userid="<?= $row['user_id'] ?>" data-update_info_idnumber="<?= $accountNumber ?>" data-update_info_name="<?= $name ?>" <?php if ($row['profilePhoto'] != null) { ?> data-update_info_image="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" <?php } else { ?> data-update_info_image="../../assets/dist/img/profile.png" <?php } ?> data-update_info_age="<?= $row['age']; ?>" data-update_info_mobilenumber="<?= $row['contactNumber']; ?>" data-update_info_email="<?= $row['email']; ?>" data-update_info_address="<?= $row['address']; ?>" data-update_info_membership="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" data-update_info_birthdate="<?= date('F j, Y', $birthDate); ?>" data-update_info_usercreated="<?= date('F j, Y', $userCreated); ?>">
-              <i class="fa fa-edit"></i>
-            </a>
             <a href="javascript:void(0);" class="btn btn-danger btn-xs delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>"><i class="fas fa-trash"></i></a>
           <?php } else {
             '';

@@ -4,7 +4,7 @@
 <div class="modal fade" id="addloan">
   <div class="modal-dialog modal-md">
     <div class="modal-content card-outline card-primary">
-      <form action="../../config/create-userclientloan.php" method="POST">
+      <form action="../../config/create-userclientloan.php" autocomplete="off" method="POST">
         <div class="modal-header">
           <h4 class="modal-title">Apply New Loan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">

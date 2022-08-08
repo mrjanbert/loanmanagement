@@ -91,9 +91,9 @@ while ($row = $result->fetch_assoc()) {
             <div class="col-md-6 d-flex justify-content-center">
               <div class="image">
                 <?php if ($_SESSION['profilePhoto'] == null) { ?>
-                  <img src="../../assets/dist/img/profile.png" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                  <img src="../../assets/images/profile.png" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
                 <?php } else { ?>
-                  <img src="../../components/img/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
+                  <img src="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
                 <?php } ?>
               </div>
             </div>

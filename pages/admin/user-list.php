@@ -43,21 +43,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </section><!-- /.content -->
 
     <script>
-        $(document).ready(function() {
-            $(".view_userlist").click(function() {
-                $('#userid').val($(this).data('userid'));
-                $('#idnumber').val($(this).data('idnumber'));
-                $('#name').val($(this).data('name'));
-                $('#email').val($(this).data('email'));
-                $('#birthdate').val($(this).data('birthdate'));
-                $('#contactnumber').val($(this).data('contactnumber'));
-                $('#rolename').val($(this).data('rolename'));
-                $('#address').val($(this).data('address'));
-                $('#usercreated').val($(this).data('usercreated'));
-                $('#profilephoto').attr('src', $(this).data('profilephoto'));
-            });
-        });
-
         $(".delete_user").click(function() {
             var del_user_id = $(this).data('del_user_id');
             console.log({
