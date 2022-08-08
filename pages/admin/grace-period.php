@@ -303,9 +303,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 									</div>
 								<?php endif; ?>
 
-
 								<div class="row">
-
 									<div class="col-md-6">
 									</div>
 									<div class="col-md-1">

@@ -23,7 +23,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
     </li> -->
+
     <li class="nav-item dropdown">
+
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fas fa-user fa-lg"></i>
       </a>
