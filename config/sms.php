@@ -1,5 +1,5 @@
 <?php
-require_once 'data/Database.php';
+// require_once 'data/Database.php';
 
 // $query = $conn->query("INSERT INTO tbl_notifications SET user_id = '13', ref_no = '12213456', contactNumber = '09300344555', message = 'Test Notification', date_posted= now() ");
 // if ($conn->affected_rows > 0) {
@@ -7,10 +7,13 @@ require_once 'data/Database.php';
 //   echo "Fuck you bitch";
 // }
 
+  // $ref_no = strtotime(date("h:i:sa"));
+  // $sql = $conn->query("SELECT loan_date FROM tbl_transaction WHERE ref_no = $ref_no ");
+
   echo "Philippine Standard Time";
 ?>
-<div class="pst-example row text-right" style="font-family: 'Droid Sans', sans-serif;  font-size: medium;"> </div>
-<script type="text/javascript" id="gwt-pst">
+<div class="pst-date row text-right" style="font-family: 'Droid Sans', sans-serif;  font-size: medium;"> </div>
+<!-- <script type="text/javascript" id="gwt-pst">
   (function(d, eId) {
     var js, gjs = d.getElementById(eId);
     js = d.createElement('script');
@@ -20,11 +23,11 @@ require_once 'data/Database.php';
   }(document, 'gwt-pst'));
 
   var gwtpstReady = function() {
-    // var otherFormat = 'dddd mmm dd, yyyy HH:MM:ss TT';
-    var otherFormat = 'mmm dd, yyyy HH:MM';
+    var otherFormat = 'dddd mmm dd, yyyy HH:MM:ss TT';
+    // var otherFormat = 'mmm dd, yyyy HH:MM';
     var firstPst = new gwtpstTime({
-      timerClass: 'pst-example',
+      timerClass: 'pst-date',
       format: otherFormat
     });
-  }
+  } -->
 </script>

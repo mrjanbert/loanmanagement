@@ -5,6 +5,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 };
 ?>
 
+<!-- unset toast notification to avoid popup every load -->
+<?php unset($_SESSION['status']); ?>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
@@ -25,9 +29,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 
-<script src="../../assets/js/scripts.js"></script>
-<script src="custom.js"></script>
-
+<script src="../../assets/js/preloader.js"></script>
 
 <!-- Page specific script -->
 <script>

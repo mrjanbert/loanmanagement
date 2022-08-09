@@ -32,11 +32,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         ?>
           <span class="dropdown-header"><?= ($row['membership'] == 1) ? 'Member User' : 'Non-member User' ?></span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item" data-toggle="modal" data-target="#view_user">
+          <a href="../client/index.php?page=profile" class="dropdown-item">
             <i class="fas fa-user-alt mr-2"></i> Profile
           </a>
         <?php } ?>
-        <a href="#" class="dropdown-item" onclick="logout()">
+        <a href="javascript:void(0)" class="dropdown-item" onclick="logout()">
           <i class="fas fa-sign-out-alt mr-2"></i> Logout
         </a>
       </div>
@@ -62,98 +62,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     })
   }
 </script>
-
-
-<div class="modal fade" id="view_user">
-  <div class="modal-dialog modal-lg">
-    <form action="../../config/update-info.php" method="POST">
-      <div class="modal-content">
-        <?php
-        $user_id = $_SESSION['user_id'];
-        $sql = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id = $user_id");
-        while ($row = $sql->fetch_assoc()) :
-        ?>
-          <div class="modal-header">
-            <h4 class="modal-title">Personal Information of <?= $row['firstName'] . ' ' . $row['lastName']; ?></h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6 d-flex justify-content-center">
-                <div class="image">
-                  <?php if ($_SESSION['profilePhoto'] == null) { ?>
-                    <img src="../../assets/images/profile.png" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
-                  <?php } else { ?>
-                    <img src="../../assets/images/uploads/<?= $row['profilePhoto'] ?>" class="img-circle elevation-3" alt="User Image" style="width: 250px; height: 250px;">
-                  <?php } ?>
-                </div>
-              </div>
-              <div class="col-md-6 text-center">
-                <div class="form-group">
-                  <label>Account Number:</label>
-                  <input type="text" id="side_idnumber" value="<?= $row['accountNumber']; ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-                <div class="form-group">
-                  <label>Full Name:</label>
-                  <input type="text" id="side_name" value="<?= $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'] ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-                <div class="form-group">
-                  <label>Email:</label>
-                  <input type="text" id="side_email" value="<?= $row['email']; ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Birth Date:</label>
-                  <input type="text" id="side_birthdate" value="<?= date('F j, Y', strtotime($row['birthDate'])); ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Membership Status:</label>
-                  <input type="text" id="side_membership" value="<?= ($row['membership'] == 1) ? 'Member' : 'Non-member'; ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Date Registered:</label>
-                  <input type="text" id="side_usercreated" value="<?= date('F j, Y', strtotime($row['userCreated'])); ?>" class="form-control form-control-border text-center" readonly>
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Contact Number:</label>
-                  <input type="text" id="side_contactnumber" name="contactNumber" value="<?= $row['contactNumber']; ?>" class="form-control form-control-border text-center">
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Username:</label>
-                  <input type="text" id="side_username" name="username" value="<?= $row['username']; ?>" class="form-control form-control-border text-center">
-                </div>
-              </div>
-              <div class="col-md-4 text-center">
-                <div class="form-group">
-                  <label>Address:</label>
-                  <input type="text" id="side_address" name="address" value="<?= $row['address']; ?>" class="form-control form-control-border text-center">
-                </div>
-              </div>
-              <input type="text" name="borrower_id" value="<?= $row['user_id'] ?>" hidden>
-            </div>
-          </div>
-          <div class="modal-footer justify-content-end">
-            <button class="btn btn-secondary" id="cancel_btn" data-dismiss="modal" data-side_contactnumber="<?= $row['contactNumber'] ?>" data-side_address="<?= $row['address'] ?>" data-side_username="<?= $row['username'] ?>">
-              Cancel
-            </button>
-            <button type="submit" class="btn btn-primary" name="update_info">Save</button>
-          </div>
-        <?php endwhile ?>
-      </div>
-    </form><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
 
 <script>
   $(document).ready(function() {

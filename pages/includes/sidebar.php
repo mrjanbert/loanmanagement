@@ -7,7 +7,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="javascript:void(0) " class="brand-link">
         <img src="../../assets/images/lms_logo.png" alt="NMSC LMS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Loan Management</span>
     </a>
