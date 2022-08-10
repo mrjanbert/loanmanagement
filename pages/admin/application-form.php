@@ -36,17 +36,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 			<div class="row d-flex">
 				<div class="col-md-12">
 					<div class="card">
-						<img src="../../assets/images/Header.png" style="width: 100%; height: 5%;" alt="NMSC Header.php">
-						<div class="card-body p-0">
-							<h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-weight: bold;">NMSCST CREDIT COOPERATIVE</h2>
-							<div class="col-md-12" style="font-family: Courier New, monospace;">
-								<h2 class="text-center" style=" font-weight: bold;">APPLICATION FOR LOAN</h2>
-								&nbsp;&nbsp;&nbsp;<button role="button" style="font-weight: bold;">Customer's Copy</button>
-							</div>
-							<div class="col-md-12">
-
-							</div>
-						</div>
+						<img src="../../assets/images/application-form-for-loan.jpg" style="width: 100%; height: 5%;" alt="NMSC Header.php">
 					</div><!-- /.card -->
 				</div><!-- /.col -->
 			</div><!-- /.row -->

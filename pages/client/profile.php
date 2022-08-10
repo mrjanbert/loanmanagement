@@ -77,10 +77,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="col-12 col-sm-auto mb-3">
                           <div class="mx-auto" style="width: 140px;">
                             <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                              <?php if ($_SESSION['profilePhoto'] == null) { ?>
+                              <?php if ($profilePhoto == null) { ?>
                                 <img src="../../assets/images/profile.png" id="photopreview" alt="User Image" style="height: 140px; width: 140px;">
                               <?php } else { ?>
-                                <img src="../../assets/images/uploads/<?= $row['profilePhoto'] ?>" id="photopreview" alt="User Image" style="height: 140px; width: 140px;">
+                                <img src="../../assets/images/uploads/<?= $profilePhoto ?>" id="photopreview" alt="User Image" style="height: 140px; width: 140px;">
                               <?php } ?>
                             </div>
                           </div>
@@ -88,8 +88,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <input type="text" name="user_id" value="<?= $user_id ?>" hidden>
                         <div class=" col d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div class="text-center text-sm-left mb-2 mb-sm-0">
-                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $row['firstName'] . ' ' . $row['lastName'] ?></h4>
-                            <p class="mb-0 text-muted"><?= $row['email'] ?></p>
+                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $firstName . ' ' . $lastName ?></h4>
+                            <p class="mb-0 text-muted"><?= $email ?></p>
                             <div class="text-muted"><small> &nbsp;</small></div>
                             <div class="mt-2">
                               <!-- <input type="file" id="upload" onchange="readURL(this);" hidden /> -->
@@ -105,7 +105,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </div>
                       </div>
                       <ul class="nav nav-tabs">
-                        <li class="nav-item"><a href="javascript:void(0)" class="active nav-link">Update Profile Information</a></li>
+                        <li class="nav-item"><a href="javascript:void(0)" class="active nav-link">Personal Information</a></li>
                       </ul>
                       <div class="tab-content pt-3">
                         <div class="tab-pane active">
@@ -115,13 +115,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label>ID Number</label>
-                                    <input class="form-control" type="text" name="accountNumber" placeholder="Enter ID number" value="<?= $accountNumber ?>">
+                                    <input class="form-control" type="text" name="accountNumber" placeholder="Enter ID number" value="<?= $accountNumber ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label>Username</label>
-                                    <input class="form-control" type="text" name="username" placeholder="Enter username" value="<?= $username ?>">
+                                    <input class="form-control" type="text" name="username" placeholder="Enter username" value="<?= $username ?>" required>
                                   </div>
                                 </div>
                               </div>
@@ -129,7 +129,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" type="text" name="firstName" placeholder="Enter first name" value="<?= $firstName ?>">
+                                    <input class="form-control" type="text" name="firstName" placeholder="Enter first name" value="<?= $firstName ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
@@ -141,7 +141,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" type="text" name="lastName" placeholder="Enter last name" value="<?= $lastName ?>">
+                                    <input class="form-control" type="text" name="lastName" placeholder="Enter last name" value="<?= $lastName ?>" required>
                                   </div>
                                 </div>
                               </div>
@@ -149,13 +149,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-7">
                                   <div class="form-group">
                                     <label>Email</label>
-                                    <input class="form-control" type="text" name="email" placeholder="Ex.: user@nmsc.edu.ph" value="<?= $email ?>">
+                                    <input class="form-control" type="text" name="email" placeholder="Ex.: user@nmsc.edu.ph" value="<?= $email ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-5">
                                   <div class="form-group">
                                     <label>Mobile Number</label>
-                                    <input class="form-control" type="text" name="contactNumber" placeholder="+639123456789" value="<?= $contactNumber ?>">
+                                    <input class="form-control" type="text" name="contactNumber" placeholder="+639123456789" value="<?= $contactNumber ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-6">
@@ -167,7 +167,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>Birth Date</label>
-                                    <input class="form-control" type="text" name="birthDate" placeholder="Enter birth date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $birthDate ?>">
+                                    <input class="form-control" type="text" name="birthDate" placeholder="Enter birth date" onfocus="(this.type='date')" onblur="(this.type='text')" value="<?= $birthDate ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-2">
@@ -240,15 +240,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             })
 
             Toast.fire({
-              icon: 'info',
+              icon: 'error',
               title: response.message
             })
           }
-        },
-        error: function(response) {
-          window.location.href = "index.php?page=profile"
         }
-
       })
     })
   })

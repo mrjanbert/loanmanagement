@@ -65,6 +65,9 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <!-- ./wrapper -->
 
+    <!-- unset toast notification to avoid popup every load -->
+    <?php unset($_SESSION['status']); ?>
+
     <!-- Footer -->
     <?php include_once('../includes/footer.php'); ?>
 </body>

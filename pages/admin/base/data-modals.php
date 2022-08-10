@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+  exit();
+};
+?>
 <!-- View Borrower -->
 <div class="modal fade" id="view_borrower">
   <div class="modal-dialog modal-lg">

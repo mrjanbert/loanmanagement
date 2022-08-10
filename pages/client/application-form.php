@@ -16,6 +16,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 				<button onclick="window.print()" class="btn btn-success">
 					<i class="fa fa-print"></i>&nbsp;Print
 				</button>
+				<a href="app-form.php?ref_no=<?= $_GET['ref_no'] ?>">pdf</a>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -33,21 +34,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 	<div class="container-fluid">
 		<div class="row d-flex">
 			<div class="col-md-12">
-				<div class="card">
-					<img src="../../components/img/Header.png" style="width: 100%; height: 5%;" alt="NMSC Header.php">
-					<div class="card-body p-0">
-						<h2 class="text-center" style="font-family: Times New Roman, Times, serif; font-weight: bold;">NMSCST CREDIT COOPERATIVE</h2>
-						<div class="col-md-12" style="font-family: Courier New, monospace;">
-							<h2 class="text-center" style="font-weight: bold;">APPLICATION FOR LOAN</h2>
-						</div>
-						&nbsp;&nbsp;&nbsp;<button role="button" class="btn bg-gradient-primary" style="font-weight: bold;">Customer's Copy</button>
-					</div>
-
-					<div class="row mt-5" style="font-family: Courier New, monospace; font-weight: bold;">
-						<div class=" col-md-5">
-							<h5 style="font-weight: bold;">Name</h5>
-						</div>
-					</div>
+				<div class="card d-flex align-items-center m-0 p-0">
+					<img src="../../assets/images/application-form-for-loan.jpg" style="width: 100%;" align="center" alt="NMSC Header.php">
 				</div><!-- /.card -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->

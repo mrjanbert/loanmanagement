@@ -56,6 +56,9 @@ require_once '../../config/data/Database.php';
     </div>
     <!-- ./wrapper -->
 
+    <!-- unset toast notification to avoid popup every load -->
+    <?php unset($_SESSION['status']); ?>
+
 
     <?php include_once 'base/data-modals.php' ?>
     <!-- Footer -->

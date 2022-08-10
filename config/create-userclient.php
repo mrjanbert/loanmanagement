@@ -1,5 +1,4 @@
 <?php
-
 $response = array(
     'status' => 0,
     'message' => ''
@@ -21,8 +20,10 @@ if (isset($_POST['username'])) {
 
     $checkusername = $conn->query("SELECT * FROM tbl_borrowers WHERE username = '$username'");
     $checkusername1 = $conn->query("SELECT * FROM tbl_users WHERE username = '$username'");
-    $checkmobilenumber = $conn->query("SELECT * FROM tbl_users WHERE contactNumber = '$contactNumber'");
-    $checkmobilenumber1 = $conn->query("SELECT * FROM tbl_borrowers WHERE contactNumber = '$contactNumber'");
+    $checkmobilenumber = $conn->query("SELECT * FROM tbl_borrowers WHERE contactNumber = '$contactNumber'");
+    $checkmobilenumber1 = $conn->query("SELECT * FROM tbl_users WHERE contactNumber = '$contactNumber'");
+    $checkid = $conn->query("SELECT * FROM tbl_borrowers WHERE accountNumber = '$accountNumber'");
+    $checkid1 = $conn->query("SELECT * FROM tbl_users WHERE accountNumber = '$accountNumber'");
 
     if(mysqli_num_rows($checkusername) == 1) {
         $response['status'] = 0;
@@ -36,6 +37,12 @@ if (isset($_POST['username'])) {
     } elseif (mysqli_num_rows($checkmobilenumber1) == 1) {
         $response['status'] = 0;
         $response['message'] = 'Mobile Number already exist. Please use another one.';
+    } elseif (mysqli_num_rows($checkid) == 1) {
+        $response['status'] = 0;
+        $response['message'] = 'ID Number already existed. Use your own ID Number.';
+    } elseif (mysqli_num_rows($checkid1) == 1) {
+        $response['status'] = 0;
+        $response['message'] = 'ID Number already existed. Use your own ID Number.';
     } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response['status'] = 0;
         $response['message'] = 'Invalid email format';
@@ -73,23 +80,8 @@ if (isset($_POST['username'])) {
                     icon: 'success',
                     title: 'Registered Successfully.'
                 })</script>";
-            // header('location: ../pages/client/login.php');
-            
             else :
                 $response['status'] = 0;
-                // session_start();
-                // $_SESSION['status'] = "<script>const Toast = Swal.mixin({
-                //         toast: true,
-                //         position: 'top-end',
-                //         showConfirmButton: false,
-                //         timer: 5000
-                //     })
-                
-                //     Toast.fire({
-                //         icon: 'error',
-                //         title: 'Signing up failed. Please try again.'
-                //     })</script>";
-                // header('location: ../pages/client/register.php');
         endif;
     }
 }

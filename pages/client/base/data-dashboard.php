@@ -1,4 +1,10 @@
 <!-- Small boxes (Stat box) -->
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+  exit();
+};
+?>
 <div class="row">
   <div class="col-lg-6 col-6">
     <?php
