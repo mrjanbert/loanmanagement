@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design Bootstrap</title>
+  <title>HOME :: NMSCST Loan Management System</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -152,7 +152,7 @@
           <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
 
             <!--Image-->
-            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Architecture/4-col/img%20%289%29.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
+            <img src="assets/landing-page/img/adminbuilding.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
 
           </div>
           <!--First column-->
@@ -245,7 +245,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->
@@ -281,7 +281,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2840%29.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->
@@ -324,7 +324,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2841%29.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->
@@ -361,7 +361,7 @@
     </div>
 
     <!--Streak-->
-    <div id="courses" class="streak streak-photo streak-md" style="background-image: url('https://abanksb.bg/abb/wp-content/uploads/2018/03/loan-products.jpg');">
+    <div id="courses" class="streak streak-photo streak-md" style="background-image: url('assets/landing-page/img/parallax.jpg');">
       <div class="flex-center mask rgba-indigo-strong">
         <div class="text-center white-text">
           <h2 class="h2-responsive mb-5">
@@ -549,7 +549,7 @@
               <div class="testimonial">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Geque Aguaviva</h4>
@@ -563,11 +563,11 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-md-3 clearfix d-none d-sm-block">
+            <div class="col-md-3">
               <div class="testimonial">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Janbert Gabica</h4>
@@ -580,11 +580,11 @@
             <!--Grid column-->
 
             <!--Grid column-->
-            <div class="col-md-3 clearfix d-none d-sm-block">
+            <div class="col-md-3">
               <div class="testimonial">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Nico Sambiog</h4>
@@ -602,7 +602,7 @@
               <div class="testimonial">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Gann Deryl Balili</h4>

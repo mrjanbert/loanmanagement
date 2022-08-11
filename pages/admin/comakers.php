@@ -69,7 +69,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 confirmButtonText: 'Delete' 
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "../../config/update-info.php?delete_comaker_id=" + del_comaker_id;
+                    window.location.href = "../../config/delete-comaker.php?delete_comaker_id=" + del_comaker_id;
                 }
             })
         });

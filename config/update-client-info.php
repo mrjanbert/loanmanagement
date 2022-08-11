@@ -9,7 +9,6 @@ require_once 'data/Database.php';
 
 if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   extract($_POST);
-  extract($_FILES);
 
   $checkphoto = $conn->query("SELECT profilePhoto FROM tbl_borrowers WHERE user_id = '$user_id'");
   $data = $checkphoto->fetch_array();
@@ -64,6 +63,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
     $contactNumber = filter_var($contactNumber, FILTER_SANITIZE_NUMBER_INT);
 
     if (move_uploaded_file($temp, $folder)) {
+      unlink("../assets/images/uploads/".$currentphoto);
       $query = "UPDATE tbl_borrowers 
             SET 
                 accountNumber = '$accountNumber',

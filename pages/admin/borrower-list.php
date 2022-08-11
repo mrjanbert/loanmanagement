@@ -78,7 +78,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 confirmButtonText: 'Delete'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "../../config/delete-user.php?delete_borrower_id=" + del_borrowerid;
+                    window.location.href = "../../config/delete-borrower.php?delete_borrower_id=" + del_borrowerid;
                 }
             })
         });

@@ -131,19 +131,17 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
       <td>
         <a href="index.php?page=grace-period&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-primary btn-xs" title="View Grace Period" data-toggle="tooltip" data-placement="top">
-          <i class="fas fa-calendar-alt"></i>&nbsp;
           Grace Period
         </a>
-        <a href="index.php?page=application-form&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-success btn-xs" title="View Application Form" data-toggle="tooltip" data-placement="top">
-          <i class="fa fa-print"></i>&nbsp; Application Form
+        <a href="app-form.php?ref_no=<?= $row['ref_no'] ?>" target="_blank" class="btn btn-success my-1 btn-xs">
+          Application Form
         </a>
-        <button class="my-1 btn btn-info btn-xs viewloan" data-toggle="modal" data-target="#viewloan" data-borrower_name="<?= $row['borrower_name'] ?>" data-ref_no="<?= $row['ref_no'] ?>" data-loan_amount="<?= number_format($row['amount'], 2) ?>" data-loan_terms="<?= $row['loan_term'] ?> Months" data-comaker_date="<?= ($comaker_date != null) ? date('M j, Y', strtotime($comaker_date)) : '' ?>" data-processor_date="<?= ($processor_date != null) ? date('M j, Y', strtotime($processor_date)) : '' ?>" data-manager_date="<?= ($manager_date != null) ? date('M j, Y', strtotime($manager_date)) : '' ?>" data-cashier_date="<?= ($cashier_date != null) ? date('M j, Y', strtotime($cashier_date)) : '' ?>" data-loan_type="<?= $row['loan_type'] ?>" data-loan_date="<?= date('M j, Y g:i A', strtotime($row['loan_date'])) ?>" data-purpose="<?= $row['purpose'] ?>" data-comaker_name="<?= $row['comaker_name'] ?>" data-status_comaker="<?= ($row['status_comaker'] == '0') ? 'Pending' : (($row['status_comaker'] == '1') ? 'Approved' : 'Disapproved') ?>" data-status_processor="<?= (($row['status_comaker'] == '1') &&  ($row['status_processor'] == '0')) ? 'Pending' : ((($row['status_comaker'] == '1') &&  ($row['status_processor'] == '1')) ? 'Checked and Verified by ' . $row['user_name'] : ((($row['status_comaker'] == '1') &&  ($row['status_processor'] == '3')) ? 'Disapproved' : '')) ?>" data-status_manager="<?= (($row['status_processor'] == '1') && ($row['status_manager'] == '0')) ? 'Pending' : ((($row['status_processor'] == '1') && ($row['status_manager'] == '1')) ? 'Approved' : ((($row['status_processor'] == '1') && ($row['status_manager'] == '3')) ? 'Disapproved' : '')) ?>" data-status_cashier="<?= (($row['status_manager'] == '1') && ($row['status_cashier'] == '0')) ? 'Pending' : ((($row['status_manager'] == '1') && ($row['status_cashier'] == '1')) ? 'Approved' : ((($row['status_manager'] == '1') && ($row['status_cashier'] == '2')) ? 'Released' : ((($row['status_manager'] == '1') && ($row['status_cashier'] == '3')) ? 'Disapproved' : ''))) ?>">
-          <i class="fa fa-eye"></i>&nbsp;
-          View Loan
-        </button>
+        <a class="btn btn-info btn-xs my-1" href="index.php?page=loan-information&ref_no=<?= $row['ref_no'] ?>">
+          Loan Information
+        </a>
         <?php if (($row['status_cashier'] == '1') || ($row['status_cashier'] == '2')) { ?>
           <a href="index.php?page=view-payments&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-warning text-white btn-xs" title="View Payments" data-toggle="tooltip" data-placement="top">
-            <i class="fa fa-print"></i>&nbsp; View Payments
+            View Payments
           </a>
         <?php } ?>
 

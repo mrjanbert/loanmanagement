@@ -42,12 +42,12 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <div class="card-body">
                         <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name'] == 'Cashier') || ($_SESSION['role_name'] == 'Admin'))) {  ?>
                             <div class="d-flex justify-content-end mb-2">
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpayment">
-                                    <i class="fa fa-plus"></i> &nbsp;
+                                <button class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#addpayment">
+                                    <i class="fa fa-plus mr-1"></i>
                                     Add Payment
-                                </button> &nbsp; &nbsp;
+                                </button>
                                 <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addpenalty">
-                                    <i class="fa fa-plus"></i> &nbsp;
+                                    <i class="fa fa-plus mr-1"></i>
                                     Add Penalty
                                 </button>
                             </div>

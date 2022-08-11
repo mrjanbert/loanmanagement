@@ -72,18 +72,3 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     })
   }
 </script>
-
-<script>
-  $(document).ready(function() {
-    $("#cancel_btn").click(function() {
-      $('#side_idnumber').val($(this).data('side_idnumber'));
-      $('#side_name').val($(this).data('side_name'));
-      $('#side_email').val($(this).data('side_email'));
-      $('#side_birthdate').val($(this).data('side_birthdate'));
-      $('#side_contactnumber').val($(this).data('side_contactnumber'));
-      $('#side_rolename').val($(this).data('side_rolename'));
-      $('#side_address').val($(this).data('side_address'));
-      $('#side_usercreated').val($(this).data('side_usercreated'));
-    });
-  });
-</script>

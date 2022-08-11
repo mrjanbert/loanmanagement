@@ -119,7 +119,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 confirmButtonText: 'Delete'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "../../config/update-info.php?delete_permission_id=" + perm_user_id;
+                    window.location.href = "../../config/delete-role.php?delete_permission_id=" + perm_user_id;
                 }
             })
         });

@@ -27,15 +27,15 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <!-- ./col -->
   <div class="col-lg-6 col-6">
     <?php
-    $sql = "SELECT * FROM tbl_payments WHERE borrower_id = " . $_SESSION['user_id'];
+    $sql = "SELECT * FROM tbl_transaction WHERE borrower_id = " . $_SESSION['user_id'];
     $results = mysqli_query($conn, $sql);
     ?>
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
-        <h3>??.??</h3>
+        <h3>0</h3>
         </h3>
-        <p>Remaining Balance</p>
+        <p>Released Loans</p>
       </div>
       <div class="icon">
         <i class="fas fa-coins"></i>

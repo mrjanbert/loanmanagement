@@ -5,8 +5,8 @@ include_once('../../config/data/Database.php');
 $ref_no = $_GET['ref_no'];
 $query = $conn->query("SELECT 
   t.*, concat(c.firstName,' ',c.lastName) AS comaker_name, 
-  b.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name,
-  s.*, concat(u.firstName,' ', u.lastName) as user_name
+  b.*, concat(b.firstName,' ',b.lastName) as borrower_name,
+  s.*, concat(u.firstName,' ',u.lastName) as user_name
     FROM ((((tbl_transaction t 
   INNER JOIN tbl_status s ON s.ref_no = t.ref_no)
   LEFT JOIN tbl_users u ON s.processor_id = u.user_id)
@@ -46,7 +46,7 @@ $query = $conn->query("SELECT
   endif;
 
 //* Set Page as portrait 'P', inches 'in', legal size 'Legal'
-//! FPDF Does not support Folio size '8.5x13'
+//! Does not support Folio size '8.5x13'
 $pdf = new FPDF('P', 'in', 'Legal');
 
 $pdf->SetTitle('Application Form For Loan');
@@ -99,7 +99,7 @@ $pdf->Ln(5);
 // $pdf->Ln(0);
 // $pdf->Cell(0,5.47, '                           ???');
 
-//? Computation Information (Member)
+  //? Computation Information (Member)
 $pdf->Ln(3);
 $pdf->Cell(0, 0.57,'                               '. number_format($amount, 2));
 $pdf->Ln(0);

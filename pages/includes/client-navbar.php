@@ -62,15 +62,3 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     })
   }
 </script>
-
-<script>
-  $(document).ready(function() {
-    $("#cancel_btn").click(function() {
-      $('#side_contactnumber').val($(this).data('side_contactnumber'));
-      $('#side_username').val($(this).data('side_username'));
-      $('#side_address').val($(this).data('side_address'));
-
-      $('#addloan').modal('hide');
-    });
-  });
-</script>

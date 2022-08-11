@@ -77,29 +77,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         })
     }
     $(document).ready(function() {
-        $(".viewloan").click(function() {
-            $('#borrower_name').val($(this).data('borrower_name'));
-            $('#ref_no').val($(this).data('ref_no'));
-            $('#loan_amount').val($(this).data('loan_amount'));
-            $('#loan_terms').val($(this).data('loan_terms'));
-            $('#loan_type').val($(this).data('loan_type'));
-            $('#loan_date').val($(this).data('loan_date'));
-            $('#purpose').val($(this).data('purpose'));
-            $('#comaker_name').val($(this).data('comaker_name'));
-            $('#status_comaker').val($(this).data('status_comaker'));
-            $('#status_processor').val($(this).data('status_processor'));
-            $('#status_manager').val($(this).data('status_manager'));
-            $('#status_cashier').val($(this).data('status_cashier'));
-            $('#comaker_date').val($(this).data('comaker_date'));
-            $('#processor_date').val($(this).data('processor_date'));
-            $('#manager_date').val($(this).data('manager_date'));
-            $('#cashier_date').val($(this).data('cashier_date'));
-
-            $('#viewloan').modal('show');
-        });
-    });
-
-    $(document).ready(function() {
         $("#close_modal").click(function() {
             $('#view_loan_amount').val('');
             $('#view_loan_months').val('');

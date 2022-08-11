@@ -47,66 +47,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         </div><!-- /.container-fluid -->
     </section><!-- /.content -->
 
-
-
-
-    <script>
-        $('#calculate').click(function() {
-            calculate()
-        })
-
-        function calculate() {
-            if ($('#plan_id').val() == '' || $('[name="amount"]').val() == '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops ...',
-                    text: 'Please enter amount and plan term first.'
-                })
-                return false;
-            }
-            console.log({
-                amount: $('[name="amount"]').val(),
-                months: $('[name="loan_term"]').val(),
-                membership: $('[name="membership"]').val()
-            })
-            $.ajax({
-                url: "../../calculation_table.php",
-                method: "POST",
-                data: {
-                    amount: $('[name="amount"]').val(),
-                    months: $('[name="loan_term"]').val(),
-                    membership: $('[name="membership"]').val()
-                },
-                success: function(resp) {
-                    $('#calculation_table').html(resp)
-                }
-            })
-        }
-
-        $(document).ready(function() {
-            $(".viewuserloan").click(function() {
-                $('#borrower_name').val($(this).data('borrower_name'));
-                $('#ref_no').val($(this).data('ref_no'));
-                $('#viewloan_amount').val($(this).data('viewloan_amount'));
-                $('#viewloan_term').val($(this).data('viewloan_term'));
-                $('#loan_date').val($(this).data('loan_date'));
-                $('#viewloan_type').val($(this).data('viewloan_type'));
-                $('#purpose').val($(this).data('purpose'));
-                $('#comaker_name').val($(this).data('comaker_name'));
-                $('#status_comaker').val($(this).data('status_comaker'));
-                $('#status_processor').val($(this).data('status_processor'));
-                $('#status_manager').val($(this).data('status_manager'));
-                $('#status_cashier').val($(this).data('status_cashier'));
-                $('#comaker_date').val($(this).data('comaker_date'));
-                $('#processor_date').val($(this).data('processor_date'));
-                $('#manager_date').val($(this).data('manager_date'));
-                $('#cashier_date').val($(this).data('cashier_date'));
-
-                $('#viewuserloan').modal('show');
-            });
-        });
-    </script>
-
     <script>
         $(".approve_processor").click(function() {
             var status_ref = $(this).data('status_ref');

@@ -127,107 +127,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </div>
 <!-- Add Comaker -->
 
-<!-- View Loans -->
-<div class="modal fade" id="viewloan">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content card-outline card-primary">
-      <div class="modal-header">
-        <h4 class="modal-title">Loan Information</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="card-body">
-        <div class="row text-center">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Borrower Name</label>
-              <input type="text" id="borrower_name" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Reference Number</label>
-              <input type="text" id="ref_no" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Loan Amount</label>
-              <input type="text" id="viewloan_amount" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Loan Term</label>
-              <input type="text" id="viewloan_term" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Loan Date</label>
-              <input type="text" id="loan_date" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Loan Type</label>
-              <input type="text" id="viewloan_type" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Purpose</label>
-              <input type="text" id="purpose" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label>Co-Maker Name</label>
-              <input type="text" id="comaker_name" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Comaker's Status</label>
-              <input type="text" id="status_comaker" class="form-control form-control-border text-center" readonly>
-              <input type="text" id="comaker_date" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>CC Member's Status</label>
-              <input type="text" id="status_processor" class="form-control form-control-border text-center" readonly>
-              <input type="text" id="processor_date" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Manager's Status</label>
-              <input type="text" id="status_manager" class="form-control form-control-border text-center" readonly>
-              <input type="text" id="manager_date" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Cashier's Status</label>
-              <input type="text" id="status_cashier" class="form-control form-control-border text-center" readonly>
-              <input type="text" id="cashier_date" class="form-control form-control-border text-center" readonly>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.card-body -->
-      <div class="modal-footer justify-content-end">
-        <div class="form-group">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div><!-- /.modal-dialog -->
-</div>
-<!-- View Loans -->
-
 <!-- Add Payment -->
 <div class="modal fade" id="addpayment">
   <div class="modal-dialog modal-md">
@@ -284,7 +183,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <!-- Add Penalty -->
 <div class="modal fade" id="addpenalty">
   <div class="modal-dialog modal-md">
-    <form action="../../config/create-payment.php" method="POST" autocomplete="off">
+    <form action="../../config/create-penalty.php" method="POST" autocomplete="off">
       <div class="modal-content card-outline card-primary">
         <div class="modal-header">
           <h4 class="modal-title">Add Penalty</h4>

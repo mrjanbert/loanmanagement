@@ -9,13 +9,12 @@ require_once 'data/Database.php';
 
 if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   extract($_POST);
-  extract($_FILES);
 
   $checkphoto = $conn->query("SELECT profilePhoto FROM tbl_users WHERE user_id = '$user_id'");
   $data = $checkphoto->fetch_array();
   $currentphoto = $data['profilePhoto'];
 
-  $profilePhoto = date('mdYhis').'_'.basename($_FILES['profilePhoto']['name']);
+  $profilePhoto = date('mdYhis') . '_' . $_FILES['profilePhoto']['name'];
   $temp = $_FILES['profilePhoto']['tmp_name'];
   $folder = "../assets/images/uploads/" . $profilePhoto;
   $imgsize = $_FILES['profilePhoto']['size'];
@@ -25,7 +24,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   } else {
     $profilePhoto = $profilePhoto;
   }
-  
+
   $diff = date_diff(date_create($birthDate), date_create(date('Y-m-d')));
   $age = $diff->format("%y");
 
@@ -49,7 +48,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
     $response['message'] = 'Invalid email format';
   } elseif (preg_match('/^[0-9]{11}+$/', $contactNumber) === 0) {
     $response['status'] = 0;
-    $response['message'] = 'Invalid Mobile Number';
+    $response['message'] = 'Invalid mobile number';
   } else {
 
     $checkpassword = $conn->query("SELECT password FROM tbl_users WHERE user_id = $user_id");
@@ -63,8 +62,9 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
 
     $contactNumber = filter_var($contactNumber, FILTER_SANITIZE_NUMBER_INT);
 
-    if(move_uploaded_file($temp, $folder)) {
-    $query = "UPDATE tbl_users 
+    if (move_uploaded_file($temp, $folder)) {
+      unlink("../assets/images/uploads/" . $currentphoto);
+      $query = "UPDATE tbl_users 
             SET 
                 accountNumber = '$accountNumber',
                 firstName = '$firstName',
@@ -80,11 +80,11 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                 password = '$encrypt'
               WHERE user_id = $user_id
             ";
-    $results = $conn->query($query);
-    if ($conn->affected_rows > 0) :
-      $response['status'] = 1;
-      session_start();
-      $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+      $results = $conn->query($query);
+      if ($conn->affected_rows > 0) :
+        $response['status'] = 1;
+        session_start();
+        $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
@@ -95,10 +95,10 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                     icon: 'success',
                     title: 'Profile information updated.'
                 })</script>";
-    else :
-      $response['status'] = 1;
-      session_start();
-      $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+      else :
+        $response['status'] = 1;
+        session_start();
+        $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
@@ -109,8 +109,8 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                     icon: 'info',
                     title: 'No changes made.'
                 })</script>";
-    endif;
-  } else {
+      endif;
+    } else {
       $query = "UPDATE tbl_users 
             SET 
                 accountNumber = '$accountNumber',
@@ -156,7 +156,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                     title: 'No changes made.'
                 })</script>";
       endif;
-  }
+    }
   }
 }
 echo json_encode($response);
