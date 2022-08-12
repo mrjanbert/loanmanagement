@@ -19,7 +19,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <p>Total Loans</p>
       </div>
       <div class="icon">
-        <i class="fas fa-money-bill-wave"></i>
+        <i class="fas fa-list-ul"></i>
       </div>
       <a href="index.php?page=view-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
@@ -27,20 +27,21 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <!-- ./col -->
   <div class="col-lg-6 col-6">
     <?php
-    $sql = "SELECT * FROM tbl_transaction WHERE borrower_id = " . $_SESSION['user_id'];
+    $sql = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s on s.ref_no = t.ref_no WHERE s.status_cashier = '2' AND t.borrower_id = " . $_SESSION['user_id'];
     $results = mysqli_query($conn, $sql);
+    $total_releasedloans = mysqli_num_rows($results);
     ?>
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
-        <h3>0</h3>
+        <h3><?= $total_releasedloans ?></h3>
         </h3>
         <p>Released Loans</p>
       </div>
       <div class="icon">
-        <i class="fas fa-coins"></i>
+        <i class="fas fa-tasks"></i>
       </div>
-      <a href="index.php?page=payments" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="index.php?page=view-payment-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->

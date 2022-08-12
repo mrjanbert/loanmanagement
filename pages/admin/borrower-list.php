@@ -42,32 +42,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         </div><!-- /.container-fluid -->
     </section><!-- /.content -->
 
-
-
-
     <script>
-        $(document).ready(function() {
-            $(".view_borrower").click(function() {
-                $('#info_name').val($(this).data('info_name'));
-                $('#info_idnumber').val($(this).data('info_idnumber'));
-                $('#info_age').val($(this).data('info_age'));
-                $('#info_birthdate').val($(this).data('info_birthdate'));
-                $('#info_mobilenumber').val($(this).data('info_mobilenumber'));
-                $('#info_address').val($(this).data('info_address'));
-                $('#info_membership').val($(this).data('info_membership'));
-                $('#info_email').val($(this).data('info_email'));
-                $('#info_usercreated').val($(this).data('info_usercreated'));
-                $('#info_image').attr('src', $(this).data('info_image'));
-
-                $('#view_borrower').modal('show');
-            });
-        });
-
-        $(".delete_borrower").click(function() {
+        function delete_borrower() {
             var del_borrowerid = $(this).data('del_borrowerid');
-            console.log({
-                del_borrowerid
-            });
             Swal.fire({
                 title: 'Delete this borrower from database?',
                 text: "You won't be able to revert this!",
@@ -81,6 +58,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     window.location.href = "../../config/delete-borrower.php?delete_borrower_id=" + del_borrowerid;
                 }
             })
-        });
+        }
     </script>
 <?php endif; ?>

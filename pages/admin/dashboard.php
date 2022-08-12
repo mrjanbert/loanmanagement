@@ -44,7 +44,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="icon">
                             <i class="fas fa-thumbs-up"></i>
                         </div>
-                        <a href="index.php?page=view-approved-loans&usr=<?= ($_SESSION['role_name']) ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="index.php?page=view-approved-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -63,7 +63,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="icon">
                             <i class="fas fa-thumbs-down"></i>
                         </div>
-                        <a href="index.php?page=view-disapproved-loans&usr=<?= ($_SESSION['role_name']) ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="index.php?page=view-disapproved-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -89,7 +89,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="icon">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <a href="index.php?page=view-pending-loans&usr=<?= ($_SESSION['role_name']) ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="index.php?page=view-pending-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

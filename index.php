@@ -675,16 +675,16 @@
             <div class="footer-socials mt-4">
 
               <!--Facebook-->
-              <a type="button" class="btn-floating btn-blue-2 ">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <!--Github-->
-              <a type="button" class="btn-floating btn-blue-2 ">
+              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="https://github.com/mrjanbert/loanmanagement">
                 <i class="fab fa-github"></i>
               </a>
+              <!--Github-->
+              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="signup.php?usr=admin">
+                <i class="fas fa-user-shield"></i>
+              </a>
               <!--Google +-->
-              <a type="button" class="btn-floating btn-blue-2 ">
-                <i class="fab fa-google-plus-g"></i>
+              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="login.php">
+                <i class="fas fa-sign-in-alt"></i>
               </a>
 
             </div>

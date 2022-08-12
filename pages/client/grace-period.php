@@ -9,12 +9,12 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<button onclick="history.back()" class="btn btn-warning btn-sm">
-					<i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
+				<button onclick="history.back()" class="btn btn-warning btn-sm mr-2">
+					<i class="fas fa-arrow-alt-circle-left"></i>
 					Back
-				</button> &nbsp;&nbsp;
+				</button>
 				<a href="javascrript:void(0)" onclick="window.print()" class="btn btn-success btn-sm">
-					<i class="fa fa-print"></i>&nbsp;Print
+					<i class="fa fa-print mr-1"></i>Print
 				</a>
 			</div>
 			<div class="col-sm-6">

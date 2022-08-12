@@ -24,6 +24,8 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="assets/css/metisMenu.css">
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="assets/css/slicknav.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:100,300,400,500,600,700,800,900">
   <!-- amchart css -->
   <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
   <!-- others css -->
@@ -42,7 +44,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-  
+
   <div id="preloader">
     <div class="loader"></div>
   </div>
@@ -80,7 +82,7 @@ if (isset($_SESSION['user_id'])) {
               <button name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
             </div>
             <div class="form-footer text-center mt-5">
-              <p class="text-muted">Don't have an account? <a href="register.php">Sign up</a></p>
+              <p class="text-muted">Don't have an account? <a href="signup.php?usr=borrower">Sign up</a></p>
             </div>
           </div>
         </form>

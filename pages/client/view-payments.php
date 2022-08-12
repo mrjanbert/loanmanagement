@@ -29,7 +29,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<h2 class="card-title">Loan Reference Number: <b><?= $_GET['ref_no'] ?> </b></h2>
+						<h2 class="card-title">Loan Reference Number: <b><?= $_GET['ref_no'] ?> </b></h2> <br />
 						<div class="d-flex justify-content-end">
 							<button onclick="history.back()" class="btn btn-warning btn-sm">
 								<i class="fas fa-arrow-alt-circle-left"></i> &nbsp;

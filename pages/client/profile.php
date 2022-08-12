@@ -155,7 +155,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-5">
                                   <div class="form-group">
                                     <label>Mobile Number</label>
-                                    <input class="form-control" type="text" name="contactNumber" placeholder="+639123456789" value="<?= $contactNumber ?>" required>
+                                    <input class="form-control" type="text" name="contactNumber" placeholder="Ex.: 09123456789" value="<?= $contactNumber ?>" required>
                                   </div>
                                 </div>
                                 <div class="col-md-6">

@@ -51,7 +51,48 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </section><!-- /.content -->
 
 
-    
+    <!-- Add Comaker -->
+    <div class="modal fade" id="addcomaker">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content card-outline card-primary">
+                <form action="../../config/create-comaker.php" method="POST">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Co-maker</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Borrower Name <small class="text-red">*</small></label>
+                                    <select class="select2" style="width: 100%;" name="user_id" data-placeholder="Select borrower" required>
+                                        <option></option>
+                                        <?php
+                                        $query = $conn->query("SELECT * FROM tbl_borrowers WHERE membership != '1' ");
+                                        while ($row = $query->fetch_assoc()) :
+                                        ?>
+                                            <option value="<?php echo $row['user_id'] ?>"><?php echo $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName']; ?></option>
+                                        <?php endwhile; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="modal-footer justify-content-end">
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form><!-- /.modal-content -->
+            </div>
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- Add Comaker -->
+
 
     <script>
         $(".delete_comaker").click(function() {
@@ -66,7 +107,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Delete' 
+                confirmButtonText: 'Delete'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "../../config/delete-comaker.php?delete_comaker_id=" + del_comaker_id;

@@ -26,9 +26,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             <div role="button" class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <?php if ($row['profilePhoto'] == null) { ?>
-                        <img role="button" src="../../assets/images/profile.png" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                        <img role="button" src="../../assets/images/profile.png" class="img-square elevation-2" style="width: 35px; height: 35px;" alt="User Image">
                     <?php } else { ?>
-                        <img role="button" src="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" class="img-circle elevation-2" style="width: 35px; height: 35px;" alt="User Image">
+                        <img role="button" src="../../assets/images/uploads/<?= $row['profilePhoto']; ?>" class="img-square elevation-2" style="width: 35px; height: 35px;" alt="User Image">
                     <?php } ?>
                 </div>
                 <div class="info">
@@ -52,7 +52,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans">
+                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans nav-borrower-info">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers

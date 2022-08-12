@@ -25,14 +25,14 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     <?php while ($row = $results->fetch_assoc()) : $user_id = $row['user_id']; ?>
 
       <tr>
-        <td class="text-center"><?php echo $i++; ?></td>
-        <td><?php echo $row['accountNumber']; ?></td>
-        <td><?php echo $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName'][0] . '.'; ?> </td>
-        <td><?php echo $row['address']; ?></td>
-        <td><?php echo $row['contactNumber']; ?></td>
-        <td><?php echo $row['email']; ?></td>
+        <td class="text-center"><?= $i++; ?></td>
+        <td><?= $row['accountNumber']; ?></td>
+        <td><?= $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName']; ?> </td>
+        <td><?= $row['address']; ?></td>
+        <td><?= $row['contactNumber']; ?></td>
+        <td><?= $row['email']; ?></td>
         <td>
-          <a href="javascript:void(0);" class="btn btn-danger btn-xs delete_user" data-del_user_id="<?= $row['user_id'] ?>"><i class="fas fa-trash"></i> Delete</a>
+          <a href="javascript:void(0);" class="btn btn-danger btn-xs delete_user" data-del_user_id="<?= $user_id ?>"><i class="fas fa-trash"></i> Delete</a>
         </td>
       </tr>
     <?php endwhile; ?>

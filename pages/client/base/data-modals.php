@@ -8,7 +8,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <!-- Apply Loan Start -->
 
 <div class="modal fade" id="addloan">
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content card-outline card-primary">
       <form action="../../config/create-userclientloan.php" autocomplete="off" method="POST">
         <div class="modal-header">

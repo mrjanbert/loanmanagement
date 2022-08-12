@@ -128,7 +128,7 @@ session_start();
         </div>
     </div>
     <!-- login area end -->
-
+<?php if($_GET['usr'] == 'borrower') { ?>
     <script>
         var try1 = "success";
         var try2 = "failed";
@@ -168,7 +168,48 @@ session_start();
             })
         })
     </script>
+    <?php } elseif ($_GET['usr'] == 'admin') {  ?>
+    <script>
+        var try1 = "success";
+        var try2 = "failed";
+        $(document).ready(function() {
+            $("#signup").on('submit', function(e) {
+                e.preventDefault();
 
+                $.ajax({
+                    type: "POST",
+                    url: "config/create-user.php",
+                    data: new FormData(this),
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.status == 1) {
+                            console.log(try1);
+                            window.location.href = "login.php"
+                        } else {
+                            console.log(try2);
+                            // $("#error-message").html(response.message);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 5000
+                            })
+
+                            Toast.fire({
+                                icon: 'error',
+                                title: response.message
+                            })
+                        }
+                    }
+
+                })
+            })
+        })
+    </script>
+
+    <?php } ?>
     <!-- unset toast notification to avoid popup every load -->
     <?php unset($_SESSION["status"]); ?>
     <!-- bootstrap 4 js -->
