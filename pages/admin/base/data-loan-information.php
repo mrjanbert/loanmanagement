@@ -6,8 +6,8 @@
                         INNER JOIN tbl_status s ON t.ref_no = s.ref_no)
                         LEFT JOIN tbl_users u ON s.processor_id = u.user_id) 
                         INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id)
-                        INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
-                      WHERE t.ref_no = $ref_no");
+                        INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id)
+                      WHERE t.ref_no = '$ref_no'");
   $row = $query->fetch_array();
   $borrower_id = $row['borrower_id'];
   $comaker_id = $row['comaker_id'];
@@ -31,7 +31,11 @@
     <div class="col-12 col-sm-auto mb-3">
       <div class="mx-auto" style="width: 140px;">
         <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-          <img src="../../assets/images/uploads/<?= $borrower_profilePhoto ?>" alt="User Image" style="height: 140px; width: 140px;">
+          <?php if ($borrower_profilePhoto == null) { ?>
+            <img src="../../assets/images/profile.png" alt="User Image" style="height: 140px; width: 140px;">
+          <?php } else { ?>
+            <img src="../../assets/images/uploads/<?= $borrower_profilePhoto ?>" alt="User Image" style="height: 140px; width: 140px;">
+          <?php } ?>
         </div>
       </div>
     </div>

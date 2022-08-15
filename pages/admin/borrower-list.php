@@ -43,7 +43,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </section><!-- /.content -->
 
     <script>
-        function delete_borrower() {
+        $(".delete_borrower").click(function() {
             var del_borrowerid = $(this).data('del_borrowerid');
             Swal.fire({
                 title: 'Delete this borrower from database?',
@@ -58,6 +58,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     window.location.href = "../../config/delete-borrower.php?delete_borrower_id=" + del_borrowerid;
                 }
             })
-        }
+        });
     </script>
 <?php endif; ?>

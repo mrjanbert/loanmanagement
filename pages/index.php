@@ -1,3 +1,3 @@
 <?php
-header('location: http://localhost/loanmanagement/pages/error/403-error.php');
+header('location: ./error/403-error.php');
 exit();

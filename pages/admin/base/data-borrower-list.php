@@ -18,7 +18,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <tbody>
     <?php
     $i = 1;
-    $query = $conn->query("SELECT * FROM tbl_borrowers order by firstName asc");
+    $query = $conn->query("SELECT * FROM tbl_borrowers WHERE is_archived = '0' order by firstName asc");
     while ($row = $query->fetch_assoc()) :
       $userCreated = strtotime($row['userCreated']);
       $birthDate = strtotime($row['birthDate']);
@@ -42,7 +42,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
           <!-- Action for Admin only -->
           <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-            <button class="btn btn-danger btn-xs" onclick="delete_borrower()" data-del_borrowerid="<?= $row['user_id'] ?>">
+            <button class="btn btn-danger btn-xs delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>">
               <i class="fas fa-trash mr-1"></i>
               Delete
             </button>

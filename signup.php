@@ -128,6 +128,7 @@ session_start();
         </div>
     </div>
     <!-- login area end -->
+    
 <?php if($_GET['usr'] == 'borrower') { ?>
     <script>
         var try1 = "success";
