@@ -16,6 +16,14 @@ if (isset($_POST['username'])) {
     $diff = date_diff(date_create($birthDate), date_create(date('Y-m-d')));
     $age = $diff->format("%y");
 
+    $explodedEmail = explode('@', $email);
+    $domain = array_pop($explodedEmail);
+
+    $firstName = ucwords($firstName);
+    $middleName = ucwords($middleName);
+    $lastName = ucwords($lastName);
+    $address = ucwords($address);
+    
     $encrypt = md5($password);
 
     $checkusername = $conn->query("SELECT * FROM tbl_borrowers WHERE username = '$username'");
@@ -46,6 +54,9 @@ if (isset($_POST['username'])) {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response['status'] = 0;
         $response['message'] = 'Invalid email format';
+    } elseif (!($domain == "nmsc.edu.ph")) {
+        $response['status'] = 0;
+        $response['message'] = 'Please use your institutional email.';
     } elseif (preg_match('/^[0-9]{11}+$/', $contactNumber) === 0) {
         $response['status'] = 0;
         $response['message'] = 'Invalid Mobile Number';

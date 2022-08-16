@@ -44,7 +44,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name']) != (null))) : ?>
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="index.php?page=dashboard" class="nav-link nav-dashboard">
+                        <a href="index.php?page=dashboard" class="nav-link nav-dashboard nav-view-dashboard-total-loans nav-view-dashboard-loan-information nav-view-dashboard-payments-list">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -52,7 +52,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans nav-borrower-info">
+                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans nav-borrower-info nav-loan-information">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers

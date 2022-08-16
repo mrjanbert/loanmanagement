@@ -65,7 +65,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="form-group">
                                     <label>Select User</label>
                                     <?php
-                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id ORDER BY lastName ASC ");
+                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id AND is_archived = '0' ORDER BY lastName ASC ");
                                     ?>
                                     <select class="select2" name="selected_user" data-placeholder="Select user" style="width: 100%;" required>
                                         <option value=""></option>
