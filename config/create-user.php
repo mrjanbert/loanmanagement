@@ -16,6 +16,8 @@ if (isset($_POST['username'])) {
     $diff = date_diff(date_create($birthDate), date_create(date('Y-m-d')));
     $age = $diff->format("%y");
 
+    $userCreated = date('Y-m-d H:i:s');
+
     $explodedEmail = explode('@', $email);
     $domain = array_pop($explodedEmail);
 
@@ -73,6 +75,7 @@ if (isset($_POST['username'])) {
                 birthDate = '$birthDate',
                 contactNumber = '$contactNumber',
                 email = '$email',
+                userCreated = '$userCreated',
                 username = '$username',
                 password = '$encrypt'
             ";

@@ -19,7 +19,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <tbody>
     <?php
     $i = 1;
-    $query = "SELECT * FROM tbl_users WHERE is_archived = '0' ";
+    $query = "SELECT * FROM tbl_users";
     $results = $conn->query($query);
     ?>
     <?php while ($row = $results->fetch_assoc()) : $user_id = $row['user_id']; ?>

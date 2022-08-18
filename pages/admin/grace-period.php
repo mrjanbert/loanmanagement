@@ -37,10 +37,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 				<div class="col-md-12">
 					<div class="card">
 						<?php
-						// $borrower = $conn->query("SELECT * FROM tbl_borrowers WHERE user_id in (SELECT user_id FROM tbl_transaction)");
-						// while ($row = $borrower->fetch_assoc()) {
-						// 	$borrower_array[$row['user_id']] = $row;
-						// }
 						$ref_no = $_GET['ref_no'];
 						$query = $conn->query("SELECT t.*, concat(c.firstName,' ',c.lastName) AS name, b.membership, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name FROM tbl_transaction t INNER JOIN tbl_borrowers b ON b.user_id = t.borrower_id INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id WHERE ref_no = $ref_no");
 						while ($row = $query->fetch_assoc()) :

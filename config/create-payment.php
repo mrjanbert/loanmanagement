@@ -4,9 +4,11 @@ require_once 'data/Database.php';
 if (isset($_POST['submit'])) {
   extract($_POST);
 
-  $checkbal = $conn->query("SELECT t.*, concat(b.firstName,' ',b.lastName) as payee FROM tbl_transaction t INNER JOIN tbl_borrowers b WHERE ref_no = $ref_no");
+  $checkbal = $conn->query("SELECT t.*, concat(b.firstName,' ',b.lastName) as payee, b.user_id FROM tbl_transaction t INNER JOIN tbl_borrowers b WHERE ref_no = $ref_no");
   $databal = $checkbal->fetch_array();
   $payee = $databal['payee'];
+  $loan_term = $databal['loan_term'];
+  $user_id = $databal['user_id'];
 
   $sql = $conn->query("SELECT * FROM tbl_payments WHERE ref_no = $ref_no ORDER BY id DESC ");
   $row = $sql->fetch_array();
@@ -15,7 +17,7 @@ if (isset($_POST['submit'])) {
     $balance = $row['payment_balance'];
   } else {
     $balance = $databal['balance'];
-  }
+  } 
 
   $remainbalance = $balance - $payment_amount;
   
@@ -33,6 +35,7 @@ if (isset($_POST['submit'])) {
 
   if ($conn->affected_rows > 0) :
     $sql = $conn->query("UPDATE tbl_status SET status_cashier = '2' WHERE ref_no = '$ref_no'");
+    include_once 'sms.php';
     session_start();
     $_SESSION['status'] = "<script>
     Swal.fire({

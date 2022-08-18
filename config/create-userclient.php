@@ -16,6 +16,8 @@ if (isset($_POST['username'])) {
     $explodedEmail = explode('@', $email);
     $domain = array_pop($explodedEmail);
 
+    $userCreated = date('Y-m-d H:i:s');
+
     $firstName = ucwords($firstName);
     $middleName = ucwords($middleName);
     $lastName = ucwords($lastName);
@@ -35,16 +37,16 @@ if (isset($_POST['username'])) {
 
     if(mysqli_num_rows($checkusername) == 1) {
         $response['status'] = 0;
-        $response['message'] = 'Username already exist. Please use another one.';
+        $response['message'] = 'Username already used. Please use another one.';
     } elseif(mysqli_num_rows($checkusername1) == 1) {
         $response['status'] = 0;
-        $response['message'] = 'Username already exist. Please use another one.';
+        $response['message'] = 'Username already used. Please use another one.';
     } elseif (mysqli_num_rows($checkmobilenumber) == 1) {
         $response['status'] = 0;
-        $response['message'] = 'Mobile Number already exist. Please use another one.';
+        $response['message'] = 'Mobile Number already used. Please use another one.';
     } elseif (mysqli_num_rows($checkmobilenumber1) == 1) {
         $response['status'] = 0;
-        $response['message'] = 'Mobile Number already exist. Please use another one.';
+        $response['message'] = 'Mobile Number already used. Please use another one.';
     } elseif (mysqli_num_rows($checkid) == 1) {
         $response['status'] = 0;
         $response['message'] = 'ID Number already existed. Use your own ID Number.';
@@ -73,6 +75,7 @@ if (isset($_POST['username'])) {
                 birthDate = '$birthDate',
                 contactNumber = '$contactNumber',
                 email = '$email',
+                userCreated = '$userCreated',
                 username = '$username',
                 password = '$encrypt'
             ";

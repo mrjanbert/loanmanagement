@@ -18,7 +18,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <tbody>
     <?php
     $i = 1;
-    $query = $conn->query("SELECT * FROM tbl_borrowers WHERE is_archived = '0' order by firstName asc");
+    $query = $conn->query("SELECT * FROM tbl_borrowers order by firstName asc");
     while ($row = $query->fetch_assoc()) :
       $userCreated = strtotime($row['userCreated']);
       $birthDate = strtotime($row['birthDate']);

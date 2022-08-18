@@ -1,3 +1,9 @@
+<?php
+if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
+  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+  exit();
+};
+?>
 <div class="e-profile">
   <?php
   $ref_no = $_GET['ref_no'];
