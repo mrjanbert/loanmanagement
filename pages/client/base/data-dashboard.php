@@ -36,7 +36,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="inner">
         <h3><?= $total_releasedloans ?></h3>
         </h3>
-        <p>Released Loans</p>
+        <p>Payments List</p>
       </div>
       <div class="icon">
         <i class="fas fa-tasks"></i>

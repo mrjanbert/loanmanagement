@@ -65,6 +65,49 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </div>
   </div>
   <!-- ./col -->
+
+<?php if ($_SESSION['role_name'] == "Admin") { ?>
+
+  <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+    <!-- small box -->
+    <div class="small-box bg-lightblue">
+      <div class="inner">
+        <?php
+        $sql = "SELECT * FROM tbl_comakers";
+        $results = mysqli_query($conn, $sql);
+        $comakers = mysqli_num_rows($results);
+        ?>
+        <h3><?= $comakers; ?></h3>
+        <p>Comakers</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-friends"></i>
+      </div>
+      <a href="index.php?page=comakers" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+
+    <!-- small box -->
+    <div class="small-box bg-olive">
+      <div class="inner">
+        <?php
+        $sql = "SELECT * FROM tbl_users";
+        $results = mysqli_query($conn, $sql);
+        $users = mysqli_num_rows($results);
+        ?>
+        <h3><?= $users; ?></h3>
+        <p>Users</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-users-cog"></i>
+      </div>
+      <a href="index.php?page=user-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <?php } ?>
 </div>
 <!-- /.row -->
 
@@ -340,7 +383,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           $released_cashier = mysqli_num_rows($results);
           ?>
           <h3><?= $released_cashier ?></h3>
-          <p>Released Payments</p>
+          <p>Payments</p>
         </div>
         <div class="icon">
           <i class="fas fa-money-check-alt"></i>

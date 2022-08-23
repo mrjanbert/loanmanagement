@@ -1,8 +1,8 @@
 Users:
 
 admin:
-username: admin
-password: admin
+username: adminjanbert
+password: admin12345
 
 processor1:
 username: processor

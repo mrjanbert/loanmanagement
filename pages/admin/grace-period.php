@@ -169,7 +169,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 										for ($m = 1 + date('n', $loan_date); $m < 1 + (date('n', $loan_date) + $months); ++$m) { ?>
 											<tr>
 												<td>
-													<?php echo date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), 22)) ?>
+													<?php echo date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), date("Y"))) ?>
 												</td>
 												<td align="right">
 													<?php echo number_format($principal, 2); ?>

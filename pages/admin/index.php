@@ -23,7 +23,6 @@ require_once '../../config/data/Database.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NMSCST Loan Management System</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/images/icon/favicon.ico">
 
     <!-- Header -->
     <link rel="stylesheet" href="../../assets/css/scrollbarhidden.css" />

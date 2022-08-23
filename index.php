@@ -66,7 +66,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <strong>Navbar</strong>
+          <img src="assets/images/lms_logo.png" alt="NMSC LMS Logo" class="brand-image img-circle elevation-3" style="opacity: 0.8; width: 35px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -190,7 +190,7 @@
       <hr>
 
       <!--Projects section v.3-->
-      <section id="info" class="mt-4 mb-5 pb-4">
+      <section id="objectives" class="mt-4 mb-5 pb-4">
 
         <!--Section heading-->
         <h2 class="text-center mb-5 font-weight-bold pt-5 pb-4 my-5 wow fadeIn" data-wow-delay="0.2s">General Objectives</h2>
@@ -361,7 +361,7 @@
     </div>
 
     <!--Streak-->
-    <div id="courses" class="streak streak-photo streak-md" style="background-image: url('assets/landing-page/img/parallax.jpg');">
+    <div id="quote" class="streak streak-photo streak-md" style="background-image: url('assets/landing-page/img/parallax.jpg');">
       <div class="flex-center mask rgba-indigo-strong">
         <div class="text-center white-text">
           <h2 class="h2-responsive mb-5">
@@ -378,7 +378,7 @@
       <div class="container py-3">
 
         <!--Section: Blog v.2-->
-        <section class="extra-margins text-center" id="events">
+        <section class="extra-margins text-center" id="admins">
 
           <h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Team Admins</h2>
 
@@ -534,7 +534,7 @@
 
     <div class="container">
 
-      <section id="testimonials" class="mb-5">
+      <section id="creators" class="mb-5">
 
         <!--Section heading-->
         <h2 class="text-center mb-5 my-5 pt-5 pb-4 font-weight-bold wow fadeIn" data-wow-delay="0.2s">CAPSTONE PROJECT TEAM</h2>
@@ -546,7 +546,7 @@
             <!--Grid column-->
             <div class="col-md-3">
 
-              <div class="testimonial">
+              <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
                   <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
@@ -564,7 +564,7 @@
 
             <!--Grid column-->
             <div class="col-md-3">
-              <div class="testimonial">
+              <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
                   <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
@@ -581,7 +581,7 @@
 
             <!--Grid column-->
             <div class="col-md-3">
-              <div class="testimonial">
+              <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
                   <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
@@ -599,7 +599,7 @@
             <!--Grid column-->
             <div class="col-md-3">
 
-              <div class="testimonial">
+              <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
                   <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">

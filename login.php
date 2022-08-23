@@ -16,7 +16,6 @@ if (isset($_SESSION['user_id'])) {
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Login :: NMSCST Loan Management System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
   <script src="assets/js/jquery.slim.min.js"></script>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -63,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
         <form action="config/login-user.php" autocomplete="off" method="POST">
           <div class="login-form-head">
             <h4>Sign In</h4>
-            <p>Sign in to start you session</p>
+            <p>Sign in to start your session</p>
           </div>
           <div class="login-form-body">
             <div class="form-gp">

@@ -5,8 +5,8 @@ include_once('../../config/data/Database.php');
 $ref_no = $_GET['ref_no'];
 $query = $conn->query("SELECT 
   t.*, concat(c.firstName,' ',c.lastName) AS comaker_name, 
-  b.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name,
-  s.*, concat(u.firstName,' ', u.lastName) as user_name
+  b.*, concat(b.firstName,' ',b.lastName) as borrower_name,
+  s.*, concat(u.firstName,' ',u.lastName) as user_name
     FROM ((((tbl_transaction t 
   INNER JOIN tbl_status s ON s.ref_no = t.ref_no)
   LEFT JOIN tbl_users u ON s.processor_id = u.user_id)
@@ -46,7 +46,7 @@ $query = $conn->query("SELECT
   endif;
 
 //* Set Page as portrait 'P', inches 'in', legal size 'Legal'
-//! FPDF Does not support Folio size '8.5x13'
+//! Does not support Folio size '8.5x13'
 $pdf = new FPDF('P', 'in', 'Legal');
 
 $pdf->SetTitle('Application Form For Loan');
@@ -55,7 +55,7 @@ $pdf->SetTitle('Application Form For Loan');
 $pdf->AddPage();
 
 //* Add image as background (z-index: -1)
-$pdf->Image('../../assets/images/application-form-for-loan.jpg',0.2,0.2,8.1);
+$pdf->Image('../../assets/images/application-form-for-loan-new.jpg',0.2,0.2,8.1);
 
 //? Loan Information
 //TODO Set values to the body
@@ -63,7 +63,7 @@ $pdf->SetFont('Courier', 'B', 11);
 $pdf->Ln(0);
 $pdf->Cell(0, 3.4, '                      '.$borrower_name);
 $pdf->Ln(0);
-$pdf->Cell(0, 3.4, '                                                                  '. date('F j, Y', $loan_date));
+$pdf->Cell(0, 3.4, '                                                                        '. date('F j, Y', $loan_date));
 $pdf->Ln(0);
 $pdf->Cell(0,3.78,'             '.$borrower_address);
 $pdf->Ln(0);
@@ -79,37 +79,45 @@ $pdf->Cell(0, 4.49, '                                                    '. numb
 $pdf->Ln(0);
 $pdf->Cell(0,4.87, '             '.$purpose);
 $pdf->SetFont('Courier', 'B', 12);
-$pdf->Ln(0);
-$pdf->Cell(0,5.55,'                    /');
 $pdf->SetFont('Courier', 'B', 11);
-$pdf->Ln(0);
-$pdf->Cell(0, 6.32, '          '. $months .' Month/s');
-
+if($months == '3') {
+  $pdf->Ln(0);
+  $pdf->Cell(0, 6.60, '            /');
+} elseif($months == '6') {
+  $pdf->Ln(0);
+  $pdf->Cell(0, 6.60, '                           /');
+} elseif ( $months == '12') {
+  $pdf->Ln(0);
+  $pdf->Cell(0, 6.60, '                                                /');
+} else {
+  $pdf->Ln(0);
+  $pdf->Cell(0, 6.65, '                                                                         '. $months .' Month/s');
+}
 //? Borrower's Information
 $pdf->Ln(0);
-$pdf->Cell(0,7.8,'                                                         '. number_format($amount, 2));
-// $pdf->Ln(0);
-// $pdf->Cell(0, 9.77, '                                              '. $borrower_name);
+$pdf->Cell(0,8.1,'                                                         '. number_format($amount, 2));
+$pdf->Ln(0);
+$pdf->Cell(0, 10.1, '                                              '. strtoupper($borrower_name));
 
 //? Comaker's Information
 $pdf->Ln(5);
-// $pdf->Cell(0,3.7, '                                                     '. $comaker_name);
+// $pdf->Cell(0,4.1, '                                                     '. $comaker_name);
 // $pdf->Ln(0);
-// $pdf->Cell(0,4.75,'                                                   ????, ???? ???');
+// $pdf->Cell(0, 5.2,'                                                   ????, ???? ???');
 // $pdf->Ln(0);
-// $pdf->Cell(0,5.47, '                           ???');
+// $pdf->Cell(0, 5.9, '                           ???');
 
-//? Computation Information (Member)
+  //? Computation Information (Member)
 $pdf->Ln(3);
-$pdf->Cell(0, 0.57,'                               '. number_format($amount, 2));
+$pdf->Cell(0, 1.1,'                               '. number_format($amount, 2));
 $pdf->Ln(0);
-$pdf->Cell(0, 0.57, '                                                    ' . $months . ' Month/s');
+$pdf->Cell(0, 1.1, '                                                    ' . $months . ' Month/s');
+$pdf->Ln(0.28);
 if ($membership == 1) :
-  $pdf->Ln(0);
   $pdf->Cell(0, 1.30,'                      '. number_format($share_capital, 2));
 endif;
-$pdf->Ln(0);
-$pdf->Cell(0, 1.30, '                                                      '. number_format($monthly, 2));
+// $pdf->Ln(0);
+// $pdf->Cell(0, 1.30, '                                                      '. number_format($monthly, 2));
 $pdf->Ln(0);
 $pdf->Cell(0, 1.68, '                      '. number_format($notarial_fee, 2));
 $pdf->Ln(0);
@@ -118,6 +126,5 @@ $pdf->Ln(0);
 $pdf->Cell(0,2.84, '                           '. number_format($net, 2));
 $pdf->Ln(0);
 $pdf->Ln(0);
-$pdf->Cell(0,3.67,'                                                      '. $user_name);
+$pdf->Cell(0,3.57,'                                                      '. strtoupper($user_name));
 $pdf->Output();
-?>
