@@ -50,10 +50,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                         <i class="fa fa-plus mr-1"></i>
                                         Add Penalty
                                     </button>
-                                    <button class="btn btn-success btn-sm">
-                                        <i class="fas fa-paper-plane mr-1"></i>
-                                        Notify Sender
-                                    </button>
                                 </div>
                             <?php } ?>
                             <?php include_once 'base/data-view-payments.php' ?>
