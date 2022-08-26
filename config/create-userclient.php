@@ -26,7 +26,8 @@ if (isset($_POST['username'])) {
     $diff = date_diff(date_create($birthDate), date_create(date('Y-m-d')));
     $age = $diff->format("%y");
 
-    $encrypt = md5($password);
+    // $encrypt = md5($password);
+    $encrypt = password_hash($password, PASSWORD_DEFAULT);
 
     $checkusername = $conn->query("SELECT * FROM tbl_borrowers WHERE username = '$username'");
     $checkusername1 = $conn->query("SELECT * FROM tbl_users WHERE username = '$username'");

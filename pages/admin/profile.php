@@ -4,8 +4,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   exit();
 };
 ?>
-<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != (null))) : ?>
-
   <script>
     function getImage(imagename) {
       var file = document.getElementById("upload").files;
@@ -96,5 +94,3 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       })
     })
   </script>
-
-<?php endif; ?>

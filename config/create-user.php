@@ -25,8 +25,9 @@ if (isset($_POST['username'])) {
     $middleName = ucwords($middleName);
     $lastName = ucwords($lastName);
     $address = ucwords($address);
-    
-    $encrypt = md5($password);
+
+    // $encrypt = md5($password);
+    $encrypt = password_hash($password, PASSWORD_DEFAULT);
 
     $checkusername = $conn->query("SELECT * FROM tbl_borrowers WHERE username = '$username'");
     $checkusername1 = $conn->query("SELECT * FROM tbl_users WHERE username = '$username'");
@@ -77,6 +78,7 @@ if (isset($_POST['username'])) {
                 email = '$email',
                 userCreated = '$userCreated',
                 username = '$username',
+                role_name = 'Unknown User',
                 password = '$encrypt'
             ";
         $results = $conn->query($query);

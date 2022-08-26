@@ -15,10 +15,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   <tbody>
     <?php
     $user_id = $_SESSION['adminuser_id'];
-    $query = "SELECT * FROM tbl_users WHERE user_id != $user_id AND role_name != ''";
+    $query = "SELECT * FROM tbl_users WHERE user_id != $user_id AND role_name != 'Unknown User'";
     $results = $conn->query($query);
     while ($row = $results->fetch_assoc()) :
-      $name = $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName'][0] . '.';
+      $name = $row['lastName'] . ', ' . $row['firstName'] . ' ' . $row['middleName'];
       $role = $row['role_name'];
     ?>
       <tr>

@@ -41,7 +41,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <?php } ?>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name']) != (null))) : ?>
+                <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name']) != ('Unknown User'))) : ?>
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                     <li class="nav-item">
                         <a href="index.php?page=dashboard" class="nav-link nav-dashboard nav-view-dashboard-total-loans nav-view-dashboard-loan-information nav-view-dashboard-payments-list">

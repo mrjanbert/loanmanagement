@@ -1,12 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION['adminuser_id'])) {
-  header('location: pages/admin/index.php?page=dashboard');
-}
-
-if (isset($_SESSION['user_id'])) {
-  header('location: pages/client/index.php?page=dashboard');
-}
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -14,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Login :: NMSCST Loan Management System</title>
+  <title>Forgot Password :: NMSCST Loan Management System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="assets/js/jquery.slim.min.js"></script>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -25,8 +18,6 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="assets/css/slicknav.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:100,300,400,500,600,700,800,900">
-  <!-- amchart css -->
-  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
   <!-- others css -->
   <link rel="stylesheet" href="assets/css/typography.css">
   <link rel="stylesheet" href="assets/css/default-css.css">
@@ -55,38 +46,32 @@ if (isset($_SESSION['user_id'])) {
   }
   ?>
 
+
   <!-- login area start -->
-  <div class="login-area login-s2">
+  <div class="login-area">
     <div class="container">
       <div class="login-box ptb--100">
-        <form action="config/login-user.php" autocomplete="off" method="POST">
+        <form autocomplete="off" method="POST" action="config/send-password.php">
           <div class="login-form-head">
-            <h4>NMSCST Loan Management System</h4>
-            <p>Sign in to start your session</p>
+            <h4>Account Recovery</h4>
+            <p>Please enter your username and mobile number to recover your password.</p>
           </div>
           <div class="login-form-body">
             <div class="form-gp">
-              <label for="inputUsername">Username</label>
-              <input type="text" name="username" id="inputUsername">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" required>
               <i class="ti-user"></i>
-              <div class="text-danger"></div>
             </div>
             <div class="form-gp">
-              <label for="inputPassword">Password</label>
-              <input type="password" name="password" id="inputPassword">
-              <i class="ti-lock"></i>
-              <div class="text-danger"></div>
+              <label for="mobilenumber">Mobile Number</label>
+              <input type="number" name="contactNumber" id="contactnumber" onfocus="(this.placeholder='09xxxxxxxxx')" onblur="(this.placeholder='')" required>
+              <i class="ti-mobile"></i>
             </div>
-            <div class="row mb-4 rmber-area">
-              <div class="col-12 text-right">
-                <a href="forgot-password.php">Forgot Password?</a>
-              </div>
+            <div class="submit-btn-area mt-5">
+              <button id="form_submit" name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
             </div>
-            <div class="submit-btn-area">
-              <button name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
-            </div>
-            <div class="form-footer text-center mt-5">
-              <p class="text-muted">Don't have an account? <a href="signup.php?usr=borrower">Sign up</a></p>
+            <div class="form-footer text-right mt-5">
+              <p class="text-muted"><a href="javascript:history.back()">Back</a></p>
             </div>
           </div>
         </form>

@@ -65,12 +65,12 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="form-group">
                                     <label>Select User</label>
                                     <?php
-                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id AND is_archived = '0' ORDER BY lastName ASC ");
+                                    $user = $conn->query("SELECT *,concat(lastName,', ',firstName) AS name FROM tbl_users WHERE user_id != $user_id");
                                     ?>
                                     <select class="select2" name="selected_user" data-placeholder="Select user" style="width: 100%;" required>
                                         <option value=""></option>
                                         <?php while ($row = $user->fetch_assoc()) : ?>
-                                            <option value="<?= $row['user_id'] ?>"><?= $row['name'] . ' ' . $row['middleName'][0] . '. | Account No.: ' . $row['accountNumber'] ?></option>
+                                            <option value="<?= $row['user_id'] ?>"><?= $row['name'] . ' ' . $row['middleName'] . ' | Account No.: ' . $row['accountNumber'] ?></option>
                                         <?php endwhile; ?>
                                     </select>
                                 </div>

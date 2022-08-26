@@ -53,7 +53,7 @@ session_start();
             <div class="login-box ptb--100">
                 <form autocomplete="off" id="signup">
                     <div class="login-form-head">
-                        <h4>Sign up</h4>
+                        <h4>NMSCST Loan Management System</h4>
                         <p>Create your account</p>
                     </div>
                     <div class="login-form-body">
@@ -127,87 +127,87 @@ session_start();
         </div>
     </div>
     <!-- login area end -->
-    
-<?php if($_GET['usr'] == 'borrower') { ?>
-    <script>
-        var try1 = "success";
-        var try2 = "failed";
-        $(document).ready(function() {
-            $("#signup").on('submit', function(e) {
-                e.preventDefault();
 
-                $.ajax({
-                    type: "POST",
-                    url: "config/create-userclient.php",
-                    data: new FormData(this),
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status == 1) {
-                            console.log(try1);
-                            window.location.href = "login.php"
-                        } else {
-                            console.log(try2);
-                            // $("#error-message").html(response.message);
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 5000
-                            })
+    <?php if ($_GET['usr'] == 'borrower') { ?>
+        <script>
+            var try1 = "success";
+            var try2 = "failed";
+            $(document).ready(function() {
+                $("#signup").on('submit', function(e) {
+                    e.preventDefault();
 
-                            Toast.fire({
-                                icon: 'error',
-                                title: response.message
-                            })
+                    $.ajax({
+                        type: "POST",
+                        url: "config/create-userclient.php",
+                        data: new FormData(this),
+                        dataType: "json",
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            if (response.status == 1) {
+                                console.log(try1);
+                                window.location.href = "login.php"
+                            } else {
+                                console.log(try2);
+                                // $("#error-message").html(response.message);
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 5000
+                                })
+
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: response.message
+                                })
+                            }
                         }
-                    }
 
+                    })
                 })
             })
-        })
-    </script>
+        </script>
     <?php } elseif ($_GET['usr'] == 'admin') {  ?>
-    <script>
-        var try1 = "success";
-        var try2 = "failed";
-        $(document).ready(function() {
-            $("#signup").on('submit', function(e) {
-                e.preventDefault();
+        <script>
+            var try1 = "success";
+            var try2 = "failed";
+            $(document).ready(function() {
+                $("#signup").on('submit', function(e) {
+                    e.preventDefault();
 
-                $.ajax({
-                    type: "POST",
-                    url: "config/create-user.php",
-                    data: new FormData(this),
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        if (response.status == 1) {
-                            console.log(try1);
-                            window.location.href = "login.php"
-                        } else {
-                            console.log(try2);
-                            // $("#error-message").html(response.message);
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 5000
-                            })
+                    $.ajax({
+                        type: "POST",
+                        url: "config/create-user.php",
+                        data: new FormData(this),
+                        dataType: "json",
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            if (response.status == 1) {
+                                console.log(try1);
+                                window.location.href = "login.php"
+                            } else {
+                                console.log(try2);
+                                // $("#error-message").html(response.message);
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'top-end',
+                                    showConfirmButton: false,
+                                    timer: 5000
+                                })
 
-                            Toast.fire({
-                                icon: 'error',
-                                title: response.message
-                            })
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: response.message
+                                })
+                            }
                         }
-                    }
 
+                    })
                 })
             })
-        })
-    </script>
+        </script>
 
     <?php } ?>
     <!-- unset toast notification to avoid popup every load -->

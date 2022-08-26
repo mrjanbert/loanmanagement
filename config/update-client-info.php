@@ -68,7 +68,8 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
     if ($password == '') {
       $encrypt = $row['password'];
     } else {
-      $encrypt = md5($password);
+      // $encrypt = md5($password);
+      $encrypt = password_hash($password, PASSWORD_DEFAULT);
     }
 
     $contactNumber = filter_var($contactNumber, FILTER_SANITIZE_NUMBER_INT);

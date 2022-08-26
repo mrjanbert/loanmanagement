@@ -4,7 +4,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 	exit();
 };
 ?>
-<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != (null))) : ?>
+<?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != ('Unknown User'))) : ?>
 
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
