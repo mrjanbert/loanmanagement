@@ -54,7 +54,7 @@ session_start();
         <form autocomplete="off" method="POST" action="config/send-password.php">
           <div class="login-form-head">
             <h4>Account Recovery</h4>
-            <p>Please enter your username and mobile number to recover your password.</p>
+            <p>Please enter your username and mobile number to recover your account.</p>
           </div>
           <div class="login-form-body">
             <div class="form-gp">
@@ -71,7 +71,7 @@ session_start();
               <button id="form_submit" name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
             </div>
             <div class="form-footer text-right mt-5">
-              <p class="text-muted"><a href="javascript:history.back()">Back</a></p>
+              <p class="text-muted"><a href="login.php">Back</a></p>
             </div>
           </div>
         </form>

@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
       $tmp_pass = base64_encode(date("gis"));
       $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);
       $query = "UPDATE tbl_borrowers SET password = '$encrypt' WHERE username = '$username' AND contactNumber = '$contactNumber'";
-      $results = $conn->query($query);
+      $result = $conn->query($query);
       if ($conn->affected_rows > 0) {
         $url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
         $phone = $data1['contactNumber']; // Phone number
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
     }
   } else {
     if ($findadmin > 0) {
-      $data2 = $result->fetch_array();
+      $data2 = $results->fetch_array();
       if ($data2['contactNumber'] == $contactNumber) {
         $tmp_pass = base64_encode(date("gis"));
         $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);

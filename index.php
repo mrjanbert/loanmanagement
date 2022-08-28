@@ -79,33 +79,15 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#about" data-offset="100">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#info" data-offset="100">Objectives</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#courses" data-offset="100">Courses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#events" data-offset="100">Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#testimonials" data-offset="100">Opinions</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="modal" data-target="#modal-contact">Contact</a>
-            </li> -->
           </ul>
 
           <!--Social Icons-->
-          <ul class="navbar-nav nav-flex-icons">
+          <!-- <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/mrjanbert/loanmanagement">
                 <i class="fab fa-github"></i>
               </a>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </nav>
@@ -675,9 +657,9 @@
             <div class="footer-socials mt-4">
 
               <!--Facebook-->
-              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="https://github.com/mrjanbert/loanmanagement">
+              <!-- <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="https://github.com/mrjanbert/loanmanagement">
                 <i class="fab fa-github"></i>
-              </a>
+              </a> -->
               <!--Github-->
               <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="signup.php?usr=admin">
                 <i class="fas fa-user-shield"></i>
@@ -760,7 +742,7 @@
     <!--Copyright-->
     <div class="footer-copyright py-3 text-center">
       <div class="container-fluid">
-        © 2022 Copyright: <a href="https://nmscstloanmanagement.000webhostapp.com/" target="_blank"> NMSCST Loan Management System </a>
+        © 2022 Copyright: <a href="https://nmsclms.000webhostapp.com/" target="_blank"> NMSCST Loan Management System </a>
       </div>
     </div>
     <!--Copyright-->

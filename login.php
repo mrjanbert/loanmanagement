@@ -67,13 +67,13 @@ if (isset($_SESSION['user_id'])) {
           <div class="login-form-body">
             <div class="form-gp">
               <label for="inputUsername">Username</label>
-              <input type="text" name="username" id="inputUsername">
+              <input type="text" name="username" id="inputUsername" required>
               <i class="ti-user"></i>
               <div class="text-danger"></div>
             </div>
             <div class="form-gp">
               <label for="inputPassword">Password</label>
-              <input type="password" name="password" id="inputPassword">
+              <input type="password" name="password" id="inputPassword" required  >
               <i class="ti-lock"></i>
               <div class="text-danger"></div>
             </div>
