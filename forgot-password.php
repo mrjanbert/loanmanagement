@@ -68,7 +68,7 @@ session_start();
               <i class="ti-mobile"></i>
             </div>
             <div class="submit-btn-area mt-5">
-              <button id="form_submit" name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+              <button id="form_submit" name="submit" type="submit">Recover Account <i class="ti-arrow-right"></i></button>
             </div>
             <div class="form-footer text-right mt-5">
               <p class="text-muted"><a href="login.php">Back</a></p>

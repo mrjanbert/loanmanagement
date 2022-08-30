@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION['adminuser_id'])) {
-  header('location: pages/admin/index.php?page=dashboard');
-}
+// if (isset($_SESSION['adminuser_id'])) {
+//   header('location: pages/admin/index.php?page=dashboard');
+// }
 
-if (isset($_SESSION['user_id'])) {
-  header('location: pages/client/index.php?page=dashboard');
-}
+// if (isset($_SESSION['user_id'])) {
+//   header('location: pages/client/index.php?page=dashboard');
+// }
 ?>
 <!doctype html>
 <html class="no-js" lang="en">

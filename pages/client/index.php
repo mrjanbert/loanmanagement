@@ -1,26 +1,6 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['status'] = "<script>const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 5000
-      })
-  
-      Toast.fire({
-        icon: 'warning',
-        title: 'You must login to continue'
-      })</script>";
-    header('location: ../../login.php');
-}
-
-?>
+<?php require_once "../../config/verify_borrower.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once '../../config/data/Database.php'; ?>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

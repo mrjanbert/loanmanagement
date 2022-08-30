@@ -12,7 +12,7 @@ foreach ($persons as $row) { ?>
 <?php
   $url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
   $phone = $row['contactNumber']; // Phone number
-  $msg = 'Hi MR/MRS. ' . $row['borrower_name'] . '. Scheduled payment date: ' . date("Y-m-d", strtotime(' + ' . 3 . ' days')) . ', please pay before due date.';  // Message
+  $msg = 'FROM NMSCST ECC: ' . PHP_EOL . 'This is to remind you that this coming ' . date("M j, Y", strtotime(' + ' . 3 . ' days')) . ' will be your due date of your loan.' . PHP_EOL . 'Please pay on or before ' . date("M j, Y", strtotime(' + ' . 3 . ' days')) . '. Thank you.' . PHP_EOL . '(computer msg)';
   $device = '319799';  //  Device code
   $token = '16f034060c14278c0615d329f4d02643';  //  Your token (secret)
 
