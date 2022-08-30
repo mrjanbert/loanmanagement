@@ -21,7 +21,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     $sql = $conn->query("SELECT t.*, concat(b.firstName,' ',b.middleName,' ',b.lastName) as borrower_name, s.*
     FROM ((tbl_transaction t 
       INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) 
-      INNER JOIN tbl_status s ON t.status_ref = s.ref_no) WHERE s.status_cashier = '0'");
+      INNER JOIN tbl_status s ON t.status_ref = s.ref_no) WHERE s.status_cashier = '0' AND s.status_manager = '1'");
     while ($row = $sql->fetch_assoc()) {
       $ref_no = $row['ref_no'];
       $borrower_name = $row['borrower_name'];

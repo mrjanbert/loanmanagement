@@ -83,7 +83,7 @@ if (isset($_SESSION['user_id'])) {
               </div>
             </div>
             <div class="submit-btn-area">
-              <button name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+              <button name="submit" type="submit">Sign in <i class="ti-arrow-right"></i></button>
             </div>
             <div class="form-footer text-center mt-5">
               <p class="text-muted">Don't have an account? <a href="signup.php?usr=borrower">Sign up</a></p>

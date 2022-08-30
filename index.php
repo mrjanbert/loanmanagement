@@ -79,6 +79,11 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.php">About
+                <!-- <span class="sr-only">(current)</span> --> 
+              </a>
+            </li>
           </ul>
 
           <!--Social Icons-->
@@ -94,7 +99,7 @@
     <!--Navbar-->
 
     <!-- Intro Section -->
-    <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('https://www.nmsc.edu.ph/application/files/3016/1292/5276/admin.JPG'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div id="home" class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('assets/landing-page/img/bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <div class="mask rgba-black-strong">
         <div class="container h-100 d-flex justify-content-center align-items-center">
           <div class="row smooth-scroll">
@@ -105,7 +110,7 @@
                 <h3 class="subtext-header mt-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
                   consequuntur.</h3>
               </div>
-              <a href="login.php" data-offset="100" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">SIGN-IN</a>
+              <a href="login.php" data-offset="100" target="_blank" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">SIGN-IN</a>
             </div>
           </div>
         </div>
@@ -125,16 +130,16 @@
       <section id="about" class="mt-4 mb-2">
 
         <!--Secion heading-->
-        <h2 class="text-center my-5 font-weight-bold wow fadeIn" data-wow-delay="0.2s">About Our System</h2>
+        <h2 class="text-center my-5 font-weight-bold wow fadeIn" data-wow-delay="0.2s">About Loan Management System</h2>
 
         <!--First row-->
         <div class="row">
 
           <!--First column-->
-          <div class="col-lg-5 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
+          <div class="col-lg-6 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
 
             <!--Image-->
-            <img src="assets/landing-page/img/adminbuilding.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
+            <img src="assets/landing-page/img/admin.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
 
           </div>
           <!--First column-->
@@ -143,12 +148,12 @@
           <div class="col-lg-6 dark-grey-text ml-lg-auto col-md-12 wow fadeIn" data-wow-delay="0.4s">
 
             <!--Description-->
-            <p align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo animi soluta ratione
-              quisquam, dicta
-              ab cupiditate iure eaque? Repellendus voluptatum, magni impedit eaque animi maxime.
+            <p align="justify">
+              The main goal of this project is to develop a Loan Management system for NMSCST Employee Credit Cooperative,
+              automating the processes of loan online from applying to closing of application and keeping of records for every borrower.
             </p>
 
-            <p align="justify">Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus
+            <!-- <p align="justify">Nemo animi soluta ratione quisquam, dicta ab cupiditate iure eaque? Repellendus
               voluptatum, magni
               impedit eaque delectus, beatae maxime temporibus maiores quibusdam quasi rem magnam ad perferendis
               iusto.</p>
@@ -158,7 +163,7 @@
               <li>Beatae maxime temporibus</li>
               <li>Consectetur adipisicing elit</li>
               <li>Repellendus voluptatum, impedit</li>
-            </ul>
+            </ul> -->
 
           </div>
           <!--Second column-->
@@ -175,12 +180,11 @@
       <section id="objectives" class="mt-4 mb-5 pb-4">
 
         <!--Section heading-->
-        <h2 class="text-center mb-5 font-weight-bold pt-5 pb-4 my-5 wow fadeIn" data-wow-delay="0.2s">General Objectives</h2>
+        <!-- <h2 class="text-center mb-5 font-weight-bold pt-5 pb-4 my-5 wow fadeIn" data-wow-delay="0.2s">Objectives</h2> -->
         <!--Section description-->
-        <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.2s">
-          The main goal of this project is to develop a Loan Management system for NMSCST Employee Credit Cooperative,
-          automating the processes of loan online from applying to closing of application and keeping of records for every borrower.
-        </p>
+        <!-- <p class="text-center w-responsive mx-auto my-5 grey-text wow fadeIn" data-wow-delay="0.2s">
+          Specifically, the study aims to:
+        </p> -->
 
         <!--First row-->
         <div class="row wow fadeIn" data-wow-delay="0.4s">
@@ -355,165 +359,6 @@
     </div>
     <!--Streak-->
 
-
-    <div class="container-fluid background-r">
-      <div class="container py-3">
-
-        <!--Section: Blog v.2-->
-        <section class="extra-margins text-center" id="admins">
-
-          <h2 class="text-center mb-5 my-5 pt-4 pb-4 font-weight-bold"> Team Admins</h2>
-
-          <!--Grid row-->
-          <div class="row mb-5 pb-3">
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
-
-              <!--Card Light-->
-              <div class="card">
-                <!--Card image-->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/51.jpg" class="card-img-top" alt="">
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-body">
-
-                  <!--Title-->
-                  <h4 class="card-title darkgrey-text">
-                    <strong>Dionalyn Gumacial</strong>
-                  </h4>
-                  <hr>
-                  <!--Text-->
-                  <p class="font-large">CC Chairman
-                  </p>
-                </div>
-                <!--/.Card content-->
-              </div>
-              <!--/.Card Light-->
-
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
-
-              <!--Card Light-->
-              <div class="card">
-                <!--Card image-->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/40.jpg" class="card-img-top" alt="">
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-body">
-
-                  <!--Title-->
-                  <h4 class="card-title darkgrey-text">
-                    <strong>Lovely Pearl Estrosas</strong>
-                  </h4>
-                  <hr>
-                  <!--Text-->
-                  <p class="font-large">CC Member / Book Keeper
-                  </p>
-                </div>
-                <!--/.Card content-->
-              </div>
-              <!--/.Card Light-->
-
-            </div>
-            <!--Grid column-->
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
-
-              <!--Card Light-->
-              <div class="card">
-                <!--Card image-->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/56.jpg" class="card-img-top" alt="">
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!--/.Card image-->
-
-                <!--Card content-->
-                <div class="card-body">
-
-                  <!--Title-->
-                  <h4 class="card-title darkgrey-text">
-                    <strong>Ruth <br /> Juanillo</strong>
-                  </h4>
-                  <hr>
-                  <!--Text-->
-                  <p class="font-large">Manager
-                  </p>
-                  <!-- <a href="#" class="black-text d-flex flex-row-reverse">
-                    <p class="waves-effect p-2 font-large blue-text mb-0">Read more
-                      <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
-                    </p>
-                  </a> -->
-                </div>
-                <!--/.Card content-->
-              </div>
-              <!--/.Card Light-->
-
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 wow fadeIn" data-wow-delay="0.4s">
-
-              <!--Card Light-->
-              <div class="card">
-                <!--Card image-->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/57.jpg" class="card-img-top" alt="">
-                  <a>
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-                <!--/.Card image-->
-                <!--Card content-->
-                <div class="card-body">
-
-                  <!--Title-->
-                  <h4 class="card-title darkgrey-text">
-                    <strong>Marissa <br /> Legaspi</strong>
-                  </h4>
-                  <hr>
-                  <!--Text-->
-                  <p class="font-large">Cashier
-                  </p>
-                  <!-- <a href="#" class="black-text d-flex flex-row-reverse">
-                    <p class="waves-effect p-2 font-small blue-text mb-0">Read more
-                      <i class="fas fa-long-arrow-alt-right ml-2" aria-hidden="true"></i>
-                    </p>
-                  </a> -->
-                </div>
-                <!--/.Card content-->
-              </div>
-              <!--/.Card Light-->
-
-            </div>
-            <!--Grid column-->
-
-          </div>
-          <!--First row-->
-
-        </section>
-        <!--Section: Blog v.2-->
-
-      </div>
-    </div>
-
     <div class="container">
 
       <section id="creators" class="mb-5">
@@ -531,7 +376,7 @@
               <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/geque.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Geque Aguaviva</h4>
@@ -549,7 +394,7 @@
               <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/janbert.JPG" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Janbert Gabica</h4>
@@ -566,7 +411,7 @@
               <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/nico.jpg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Nico Sambiog</h4>
@@ -584,7 +429,7 @@
               <div class="creator">
                 <!--Avatar-->
                 <div class="avatar mx-1 mb-4">
-                  <img src="assets/landing-page/img/teamphoto.jpg" class="rounded-circle img-fluid">
+                  <img src="assets/landing-page/img/gann.jpeg" class="rounded-circle img-fluid">
                 </div>
                 <!--Content-->
                 <h4 class="font-weight-bold text-center">Gann Deryl Balili</h4>
@@ -620,23 +465,8 @@
         <!--First column-->
         <div class="col-md-12 text-center mb-3 mt-3">
 
-          <!--Icon-->
-          <i class="fas fa-landmark fa-4x orange-text"></i>
-          <!--Title-->
-          <h2 class="mt-3 mb-3">Apply Now</h2>
-          <!--Description-->
-          <p class="white-text mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et
-            dolore magna aliqua.</p>
-          <!--Reservation button-->
-          <!-- <a href="#!" class="btn btn-warning">Appliction</a>
-          <a href="#!" class="btn btn-info">Contact</a> -->
-
         </div>
         <!--First column-->
-
-        <hr class="w-100 mt-4 mb-5">
-
       </div>
       <!--First row-->
 
@@ -645,47 +475,19 @@
         <!--Second row-->
         <div class="row">
 
-          <!--First column-->
-          <div class="col-xl-4 col-lg-4 pt-1 pb-1">
-            <!--About-->
-            <h5 class="text-uppercase mb-3 font-weight-bold">ABOUT NMSCST LMS</h5>
-
-            <p align="justify">NMSCST Employee credit cooperative is stand-alone computer software that is designed in a web-based form that runs locally on a single computer.</p>
-
-            <!--About-->
-
-            <div class="footer-socials mt-4">
-
-              <!--Facebook-->
-              <!-- <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="https://github.com/mrjanbert/loanmanagement">
-                <i class="fab fa-github"></i>
-              </a> -->
-              <!--Github-->
-              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="signup.php?usr=admin">
-                <i class="fas fa-user-shield"></i>
-              </a>
-              <!--Google +-->
-              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="login.php">
-                <i class="fas fa-sign-in-alt"></i>
-              </a>
-
-            </div>
-          </div>
-          <!--First column-->
-
-          <hr class="w-100 clearfix d-lg-none">
+          <!-- <p align="justify">Web-based NMSCST Employee Credit Cooperative is stand-alone computer software that is designed in a web-based form that runs locally on a single computer.</p> -->
 
           <!--Second column-->
-          <div class="col-xl-3 ml-lg-auto col-lg-4 col-md-6 mt-1 mb-1">
+          <div class="col-xl-5 ml-lg-auto col-lg-6 col-md-12 mt-1 mb-1">
             <!--Search-->
             <h5 class="text-uppercase mb-3 font-weight-bold">CONTACT US</h5>
 
             <!--Info-->
             <p>
-              <i class="fas fa-home pr-1"></i> Labuyo, Tangub City
+              <i class="fas fa-map-marker-alt pr-1"></i> Brgy. Labuyo, Tangub City, Misamis Occidental
             </p>
             <p>
-              <i class="fas fa-envelope pr-1"></i> loanmanagement@email.com
+              <i class="fas fa-envelope pr-1"></i> nmsclms@gmail.com
             </p>
             <p>
               <i class="fas fa-phone pr-1"></i> +6393 0034 4555
@@ -694,43 +496,25 @@
           </div>
           <!--Second column-->
 
-          <hr class="w-100 clearfix d-md-none">
+          <hr class="w-100 clearfix d-lg-none">
 
           <!--Third column-->
-          <div class="col-xl-3 ml-lg-auto col-lg-4 col-md-6 mt-1 mb-1">
-            <!--Contact-->
-            <h5 class="text-uppercase mb-3 font-weight-bold">Recent news</h5>
+          <div class="col-xl-7 ml-lg-auto col-lg-6 col-md-12 mt-1 mb-1">
 
-            <ul class="footer-posts list-unstyled">
-              <li>
-                <a>Ut enim ad minim veniam nostrud.</a>
-                <span>
-                  <p class="grey-text">28 july 2016</p>
-                </span>
-              </li>
-              <li>
-                <a>Duis aute dolor in reprehenderit.</a>
-                <span>
-                  <p class="grey-text">27 july 2016</p>
-                </span>
-              </li>
-              <li>
-                <a>Excepteur sint occaecat cupidatat.</a>
-                <span>
-                  <p class="grey-text">26 july 2016</p>
-                </span>
-              </li>
-              <li>
-                <a>Sed perspiciatis unde omnis iste.</a>
-                <span>
-                  <p class="grey-text">25 july 2016</p>
-                </span>
-              </li>
-            </ul>
+            <h5 class="text-uppercase mb-3 font-weight-bold">For Developers</h5>
+            <div class="footer-socials mt-4">
+              <!--Github-->
+              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="https://github.com/mrjanbert/loanmanagement">
+                <i class="fab fa-github"></i>
+              </a>
+              <!--Signup-->
+              <a type="button" class="btn-floating btn-blue-2 " target="_blank" href="signup.php?usr=admin">
+                <i class="fas fa-user-plus"></i>
+              </a>
 
+            </div>
           </div>
           <!--Third column-->
-
         </div>
         <!--Second row-->
 

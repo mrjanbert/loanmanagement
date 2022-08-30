@@ -16,6 +16,8 @@ foreach ($persons as $row) { ?>
   $device = '319799';  //  Device code
   $token = '16f034060c14278c0615d329f4d02643';  //  Your token (secret)
 
+  $borrower_name = $row['borrower_name'];
+  
   $data = array(
     "phone" => $phone,
     "msg" => $msg,
@@ -33,6 +35,11 @@ foreach ($persons as $row) { ?>
   curl_close($curl);
 
   echo $msg;
+  if ($output) {
+    $addmsg = $conn->query("INSERT INTO tbl_smslogs SET name = '$borrower_name', message = '$msg', date = now()");
+  } else {
+    '';
+  }
 }
 ?>
 

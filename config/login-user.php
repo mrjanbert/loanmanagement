@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
       })
       Toast.fire({
         icon: 'error',
-        title: 'Invalid password! Please try again.'
+        title: 'Wrong password! Please try again.'
       })</script>";
       header('location: ../login.php');
     }
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
         })
         Toast.fire({
           icon: 'error',
-          title: 'Invalid password! Please try again.'
+          title: 'Wrong password! Please try again.'
         })</script>";
         header('location: ../login.php');
       }
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
       })
       Toast.fire({
         icon: 'error',
-        title: 'Invalid username! Please try again.'
+        title: 'Username not found. Please try again.'
       })</script>";
       header('location: ../login.php');
     }

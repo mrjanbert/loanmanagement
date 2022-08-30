@@ -195,7 +195,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-info">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_processor = '0'";
+          $sql = "SELECT * FROM tbl_status WHERE status_processor = '0' AND status_comaker = '1'";
           $results = mysqli_query($conn, $sql);
           $pending_processor = mysqli_num_rows($results);
           ?>
@@ -215,7 +215,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-primary">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_processor = '1'";
+          $sql = "SELECT * FROM tbl_status WHERE status_processor = '1' AND status_comaker = '1'";
           $results = mysqli_query($conn, $sql);
           $approved_processor = mysqli_num_rows($results);
           ?>
@@ -247,7 +247,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-info">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_manager = '0'";
+          $sql = "SELECT * FROM tbl_status WHERE status_manager = '0' AND status_processor = '1'";
           $results = mysqli_query($conn, $sql);
           $pending_manager = mysqli_num_rows($results);
           ?>
@@ -267,7 +267,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-primary">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_manager = '1'";
+          $sql = "SELECT * FROM tbl_status WHERE status_manager = '1' AND status_processor = '1'";
           $results = mysqli_query($conn, $sql);
           $approved_manager = mysqli_num_rows($results);
           ?>
@@ -287,7 +287,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-danger">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_manager = '3'";
+          $sql = "SELECT * FROM tbl_status WHERE status_manager = '3' AND status_processor = '1'";
           $results = mysqli_query($conn, $sql);
           $disapproved_manager = mysqli_num_rows($results);
           ?>
@@ -318,7 +318,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-info">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '0'";
+          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '0' AND status_manager = '1'";
           $results = mysqli_query($conn, $sql);
           $pending_cashier = mysqli_num_rows($results);
           ?>
@@ -338,7 +338,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-primary">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '1'";
+          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '1' AND status_manager = '1'";
           $results = mysqli_query($conn, $sql);
           $approved_cashier = mysqli_num_rows($results);
           ?>
@@ -358,7 +358,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-danger">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '3'";
+          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '3' AND status_manager = '1'";
           $results = mysqli_query($conn, $sql);
           $disapproved_cashier = mysqli_num_rows($results);
           ?>
@@ -378,7 +378,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="small-box bg-success">
         <div class="inner">
           <?php
-          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '2'";
+          $sql = "SELECT * FROM tbl_status WHERE status_cashier = '2' AND status_manager = '1'";
           $results = mysqli_query($conn, $sql);
           $released_cashier = mysqli_num_rows($results);
           ?>

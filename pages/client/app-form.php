@@ -107,6 +107,22 @@ $pdf->Ln(5);
 // $pdf->Ln(0);
 // $pdf->Cell(0, 5.9, '                           ???');
 
+
+if ($membership == 1) :
+  $share_capital = 0.01 * $amount;   //fixed capital for members only
+  $service_charge = 0.01 * $amount; //fixed service charge
+  $notarial_fee = 100;   //fixed notarial fee
+
+  $total_less = $share_capital + $service_charge + $notarial_fee;
+  $net = $amount - ($share_capital + $service_charge + $notarial_fee);
+elseif ($membership == 0) :
+  $service_charge = 0.01 * $amount; //fixed service charge
+  $notarial_fee = 100;   //fixed notarial fee
+
+  $total_less = $service_charge + $notarial_fee;
+  $net = $amount - $total_less;
+endif;
+
   //? Computation Information (Member)
 $pdf->Ln(3);
 $pdf->Cell(0, 1.1,'                               '. number_format($amount, 2));
@@ -122,6 +138,8 @@ $pdf->Ln(0);
 $pdf->Cell(0, 1.68, '                      '. number_format($notarial_fee, 2));
 $pdf->Ln(0);
 $pdf->Cell(0, 2.03, '                        '. number_format($service_charge, 2));
+$pdf->Ln(0);
+$pdf->Cell(0, 2.03, '                               ' . number_format($total_less, 2));
 $pdf->Ln(0);
 $pdf->Cell(0,2.84, '                           '. number_format($net, 2));
 $pdf->Ln(0);

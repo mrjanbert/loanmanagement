@@ -44,7 +44,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <?php if (isset($_SESSION['role_name']) && (($_SESSION['role_name']) != ('Unknown User'))) : ?>
                     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="index.php?page=dashboard" class="nav-link nav-dashboard nav-view-dashboard-total-loans nav-view-dashboard-loan-information nav-view-dashboard-payments-list">
+                        <a href="index.php?page=dashboard" class="nav-link nav-dashboard nav-view-dashboard-total-loans nav-view-dashboard-loan-information nav-view-dashboard-payments-list nav-view-comaker-pending-loans nav-view-comaker-approved-loans nav-view-comaker-disapproved-loans nav-view-processor-pending-loans nav-view-processor-approved-loans nav-view-manager-pending-loans nav-view-manager-approved-loans nav-view-manager-disapproved-loans nav-view-cashier-pending-loans nav-view-cashier-approved-loans nav-view-cashier-disapproved-loans">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard

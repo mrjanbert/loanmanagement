@@ -84,6 +84,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                           <div class="row">
                             <div class="col-md-12">
                               <div class="row">
+                                <?php if($_SESSION['role_name'] == 'Admin') { ?>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label>ID Number</label>
@@ -96,6 +97,14 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                     <input class="form-control" type="text" value="<?= $username ?>" required>
                                   </div>
                                 </div>
+                                <?php } else { ?>
+                                  <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label>ID Number</label>
+                                    <input class="form-control" type="text" value="<?= $accountNumber ?>" required>
+                                  </div>
+                                </div>
+                                <?php } ?>
                               </div>
                               <div class="row">
                                 <div class="col-md-4">

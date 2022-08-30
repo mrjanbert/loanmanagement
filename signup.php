@@ -116,7 +116,7 @@ session_start();
                             <div class="text-danger"></div>
                         </div>
                         <div class="submit-btn-area">
-                            <button name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                            <button name="submit" type="submit">Sign up <i class="ti-arrow-right"></i></button>
                         </div>
                         <div class="form-footer text-center mt-5">
                             <p class="text-muted">Already have an account? <a href="login.php">Sign in</a></p>

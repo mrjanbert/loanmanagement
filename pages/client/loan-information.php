@@ -62,7 +62,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                     <div class="col-12 col-sm-auto mb-3">
                       <div class="mx-auto" style="width: 140px;">
                         <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                          <img src="../../assets/images/uploads/<?= $borrower_profilePhoto ?>" alt="User Image" style="height: 140px; width: 140px;">
+                          <?php if ($borrower_profilePhoto == null) { ?>
+                            <img src="../../assets/images/profile.png" id="photopreview" alt="User Image" style="height: 140px; width: 140px;">
+                          <?php } else { ?>
+                            <img src="../../assets/images/uploads/<?= $borrower_profilePhoto ?>" id="photopreview" alt="User Image" style="height: 140px; width: 140px;">
+                          <?php } ?>
                         </div>
                       </div>
                     </div>

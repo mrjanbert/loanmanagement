@@ -231,14 +231,16 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 										<strong>Notarial fee: </strong>
 									</div>
 									<div class="col-md-2">
-										<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></p>
+										<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
+											<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
+											<span><?php echo number_format($total_less, 2) ?></span>
+										</p>
 									</div>
 									<div class="col-md-6">
 									</div>
 									<div class="col-md-4">
 									</div>
 									<div class="col-md-2 text-right pt-0">
-										<strong> = </strong> <?php echo number_format($total_less, 2) ?>
 									</div>
 									<div class="col-md-6">
 									</div>
@@ -275,14 +277,16 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 										<strong>Notarial fee: </strong>
 									</div>
 									<div class="col-md-2">
-										<p style="border-bottom: 3px solid;">&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></p>
+										<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
+											<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
+											<span><?php echo number_format($total_less, 2) ?></span>
+										</p>
 									</div>
 									<div class="col-md-6">
 									</div>
 									<div class="col-md-4">
 									</div>
 									<div class="col-md-2 text-right pt-0">
-										<strong> = </strong> <?php echo number_format($total_less, 2) ?>
 									</div>
 									<div class="col-md-6">
 									</div>
