@@ -138,7 +138,7 @@ session_start();
 
                     $.ajax({
                         type: "POST",
-                        url: "config/create-userclient.php",
+                        url: "config/create-tmp-userclient.php",
                         data: new FormData(this),
                         dataType: "json",
                         contentType: false,
@@ -146,10 +146,9 @@ session_start();
                         success: function(response) {
                             if (response.status == 1) {
                                 console.log(try1);
-                                window.location.href = "login.php"  
+                                window.location.href = "auth_check.php?conf=" + response.usrcode + "&usr=borrower";
                             } else {
                                 console.log(try2);
-                                // $("#error-message").html(response.message);
                                 const Toast = Swal.mixin({
                                     toast: true,
                                     position: 'top-end',
@@ -162,6 +161,7 @@ session_start();
                                 })
                             }
                         }
+
                     })
                 })
             })
@@ -176,7 +176,7 @@ session_start();
 
                     $.ajax({
                         type: "POST",
-                        url: "config/create-user.php",
+                        url: "config/create-tmp-user.php",
                         data: new FormData(this),
                         dataType: "json",
                         contentType: false,
@@ -184,7 +184,7 @@ session_start();
                         success: function(response) {
                             if (response.status == 1) {
                                 console.log(try1);
-                                window.location.href = "login.php"
+                                window.location.href = "auth_check.php?conf=" + response.usrcode + "&usr=admin";
                             } else {
                                 console.log(try2);
                                 // $("#error-message").html(response.message);

@@ -19,7 +19,6 @@ if (isset($_POST['submit'])) {
       // $tmp_pass = base64_encode(date("gis"));
 
       $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
-      $randstring = '';
       for ($i = 0; $i < 8; $i++) {
         $tmp_pass .= $characters[rand(0, strlen($characters))];
       }
@@ -79,10 +78,11 @@ if (isset($_POST['submit'])) {
         // $tmp_pass = base64_encode(date("gis"));
 
         $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
-        $randstring = '';
+        $randchars = '';
         for ($i = 0; $i < 8; $i++) {
-          $tmp_pass .= $characters[rand(0, strlen($characters))];
+          $randchars .= $characters[rand(0, strlen($characters))];
         }
+        $tmp_pass = $randchars;
         
         $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);
         $query = "UPDATE tbl_users SET password = '$encrypt' WHERE username = '$username' AND contactNumber = '$contactNumber'";

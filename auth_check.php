@@ -46,30 +46,40 @@ session_start();
   }
   ?>
 
-
+  <?php $conf = $_GET['conf']; ?>
   <!-- login area start -->
   <div class="login-area">
     <div class="container">
       <div class="login-box ptb--100">
-        <form autocomplete="off" method="POST" action="send-auth-code.php">
-          <div class="login-form-head">
-            <h4>Authentication</h4>
-            <p>We've sent a 6-digit authentication code to your number.</p>
-          </div>
-          <div class="login-form-body">
-            <div class="form-gp">
-              <label for="otp">Enter Authentication Code</label>
-              <input type="text" name="otp" id="otp" required>
-              <i class="fa fa-key"></i>
+        <?php if ($_GET['usr'] == 'admin') {  ?>
+          <form autocomplete="off" method="POST" action="config/create-user.php">
+        <?php } elseif ($_GET['usr'] == 'borrower') { ?>
+          <form autocomplete="off" method="POST" action="config/create-userclient.php">
+        <?php } ?>
+            <input type="hidden" name="data_inserted" value="<?= $conf ?>">
+            <div class="login-form-head">
+              <h4>Authentication</h4>
+              <p>We've sent a 6-digit authentication code to your number.</p>
             </div>
-            <div class="submit-btn-area mt-5">
-              <button id="form_submit" name="submit" type="submit">Verify <i class="ti-arrow-right"></i></button>
+            <div class="login-form-body">
+              <div class="form-gp">
+                <label for="otp">Enter Authentication Code</label>
+                <input type="text" name="code" id="otp" required>
+                <i class="fa fa-key"></i>
+              </div>
+              <div class="row mb-4 rmber-area">
+                <div class="col-12 text-right">
+                  <a href="config/resend-code.php?conf=<?= $conf ?>&usr=<?= $_GET['usr']?>">Resend Code</a>
+                </div>
+              </div>
+              <div class="submit-btn-area mt-5">
+                <button id="form_submit" name="submit" type="submit">Verify <i class="ti-arrow-right"></i></button>
+              </div>
+              <div class="form-footer text-right mt-5">
+                <p class="text-muted"><a href="javascript:history.back()">Back</a></p>
+              </div>
             </div>
-            <div class="form-footer text-right mt-5">
-              <p class="text-muted"><a href="javascript:history.back()">Back</a></p>
-            </div>
-          </div>
-        </form>
+            </form>
       </div>
     </div>
   </div>
@@ -77,6 +87,31 @@ session_start();
 
   <!-- unset toast notification to avoid popup every load -->
   <?php unset($_SESSION["status"]); ?>
+
+  <!-- <script>
+    const timerElement = document.getElementById('timerCountDown');
+    let timer;
+
+    function startTimeCountDown() {
+      timer = 60;
+      const timeCountdown = setInterval(countdown, 1000);
+    }
+
+    function countdown() {
+      if (timer == 0) {
+        clearTimeout(timer);
+        timerElement.innerHTML = 'Resend Code'
+
+      } else {
+        timerElement.innerHTML = 'Resend code(' + timer + ' secs)';
+        timer--;
+      }
+    }
+
+    timerElement.addEventListener('click', ev => {
+      startTimeCountDown();
+    });
+  </script> -->
 
   <!-- jquery latest version -->
   <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
