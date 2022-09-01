@@ -33,7 +33,5 @@ if((!isset($_SESSION['user_id']) || (!isset($_SESSION['membership'])))){
       title: 'You must login to continue'
     })</script>";
     header('location: ../../login.php');
-  } else {
-    $check = $users[0];
   }
 }

@@ -12,11 +12,18 @@ if (isset($_POST['submit'])) {
   $query1 = "SELECT * FROM tbl_users WHERE username = '$username'";
   $results = mysqli_query($conn, $query1);
   $findadmin = mysqli_num_rows($results);
-
+  
   if ($findborrower > 0) {
     $data1 = $result->fetch_array();
     if ($data1['contactNumber'] == $contactNumber) {
-      $tmp_pass = base64_encode(date("gis"));
+      // $tmp_pass = base64_encode(date("gis"));
+
+      $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
+      $randstring = '';
+      for ($i = 0; $i < 8; $i++) {
+        $tmp_pass .= $characters[rand(0, strlen($characters))];
+      }
+
       $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);
       $query = "UPDATE tbl_borrowers SET password = '$encrypt' WHERE username = '$username' AND contactNumber = '$contactNumber'";
       $result = $conn->query($query);
@@ -69,7 +76,14 @@ if (isset($_POST['submit'])) {
     if ($findadmin > 0) {
       $data2 = $results->fetch_array();
       if ($data2['contactNumber'] == $contactNumber) {
-        $tmp_pass = base64_encode(date("gis"));
+        // $tmp_pass = base64_encode(date("gis"));
+
+        $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
+        $randstring = '';
+        for ($i = 0; $i < 8; $i++) {
+          $tmp_pass .= $characters[rand(0, strlen($characters))];
+        }
+        
         $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);
         $query = "UPDATE tbl_users SET password = '$encrypt' WHERE username = '$username' AND contactNumber = '$contactNumber'";
         $results = $conn->query($query);

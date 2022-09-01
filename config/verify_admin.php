@@ -33,7 +33,5 @@ if ((!isset($_SESSION['adminuser_id']) || (!isset($_SESSION['role_name'])))) {
       title: 'You must login to continue'
     })</script>";
     header('location: ../../login.php');
-  } else {
-    $check = $users[0];
   }
 }

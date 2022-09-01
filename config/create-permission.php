@@ -19,6 +19,18 @@ if (isset($_POST['submit'])) {
                 })
             </script>";
         header('location: ../pages/admin/index.php?page=user-roles');
+    else :
+        $_SESSION['status'] = "<script>const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        })
+        Toast.fire({
+            icon: 'info',
+            title: 'No changes made.'
+        })</script>";
+        header('location: ../pages/admin/index.php?page=user-roles');
     endif;
 
     // elseif ($checkrole->num_rows > 0 ) :

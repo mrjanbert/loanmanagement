@@ -146,7 +146,7 @@ session_start();
                         success: function(response) {
                             if (response.status == 1) {
                                 console.log(try1);
-                                window.location.href = "login.php"
+                                window.location.href = "login.php"  
                             } else {
                                 console.log(try2);
                                 // $("#error-message").html(response.message);
@@ -156,14 +156,12 @@ session_start();
                                     showConfirmButton: false,
                                     timer: 5000
                                 })
-
                                 Toast.fire({
                                     icon: 'error',
                                     title: response.message
                                 })
                             }
                         }
-
                     })
                 })
             })

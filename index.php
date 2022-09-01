@@ -107,8 +107,8 @@
               <div class="wow fadeInDown" data-wow-delay="0.2s">
                 <h2 class="display-3 font-weight-bold mb-2">NMSCST LOAN MANAGEMENT SYSTEM</h2>
                 <hr class="hr-light">
-                <h3 class="subtext-header mt-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
-                  consequuntur.</h3>
+                <!-- <h3 class="subtext-header mt-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit deleniti
+                  consequuntur.</h3> -->
               </div>
               <a href="login.php" data-offset="100" target="_blank" class="btn btn-info wow fadeInLeft" data-wow-delay="0.2s">SIGN-IN</a>
             </div>
