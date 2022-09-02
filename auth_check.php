@@ -45,7 +45,7 @@ session_start();
     echo "<span>$status</span>";
   }
   ?>
-
+<?php if(isset($_GET['conf'])) { ?>
   <?php $conf = $_GET['conf']; ?>
   <!-- login area start -->
   <div class="login-area">
@@ -84,6 +84,7 @@ session_start();
     </div>
   </div>
   <!-- login area end -->
+  <?php } ?>
 
   <!-- unset toast notification to avoid popup every load -->
   <?php unset($_SESSION["status"]); ?>

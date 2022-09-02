@@ -115,6 +115,14 @@ session_start();
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="agree" id="invalidCheck" required="">
+                                <label class="form-check-label" for="invalidCheck">
+                                    I have read and agree to the <a href="#" data-toggle="modal" data-target="#termsconditions">Terms and Conditions of NMSCST LMS</a>.
+                                </label>
+                            </div>
+                        </div>
                         <div class="submit-btn-area">
                             <button name="submit" type="submit">Sign up <i class="ti-arrow-right"></i></button>
                         </div>
@@ -123,6 +131,44 @@ session_start();
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="termsconditions">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">TERMS AND CONDITIONS</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <h5>I. Eligibility</h5> <br/>
+                    <p>1. The borrower has to be an employee of NMSCST. (COS and Regular)</p>
+                    <p>2. The borrower has no default on any outstanding loan to the Coop.</p>
+                    <!-- <p>3. Contract of Service employee cannot avail a loan if the remaining months of their contract is below 3 months.</p> -->
+                    <p>3. Non - Members/Regular employee borrowers are entitled a loan based on the 50% of their net pay.</p>
+                    <br/>
+                    <h5>II. Co-Maker</h5> <br/>
+                    <p>1. The Co-Maker/Guarantor must be a member of the Cooperative and possess a higher share capital that can cater the loan amount of the borrower.</p>
+                    <p>2. The Co-Maker/Guarantor must understand that by agreeing and signing the Loan Application, they lawfully commit themselves to conditionally answer for the payment of the Borrower's obligation when due and demandable.</p>
+                    <br/>
+                    <h5>III. Mode of Payment</h5> <br/>
+                    <p>1. The payment shall be made on the next month of the same date when loan released occurs.</p>
+                    <p>2. It can be monthly or 15th & 30th based on the borrower's  preferences.</p>
+                    <br/>
+                    <h5>IV. Deductions</h5> <br/>
+                    <p>1. Service Charge: 1% of the loan amount</p>
+                    <p>2. Share Capital: 1% of the loan amount for members only</p>
+                    <p>3. Notarial fee: 100.00</p>
+                    <br/>
+                    <h5>V. Loans and Penalties</h5> <br/>
+                    <p>1. The interest of loan shall be 12% anually or 1% per month.</p>
+                    <p>2. Loans are subject to penalty which is 1.5% in monthly amortization if the borrower did not agree for the salary deduction process.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

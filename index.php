@@ -79,20 +79,17 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.php">About
-                <!-- <span class="sr-only">(current)</span> --> 
-              </a>
-            </li>
           </ul>
 
           <!--Social Icons-->
-          <!-- <ul class="navbar-nav nav-flex-icons">
+          <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/mrjanbert/loanmanagement">
-                <i class="fab fa-github"></i>
-              </a>
-          </ul> -->
+              <a class="nav-link" href="login.php"><i class="fas fa-sign-in-alt"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signup.php?usr=borrower"><i class="fas fa-user-plus"></i></a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -231,7 +228,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/interview.png" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->
@@ -267,7 +264,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/develop.png" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->
@@ -280,7 +277,7 @@
 
                     <!--Description-->
                     <p align="justify" class="text-muted">Develop the Web-based Loan Management System of NMSCST Employee Credit Cooperative obtaining the following system features:
-                    <ul class="text-muted">
+                    <ul class="text-muted text-left">
                       <li>To automate the Loan Process</li>
                       <li>To view the records of the registered borrowers</li>
                       <li>To record loan payments</li>
@@ -310,7 +307,7 @@
 
                     <!--Featured image-->
                     <div class="view overlay z-depth-1 mb-2">
-                      <img src="assets/landing-page/img/place.jpg" class="rounded img-fluid" alt="sample image">
+                      <img src="assets/landing-page/img/evaluate.png" class="rounded img-fluid" alt="sample image">
                     </div>
                   </div>
                   <!--First column-->

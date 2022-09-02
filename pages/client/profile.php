@@ -1,6 +1,6 @@
 <?php
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
-  header('location: http://localhost/loanmanagement/pages/err/404-error.php');
+  header('location: ../error/404-error.php');
   exit();
 };
 ?>
@@ -221,7 +221,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       e.preventDefault();
 
       $.ajax({
-        url: "../../config/update-client-info.php",
+        url: "../../config/update-tmp-client.php",
         method: "POST",
         data: new FormData(this),
         dataType: "json",
@@ -229,7 +229,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         processData: false,
         success: function(response) {
           if (response.status == 1) {
-            window.location.href = "index.php?page=profile"
+            window.location.href = "index.php?page=auth-code&conf=" + response.usrcode;
           } else {
             console.log("Error");
             const Toast = Swal.mixin({

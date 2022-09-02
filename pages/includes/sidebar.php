@@ -1,6 +1,6 @@
 <?php
 if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
-    header('location: http://localhost/loanmanagement/pages/err/403-error.php');
+    header('location: ../error/403-error.php');
     exit();
 };
 ?>
