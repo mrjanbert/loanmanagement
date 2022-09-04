@@ -16,8 +16,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">Home</li>
-                        <li class="breadcrumb-item">Users</li>
-                        <li class="breadcrumb-item active">User Roles List</li>
+                        <li class="breadcrumb-item active">User Roles</li>
                     </ol>
                 </div>
             </div>

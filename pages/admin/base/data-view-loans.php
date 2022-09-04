@@ -200,7 +200,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
               </a>
             <?php else : ?>
               <a href="javascript:void(0);" class="btn btn-secondary btn-xs my-1">
-                Disapproved by Co-maker
+                Disapproved
               </a>
             <?php endif; ?>
 
@@ -221,7 +221,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
               </a>
             <?php else : ?>
               <a href="javascript:void(0);" class="btn btn-secondary btn-xs my-1">
-                Disapproved by Co-maker
+                Disapproved
               </a>
 
             <?php endif; ?>
@@ -262,7 +262,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
               </a>
             <?php else : ?>
               <a href="javascript:void(0);" class="btn btn-secondary btn-xs my-1">
-                Disapproved by Co-maker
+                Disapproved
               </a>
             <?php endif; ?>
           <?php } else {

@@ -42,9 +42,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <!-- <a href="#" class="dropdown-item" data-toggle="modal" data-target="#view_user">
             <i class="fas fa-user-alt mr-2"></i> Profile
           </a> -->
+          <?php if (isset($_SESSION['role_name']) && (trim($_SESSION['role_name']) != ('Unknown User'))) : ?>
           <a href="../admin/index.php?page=profile" class="dropdown-item">
             <i class="fas fa-user-alt mr-2"></i> Profile
           </a>
+          <?php endif ?>
         <?php } ?>
         <a href="javascript:void(0)" class="dropdown-item" onclick="logout()">
           <i class="fas fa-sign-out-alt mr-2"></i> Logout

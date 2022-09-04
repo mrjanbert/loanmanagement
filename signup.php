@@ -53,7 +53,11 @@ session_start();
             <div class="login-box ptb--100">
                 <form autocomplete="off" id="signup">
                     <div class="login-form-head">
-                        <h4>NMSCST Loan Management System</h4>
+                        <?php if ($_GET['usr'] == 'admin') {  ?>
+                            <h4>NMSCST Loan Management System (ADMIN)</h4>
+                        <?php } elseif ($_GET['usr'] == 'borrower') { ?>
+                            <h4>NMSCST Loan Management System</h4>
+                        <?php } ?>
                         <p>Create your account</p>
                     </div>
                     <div class="login-form-body">
@@ -99,7 +103,7 @@ session_start();
                         </div>
                         <div class="form-gp">
                             <label for="contactnumber">Mobile Number</label>
-                            <input type="number" name="contactNumber" id="contactnumber" onfocus="(this.placeholder='Ex.: 09123456789')" onblur="(this.placeholder='')" required>
+                            <input type="text" name="contactNumber" id="contactnumber" onfocus="(this.placeholder='Ex.: 09123456789', this.type='number')" onblur="(this.placeholder='', this.type='text')" required>
                             <i class="ti-mobile"></i>
                             <div class="text-danger"></div>
                         </div>
@@ -111,7 +115,7 @@ session_start();
                         </div>
                         <div class="form-gp">
                             <label for="inputPassword">Password</label>
-                            <input type="password" name="password" id="inputPassword" required>
+                            <input type="password" name="password" id="inputPassword" onfocus="(this.type='text')" onblur="(this.type='password')" required>
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                         </div>
@@ -143,26 +147,26 @@ session_start();
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <h5>I. Eligibility</h5> <br/>
+                    <h5>I. Eligibility</h5> <br />
                     <p>1. The borrower has to be an employee of NMSCST. (COS and Regular)</p>
                     <p>2. The borrower has no default on any outstanding loan to the Coop.</p>
                     <!-- <p>3. Contract of Service employee cannot avail a loan if the remaining months of their contract is below 3 months.</p> -->
                     <p>3. Non - Members/Regular employee borrowers are entitled a loan based on the 50% of their net pay.</p>
-                    <br/>
-                    <h5>II. Co-Maker</h5> <br/>
+                    <br />
+                    <h5>II. Co-Maker</h5> <br />
                     <p>1. The Co-Maker/Guarantor must be a member of the Cooperative and possess a higher share capital that can cater the loan amount of the borrower.</p>
                     <p>2. The Co-Maker/Guarantor must understand that by agreeing and signing the Loan Application, they lawfully commit themselves to conditionally answer for the payment of the Borrower's obligation when due and demandable.</p>
-                    <br/>
-                    <h5>III. Mode of Payment</h5> <br/>
+                    <br />
+                    <h5>III. Mode of Payment</h5> <br />
                     <p>1. The payment shall be made on the next month of the same date when loan released occurs.</p>
-                    <p>2. It can be monthly or 15th & 30th based on the borrower's  preferences.</p>
-                    <br/>
-                    <h5>IV. Deductions</h5> <br/>
+                    <p>2. It can be monthly or 15th & 30th based on the borrower's preferences.</p>
+                    <br />
+                    <h5>IV. Deductions</h5> <br />
                     <p>1. Service Charge: 1% of the loan amount</p>
                     <p>2. Share Capital: 1% of the loan amount for members only</p>
                     <p>3. Notarial fee: 100.00</p>
-                    <br/>
-                    <h5>V. Loans and Penalties</h5> <br/>
+                    <br />
+                    <h5>V. Loans and Penalties</h5> <br />
                     <p>1. The interest of loan shall be 12% anually or 1% per month.</p>
                     <p>2. Loans are subject to penalty which is 1.5% in monthly amortization if the borrower did not agree for the salary deduction process.</p>
                 </div>

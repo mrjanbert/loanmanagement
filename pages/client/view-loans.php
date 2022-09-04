@@ -63,6 +63,14 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             })
             return false;
         }
+        if ($('[name="loan_term"]').val() == 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops ...',
+                text: 'Invalid term (monnth/s) value.'
+            })
+            return false;
+        }
         $.ajax({
             url: "base/calculation_table.php",
             method: "POST",

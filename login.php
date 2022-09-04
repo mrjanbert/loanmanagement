@@ -1,12 +1,26 @@
 <?php
 session_start();
-// if (isset($_SESSION['adminuser_id'])) {
-//   header('location: pages/admin/index.php?page=dashboard');
-// }
+require 'config/data/Database.php';
 
-// if (isset($_SESSION['user_id'])) {
-//   header('location: pages/client/index.php?page=dashboard');
-// }
+if (isset($_SESSION['adminuser_id']) || (isset($_SESSION['role_name']))) {
+  $check = $_SESSION['adminuser_id'];
+  $role_name = $_SESSION['role_name'];
+  $users = "SELECT * FROM tbl_users WHERE user_id = '$check' AND role_name = '$role_name'";
+  $result = $conn->query($users);
+  if (mysqli_num_rows($result) == 1) {
+    header('location: pages/admin/index.php?page=dashboard');
+  }
+}
+
+if ((isset($_SESSION['user_id']) || (isset($_SESSION['membership'])))) {
+  $check = $_SESSION['user_id'];
+  $membershhip = $_SESSION['membership'];
+  $users = "SELECT * FROM tbl_borrowers WHERE user_id = '$check' AND membership = '$membershhip'";
+  $result = $conn->query($users);
+  if (mysqli_num_rows($result) == 1) {
+    header('location: pages/client/index.php?page=dashboard');
+  }
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -68,13 +82,13 @@ session_start();
             <div class="form-gp">
               <label for="inputUsername">Username</label>
               <input type="text" name="username" id="inputUsername" required>
-              <i class="ti-user"></i>
+              <i class="fa fa-user"></i>
               <div class="text-danger"></div>
             </div>
             <div class="form-gp">
               <label for="inputPassword">Password</label>
-              <input type="password" name="password" id="inputPassword" required  >
-              <i class="ti-lock"></i>
+              <input type="password" name="password" id="inputPassword" required>
+              <i class="fa fa-lock" id="togglePassword" style="cursor: pointer;"></i>
               <div class="text-danger"></div>
             </div>
             <div class="row mb-4 rmber-area">
@@ -94,6 +108,19 @@ session_start();
     </div>
   </div>
   <!-- login area end -->
+
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#inputPassword');
+
+    togglePassword.addEventListener('click', function(e) {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      // toggle the eye slash icon
+      this.classList.toggle('fa-unlock');
+    });
+  </script>
 
   <!-- unset toast notification to avoid popup every load -->
   <?php unset($_SESSION["status"]); ?>

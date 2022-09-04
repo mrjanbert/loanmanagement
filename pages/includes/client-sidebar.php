@@ -55,6 +55,14 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <p>Loans</p>
                     </a>
                 </li>
+                <?php if ($_SESSION['membership'] == '1') { ?>
+                    <li class="nav-item">
+                        <a href="index.php?page=comakers" class="nav-link nav-comakers">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>Comaker Requests</p>
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
         </nav> <!-- /.sidebar-menu -->
     </div> <!-- /.sidebar -->

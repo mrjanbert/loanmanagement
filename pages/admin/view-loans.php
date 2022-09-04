@@ -16,7 +16,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">Home</li>
-                        <li class="breadcrumb-item active">Loans</li>
+                        <li class="breadcrumb-item">Borrowers</li>
+                        <li class="breadcrumb-item active">View Loans</li>
                     </ol>
                 </div>
             </div>
@@ -175,7 +176,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             });
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "Deleting this loan will also delete the payments history!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

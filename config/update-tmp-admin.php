@@ -20,9 +20,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   $folder = "../assets/images/uploads/" . $profilePhoto;
   $imgsize = $_FILES['profilePhoto']['size'];
 
-  $firstName = ucwords($firstName);
-  $middleName = ucwords($middleName);
-  $lastName = ucwords($lastName);
   $address = ucwords($address);
 
   $explodedEmail = explode('@', $email);
@@ -42,7 +39,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   $age = $diff->format("%y");
 
   $checkusername = $conn->query("SELECT * FROM tbl_users WHERE username = '$username' AND user_id != '$user_id'");
-  $checkidnumber = $conn->query("SELECT * FROM tbl_users WHERE accountNumber = '$accountNumber' AND user_id != '$user_id'");
   $checkmobilenumber = $conn->query("SELECT * FROM tbl_users WHERE contactNumber = '$contactNumber' AND user_id != '$user_id'");
   if (mysqli_num_rows($checkusername) == 1) {
     $response['status'] = 0;
@@ -50,9 +46,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   } elseif (mysqli_num_rows($checkmobilenumber) == 1) {
     $response['status'] = 0;
     $response['message'] = 'Mobile number already used. Please use a new mobile number.';
-  } elseif (mysqli_num_rows($checkidnumber) == 1) {
-    $response['status'] = 0;
-    $response['message'] = 'ID Number already existed. Use your own ID Number.';
   } elseif ($imgsize > 5000000) {
     $response['status'] = 0;
     $response['message'] = 'The image you have uploaded is too large. The maximum size is 5MB.';
@@ -80,7 +73,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
 
     if (move_uploaded_file($temp, $folder)) {
       // unlink("../assets/images/uploads/" . $currentphoto);
-      $checkupdate = $conn->query("SELECT * FROM tbl_users WHERE accountNumber = '$accountNumber' AND firstName = '$firstName' AND middleName = '$middleName' AND lastName = '$lastName' AND address = '$address' AND age = '$age' AND birthDate = '$birthDate' AND profilePhoto = '$profilePhoto' AND contactNumber = '$contactNumber' AND email = '$email' AND password = '$encrypt' AND user_id = '$user_id'");
+      $checkupdate = $conn->query("SELECT * FROM tbl_users WHERE address = '$address' AND age = '$age' AND birthDate = '$birthDate' AND profilePhoto = '$profilePhoto' AND contactNumber = '$contactNumber' AND email = '$email' AND password = '$encrypt' AND user_id = '$user_id'");
       if(mysqli_num_rows($checkupdate) == 1) {
         $response['status'] = 0;
         $response['message'] = 'No changes made.';
@@ -88,10 +81,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
         $query = "INSERT INTO tbl_tmp_registration 
         SET 
           admin_id = '$user_id',
-          accountNumber = '$accountNumber',
-          firstName = '$firstName',
-          middleName = '$middleName',
-          lastName = '$lastName',
           address = '$address',
           age = '$age',
           birthDate = '$birthDate',
@@ -131,7 +120,7 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
         endif;
       }
     } else {
-      $checkupdate1 = $conn->query("SELECT * FROM tbl_users WHERE accountNumber = '$accountNumber' AND firstName = '$firstName' AND middleName = '$middleName' AND lastName = '$lastName' AND address = '$address' AND age = '$age' AND birthDate = '$birthDate' AND profilePhoto = '$currentphoto' AND contactNumber = '$contactNumber' AND email = '$email' AND password = '$encrypt' AND user_id = '$user_id'");
+      $checkupdate1 = $conn->query("SELECT * FROM tbl_users WHERE address = '$address' AND age = '$age' AND birthDate = '$birthDate' AND profilePhoto = '$currentphoto' AND contactNumber = '$contactNumber' AND email = '$email' AND password = '$encrypt' AND user_id = '$user_id'");
       if (mysqli_num_rows($checkupdate1) == 1) {
         $response['status'] = 0;
         $response['message'] = 'No changes made.';
@@ -139,10 +128,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
         $query = "INSERT INTO tbl_tmp_registration 
         SET 
           admin_id = '$user_id',
-          accountNumber = '$accountNumber',
-          firstName = '$firstName',
-          middleName = '$middleName',
-          lastName = '$lastName',
           address = '$address',
           age = '$age',
           birthDate = '$birthDate',

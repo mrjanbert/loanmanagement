@@ -136,7 +136,7 @@
           <div class="col-lg-6 col-md-12 mb-5 pb-4 wow fadeIn" data-wow-delay="0.4s">
 
             <!--Image-->
-            <img src="assets/landing-page/img/admin.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
+            <img src="assets/landing-page/img/about.jpg" class="img-fluid z-depth-1 rounded" alt="My photo">
 
           </div>
           <!--First column-->

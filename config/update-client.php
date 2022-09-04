@@ -31,30 +31,38 @@ if (isset($_POST['submit'])) {
 
 
   if ($otp == $code) {
-    // if($profilePhoto == $currentphoto) {
-    //   unlink("../assets/images/uploads/" . $currentphoto);
-    // }
-    $query = "UPDATE tbl_borrowers 
-      SET 
-        accountNumber = '$accountNumber',
-        firstName = '$firstName',
-        middleName = '$middleName',
-        lastName = '$lastName',
-        address = '$address',
-        age = '$age',
-        birthDate = '$birthDate',
-        profilePhoto = '$profilePhoto',
-        contactNumber = '$contactNumber',
-        email = '$email',
-        username = '$username',
-        password = '$password'
-      WHERE user_id = $user_id
-    ";
+    if($profilePhoto == $currentphoto) {
+      $query = "UPDATE tbl_borrowers 
+        SET 
+          address = '$address',
+          age = '$age',
+          birthDate = '$birthDate',
+          profilePhoto = '$currentphoto',
+          contactNumber = '$contactNumber',
+          email = '$email',
+          username = '$username',
+          password = '$password'
+        WHERE user_id = $user_id
+      ";
+    } else {
+      unlink("../assets/images/uploads/" . $currentphoto);
+      $query = "UPDATE tbl_borrowers 
+        SET 
+          address = '$address',
+          age = '$age',
+          birthDate = '$birthDate',
+          profilePhoto = '$profilePhoto',
+          contactNumber = '$contactNumber',
+          email = '$email',
+          username = '$username',
+          password = '$password'
+        WHERE user_id = $user_id
+      ";
+    }
     $results = $conn->query($query);
     if ($conn->affected_rows > 0) :
       $deletetmp = $conn->query("DELETE FROM tbl_tmp_registration WHERE data_inserted = '$conf'");
       $response['status'] = 1;
-      session_start();
       $_SESSION['status'] = "<script>const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',

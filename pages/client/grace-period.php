@@ -70,9 +70,11 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 						endif;
 					?>
 						<div class="card-header">
+							<img src="../../assets/images/header.png" alt="header" style="width: 100%;">
 							<div class="row">
 								<div class="col-sm-12">
-									<h2 class="text-center mb-4">Equal Amortization with Grace Period</h2>
+									<h2 class="text-center mb-2">NMSCST EMPLOYEES CREDIT COOPERATIVE</h2>
+									<h3 class="text-center mb-4">Equal Amortization with Grace Period</h3>
 								</div>
 								<div class="col-md-3">
 									<h3 class="card-title">Name: </h3>
@@ -306,10 +308,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 
 								<div class="col-md-6">
 								</div>
-								<div class="col-md-1">
-									<p>Borrower:</p>
+								<div class="col-md-2">
+									<p class="text-right">Borrower:</p>
 								</div>
-								<div class="col-md-5">
+								<div class="col-md-4">
 									<p style="border-bottom: 1px solid;" class="text-center text-bold mb-0"><?= strtoupper($borrower_name) ?></p>
 									<p class="text-center p-0">Sginature over printed name</p>
 								</div>

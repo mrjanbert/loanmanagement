@@ -1,58 +1,3 @@
-<!-- Small boxes (Stat box) -->
-<?php
-if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
-  header('location: ../../error/403-error.php');
-  exit();
-};
-?>
-<div class="row">
-  <div class="col-lg-6 col-6">
-    <?php
-    $query = "SELECT * FROM tbl_transaction WHERE borrower_id = " . $_SESSION['user_id'];
-    $results = mysqli_query($conn, $query);
-    $totalloans = mysqli_num_rows($results);
-    ?>
-    <!-- small box -->
-    <div class="small-box bg-info">
-      <div class="inner">
-        <h3><?php echo $totalloans; ?></h3>
-        <p>Total Loans</p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-list-ul"></i>
-      </div>
-      <a href="index.php?page=view-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-  <div class="col-lg-6 col-6">
-    <?php
-    $sql = "SELECT t.*, s.* FROM tbl_transaction t INNER JOIN tbl_status s on s.ref_no = t.ref_no WHERE s.status_cashier = '2' AND t.borrower_id = " . $_SESSION['user_id'];
-    $results = mysqli_query($conn, $sql);
-    $total_releasedloans = mysqli_num_rows($results);
-    ?>
-    <!-- small box -->
-    <div class="small-box bg-success">
-      <div class="inner">
-        <h3><?= $total_releasedloans ?></h3>
-        </h3>
-        <p>Payments List</p>
-      </div>
-      <div class="icon">
-        <i class="fas fa-tasks"></i>
-      </div>
-      <a href="index.php?page=view-payment-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-  <!-- ./col -->
-
-</div>
-<!-- /.row -->
-
-<!-- Main row -->
-<?php
-if ($_SESSION['membership'] == 1) :
-?>
   <div class="row mt-5">
     <div class="col-md-12">
       <div class="card">
@@ -69,6 +14,7 @@ if ($_SESSION['membership'] == 1) :
                 <th class="text-center">Principal Amount</th>
                 <th class="text-center">Loan Date</th>
                 <th class="text-center">Status</th>
+                <th class="text-center">View</th>
                 <th class="text-center">Actions</th>
               </tr>
             </thead>
@@ -114,6 +60,16 @@ if ($_SESSION['membership'] == 1) :
                       <a href="index.php?page=view-payments&ref_no=<?= $ref_no ?>" class="btn btn-warning text-white btn-xs">View Payments</a>
                     <?php } ?>
                   </td>
+                  <td align="center">
+                    <?php if ($status_comaker == 0) : ?>
+                      <a href="../../config/update-status.php?approveref_no=<?= $row['status_ref']; ?>" class="btn btn-success btn-xs">Approve</a>
+                      <a type="button" href="../../config/update-status.php?denyref_no=<?= $row['status_ref']; ?>" class="btn btn-danger btn-xs">Disapprove</a>
+                    <?php elseif ($status_comaker == 1) : ?>
+                      <button type="button" class="btn btn-secondary btn-xs">Approved</button>
+                    <?php elseif ($status_comaker == 2) : ?>
+                      <button type="button" class="btn btn-secondary btn-xs">Disapproved</button>
+                    <?php endif; ?>
+                  </td>
                 </tr>
 
               <?php endwhile; ?>
@@ -123,5 +79,3 @@ if ($_SESSION['membership'] == 1) :
       </div><!-- /.card -->
     </div><!-- /.col -->
   </div>
-  <!-- /.row (main row) -->
-<?php endif ?>

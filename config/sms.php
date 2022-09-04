@@ -36,7 +36,7 @@ foreach ($persons as $row) { ?>
 
   echo $msg;
   if ($output) {
-    $addmsg = $conn->query("INSERT INTO tbl_smslogs SET name = '$borrower_name', message = '$msg', date = now()");
+    $addmsg = $conn->query("INSERT INTO tbl_smslogs SET contactNumber = '$phone', name = '$borrower_name', message = '$msg', date = now()");
   } else {
     '';
   }

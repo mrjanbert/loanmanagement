@@ -16,8 +16,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item">Borrowers</li>
                         <li class="breadcrumb-item">Loans</li>
-                        <li class="breadcrumb-item active">Payments</li>
+                        <li class="breadcrumb-item active">View Payments</li>
                     </ol>
                 </div>
             </div>
@@ -50,6 +51,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                         <i class="fa fa-plus mr-1"></i>
                                         Add Penalty
                                     </button>
+                                    <a href="index.php?page=view-monthly-reminder&ref_no=<?= $_GET['refid']?>" class="btn btn-success btn-sm mr-2">
+                                        <i class="far fa-bell mr-1"></i>
+                                        Due Date Reminders
+                                    </a>
                                 </div>
                             <?php } ?>
                             <?php include_once 'base/data-view-payments.php' ?>

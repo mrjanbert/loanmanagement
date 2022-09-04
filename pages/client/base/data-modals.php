@@ -29,7 +29,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             <div class="col-6">
               <div class="form-group">
                 <label>Loan Amount: <small class="text-red">*</small></label>
-                <input type="number" id="view_loan_amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
+                <input type="text" onfocus="(this.type = 'number')" onblur="(this.type = 'text')" id="view_loan_amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
               </div>
             </div>
             <div class="col-6">
@@ -41,7 +41,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           </div>
           <div class="form-group">
             <label>Type of Loan <small class="text-red">*</small></label>
-            <input type="text" class="form-control form-control-border" id="view_loan_type" name="loan_type" placeholder="Type of Loan" required>
+            <!-- <input type="text" class="form-control form-control-border" id="view_loan_type" name="loan_type" placeholder="Type of Loan" required> -->
+            <select class="select2" style="width: 100%;" name="loan_type" id="view_loan_type" data-placeholder="Type of Loan" required>
+              <option value=""></option>
+              <option value="Emergency Loan">Emergency Loan</option>
+              <option value="Salary Loan">Salary Loan</option>
+              <option value="Rice Loan">Rice Loan</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Purpose <small class="text-red">*</small></label>
@@ -93,8 +99,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <div id="calculation_table"></div>
         </div>
         <!-- /.card-body -->
-        <div class="modal-footer justify-content-end">
+        <div class="modal-footer ">
           <div class="form-group">
+            <label class="form-check-label" for="invalidCheck">
+              By clicking the "Apply" button, you are agree to the <a href="#" data-toggle="modal" data-target="#termsconditions">Terms and Conditions of NMSCST LMS</a>.
+            </label>
+          </div>
+          <div class="form-group justify-content-end">
             <button type="submit" name="submit" class="btn btn-primary">Apply</button>
             <button type="button" class="btn btn-secondary" id="close_modal" data-dismiss="modal">Cancel</button>
           </div>
@@ -105,3 +116,42 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 </div>
 
 <!-- Apply Loan End -->
+
+
+<div class="modal fade" id="termsconditions">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">TERMS AND CONDITIONS</h5>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <h5>I. Eligibility</h5> <br />
+        <p>1. The borrower has to be an employee of NMSCST. (COS and Regular)</p>
+        <p>2. The borrower has no default on any outstanding loan to the Coop.</p>
+        <!-- <p>3. Contract of Service employee cannot avail a loan if the remaining months of their contract is below 3 months.</p> -->
+        <p>3. Non - Members/Regular employee borrowers are entitled a loan based on the 50% of their net pay.</p>
+        <br />
+        <h5>II. Co-Maker</h5> <br />
+        <p>1. The Co-Maker/Guarantor must be a member of the Cooperative and possess a higher share capital that can cater the loan amount of the borrower.</p>
+        <p>2. The Co-Maker/Guarantor must understand that by agreeing and signing the Loan Application, they lawfully commit themselves to conditionally answer for the payment of the Borrower's obligation when due and demandable.</p>
+        <br />
+        <h5>III. Mode of Payment</h5> <br />
+        <p>1. The payment shall be made on the next month of the same date when loan released occurs.</p>
+        <p>2. It can be monthly or 15th & 30th based on the borrower's preferences.</p>
+        <br />
+        <h5>IV. Deductions</h5> <br />
+        <p>1. Service Charge: 1% of the loan amount</p>
+        <p>2. Share Capital: 1% of the loan amount for members only</p>
+        <p>3. Notarial fee: 100.00</p>
+        <br />
+        <h5>V. Loans and Penalties</h5> <br />
+        <p>1. The interest of loan shall be 12% anually or 1% per month.</p>
+        <p>2. Loans are subject to penalty which is 1.5% in monthly amortization if the borrower did not agree for the salary deduction process.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -313,7 +313,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <h2>Cashier's List</h2>
       </div>
     <?php } ?>
-    <div class="col-lg-3 col-12 col-sm-12 col-md-3">
+    <div class="col-lg-4 col-12 col-sm-12 col-md-4">
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
@@ -333,8 +333,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </div>
     <!-- ./col -->
 
-    <div class="col-lg-3 col-12 col-sm-12 col-md-3">
-      <!-- small box -->
+    <!-- <div class="col-lg-3 col-12 col-sm-12 col-md-3">
       <div class="small-box bg-primary">
         <div class="inner">
           <?php
@@ -350,10 +349,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         </div>
         <a href="index.php?page=view-cashier-approved-loans" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-    </div>
+    </div> -->
     <!-- ./col -->
 
-    <div class="col-lg-3 col-12 col-sm-12 col-md-3">
+    <div class="col-lg-4 col-12 col-sm-12 col-md-4">
       <!-- small box -->
       <div class="small-box bg-danger">
         <div class="inner">
@@ -373,7 +372,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </div>
     <!-- ./col -->
 
-    <div class="col-lg-3 col-12 col-sm-12 col-md-3">
+    <div class="col-lg-4 col-12 col-sm-12 col-md-4">
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
@@ -383,7 +382,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           $released_cashier = mysqli_num_rows($results);
           ?>
           <h3><?= $released_cashier ?></h3>
-          <p>Payments</p>
+          <p>Released Loans</p>
         </div>
         <div class="icon">
           <i class="fas fa-money-check-alt"></i>

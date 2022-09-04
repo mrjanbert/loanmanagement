@@ -111,17 +111,20 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         <div class="tab-pane active">
                           <div class="row">
                             <div class="col-md-12">
+                              <div class="mt-3">
+                                <p class="text-muted">Note: You can't change your Name and ID Number as to keep your account tracked and secured.</p>
+                              </div>
                               <div class="row">
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label>ID Number</label>
-                                    <input class="form-control" type="text" name="accountNumber" placeholder="Enter ID number" value="<?= $accountNumber ?>" required>
+                                    <input class="form-control" type="text" placeholder="Enter ID number" value="<?= $accountNumber ?>">
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label>Username</label>
-                                    <input class="form-control" type="text" name="username" placeholder="Enter username" value="<?= $username ?>" required>
+                                    <input class="form-control" type="text" name="username" placeholder="Enter username" value="<?= $username ?>">
                                   </div>
                                 </div>
                               </div>
@@ -129,19 +132,19 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control" type="text" name="firstName" placeholder="Enter first name" value="<?= $firstName ?>" required>
+                                    <input class="form-control" type="text" placeholder="Enter first name" value="<?= $firstName ?>">
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>Middle Name</label>
-                                    <input class="form-control" type="text" name="middleName" placeholder="Enter middle name" value="<?= $middleName ?>">
+                                    <input class="form-control" type="text" placeholder="Enter middle name" value="<?= $middleName ?>">
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control" type="text" name="lastName" placeholder="Enter last name" value="<?= $lastName ?>" required>
+                                    <input class="form-control" type="text" placeholder="Enter last name" value="<?= $lastName ?>">
                                   </div>
                                 </div>
                               </div>
@@ -189,7 +192,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                 <div class="col-md-3">
                                   <div class="form-group">
                                     <label>New Password</label>
-                                    <input class="form-control" type="password" name="password" placeholder="Enter new password">
+                                    <input class="form-control" type="password" name="password" onfocus="(this.type='text')" onblur="(this.type='password')" placeholder="Enter new password">
                                   </div>
                                 </div>
                               </div>

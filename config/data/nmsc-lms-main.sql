@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 26, 2022 at 05:46 PM
+-- Generation Time: Sep 02, 2022 at 06:09 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `loan-management`
+-- Database: `nmsc-lms-main`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tbl_borrowers` (
   `address` varchar(255) NOT NULL,
   `age` int(10) NOT NULL,
   `birthDate` date NOT NULL,
-  `profilePhoto` varchar(255) DEFAULT NULL,
+  `profilePhoto` varchar(255) NOT NULL,
   `contactNumber` varchar(50) NOT NULL,
   `userCreated` datetime DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -99,6 +99,21 @@ CREATE TABLE IF NOT EXISTS `tbl_payments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_smslogs`
+--
+
+DROP TABLE IF EXISTS `tbl_smslogs`;
+CREATE TABLE IF NOT EXISTS `tbl_smslogs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_status`
 --
 
@@ -116,6 +131,34 @@ CREATE TABLE IF NOT EXISTS `tbl_status` (
   `status_cashier` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 = pending, 1 = approved, 2 = released, 3 = denied',
   `cashier_dateprocess` date DEFAULT NULL,
   PRIMARY KEY (`status_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_tmp_registration`
+--
+
+DROP TABLE IF EXISTS `tbl_tmp_registration`;
+CREATE TABLE IF NOT EXISTS `tbl_tmp_registration` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_id` int(10) DEFAULT NULL,
+  `borrower_id` int(10) DEFAULT NULL,
+  `accountNumber` varchar(255) DEFAULT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `middleName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `birthDate` date DEFAULT NULL,
+  `contactNumber` varchar(50) DEFAULT NULL,
+  `age` int(5) DEFAULT NULL,
+  `profilePhoto` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `data_inserted` varchar(255) DEFAULT NULL,
+  `otp` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -161,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `address` varchar(255) NOT NULL,
   `age` int(10) NOT NULL,
   `birthDate` date NOT NULL,
-  `profilePhoto` varchar(255) DEFAULT NULL,
+  `profilePhoto` varchar(255) NOT NULL,
   `contactNumber` varchar(50) NOT NULL,
   `userCreated` datetime NOT NULL DEFAULT current_timestamp(),
   `email` varchar(255) NOT NULL,
@@ -169,13 +212,6 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `role_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_users`
---
-
-INSERT INTO `tbl_users` (`user_id`, `accountNumber`, `username`, `firstName`, `middleName`, `lastName`, `address`, `age`, `birthDate`, `profilePhoto`, `contactNumber`, `userCreated`, `email`, `password`, `role_name`) VALUES
-(1, '2018-0560', 'adminjanbert', 'Janbert', 'Recimulo', 'Gabica', 'Capalaran, Tangub Cityy', 22, '1999-10-11', '08182022064140_profile-janbert.jpg', '09300344555', '2022-06-25 11:58:49', 'janbert.gabica@nmsc.edu.ph', '$2y$10$qiVZ9aq7hR8zY2jHoUmQ4OUGrx8SROAKuVPyPhzqyZo2j24TsjVRy', 'Admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -15,8 +15,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item">View Information</li>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item">Borrowers</li>
+            <li class="breadcrumb-item active">View Information</li>
           </ol>
         </div>
       </div>
@@ -84,26 +85,26 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                           <div class="row">
                             <div class="col-md-12">
                               <div class="row">
-                                <?php if($_SESSION['role_name'] == 'Admin') { ?>
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label>ID Number</label>
-                                    <input class="form-control" type="text" value="<?= $accountNumber ?>" required>
+                                <?php if ($_SESSION['role_name'] == 'Admin') { ?>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label>ID Number</label>
+                                      <input class="form-control" type="text" value="<?= $accountNumber ?>" required>
+                                    </div>
                                   </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="form-control" type="text" value="<?= $username ?>" required>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label>Username</label>
+                                      <input class="form-control" type="text" value="<?= $username ?>" required>
+                                    </div>
                                   </div>
-                                </div>
                                 <?php } else { ?>
                                   <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label>ID Number</label>
-                                    <input class="form-control" type="text" value="<?= $accountNumber ?>" required>
+                                    <div class="form-group">
+                                      <label>ID Number</label>
+                                      <input class="form-control" type="text" value="<?= $accountNumber ?>" required>
+                                    </div>
                                   </div>
-                                </div>
                                 <?php } ?>
                               </div>
                               <div class="row">

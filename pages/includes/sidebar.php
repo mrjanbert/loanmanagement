@@ -52,10 +52,18 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans nav-borrower-info nav-loan-information">
+                        <a href="index.php?page=borrower-list" class="nav-link nav-borrower-list nav-view-payments nav-grace-period nav-application-form nav-view-loans nav-borrower-info nav-loan-information nav-view-monthly-reminder">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Borrowers
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?page=smslogs" class="nav-link nav-smslogs nav-message">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>
+                                SMS Logs
                             </p>
                         </a>
                     </li>
@@ -71,17 +79,17 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item nav-user-list nav-user-roles">
-                        <a href="#" class="nav-link nav-user-list nav-user-roles">
+                    <li class="nav-item nav-user-list nav-user-roles nav-user-info">
+                        <a href="#" class="nav-link nav-user-list nav-user-roles nav-user-info">
                             <i class="nav-icon fas fa-user-cog"></i>
                             <p>
                                 User Management
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview nav-user-list nav-user-roles">
+                        <ul class="nav nav-treeview nav-user-list nav-user-roles nav-nav-user-info">
                             <li class="nav-item">
-                                <a href="index.php?page=user-list" class="nav-link nav-user-list">
+                                <a href="index.php?page=user-list" class="nav-link nav-user-list nav-user-info">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>User List</p>
                                 </a>

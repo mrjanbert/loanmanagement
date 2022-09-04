@@ -19,10 +19,13 @@ if (isset($_POST['submit'])) {
       // $tmp_pass = base64_encode(date("gis"));
 
       $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
+      $randstring = '';
       for ($i = 0; $i < 8; $i++) {
-        $tmp_pass .= $characters[rand(0, strlen($characters))];
+        $randstring .= $characters[rand(0, strlen($characters))];
       }
+      $tmp_pass = $randstring;
 
+      
       $encrypt = password_hash($tmp_pass, PASSWORD_DEFAULT);
       $query = "UPDATE tbl_borrowers SET password = '$encrypt' WHERE username = '$username' AND contactNumber = '$contactNumber'";
       $result = $conn->query($query);

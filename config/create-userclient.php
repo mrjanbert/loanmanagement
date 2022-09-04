@@ -47,6 +47,42 @@ if (isset($_POST['submit'])) {
     $results = $conn->query($query);
     if ($conn->affected_rows > 0) {
       $deletetmp = $conn->query("DELETE FROM tbl_tmp_registration WHERE data_inserted = '$conf'");
+
+      $sendmessage = $conn->query("SELECT * FROM tbl_users WHERE role_name = 'Admin'");
+      while($row = $sendmessage->fetch_assoc()) {
+
+        $name = $row['firstName'] . ' ' . $row['lastName'];
+
+        $url = "https://semysms.net/api/3/sms.php"; //Url address for sending SMS
+        $phone = $row['contactNumber']; // Phone number
+        $msg = 'NMSCST LMS: ' . PHP_EOL . 'New borrower registered.' . PHP_EOL . 'Name: '. $firstName . ' ' . $lastName . PHP_EOL . '(computer msg)'; // Message
+        $device = '319799';  //  Device code
+        $token = '16f034060c14278c0615d329f4d02643';  //  Your token (secret)
+
+        $data = array(
+            "phone" => $phone,
+            "msg" => $msg,
+            "device" => $device,
+            "token" => $token
+          );
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        $output = curl_exec($curl);
+        curl_close($curl);
+
+        echo $msg;
+        if ($output) {
+          $addmsg = $conn->query("INSERT INTO tbl_smslogs SET contactNumber = '$phone', name = '$name', message = '$msg', date = now()");
+        } else {
+          '';
+        }
+      }
+
       $_SESSION['status'] = "<script>const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -58,6 +94,7 @@ if (isset($_POST['submit'])) {
         icon: 'success',
         title: 'Registered Successfully.'
       })</script>";
+
       header('location: ../login.php');
     }
   } else {

@@ -125,7 +125,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <button type="button" style="pointer-events:none" class="btn btn-primary btn-xs">Approved</button>
         </td>
         <td>
-          <button type="button" style="pointer-events:none" class="btn btn-info btn-xs">Disapproved</button>
+          <button type="button" style="pointer-events:none" class="btn btn-danger btn-xs">Disapproved</button>
         </td>
       <?php endif; ?>
 

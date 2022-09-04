@@ -63,7 +63,7 @@ $pdf->SetFont('Courier', 'B', 11);
 $pdf->Ln(0);
 $pdf->Cell(0, 3.4, '                      ' . $borrower_name);
 $pdf->Ln(0);
-$pdf->Cell(0, 3.4, '                                                                        ' . date('F j, Y', $loan_date));
+$pdf->Cell(0, 3.4, '                                                                        ' . date('M j, Y', $loan_date));
 $pdf->Ln(0);
 $pdf->Cell(0, 3.78, '             ' . $borrower_address);
 $pdf->Ln(0);
