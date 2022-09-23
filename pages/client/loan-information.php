@@ -14,6 +14,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item">Loans</li>
           <li class="breadcrumb-item active">Loan Information</li>
         </ol>
       </div>

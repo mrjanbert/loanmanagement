@@ -14,8 +14,8 @@ if (isset($_SESSION['adminuser_id']) || (isset($_SESSION['role_name']))) {
 
 if ((isset($_SESSION['user_id']) || (isset($_SESSION['membership'])))) {
   $check = $_SESSION['user_id'];
-  $membershhip = $_SESSION['membership'];
-  $users = "SELECT * FROM tbl_borrowers WHERE user_id = '$check' AND membership = '$membershhip'";
+  $membership = $_SESSION['membership'];
+  $users = "SELECT * FROM tbl_borrowers WHERE user_id = '$check' AND membership = '$membership'";
   $result = $conn->query($users);
   if (mysqli_num_rows($result) == 1) {
     header('location: pages/client/index.php?page=dashboard');
@@ -83,13 +83,11 @@ if ((isset($_SESSION['user_id']) || (isset($_SESSION['membership'])))) {
               <label for="inputUsername">Username</label>
               <input type="text" name="username" id="inputUsername" required>
               <i class="fa fa-user"></i>
-              <div class="text-danger"></div>
             </div>
             <div class="form-gp">
               <label for="inputPassword">Password</label>
               <input type="password" name="password" id="inputPassword" required>
               <i class="fa fa-lock" id="togglePassword" style="cursor: pointer;"></i>
-              <div class="text-danger"></div>
             </div>
             <div class="row mb-4 rmber-area">
               <div class="col-12 text-right">
@@ -117,7 +115,7 @@ if ((isset($_SESSION['user_id']) || (isset($_SESSION['membership'])))) {
       // toggle the type attribute
       const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
       password.setAttribute('type', type);
-      // toggle the eye slash icon
+      // toggle the unlock icon
       this.classList.toggle('fa-unlock');
     });
   </script>
@@ -129,13 +127,10 @@ if ((isset($_SESSION['user_id']) || (isset($_SESSION['membership'])))) {
   <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
   <!-- bootstrap 4 js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-  <!-- <script src="assets/js/owl.carousel.min.js"></script> -->
   <script src="assets/js/metisMenu.min.js"></script>
   <script src="assets/js/jquery.slimscroll.min.js"></script>
   <script src="assets/js/jquery.slicknav.min.js"></script>
 
-  <!-- others plugins -->
-  <!-- <script src="assets/js/plugins.js"></script> -->
   <script src="assets/js/scripts.js"></script>
 </body>
 

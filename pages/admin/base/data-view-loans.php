@@ -32,7 +32,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                                         INNER JOIN tbl_status s ON t.status_ref = s.ref_no) 
                                         LEFT JOIN tbl_users u ON s.processor_id = u.user_id) 
                                         INNER JOIN tbl_comakers c ON t.comaker_id = c.user_id) 
-                                    WHERE t.borrower_id = $user_id");
+                                    WHERE t.borrower_id = $user_id ORDER BY t.id ASC");
     while ($row = $query->fetch_assoc()) :
       $ref_no = $row['ref_no'];
       $borrower_name = $row['borrower_name'];
@@ -88,7 +88,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </td>
           <?php else : ?>
             <td class="text-center">
-              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by Co-maker</button>
+              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by: Co-maker</button>
             </td>
           <?php endif ?>
 
@@ -107,7 +107,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </td>
           <?php else : ?>
             <td class="text-center">
-              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by Co-maker</button>
+              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by: Co-maker</button>
             </td>
           <?php endif ?>
 
@@ -126,7 +126,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </td>
           <?php elseif ($status_manager == 3) : ?>
             <td class="text-center">
-              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Approved by: CC Member <br />Disapproved by: Manager</button>
+              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by: Manager</button>
             </td>
           <?php elseif (($status_manager == 0) && ($status_processor == 1)) : ?>
             <td class="text-center">
@@ -142,7 +142,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </td>
           <?php else : ?>
             <td class="text-center">
-              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved by Co-maker</button>
+              <button type="button" class="btn btn-danger btn-xs my-1" style="pointer-events: none">Disapproved: by Co-maker</button>
             </td>
           <?php endif ?>
         <?php } else {
@@ -163,22 +163,25 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             <a href="index.php?page=view-payments&refid=<?= $ref_no ?>" class="btn btn-warning my-1 text-white btn-xs">
               View Payments
             </a>
+            <a href="release-form.php?ref_no=<?= $row['ref_no'] ?>" target="_blank" class="my-1 btn btn-success text-white btn-xs">
+              Release Form
+            </a>
           <?php } ?>
         </td>
         <td class="text-center">
           <?php if (isset($role_name) && ($role_name == 'Admin')) {  ?>
-            <a href="javascript:void(0);" class="btn btn-danger delete_loan btn-xs my-1" data-delete_loan="<?= $ref_no ?>">
+            <a href="javascript:void(0);" class="btn btn-secondary btn-xs my-1">
               <i class="fa fa-trash"></i>
-              Delete
+              No More Actions
             </a>
           <?php } ?>
           <?php if (isset($role_name) && ($role_name == 'Manager')) {  ?>
             <?php if ($status_processor == 1) : ?>
               <?php if ($status_manager == 0) : ?>
-                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_manager" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_manager" data-status_ref="<?= $row['status_ref'] ?>">
                   <i class="fas fa-thumbs-up"></i>&nbsp;Approve
                 </a>
-                <a href="javascript:void(0);" class="btn btn-danger btn-xs my-1 disapprove_manager" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                <a href="javascript:void(0);" class="btn btn-danger btn-xs my-1 disapprove_manager" data-status_ref="<?= $row['status_ref'] ?>">
                   <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
                 </a>
               <?php elseif ($status_manager == 1) : ?>
@@ -207,7 +210,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <?php } elseif (isset($role_name) && ($role_name == 'Processor')) {  ?>
             <?php if ($status_comaker == 1) : ?>
               <?php if ($status_processor == 0) : ?>
-                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_processor" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_processor" data-status_ref="<?= $row['status_ref'] ?>">
                   <i class="fa fa-check"></i>&nbsp;Check and Verify
                 </a>
               <?php elseif ($status_processor == 1) : ?>
@@ -229,10 +232,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <?php } elseif (isset($role_name) && ($role_name == 'Cashier')) {  ?>
             <?php if ($status_manager == 1) : ?>
               <?php if ($status_cashier == 0) : ?>
-                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_cashier" title="Approve Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
-                  <i class="fas fa-thumbs-up"></i>&nbsp;Approve
+                <a href="javascript:void(0);" class="btn btn-success btn-xs my-1 approve_cashier" data-status_ref="<?= $row['status_ref'] ?>">
+                  <i class="fas fa-hand-holding-usd"></i>&nbsp;Release Loan
                 </a>
-                <a href="javascript:void(0);" class="btn btn-danger btn-xs my-1 disapprove_cashier" title="Disapprove Loan" data-toggle="tooltip" data-placement="top" data-status_ref="<?= $row['status_ref'] ?>">
+                <a href="javascript:void(0);" class="btn btn-danger btn-xs my-1 disapprove_cashier" data-status_ref="<?= $row['status_ref'] ?>">
                   <i class="fas fa-thumbs-down"></i>&nbsp;Disapprove
                 </a>
               <?php elseif ($status_cashier == 1) : ?>

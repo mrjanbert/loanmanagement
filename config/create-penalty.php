@@ -1,5 +1,6 @@
 <?php
 require_once 'data/Database.php';
+session_start();
 
 if(isset($_POST['addpenalty'])) {
   extract($_POST);
@@ -7,14 +8,8 @@ if(isset($_POST['addpenalty'])) {
   $sql = $conn->query("SELECT * FROM tbl_payments WHERE ref_no = $ref_no ORDER BY id DESC ");
   $row = $sql->fetch_array();
 
-  if ($sql->num_rows > 0) {
-    $balance = $row['payment_balance'];
-  } else {
-    $balance = $databal['balance'];
-  }
-
-  $sql = $conn->query("SELECT * FROM tbl_payments WHERE ref_no = $ref_no ORDER BY id DESC ");
-  $row = $sql->fetch_array();
+  $query = $conn->query("SELECT * FROM tbl_transaction WHERE ref_no = $ref_no");
+  $databal = $query->fetch_array();
 
   if ($sql->num_rows > 0) {
     $balance = $row['payment_balance'];
@@ -34,8 +29,6 @@ if(isset($_POST['addpenalty'])) {
   $result = $conn->query($query);
 
   if ($conn->affected_rows > 0) :
-    $sql = $conn->query("UPDATE tbl_status SET status_cashier = '2' WHERE ref_no = '$ref_no'");
-    session_start();
     $_SESSION['status'] = "<script>
       Swal.fire({
         icon: 'success',
@@ -45,7 +38,6 @@ if(isset($_POST['addpenalty'])) {
     </script>";
     header('location: ../pages/admin/index.php?page=view-payments&refid=' . $ref_no);
   else :
-    session_start();
     $_SESSION['status'] = "<script>
       Swal.fire({
         icon: 'error',

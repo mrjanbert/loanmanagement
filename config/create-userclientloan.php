@@ -1,9 +1,10 @@
 <?php 
+    session_start();
     require_once 'data/Database.php';
 
     if (isset($_POST['submit'])) {
         extract($_POST);
-        $ref_no = strtotime(date("h:i:sa"));
+        $ref_no = strtotime(date("F j, Y h:i:sa"));
 
         $interest_rate = 1;
         $total_interest = ($amount * ($interest_rate / 100)) * $loan_term;
@@ -29,6 +30,8 @@
         $data .= ", loan_type = '$loan_type' ";
         $data .= ", purpose = '$purpose' ";
         $data .= ", comaker_id = '$comaker_id' ";
+
+        // echo $data;
 
         $query1 = "INSERT INTO tbl_transaction SET " . $data;
         $result1 = $conn->query($query1);
@@ -69,15 +72,11 @@
                 $output = curl_exec($curl);
                 curl_close($curl);
 
-                echo $msg;
+                // echo $msg;
                 if ($output) {
                     $addmsg = $conn->query("INSERT INTO tbl_smslogs SET contactNumber = '$phone', name = '$comaker_name', message = '$msg', date = now()");
-                } else {
-                    '';
                 }
             }
-
-            session_start();
             $_SESSION['status']= "<script>
                 Swal.fire({
                     icon: 'success',
@@ -86,18 +85,16 @@
                 })
             </script>";
             header('location: ../pages/client/index.php?page=view-loans');
-
         else :
             session_start();
-            $_SESSION['status']= "<script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Failed! Please try again.'
-                })
+            $_SESSION['status'] = "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Loan Not Added'
+            })
             </script>";
             header('location: ../pages/client/index.php?page=view-loans');
         endif;
 
     }
-?>

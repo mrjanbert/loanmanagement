@@ -6,6 +6,7 @@ $response = array(
 );
 
 require_once 'data/Database.php';
+session_start();
 
 if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
   extract($_POST);
@@ -95,7 +96,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
       $results = $conn->query($query);
       if ($conn->affected_rows > 0) :
         $response['status'] = 1;
-        session_start();
         $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -109,7 +109,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                 })</script>";
       else :
         $response['status'] = 1;
-        session_start();
         $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -141,7 +140,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
       $results = $conn->query($query);
       if ($conn->affected_rows > 0) :
         $response['status'] = 1;
-        session_start();
         $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -155,7 +153,6 @@ if (isset($_POST['user_id']) || isset($_FILES['profilePhoto']['name'])) {
                 })</script>";
       else :
         $response['status'] = 1;
-        session_start();
         $_SESSION['status'] = "<script>const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',

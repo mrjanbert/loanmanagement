@@ -73,7 +73,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 							endif;
 						?>
 							<div class="card-header">
-								<div class="row"><img src="../../assets/images/header.png" alt="header" style="width: 100%;">
+								<div class="row">
+									<img src="../../assets/images/header.png" alt="header" style="width: 100%;">
 									<div class="row">
 										<div class="col-sm-12">
 											<h2 class="text-center mb-2">NMSCST EMPLOYEES CREDIT COOPERATIVE</h2>
@@ -137,192 +138,193 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 											</div>
 										<?php endif ?>
 									</div>
-								</div><!-- /.card-header -->
-								<div class="card-body">
-									<table id="example2" class="table table-bordered table-striped">
-										<thead>
-											<tr>
-												<th width="20%" class="text-center">Amortization Period</th>
-												<th class="text-center">Principal</th>
-												<th class="text-center">Interest</th>
-												<th class="text-center">Total</th>
-												<th class="text-center">Balance</th>
-											</tr>
-										</thead>
-										<tbody>
+								</div>
+							</div><!-- /.card-header -->
+							<div class="card-body">
+								<table id="example2" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th width="20%" class="text-center">Amortization Period</th>
+											<th class="text-center">Principal</th>
+											<th class="text-center">Interest</th>
+											<th class="text-center">Total</th>
+											<th class="text-center">Balance</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<b><?php echo date('F j, Y', $loan_date); ?></b>
+											</td>
+											<td align="right">
+												<b><?php echo number_format($amount, 2); ?></b>
+											</td>
+											<td align="right">
+												<b><?php echo number_format($total_interest, 2); ?></b>
+											</td>
+											<td align="right">
+												<b><?php echo number_format($balance, 2); ?></b>
+											</td>
+											<td align="right">
+												<b><?php echo number_format($balance, 2); ?>
+											</td>
+										</tr>
+
+										<?php
+										for ($m = 1 + date('n', $loan_date); $m < 1 + (date('n', $loan_date) + $months); ++$m) { ?>
 											<tr>
 												<td>
-													<b><?php echo date('F j, Y', $loan_date); ?></b>
+													<?php echo date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), date("Y"))) ?>
 												</td>
 												<td align="right">
-													<b><?php echo number_format($amount, 2); ?></b>
+													<?php echo number_format($principal, 2); ?>
 												</td>
 												<td align="right">
-													<b><?php echo number_format($total_interest, 2); ?></b>
+													<?php echo number_format($interest, 2); ?>
 												</td>
 												<td align="right">
-													<b><?php echo number_format($balance, 2); ?></b>
+													<?php echo number_format($monthly, 2); ?>
 												</td>
-												<td align="right">
-													<b><?php echo number_format($balance, 2); ?>
-												</td>
+												<?php
+												do {
+													if ($balance < $monthly) {
+														$principal = $balance;
+													}
+													$balance = $balance - $principal - $interest;
+													if ($balance < 0) {
+														$balance = 0;
+													}
+												?>
+													<td align="right">
+														<?php echo number_format($balance, 2); ?>
+													</td>
+												<?php
+												} while ($balance < 0)
+												?>
 											</tr>
+										<?php } ?>
+									</tbody>
+								</table>
 
-											<?php
-											for ($m = 1 + date('n', $loan_date); $m < 1 + (date('n', $loan_date) + $months); ++$m) { ?>
-												<tr>
-													<td>
-														<?php echo date('F j, Y', mktime(0, 0, 0, $m, date('j', $loan_date), date("Y"))) ?>
-													</td>
-													<td align="right">
-														<?php echo number_format($principal, 2); ?>
-													</td>
-													<td align="right">
-														<?php echo number_format($interest, 2); ?>
-													</td>
-													<td align="right">
-														<?php echo number_format($monthly, 2); ?>
-													</td>
-													<?php
-													do {
-														if ($balance < $monthly) {
-															$principal = $balance;
-														}
-														$balance = $balance - $principal - $interest;
-														if ($balance < 0) {
-															$balance = 0;
-														}
-													?>
-														<td align="right">
-															<?php echo number_format($balance, 2); ?>
-														</td>
-													<?php
-													} while ($balance < 0)
-													?>
-												</tr>
-											<?php } ?>
-										</tbody>
-									</table>
-
-									<?php
-									if ($membership == 1) :
-									?>
-										<div class="row mt-3">
-											<div class="col-md-4">
-												<strong>Principal:</strong>
-											</div>
-											<div class="col-md-2 text-right">
-												&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Share Capital </strong><i> (for members only)</i> 1% <strong>: </strong>
-											</div>
-											<div class="col-md-2">
-												&nbsp;&nbsp;&nbsp;<?php echo number_format($share_capital, 2) ?>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Service Charge </strong>1%<strong>: </strong>
-											</div>
-											<div class="col-md-2">
-												&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Notarial fee: </strong>
-											</div>
-											<div class="col-md-2">
-												<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
-													<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
-													<span><?php echo number_format($total_less, 2) ?></span>
-												</p>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-											</div>
-											<div class="col-md-2 text-right pt-0">
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Net Proceeds: </strong>
-											</div>
-											<div class="col-md-2 text-right">
-												<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
-											</div>
-											<div class="col-md-6">
-											</div>
+								<?php
+								if ($membership == 1) :
+								?>
+									<div class="row mt-3">
+										<div class="col-md-4">
+											<strong>Principal:</strong>
 										</div>
-									<?php
-									elseif ($membership == 0) :
-									?>
-										<div class="row mt-3">
-											<div class="col-md-4">
-												<strong>Principal:</strong>
-											</div>
-											<div class="col-md-2 text-right">
-												&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Service Charge </strong>1%<strong>: </strong>
-											</div>
-											<div class="col-md-2">
-												&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Notarial fee: </strong>
-											</div>
-											<div class="col-md-2">
-												<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
-													<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
-													<span><?php echo number_format($total_less, 2) ?></span>
-												</p>
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-											</div>
-											<div class="col-md-2 text-right pt-0">
-											</div>
-											<div class="col-md-6">
-											</div>
-											<div class="col-md-4">
-												<strong>Net Proceeds: </strong>
-											</div>
-											<div class="col-md-2 text-right">
-												<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
-											</div>
-											<div class="col-md-6">
-											</div>
+										<div class="col-md-2 text-right">
+											&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
 										</div>
-									<?php endif; ?>
-
-									<div class="row">
 										<div class="col-md-6">
 										</div>
+										<div class="col-md-4">
+											<strong>Share Capital </strong><i> (for members only)</i> 1% <strong>: </strong>
+										</div>
 										<div class="col-md-2">
-											<p class="text-right">Borrower:</p>
+											&nbsp;&nbsp;&nbsp;<?php echo number_format($share_capital, 2) ?>
+										</div>
+										<div class="col-md-6">
 										</div>
 										<div class="col-md-4">
-											<p style="border-bottom: 1px solid;" class="text-center text-bold mb-0"><?= strtoupper($borrower_name) ?></p>
-											<p class="text-center p-0">Sginature over printed name</p>
+											<strong>Service Charge </strong>1%<strong>: </strong>
+										</div>
+										<div class="col-md-2">
+											&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+											<strong>Notarial fee: </strong>
+										</div>
+										<div class="col-md-2">
+											<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
+												<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
+												<span><?php echo number_format($total_less, 2) ?></span>
+											</p>
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+										</div>
+										<div class="col-md-2 text-right pt-0">
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+											<strong>Net Proceeds: </strong>
+										</div>
+										<div class="col-md-2 text-right">
+											<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
+										</div>
+										<div class="col-md-6">
 										</div>
 									</div>
-								</div><!-- /.card-body -->
-							<?php endwhile; ?>
-							</div><!-- /.card -->
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.container-fluid -->
+								<?php
+								elseif ($membership == 0) :
+								?>
+									<div class="row mt-3">
+										<div class="col-md-4">
+											<strong>Principal:</strong>
+										</div>
+										<div class="col-md-2 text-right">
+											&nbsp;&nbsp;&nbsp;&nbsp;<?php echo number_format($amount, 2) ?>
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+											<strong>Service Charge </strong>1%<strong>: </strong>
+										</div>
+										<div class="col-md-2">
+											&nbsp;&nbsp;&nbsp;<?php echo number_format($service_charge, 2) ?>
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+											<strong>Notarial fee: </strong>
+										</div>
+										<div class="col-md-2">
+											<p class="d-flex justify-content-between" style="border-bottom: 3px solid;">
+												<span>&nbsp;&nbsp;&nbsp;<?php echo number_format($notarial_fee, 2) ?></span>
+												<span><?php echo number_format($total_less, 2) ?></span>
+											</p>
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+										</div>
+										<div class="col-md-2 text-right pt-0">
+										</div>
+										<div class="col-md-6">
+										</div>
+										<div class="col-md-4">
+											<strong>Net Proceeds: </strong>
+										</div>
+										<div class="col-md-2 text-right">
+											<p style="border-bottom: 3px double;"><b><?php echo number_format($net, 2) ?></b></p>
+										</div>
+										<div class="col-md-6">
+										</div>
+									</div>
+								<?php endif; ?>
+
+								<div class="row">
+									<div class="col-md-6">
+									</div>
+									<div class="col-md-2">
+										<p class="text-right">Borrower:</p>
+									</div>
+									<div class="col-md-4">
+										<p style="border-bottom: 1px solid;" class="text-center text-bold mb-0"><?= strtoupper($borrower_name) ?></p>
+										<p class="text-center p-0">Sginature over printed name</p>
+									</div>
+								</div>
+							</div><!-- /.card-body -->
+						<?php endwhile; ?>
+					</div><!-- /.card -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.container-fluid -->
 	</section><!-- /.content -->
 
 <?php endif ?>

@@ -6,6 +6,65 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 ?>
 <!-- Small boxes (Stat box) -->
 <div class="row">
+  <div class="col-lg-4 col-md-12 col-sm-12">
+    <?php
+    $query = "SELECT SUM(share_capital) as shared_capital FROM tbl_totalshares";
+    $results = mysqli_query($conn, $query);
+    $data = $results->fetch_assoc();
+    $share_capital = $data['shared_capital'];
+    ?>
+    <div class="info-box">
+      <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-coins"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Share Capital</span>
+        <span class="info-box-number">
+          <?= number_format($share_capital, 2) ?>
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+
+  <div class="col-lg-4 col-md-12 col-sm-12">
+    <?php
+    $query = "SELECT SUM(t.amount) as total_loan FROM tbl_transaction t INNER JOIN tbl_status s ON s.ref_no = t.ref_no WHERE s.status_cashier = '2'";
+    $results = mysqli_query($conn, $query);
+    $data = $results->fetch_assoc();
+    $total_loan = $data['total_loan'];
+    ?>
+    <div class="info-box">
+      <span class="info-box-icon bg-success elevation-1"><i class="far fa-credit-card"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Loans Released</span>
+        <span class="info-box-number">
+          <?= number_format($total_loan, 2) ?>
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+
+  <div class="col-lg-4 col-md-12 col-sm-12">
+    <?php
+    $query = "SELECT SUM(p.payment_amount) as payment_amount FROM ((tbl_payments p INNER JOIN tbl_transaction t ON p.ref_no = t.ref_no) INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id)";
+    $results = mysqli_query($conn, $query);
+    $data = $results->fetch_assoc();
+    $payment_amount = $data['payment_amount'];
+    ?>
+    <div class="info-box">
+      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-bill-wave"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Total Payments</span>
+        <span class="info-box-number">
+          <?= number_format($payment_amount, 2) ?>
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
   <div class="col-lg-4 col-12 col-sm-12 col-md-4">
     <?php
     $query = "SELECT * FROM tbl_transaction";
@@ -16,7 +75,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     <div class="small-box bg-success">
       <div class="inner">
         <h3><?= $total_loans; ?></h3>
-        <p>Total Loans</p>
+        <p>Total Number of Loans</p>
       </div>
       <div class="icon">
         <i class="fas fa-list-ul"></i>
@@ -36,7 +95,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         $total_releasedloans = mysqli_num_rows($results);
         ?>
         <h3><?= $total_releasedloans; ?></h3>
-        <p>Payments</p>
+        <p>Total Number of Released Loans</p>
       </div>
       <div class="icon">
         <i class="fas fa-money-bill-wave"></i>
@@ -66,47 +125,47 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
   </div>
   <!-- ./col -->
 
-<?php if ($_SESSION['role_name'] == "Admin") { ?>
+  <?php if ($_SESSION['role_name'] == "Admin") { ?>
 
-  <div class="col-lg-6 col-12 col-sm-12 col-md-6">
-    <!-- small box -->
-    <div class="small-box bg-lightblue">
-      <div class="inner">
-        <?php
-        $sql = "SELECT * FROM tbl_comakers";
-        $results = mysqli_query($conn, $sql);
-        $comakers = mysqli_num_rows($results);
-        ?>
-        <h3><?= $comakers; ?></h3>
-        <p>Comakers</p>
+    <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+      <!-- small box -->
+      <div class="small-box bg-lightblue">
+        <div class="inner">
+          <?php
+          $sql = "SELECT * FROM tbl_comakers";
+          $results = mysqli_query($conn, $sql);
+          $comakers = mysqli_num_rows($results);
+          ?>
+          <h3><?= $comakers; ?></h3>
+          <p>Comakers</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-user-friends"></i>
+        </div>
+        <a href="index.php?page=comakers" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-      <div class="icon">
-        <i class="fas fa-user-friends"></i>
-      </div>
-      <a href="index.php?page=comakers" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div>
-  <!-- ./col -->
-  <div class="col-lg-6 col-12 col-sm-12 col-md-6">
+    <!-- ./col -->
+    <div class="col-lg-6 col-12 col-sm-12 col-md-6">
 
-    <!-- small box -->
-    <div class="small-box bg-olive">
-      <div class="inner">
-        <?php
-        $sql = "SELECT * FROM tbl_users";
-        $results = mysqli_query($conn, $sql);
-        $users = mysqli_num_rows($results);
-        ?>
-        <h3><?= $users; ?></h3>
-        <p>Users</p>
+      <!-- small box -->
+      <div class="small-box bg-olive">
+        <div class="inner">
+          <?php
+          $sql = "SELECT * FROM tbl_users";
+          $results = mysqli_query($conn, $sql);
+          $users = mysqli_num_rows($results);
+          ?>
+          <h3><?= $users; ?></h3>
+          <p>Users</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-users-cog"></i>
+        </div>
+        <a href="index.php?page=user-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-      <div class="icon">
-        <i class="fas fa-users-cog"></i>
-      </div>
-      <a href="index.php?page=user-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div>
-  <!-- ./col -->
+    <!-- ./col -->
   <?php } ?>
 </div>
 <!-- /.row -->
@@ -387,7 +446,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <div class="icon">
           <i class="fas fa-money-check-alt"></i>
         </div>
-        <a href="index.php?page=view-dashboard-payments-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="index.php?page=view-payments-list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->

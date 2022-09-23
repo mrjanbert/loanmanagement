@@ -5,18 +5,15 @@ include_once('../../config/data/Database.php');
 $ref_no = $_GET['ref_no'];
 $query = $conn->query("SELECT 
   t.*, concat(c.firstName,' ',c.lastName) AS comaker_name, 
-  b.*, concat(b.firstName,' ',b.lastName) as borrower_name,
-  s.*, concat(u.firstName,' ',u.lastName) as user_name
-    FROM ((((tbl_transaction t 
+  b.*, concat(b.firstName,' ',b.lastName) as borrower_name
+    FROM (((tbl_transaction t 
   INNER JOIN tbl_status s ON s.ref_no = t.ref_no)
-  LEFT JOIN tbl_users u ON s.processor_id = u.user_id)
   INNER JOIN tbl_borrowers b ON b.user_id = t.borrower_id)
   INNER JOIN tbl_comakers c ON  c.user_id = t.comaker_id)
     WHERE t.ref_no = $ref_no");
 
 $row = $query->fetch_assoc();
 $comaker_name = $row['comaker_name'];
-$user_name = $row['user_name'];
 $borrower_name = $row['borrower_name'];
 $borrower_contactNumber = $row['contactNumber'];
 $borrower_address = $row['address'];
@@ -29,6 +26,23 @@ $amount = $row['amount'];
 $months = $row['loan_term'];
 $monthly = $row['monthly'];
 $loan_date = strtotime($row['loan_date']);
+
+
+//Get processor
+$findprocessor = $conn->query("SELECT concat(u.firstName,' ',u.lastName) as processor_name FROM tbl_users u INNER JOIN tbl_status s ON s.processor_id = u.user_id LEFT JOIN tbl_transaction t ON t.ref_no = s.ref_no WHERE t.ref_no = '$ref_no'");
+$getprocessor = $findprocessor->fetch_array();
+$processor_name = $getprocessor['processor_name'];
+
+//Get manager
+$findmanager = $conn->query("SELECT concat(u.firstName,' ',u.lastName) as manager_name FROM tbl_users u INNER JOIN tbl_status s ON s.manager_id = u.user_id LEFT JOIN tbl_transaction t ON t.ref_no = s.ref_no WHERE t.ref_no = '$ref_no'");
+$getmanager = $findmanager->fetch_array();
+$manager_name = $getmanager['manager_name'];
+
+//Get cashier
+$findcashier = $conn->query("SELECT concat(u.firstName,' ',u.lastName) as cashier_name FROM tbl_users u INNER JOIN tbl_status s ON s.cashier_id = u.user_id LEFT JOIN tbl_transaction t ON t.ref_no = s.ref_no WHERE t.ref_no = '$ref_no'");
+$getcashier = $findcashier->fetch_array();
+$cashier_name = $getcashier['cashier_name'];
+
 
 if ($membership == 1) :
   $share_capital = 0.01 * $amount;   //fixed capital for members only
@@ -55,7 +69,7 @@ $pdf->SetTitle('Application Form For Loan');
 $pdf->AddPage();
 
 //* Add image as background (z-index: -1)
-$pdf->Image('../../assets/images/application-form-for-loan-new.jpg', 0.2, 0.2, 8.1);
+$pdf->Image('../../assets/images/application-form-for-loan-edited.jpg', 0.2, 0.2, 8.1);
 
 //? Loan Information
 //TODO Set values to the body
@@ -142,6 +156,9 @@ $pdf->Cell(0, 2.03, '                               ' . number_format($total_les
 $pdf->Ln(0);
 $pdf->Cell(0, 2.84, '                           ' . number_format($net, 2));
 $pdf->Ln(0);
+$pdf->Cell(0, 3.57, '                                                      ' . strtoupper($processor_name));
+$pdf->Ln(3);
+$pdf->Cell(0, 0.4, '    ' . strtoupper($manager_name));
 $pdf->Ln(0);
-$pdf->Cell(0, 3.57, '                                                      ' . strtoupper($user_name));
+$pdf->Cell(0, 0.4, '                               ' . strtoupper($cashier_name));
 $pdf->Output();

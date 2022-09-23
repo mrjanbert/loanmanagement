@@ -33,9 +33,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
         <td><?= $row['email']; ?></td>
         <td class="text-center">
           <a href="index.php?page=user-info&uid=<?= $row['user_id'] ?>" class="btn btn-info btn-xs my-1">View Information</a>
-          <?php if ($row['role_name'] != 'Admin') { ?>
-            <a href="javascript:void(0);" class="btn btn-danger btn-xs delete_user" data-del_user_id="<?= $user_id ?>"><i class="fas fa-trash"></i> Delete</a>
-          <?php } ?>
         </td>
       </tr>
     <?php endwhile; ?>

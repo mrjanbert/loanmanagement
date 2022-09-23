@@ -81,7 +81,7 @@ session_start();
                         </div>
                         <div class="form-gp">
                             <label for="middlename">Middle Name</label>
-                            <input type="text" id="middlename" name="middleName">
+                            <input type="text" id="middlename" name="middleName" required>
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp">

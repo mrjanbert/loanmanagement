@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
         $output = curl_exec($curl);
         curl_close($curl);
 
-        echo $msg;
+        // echo $msg;
         if ($output) {
           $addmsg = $conn->query("INSERT INTO tbl_smslogs SET contactNumber = '$phone', name = '$name', message = '$msg', date = now()");
         } else {

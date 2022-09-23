@@ -143,6 +143,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
           <a href="index.php?page=view-payments&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-warning text-white btn-xs" title="View Payments" data-toggle="tooltip" data-placement="top">
             View Payments
           </a>
+          <a href="release-form.php?ref_no=<?= $row['ref_no'] ?>" target="_blank" class="my-1 btn btn-success text-white btn-xs">
+            Release Form
+          </a>
         <?php } ?>
 
       </td>

@@ -24,6 +24,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
       $birthDate = strtotime($row['birthDate']);
       $name = $row['firstName'] . ' ' . $row['middleName'] . ' ' . $row['lastName'];
       $accountNumber = $row['accountNumber'];
+      $membership = $row['membership'];
     ?>
       <tr>
         <td class="text-center"><?= $i++; ?></td>
@@ -36,19 +37,10 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
               echo 'Non-member';
             }
             ?></td>
-        <td class="text-center">
+        <td class="">
           <a href="index.php?page=borrower-info&uid=<?= $row['user_id'] ?>" class="btn btn-info btn-xs my-1">View Information</a>
           <a href="index.php?page=view-loans&uid=<?= $row['user_id'] ?>" class="btn btn-primary btn-xs my-1">View Loans</a>
-
-          <!-- Action for Admin only -->
-          <?php if (isset($_SESSION['role_name']) && ($_SESSION['role_name'] == 'Admin')) {  ?>
-            <button class="btn btn-danger btn-xs delete_borrower" data-del_borrowerid="<?= $row['user_id'] ?>">
-              <i class="fas fa-trash mr-1"></i>
-              Delete
-            </button>
-          <?php } else {
-            '';
-          } ?>
+          <?php if($membership == 1) { ?><a href="index.php?page=view-share-capital&uid=<?= $row['user_id'] ?>" class="btn btn-success btn-xs my-1">View Share Capital</a> <?php } else {'';} ?>
         </td>
       </tr>
     <?php endwhile; ?>

@@ -30,8 +30,8 @@ if (isset($_POST['username'])) {
 
   $checkusername = $conn->query("SELECT * FROM tbl_borrowers WHERE username = '$username'");
   $checkusername1 = $conn->query("SELECT * FROM tbl_users WHERE username = '$username'");
-  $checkmobilenumber = $conn->query("SELECT * FROM tbl_borrowers WHERE contactNumber = '$contactNumber'");
-  $checkid = $conn->query("SELECT * FROM tbl_borrowers WHERE accountNumber = '$accountNumber'");
+  $checkmobilenumber = $conn->query("SELECT * FROM tbl_users WHERE contactNumber = '$contactNumber'");
+  $checkid = $conn->query("SELECT * FROM tbl_users WHERE accountNumber = '$accountNumber'");
 
   if (mysqli_num_rows($checkusername) == 1) {
     $response['status'] = 0;

@@ -1,5 +1,6 @@
 <?php
 require_once 'data/Database.php';
+session_start();
 
 if (isset($_POST['submit'])) {
     extract($_POST);
@@ -20,8 +21,6 @@ if (isset($_POST['submit'])) {
 
         //Set borrower to member
         $query1 = $conn->query("UPDATE tbl_borrowers SET membership = '1' WHERE user_id = $user_id");
-
-        session_start();
         $_SESSION['status'] = "<script>
         Swal.fire({
             icon: 'success',
@@ -31,7 +30,6 @@ if (isset($_POST['submit'])) {
         </script>";
         header('location: ../pages/admin/index.php?page=comakers');
     else :
-        session_start();
         $_SESSION['status'] = "<script>
             Swal.fire({
                 icon: 'error',

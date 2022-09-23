@@ -57,6 +57,12 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 </li>
                 <?php if ($_SESSION['membership'] == '1') { ?>
                     <li class="nav-item">
+                        <a href="index.php?page=view-share-capital" class="nav-link nav-view-share-capital">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>Share Capital</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="index.php?page=comakers" class="nav-link nav-comakers">
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>Comaker Requests</p>

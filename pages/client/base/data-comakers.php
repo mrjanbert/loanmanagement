@@ -1,4 +1,4 @@
-  <div class="row mt-5">
+  <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
@@ -59,6 +59,12 @@
                     <?php if (($row['status_cashier'] == '1') || ($row['status_cashier'] == '2')) { ?>
                       <a href="index.php?page=view-payments&ref_no=<?= $ref_no ?>" class="btn btn-warning text-white btn-xs">View Payments</a>
                     <?php } ?>
+                    <a href="index.php?page=grace-period&ref_no=<?= $row['ref_no'] ?>" class="my-1 btn btn-primary btn-xs" title="View Grace Period" data-toggle="tooltip" data-placement="top">
+                      Grace Period
+                    </a>
+                    <a href="app-form.php?ref_no=<?= $row['ref_no'] ?>" target="_blank" class="btn btn-success my-1 btn-xs">
+                      Application Form
+                    </a>
                   </td>
                   <td align="center">
                     <?php if ($status_comaker == 0) : ?>

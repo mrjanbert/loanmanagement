@@ -28,6 +28,44 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <?php
+                    $query = "SELECT SUM(t.amount) as total_loan FROM tbl_transaction t INNER JOIN tbl_status s ON s.ref_no = t.ref_no WHERE borrower_id = " . $_GET['uid'] . " AND s.status_cashier = '2'";
+                    $results = mysqli_query($conn, $query);
+                    $data = $results->fetch_assoc();
+                    $total_loan = $data['total_loan'];
+                    ?>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success elevation-1"><i class="far fa-credit-card"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Loans</span>
+                            <span class="info-box-number">
+                                <?= number_format($total_loan, 2) ?>
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <?php
+                    $query = "SELECT SUM(p.payment_amount) as payment_amount FROM ((tbl_payments p INNER JOIN tbl_transaction t ON p.ref_no = t.ref_no) INNER JOIN tbl_borrowers b ON t.borrower_id = b.user_id) WHERE b.user_id = " . $_GET['uid'];
+                    $results = mysqli_query($conn, $query);
+                    $data = $results->fetch_assoc();
+                    $payment_amount = $data['payment_amount'];
+                    ?>
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-bill-wave"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Total Payments</span>
+                            <span class="info-box-number">
+                                <?= number_format($payment_amount, 2) ?>
+                            </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
@@ -55,13 +93,13 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 status_ref
             });
             Swal.fire({
-                title: 'Confirm Approve?',
-                text: "You won't be able to revert this!",
+                title: 'Check and Verify?',
+                text: "You won\'t be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Approve'
+                confirmButtonText: 'Check and Verify'
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "../../config/update-status.php?approve_processor=" + status_ref + "&uid=" + <?= $_GET['uid'] ?> + "&aid=" + <?= $_SESSION['adminuser_id'] ?>;
@@ -76,7 +114,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             });
             Swal.fire({
                 title: 'Confirm Approve?',
-                text: "You won't be able to revert this!",
+                text: "You won\'t be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -96,7 +134,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             });
             Swal.fire({
                 title: 'Confirm Disapprove?',
-                text: "You won't be able to revert this!",
+                text: "You won\'t be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -115,16 +153,16 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
                 status_ref
             });
             Swal.fire({
-                title: 'Confirm Approve?',
-                text: "You won't be able to revert this!",
+                title: 'Release the loan?',
+                text: "Clicking the release button will also complete the loan process.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Approve'
+                confirmButtonText: 'Release'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "../../config/update-status.php?approve_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
+                    window.location.href = "../../config/update-status.php?approve_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?> + "&aid=" + <?= $_SESSION['adminuser_id'] ?>;
                 }
             })
         });
@@ -145,46 +183,6 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "../../config/update-status.php?disapprove_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-                }
-            })
-        });
-
-        $(".release_cashier").click(function() {
-            var status_ref = $(this).data('status_ref');
-            console.log({
-                status_ref
-            });
-            Swal.fire({
-                title: 'Confirm Release?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Release'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "../../config/update-status.php?release_cashier=" + status_ref + "&uid=" + <?= $_GET['uid'] ?>;
-                }
-            })
-        });
-
-        $(".delete_loan").click(function() {
-            var delete_loan = $(this).data('delete_loan');
-            console.log({
-                delete_loan
-            });
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "Deleting this loan will also delete the payments history!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "../../config/delete-loan.php?delete_loan_id=" + delete_loan + "&uid=" + <?= $_GET['uid'] ?>;
                 }
             })
         });

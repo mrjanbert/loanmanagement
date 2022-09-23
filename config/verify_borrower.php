@@ -17,7 +17,7 @@ if((!isset($_SESSION['user_id']) || (!isset($_SESSION['membership'])))){
 } else {
   $check = $_SESSION['user_id'];
   $membershhip = $_SESSION['membership'];
-  $users = "SELECT * FROM tbl_borrowers WHERE user_id = '$check' AND membership = '$membershhip'";
+  $users = "SELECT * FROM tbl_borrowers WHERE user_id = '$check' AND membership LIKE BINARY '$membershhip'";
   $result = $conn->query($users);
   if(mysqli_num_rows($result) < 1) {
     unset($_SESSION['user_id']);

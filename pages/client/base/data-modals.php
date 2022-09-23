@@ -8,9 +8,9 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
 <!-- Apply Loan Start -->
 
 <div class="modal fade" id="addloan">
-  <div class="modal-dialog modal-md modal-dialog-centered">
+  <div class="modal-dialog modal-md">
     <div class="modal-content card-outline card-primary">
-      <form action="../../config/create-userclientloan.php" autocomplete="off" method="POST">
+      <form action="../../config/create-userclientloan.php" onsubmit="submitbtn.disabled = true; return true;" method="POST" autocomplete="off">
         <div class="modal-header">
           <h4 class="modal-title">Apply New Loan</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -29,7 +29,7 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             <div class="col-6">
               <div class="form-group">
                 <label>Loan Amount: <small class="text-red">*</small></label>
-                <input type="text" onfocus="(this.type = 'number')" onblur="(this.type = 'text')" id="view_loan_amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
+                <input type="text" id="view_loan_amount" name="amount" class="form-control form-control-border" placeholder="Amount" required>
               </div>
             </div>
             <div class="col-6">
@@ -106,7 +106,8 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
             </label>
           </div>
           <div class="form-group justify-content-end">
-            <button type="submit" name="submit" class="btn btn-primary">Apply</button>
+            <input type="hidden" name="submit">
+            <button type="submit" name="submitbtn" class="btn btn-primary">Apply</button>
             <button type="button" class="btn btn-secondary" id="close_modal" data-dismiss="modal">Cancel</button>
           </div>
         </div>
@@ -155,3 +156,15 @@ if (basename($_SERVER['PHP_SELF']) == basename(__FILE__)) {
     </div>
   </div>
 </div>
+
+<script>
+  // (function formsubmit() {
+  //   var allowSubmit = true;
+  //   form.onsubmit = function() {
+  //     if (allowSubmit)
+  //       allowSubmit = false;
+  //     else
+  //       return false;
+  //   }
+  // })();
+</script>
