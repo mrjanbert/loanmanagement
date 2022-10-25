@@ -1,0 +1,12 @@
+ErrorDocument 400 /400.php
+ErrorDocument 401 /401.php
+ErrorDocument 403 http://localhost/loanmanagement/pages/error/403-error.php
+ErrorDocument 404 http://localhost/loanmanagement/pages/error/404-error.php
+ErrorDocument 500 /500.php
+
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+
+php_value max_input_time 6000
+php_value max_execution_time 6000
+
